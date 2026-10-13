@@ -581,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../paper/" class="md-nav__link">
+      <a href="https://thanatchon36.github.io/airmkit/paper/" class="md-nav__link">
         
   
   
@@ -902,11 +902,11 @@
 
   <h1>04 inventory</h1>
 
-<p>The MAS AI Risk Management Guidelines ask for something most AI inventories cannot answer: what is <em>not</em> in them.</p>
-<p>§4.4 and fn22 require residual risk from <strong>unidentified</strong> AI - shadow AI, embedded AI - to be kept within risk appetite, with mitigations. §4.2 and fn21 require identification to minimally cover AI embedded in services from material third-party providers. Neither is satisfiable by a register you fill in from what teams declare.</p>
-<p>fn25 adds the attributes an agentic entry needs: agent identifiers, the tools and systems it can access, its components, its guardrails. Most inventory schemas have nowhere to put them.</p>
-<p>So the toolkit ships a Pydantic/JSON Schema inventory that includes the agent extension, plus <code>airm scan</code>, which walks a repository and flags LLM SDK imports, model endpoints, MCP server configs, agent frameworks and vendor AI SaaS references as <em>candidate</em> entries. It is a heuristic, not coverage, and scan output is treated as data, never as configuration.</p>
-<p>Section 4 is the most automatable part of the Guidelines (84.6%) and the first to take effect, on 7 Oct 2027. Start here.</p>
+<p>The MAS AI Risk Management Guidelines ask an inventory a question most inventories cannot answer: what is not in you?</p>
+<p>§4.4 and fn22 require the residual risk from unidentified AI - shadow AI, embedded AI - to be kept within appetite, with mitigations. §4.2 and fn21 require identification to cover AI embedded in services from material third-party providers. Neither is satisfiable by a register filled from what teams declare.</p>
+<p>fn25 then lists what an agentic entry needs: agent identifiers, the tools and systems it can access, its components, its guardrails. Most inventory schemas have nowhere to put them.</p>
+<p>So the toolkit ships an inventory schema with an agent extension (also as JSON Schema, for GRC tools), plus <code>airm scan</code>, which walks a repository and flags LLM SDK imports, model endpoints, MCP server configs, agent frameworks and vendor AI SaaS as candidate entries. It is a heuristic, not coverage, and its output is data to triage, never configuration to trust.</p>
+<p>Section 4 is the most automatable part of the Guidelines (84.6%) and the first to bind, on 7 Oct 2027. Start here.</p>
 <p>https://github.com/thanatchon36/airmkit</p>
 
 

@@ -592,7 +592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../paper/" class="md-nav__link">
+      <a href="https://thanatchon36.github.io/airmkit/paper/" class="md-nav__link">
         
   
   
@@ -935,6 +935,8 @@
 <p><strong>D-8 — Eval adapters wrap existing tools; the toolkit never ships its own LLM harness.</strong> MISSION constraint. v0.1 ships adapters for <code>inspect-ai</code> log format, <code>promptfoo</code> JSON output, <code>deepeval</code>/<code>ragas</code> result dicts, <code>garak</code> report JSONL, plus a built-in <em>guardrail probe runner</em> that only orchestrates prompts against an Ollama/mock backend and records outcomes (it is an evidence recorder, not an eval framework).</p>
 <p><strong>D-9 — Local model for RQ3 is <code>qwen3.5:0.8b</code> via Ollama.</strong> Already present on the target machine, ≤4B, fast on an M4 Air. Outputs cached under <code>results/cache/</code> with seed and model digest so CI uses the cache and never calls Ollama.</p>
 <p><strong>D-10 — One repository, <code>src/</code> layout, <code>uv</code> lockfile committed.</strong> Standard for reproducibility.</p>
+<p><strong>D-11 — The paper is typeset with Typst via pandoc, and the web reader is generated from the same Markdown.</strong> <code>paper/paper.md.in</code> renders to <code>paper/paper.md</code> (every number injected from <code>results/summary.json</code>); pandoc converts that once to Typst (<code>paper/airmkit.typ</code>: single column, Libertinus Serif, numbered sections, IEEE references through <code>paper/ieee.csl</code>) and once to HTML (<code>paper/reader.html</code>: one reading column, masthead, verdict strip built from the summary, two-column contents, embedded figures). The <code>typst</code> wheel bundles the compiler and its fonts, so the build needs only pandoc from the system. Rejected: LaTeX (no engine on the build machine, heavy install, no better output for a working paper); WeasyPrint (needs system pango/cairo and gave plain output); hand-maintaining a second HTML copy of the prose (it drifted within a day).</p>
+<p><strong>D-12 — The manuscript was written by Claude Fable 5.1 and says so.</strong> The prose of <code>paper/paper.md.in</code>, the executive summary and the post drafts were written by the model from the author's catalogue, experiments and result files, under the standing constraints: every number injected, every refutation and instrument defect reported, the rubric and thresholds labelled as proposals, the disclaimer everywhere. The author reviewed and is responsible for the content. The disclosure is in the paper's acknowledgements, the reader page's colophon and the README. Rejected: silent assistance (a reader of a pre-registered study is owed the provenance of its prose as much as of its numbers).</p>
 
 
 

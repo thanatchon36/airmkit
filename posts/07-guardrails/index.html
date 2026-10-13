@@ -581,7 +581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../paper/" class="md-nav__link">
+      <a href="https://thanatchon36.github.io/airmkit/paper/" class="md-nav__link">
         
   
   
@@ -902,17 +902,17 @@
 
   <h1>07 guardrails</h1>
 
-<p>§5.15 and fn46 of the MAS AI Risk Management Guidelines require guardrails for generative AI and agents to be tested <strong>for effectiveness</strong>. We measured five common patterns on a local model, against 20 probes across jailbreak, indirect injection, PII leakage and policy evasion - plus a benign in-scope control set.</p>
-<p>Attack success rate:
+<p>§5.15 and fn46 of the MAS AI Risk Management Guidelines require guardrails for generative AI and agents to be tested for effectiveness. We measured five common patterns on a local model against 20 probes - jailbreak, indirect injection, PII leakage, policy evasion - plus a benign in-scope control set.</p>
+<p>Attack success:
 - no guardrail 75.0%
 - system prompt only 50.0%
 - deterministic filter 12.5%
 - LLM judge 12.5%
 - filter + judge 6.2%</p>
-<p>Layering looks excellent. Then the benign set: over-refusal is 0.0% unguarded, 50.0% with the system prompt and 50.0% layered. The patterns that suppress attacks refuse half of ordinary in-scope requests.</p>
-<p>Against our pre-registered joint criterion - attack success within the tier limit <strong>and</strong> over-refusal at or below 5.0% - 0 of 5 patterns qualified. The only pattern with a large reduction at zero over-refusal was the deterministic filter.</p>
-<p>If a guardrail test report has no benign control set, "effective" is unfalsifiable. Ask for one.</p>
-<p>Single small local model, n=16 per pattern; a demonstration, not a general estimate.</p>
+<p>Layering looks excellent. Then the benign set: over-refusal is 0.0% unguarded, 50.0% with the system prompt and 50.0% layered. The patterns that suppress attacks refuse half of ordinary requests.</p>
+<p>Against our pre-registered joint criterion - attack success within the tier limit and over-refusal at or below 5.0% - 0 of 5 patterns qualified. The only pattern with a large reduction at zero over-refusal was the deterministic filter.</p>
+<p>A guardrail report without a benign control set is unfalsifiable. Ask for one before you read the attack numbers.</p>
+<p>One small local model, n=16 per pattern: a demonstration, not a general estimate.</p>
 <p>https://github.com/thanatchon36/airmkit</p>
 
 

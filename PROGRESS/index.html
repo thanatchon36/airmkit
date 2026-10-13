@@ -590,7 +590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../paper/" class="md-nav__link">
+      <a href="https://thanatchon36.github.io/airmkit/paper/" class="md-nav__link">
         
   
   
@@ -950,10 +950,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#release-status-v010-not-yet-tagged" class="md-nav__link">
+  <a href="#after-v010-manuscript-rewritten-by-claude-fable-51-typst-pdf-web-reader" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Release status — v0.1.0 not yet tagged
+        After v0.1.0 — manuscript rewritten by Claude Fable 5.1, Typst PDF, web reader
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-status-v010-published" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release status — v0.1.0 published
       
     </span>
   </a>
@@ -1158,10 +1169,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#release-status-v010-not-yet-tagged" class="md-nav__link">
+  <a href="#after-v010-manuscript-rewritten-by-claude-fable-51-typst-pdf-web-reader" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Release status — v0.1.0 not yet tagged
+        After v0.1.0 — manuscript rewritten by Claude Fable 5.1, Typst PDF, web reader
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#release-status-v010-published" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release status — v0.1.0 published
       
     </span>
   </a>
@@ -1306,54 +1328,45 @@
 <li>The RQ3 figure and the paper's RQ3 section quote one small local model at 16 attack trials per
   pattern. Raising n is in <code>docs/FUTURE_WORK.md</code>.</li>
 </ul>
-<h2 id="release-status-v010-not-yet-tagged">Release status — v0.1.0 not yet tagged<a class="headerlink" href="#release-status-v010-not-yet-tagged" title="Permanent link">&para;</a></h2>
-<p>Everything the release needs is in place and verified: CI is green on Ubuntu and macOS across
-Python 3.11-3.13 (including the job that regenerates every artefact and fails on a stale one),
-<code>make publish</code> builds an sdist and wheel that pass <code>twine check</code>, and the wheel installed into a
-clean venv runs the CLI with the packaged catalogue, controls and crosswalk data. The docs site is
-live at <a href="https://thanatchon36.github.io/airmkit/">https://thanatchon36.github.io/airmkit/</a> and GitHub topics and homepage are set. The name
-<code>airmkit</code> is free on PyPI.</p>
-<p><strong>Blocked on one manual step</strong>: PyPI trusted publishing cannot be configured from here. Before the
-tag is pushed, add a pending trusted publisher at <a href="https://pypi.org/manage/account/publishing/">https://pypi.org/manage/account/publishing/</a>:</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PyPI project name</td>
-<td><code>airmkit</code></td>
-</tr>
-<tr>
-<td>Owner</td>
-<td><code>thanatchon36</code></td>
-</tr>
-<tr>
-<td>Repository name</td>
-<td><code>airmkit</code></td>
-</tr>
-<tr>
-<td>Workflow name</td>
-<td><code>release.yml</code></td>
-</tr>
-<tr>
-<td>Environment name</td>
-<td><code>pypi</code></td>
-</tr>
-</tbody>
-</table>
-<p>Then create a GitHub environment called <code>pypi</code> (Settings → Environments) and push the tag:</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>v0.1.0<span class="w"> </span>-m<span class="w"> </span><span class="s2">"airmkit 0.1.0"</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>v0.1.0
-</code></pre></div>
-<p><code>release.yml</code> re-runs lint and tests, checks the tag matches <code>airm.__version__</code>, publishes to PyPI
-without a stored token, creates the GitHub release with the distributions attached, and redeploys
-the docs. A tag fires once: if the trusted publisher is missing, the tag has to be deleted and
-re-pushed.</p>
-<p>Also still manual: a Zenodo DOI (connect the repository at <a href="https://zenodo.org/account/settings/github/">https://zenodo.org/account/settings/github/</a>
-before tagging if the DOI should cover v0.1.0) and branch protection on <code>main</code>.</p>
+<h2 id="after-v010-manuscript-rewritten-by-claude-fable-51-typst-pdf-web-reader">After v0.1.0 — manuscript rewritten by Claude Fable 5.1, Typst PDF, web reader<a class="headerlink" href="#after-v010-manuscript-rewritten-by-claude-fable-51-typst-pdf-web-reader" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>paper/paper.md.in</code> rewritten at full academic register (~11,800 words): background on the
+  Guidelines and the consultation diff, related work with citations into the 51-source review
+  (IEEE numeric style via <code>paper/ieee.csl</code>), a method section covering source acquisition, the
+  interpretation protocol, the automatability scheme, the rubric and the pre-registration and
+  analysis protocol, results per RQ with the point-prediction/refutation-criterion distinction
+  made explicit for H1, threats to validity organised by construct, internal, external and
+  conclusion validity, and an authorship note. Every number is still injected;
+  <code>results/summary.json</code> gained 45 further figures the text quotes (146 in all).</li>
+<li><code>paper/paper.pdf</code> typeset with Typst via pandoc (<code>paper/airmkit.typ</code>): single column,
+  Libertinus Serif, numbered sections, captions above tables with content-proportional column
+  widths, running head, 20 pages. The <code>typst</code> wheel bundles the compiler and fonts; only pandoc
+  is a system dependency.</li>
+<li><code>docs/paper/index.html</code>: a self-contained web reader generated by <code>experiments/build_paper.py</code>
+  from <code>paper/reader.html</code> — masthead, abstract, the strip of all 17 verdicts, two-column
+  contents, embedded figures, references, colophon with the authorship disclosure. Served at
+  <a href="https://thanatchon36.github.io/airmkit/paper/">https://thanatchon36.github.io/airmkit/paper/</a>; replaces the <code>docs/paper.md</code> copy.</li>
+<li>README, <code>docs/EXEC_SUMMARY.md.in</code>, <code>docs/index.md</code>, <code>docs/concepts.md</code> and all ten
+  <code>docs/posts/*.md.in</code> rewritten. Posts remain ≤1,300 characters, tested.</li>
+<li>Removed: the WeasyPrint route (<code>experiments/make_pdf.py</code>, <code>paper/print.css</code>), <code>docs/paper.md</code>,
+  <code>docs/figures/</code>. DECISIONS D-11 (typesetting) and D-12 (AI authorship disclosure).</li>
+</ul>
+<h2 id="release-status-v010-published">Release status — v0.1.0 published<a class="headerlink" href="#release-status-v010-published" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Tagged <code>v0.1.0</code> and pushed; <code>release.yml</code> ran green on all four jobs (build, pypi,
+  github-release, docs).</li>
+<li><strong>PyPI:</strong> <a href="https://pypi.org/project/airmkit/0.1.0/">https://pypi.org/project/airmkit/0.1.0/</a>, published by trusted publishing with no
+  stored token. Verified by installing <code>airmkit</code> from PyPI into a clean venv and running the CLI
+  against the packaged catalogue.</li>
+<li><strong>GitHub release:</strong> <a href="https://github.com/thanatchon36/airmkit/releases/tag/v0.1.0">https://github.com/thanatchon36/airmkit/releases/tag/v0.1.0</a> with the sdist
+  and wheel attached.</li>
+<li><strong>Docs:</strong> <a href="https://thanatchon36.github.io/airmkit/">https://thanatchon36.github.io/airmkit/</a>, including the paper at
+  <a href="https://thanatchon36.github.io/airmkit/paper/">https://thanatchon36.github.io/airmkit/paper/</a>.</li>
+<li><strong>Paper PDF:</strong> committed at <code>paper/paper.pdf</code> and linked from the README.</li>
+</ul>
+<p>Still manual, and worth doing before the next tag: a Zenodo DOI (connect the repository at
+<a href="https://zenodo.org/account/settings/github/">https://zenodo.org/account/settings/github/</a>, then cut v0.1.1 or release v0.1.0 again from the
+Zenodo side) and branch protection on <code>main</code>.</p>
 
 
 
