@@ -1,0 +1,1488 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Operationalise the MAS Guidelines on AI Risk Management (7 October 2026) for LLM and agentic AI systems: clause catalogue, inventory schema, materiality rubric, control checks and audit packs.">
+      
+      
+      
+        <link rel="canonical" href="https://thanatchon36.github.io/airmkit/literature/REVIEW/">
+      
+      
+        <link rel="prev" href="../../RESEARCH_QUESTIONS/">
+      
+      
+        <link rel="next" href="../../DECISIONS/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Literature review - airmkit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#literature-review" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="airmkit" class="md-header__button md-logo" aria-label="airmkit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            airmkit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Literature review
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/thanatchon36/airmkit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    thanatchon36/airmkit
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="airmkit" class="md-nav__button md-logo" aria-label="airmkit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    airmkit
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/thanatchon36/airmkit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    thanatchon36/airmkit
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cookbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clause-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clause index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For risk leaders
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    For risk leaders
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../EXEC_SUMMARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../WHAT_CHANGED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What changed from the consultation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../INTERPRETATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interpretations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RESEARCH_QUESTIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Literature review
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Literature review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-mas-primary-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. MAS primary documents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-international-frameworks-used-in-the-crosswalk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. International frameworks used in the crosswalk
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-comparable-financial-sector-guidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Comparable financial-sector guidance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-academic-literature-by-mas-airm-theme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Academic literature by MAS-AIRM theme
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Academic literature by MAS-AIRM theme">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-agent-governance-and-visibility-111-fn25-59-523a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Agent governance and visibility (§1.11, fn25, §5.9, §5.23(a))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-guardrail-evaluation-and-adversarial-robustness-515-fn46-522b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Guardrail evaluation and adversarial robustness (§5.15, fn46, §5.22(b))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-llm-evaluation-validity-514-517" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 LLM evaluation validity (§5.14, §5.17)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-documentation-auditability-and-accountability-517-521-523d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Documentation, auditability and accountability (§5.17, §5.21, §5.23(d))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-fairness-5758" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Fairness (§5.7–5.8)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-model-risk-management-for-ml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Model risk management for ML
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-gap-table-mas-expectations-without-an-established-implementation-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Gap table: MAS expectations without an established implementation pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DECISIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FUTURE_WORK/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Future work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PROGRESS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Progress
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../posts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LinkedIn drafts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-mas-primary-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. MAS primary documents
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-international-frameworks-used-in-the-crosswalk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. International frameworks used in the crosswalk
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-comparable-financial-sector-guidance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Comparable financial-sector guidance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-academic-literature-by-mas-airm-theme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Academic literature by MAS-AIRM theme
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Academic literature by MAS-AIRM theme">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-agent-governance-and-visibility-111-fn25-59-523a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 Agent governance and visibility (§1.11, fn25, §5.9, §5.23(a))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-guardrail-evaluation-and-adversarial-robustness-515-fn46-522b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Guardrail evaluation and adversarial robustness (§5.15, fn46, §5.22(b))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-llm-evaluation-validity-514-517" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 LLM evaluation validity (§5.14, §5.17)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-documentation-auditability-and-accountability-517-521-523d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 Documentation, auditability and accountability (§5.17, §5.21, §5.23(d))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-fairness-5758" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 Fairness (§5.7–5.8)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-model-risk-management-for-ml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 Model risk management for ML
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-gap-table-mas-expectations-without-an-established-implementation-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Gap table: MAS expectations without an established implementation pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="literature-review">Literature review<a class="headerlink" href="#literature-review" title="Permanent link">&para;</a></h1>
+<p>Scope: the regulatory and academic material that an implementer of the MAS Guidelines on AI Risk
+Management (MAS-AIRM, 7 Oct 2026) needs in order to turn the text into controls, and the evidence base
+for the five research questions in <code>docs/RESEARCH_QUESTIONS.md</code>. Citation keys refer to <code>refs.bib</code>.
+Where a claim rests on a document we could not download as a primary source it is marked <code>[UNVERIFIED]</code>.</p>
+<h2 id="1-mas-primary-documents">1. MAS primary documents<a class="headerlink" href="#1-mas-primary-documents" title="Permanent link">&para;</a></h2>
+<p><strong>MAS-AIRM (2026)</strong> [@mas2026airm] is a principles-based, 30-page document with 65 numbered paragraphs
+and 51 footnotes. Fifty-one paragraphs are expectations ("should"), the rest scope, definitions and
+context (see <code>src/airm/catalog/mas_airm_2026.yaml</code>). It is deliberately non-prescriptive about metrics,
+thresholds and the aggregation of its three materiality dimensions (Response §7.19, §10.28). Its
+distinctive features relative to earlier MAS material are (i) a use-case-anchored risk materiality
+assessment with Impact / Complexity / Reliance (§4.12), (ii) an inventory expectation with named
+attributes (§4.7) extended to agents (fn25), (iii) explicit treatment of shadow AI and embedded AI
+(§4.2, §4.4), (iv) guardrail-effectiveness testing for GenAI and agents (§5.15), and (v) third-party
+AI accountability with a limit / suspend / replace expectation (§5.11).</p>
+<p><strong>Response to Feedback (2026)</strong> [@mas2026response] is the authoritative gloss. It settles several
+points that the Guidelines leave open: high-risk triggers key on <em>inherent</em> materiality (§7.21);
+evaluation is at use-case level (§10.30); vendor self-attestations are not acceptable substitutes for
+transparency (§9.9); contingency plans are required only for high-risk use cases (§10.70); no AI-specific
+incident reporting regime is introduced (§10.69). <code>docs/WHAT_CHANGED.md</code> lists 36 changes.</p>
+<p><strong>Consultation paper P017-2025 (2025)</strong> [@mas2025consult] contained the draft text plus an Annex with
+a workflow-dependence applicability test that was dropped in the final version.</p>
+<p><strong>Information Paper on AI Model Risk Management (Dec 2024)</strong> [@mas2024infopaper] reports good practices
+from a thematic review of banks. Its chapter structure (governance; identification, inventory,
+materiality; development, validation, deployment, monitoring, change; GenAI; third-party AI) is the
+template the Guidelines follow, and it supplies the concrete practices (e.g., materiality tiers used by
+banks, validation scopes) that the Guidelines abstract away. The toolkit's default rubric levels borrow
+from the Info Paper's observed practice rather than from the Guidelines, which name dimensions but not
+levels.</p>
+<p><strong>FEAT Principles (2018)</strong> [@mas2018feat] remain in force (§1.2) and are the named reference for
+"fair" outcomes (fn35). The 14 principles are organised as Fairness (justifiability; accuracy and
+bias), Ethics, Accountability (internal; external) and Transparency. They are the source of the
+crosswalk's FEAT column.</p>
+<p><strong>Veritas (2021–2023)</strong> [@mas2022veritas3; @mas2022veritas3a; @mas2022veritas3c; @mas2023veritas5]
+provides assessment methodologies and an open-source fairness toolkit (<code>veritastool</code>, Apache-2.0) for
+tabular models. Veritas Document 3A's fairness methodology (define fairness objectives → choose
+metric → measure → mitigate → document) is the pattern <code>airm.evals.fairness</code> follows; Document 3C's
+transparency questions inform the transparency control's evidence list. Veritas pre-dates LLMs and
+has no guidance on generative or agentic systems.</p>
+<h2 id="2-international-frameworks-used-in-the-crosswalk">2. International frameworks used in the crosswalk<a class="headerlink" href="#2-international-frameworks-used-in-the-crosswalk" title="Permanent link">&para;</a></h2>
+<p><strong>NIST AI RMF 1.0 (2023)</strong> [@nist2023airmf] organises practice into Govern, Map, Measure, Manage with
+72 subcategories. MAS-AIRM footnotes 31 and 51 cite it directly. The <strong>Generative AI Profile
+(NIST AI 600-1, 2024)</strong> [@nist2024genai] adds 12 GenAI risk categories (e.g., confabulation,
+information security, value-chain and component integration) and ~200 suggested actions, which is the
+most granular public source for GenAI controls and maps well onto MAS-AIRM §5.15/fn46.</p>
+<p><strong>ISO/IEC 42001:2023</strong> [@iso2023_42001] is a certifiable AI management-system standard. Its Annex A
+controls (A.2–A.10) cover policy, roles, resources, impact assessment, lifecycle, data, information for
+interested parties, use, and third-party relationships. The Response (§9.7–9.9) explicitly contemplates
+ISO 42001 certification of <em>vendors</em> as evidence. <strong>ISO/IEC 23894:2023</strong> [@iso2023_23894] (AI risk
+management guidance) and <strong>ISO/IEC 22989:2022</strong> [@iso2022_22989] (terminology; cited in MAS-AIRM fn27)
+supply vocabulary.</p>
+<p><strong>EU AI Act (Regulation (EU) 2024/1689)</strong> [@eu2024aiact] imposes obligations on providers and
+deployers of high-risk systems (Arts. 9 risk management, 10 data governance, 11–12 documentation and
+logging, 13 transparency, 14 human oversight, 15 accuracy/robustness/cybersecurity, 17 QMS, 26 deployer
+obligations, 72 post-market monitoring). Credit scoring and life/health insurance pricing are listed
+high-risk uses (Annex III §5), so the overlap with MAS-AIRM §5.6–5.8 is substantial. The Act is
+binding law with conformity assessment; MAS-AIRM is supervisory guidance.</p>
+<h2 id="3-comparable-financial-sector-guidance">3. Comparable financial-sector guidance<a class="headerlink" href="#3-comparable-financial-sector-guidance" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>US Fed SR 11-7 / OCC 2011-12</strong> [@fed2011sr117] is the ancestor of all "model risk management" (MRM)
+  text: model inventory, validation (conceptual soundness, ongoing monitoring, outcomes analysis),
+  independence and effective challenge, governance. MAS-AIRM §5.17–5.19 and §5.24 are recognisably
+  SR 11-7 concepts restated for AI.</li>
+<li><strong>Bank of England PRA SS1/23 (2023)</strong> [@pra2023ss123] sets five principles (model identification and
+  classification; governance; development, implementation and use; independent validation; model risk
+  mitigants) with a <em>model tiering</em> requirement that parallels MAS-AIRM §4.10–4.13.</li>
+<li><strong>HKMA</strong> has issued principles on consumer protection in the use of GenAI (2024) [@hkma2024genai]
+  and a circular on the use of AI in monitoring suspicious activities; <strong>BNM</strong> (Malaysia) consulted on
+  AI risk management for financial institutions in 2025 <code>[UNVERIFIED: text not acquired]</code>. These are the
+  natural next crosswalk targets (<code>CONTRIBUTING.md</code>).</li>
+<li><strong>BIS FSI Insights No. 63 (2024)</strong> [@bis2024fsi63] surveys AI regulation across jurisdictions and
+  identifies inventories, materiality tiering and third-party dependency as the common supervisory
+  building blocks.</li>
+<li><strong>FSB (2024)</strong> [@fsb2024ai] highlights third-party dependency and concentration as the financial-stability
+  channel, which MAS-AIRM §1.10(d), §5.11(c) and fn18 echo.</li>
+</ul>
+<h2 id="4-academic-literature-by-mas-airm-theme">4. Academic literature by MAS-AIRM theme<a class="headerlink" href="#4-academic-literature-by-mas-airm-theme" title="Permanent link">&para;</a></h2>
+<h3 id="41-agent-governance-and-visibility-111-fn25-59-523a">4.1 Agent governance and visibility (§1.11, fn25, §5.9, §5.23(a))<a class="headerlink" href="#41-agent-governance-and-visibility-111-fn25-59-523a" title="Permanent link">&para;</a></h3>
+<p>Chan et al. [@chan2023harms] taxonomise harms from increasingly agentic systems; Chan et al.
+[@chan2024visibility] argue for <strong>agent identifiers, real-time monitoring and activity logs</strong> as
+visibility measures, which is almost exactly fn25 + §5.23(a)(d). Shavit et al. [@shavit2023agentic]
+(OpenAI) propose practices for governing agentic systems including scoped permissions, default
+behaviours and attributability. Kapoor et al. [@kapoor2024agents] show agent benchmarks conflate
+accuracy with cost and lack holdout sets, cautioning against naive use of benchmark scores as
+"evaluation measures" under §5.14(a). Ruan et al. [@ruan2024toolemu] (ToolEmu) and Debenedetti et al.
+[@debenedetti2024agentdojo] (AgentDojo) provide sandboxed environments for measuring unsafe tool use
+and indirect prompt injection in agents; Zhan et al. [@zhan2024injecagent] benchmark indirect injection
+specifically against tool-integrated agents.</p>
+<h3 id="42-guardrail-evaluation-and-adversarial-robustness-515-fn46-522b">4.2 Guardrail evaluation and adversarial robustness (§5.15, fn46, §5.22(b))<a class="headerlink" href="#42-guardrail-evaluation-and-adversarial-robustness-515-fn46-522b" title="Permanent link">&para;</a></h3>
+<p>Greshake et al. [@greshake2023indirect] introduced indirect prompt injection; Perez &amp; Ribeiro
+[@perez2022ignore] direct injection; Wei et al. [@wei2023jailbroken] explain jailbreaks as competing
+objectives and mismatched generalisation; Zou et al. [@zou2023gcg] show transferable adversarial
+suffixes; Chao et al. [@chao2023pair] automate jailbreaks with an attacker LLM. HarmBench
+[@mazeika2024harmbench] standardises red-team evaluation. On the defence side, Llama Guard
+[@inan2023llamaguard] and NeMo Guardrails [@rebedea2023nemo] are the canonical classifier- and
+rail-based guardrail patterns; garak [@derczynski2024garak] is the open-source LLM vulnerability
+scanner the toolkit adapts. OWASP's Top 10 for LLM Applications [@owasp2025llm] and MITRE ATLAS
+[@mitre2024atlas] give the threat vocabulary used in <code>airm.controls</code> security controls.</p>
+<h3 id="43-llm-evaluation-validity-514-517">4.3 LLM evaluation validity (§5.14, §5.17)<a class="headerlink" href="#43-llm-evaluation-validity-514-517" title="Permanent link">&para;</a></h3>
+<p>HELM [@liang2022helm] established multi-metric, scenario-based evaluation; Zheng et al.
+[@zheng2023judge] quantify LLM-as-judge agreement with humans (~80 %) and its biases (position,
+verbosity, self-enhancement), which matters when §5.14(a) thresholds are computed by a judge model.
+RAGAS [@es2023ragas] and FActScore [@min2023factscore] operationalise faithfulness and factual
+precision for RAG; Ji et al. [@ji2023hallucination] survey hallucination. Inspect [@aisi2024inspect]
+(UK AI Security Institute) is the eval harness whose log format the toolkit reads. Weidinger et al.
+[@weidinger2022taxonomy] give the risk taxonomy that NIST AI 600-1 and fn46 compress.</p>
+<h3 id="44-documentation-auditability-and-accountability-517-521-523d">4.4 Documentation, auditability and accountability (§5.17, §5.21, §5.23(d))<a class="headerlink" href="#44-documentation-auditability-and-accountability-517-521-523d" title="Permanent link">&para;</a></h3>
+<p>Model Cards [@mitchell2019modelcards] and Datasheets [@gebru2021datasheets] are the de-facto templates
+for §5.17(a)–(f); Raji et al. [@raji2020audit] define the internal audit framework (scoping, mapping,
+artefact collection, testing, reflection) that §5.18–5.21 presuppose.</p>
+<h3 id="45-fairness-5758">4.5 Fairness (§5.7–5.8)<a class="headerlink" href="#45-fairness-5758" title="Permanent link">&para;</a></h3>
+<p>Hardt et al. [@hardt2016equality] (equalised odds / equal opportunity) and the Barocas–Hardt–Narayanan
+text [@barocas2023fairml] cover the metric landscape; Veritas 3A chooses among them for credit and
+insurance. fn36's proxy requirement is the "proxy discrimination" problem these sources formalise.</p>
+<h3 id="46-model-risk-management-for-ml">4.6 Model risk management for ML<a class="headerlink" href="#46-model-risk-management-for-ml" title="Permanent link">&para;</a></h3>
+<p>The SR 11-7 lineage is reinterpreted for ML in the Info Paper [@mas2024infopaper] and PRA SS1/23
+[@pra2023ss123]; the academic MRM literature is thin and mostly practitioner-authored. Bommasani
+et al. [@bommasani2021foundation] frame the foundation-model supply chain that makes §5.11(b)–(c)
+(supply chain, concentration) necessary.</p>
+<h2 id="5-gap-table-mas-expectations-without-an-established-implementation-pattern">5. Gap table: MAS expectations without an established implementation pattern<a class="headerlink" href="#5-gap-table-mas-expectations-without-an-established-implementation-pattern" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>MAS-AIRM clause</th>
+<th>Expectation</th>
+<th>Established pattern?</th>
+<th>Closest available</th>
+<th>Gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>§4.4, fn22</td>
+<td>Keep residual risk from <em>unidentified</em> AI within appetite</td>
+<td><strong>No</strong></td>
+<td>DLP/CASB logs; SBOM-style scanning</td>
+<td>No standard for measuring shadow-AI coverage; <code>airm scan</code> is a repo-level heuristic only</td>
+</tr>
+<tr>
+<td>§4.2, fn21</td>
+<td>Identify embedded AI in material third-party services</td>
+<td><strong>No</strong></td>
+<td>Vendor questionnaires; AI BOM proposals</td>
+<td>No machine-readable vendor AI disclosure format</td>
+</tr>
+<tr>
+<td>§4.12</td>
+<td>Combine Impact / Complexity / Reliance into a tier</td>
+<td>Partial</td>
+<td>PRA SS1/23 tiering; bank practice in Info Paper</td>
+<td>No public rubric; this toolkit proposes one (RQ2)</td>
+</tr>
+<tr>
+<td>fn25</td>
+<td>Agent attributes: tools/systems accessible, guardrails</td>
+<td>Partial</td>
+<td>Chan et al. 2024 visibility; MCP/tool manifests</td>
+<td>No inventory schema standard; proposed in <code>schemas/</code></td>
+</tr>
+<tr>
+<td>§5.15, fn46</td>
+<td>Test <em>effectiveness</em> of guardrails</td>
+<td>Partial</td>
+<td>HarmBench, garak, AgentDojo</td>
+<td>No accepted threshold per risk tier (RQ3)</td>
+</tr>
+<tr>
+<td>§5.23(a)</td>
+<td>Monitor agent reasoning, actions, tools</td>
+<td>Partial</td>
+<td>OpenTelemetry GenAI semantic conventions; tracing</td>
+<td>No link from traces to <em>approved scope</em> checks; toolkit adds tool-scope audit</td>
+</tr>
+<tr>
+<td>§5.23(d)</td>
+<td>Prompt/response logging with model version and reasoning</td>
+<td>Partial</td>
+<td>Tracing frameworks</td>
+<td>Retention, privacy and tamper-evidence not standardised; toolkit uses hash-chained JSONL</td>
+</tr>
+<tr>
+<td>§5.25(a),(c)</td>
+<td>Significance of changes incl. prompt/model-version changes and auto-updates</td>
+<td><strong>No</strong></td>
+<td>Software change management</td>
+<td>No agreed taxonomy of "significant" LLM changes; default classes proposed (I-10)</td>
+</tr>
+<tr>
+<td>§5.11(a)</td>
+<td>Independent certification/assessment of AI vendors</td>
+<td>Partial</td>
+<td>ISO 42001 certification; SOC 2</td>
+<td>ISO 42001 does not test model behaviour; coverage of "key risks from AI use" unverified</td>
+</tr>
+<tr>
+<td>§5.17</td>
+<td>Reproduce the <em>evaluation process</em> for non-deterministic models</td>
+<td>Partial</td>
+<td>Seeded, cached eval runs</td>
+<td>No convention for recording sampling parameters and model digests in evidence; toolkit records both</td>
+</tr>
+<tr>
+<td>§5.3</td>
+<td>Tested kill-switch protocols for high-risk AI</td>
+<td><strong>No</strong></td>
+<td>BCP/DR testing</td>
+<td>No evidence format for "kill switch tested"; toolkit treats as attestation</td>
+</tr>
+<tr>
+<td>§5.9</td>
+<td>Automation bias and decision fatigue</td>
+<td><strong>No</strong></td>
+<td>HCI literature</td>
+<td>No operational metric; attestation only</td>
+</tr>
+<tr>
+<td>§6.1–6.2</td>
+<td>Competence of AI <em>users</em></td>
+<td><strong>No</strong></td>
+<td>Training completion records</td>
+<td>Attestation only</td>
+</tr>
+</tbody>
+</table>
+<p>The gap table drives RQ1 (which clauses can be automated) and <code>docs/FUTURE_WORK.md</code>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Apache-2.0. Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Not legal or regulatory advice.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
