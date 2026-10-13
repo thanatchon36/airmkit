@@ -1,0 +1,990 @@
+# airmkit control catalogue for the MAS Guidelines on AI Risk Management (7 October 2026).
+#
+# Every control cites at least one paragraph. The MISSION rule applies: where the choice is between
+# "more controls" and "every control traceable to a paragraph with a working check", traceability
+# wins. Controls with no automated check are honest about it (automatability: doc) rather than
+# pretending to verify something.
+#
+# `automatability` is the RQ1 classification (docs/DECISIONS.md D-6), and is the authors' judgement
+# relative to THIS implementation, not a MAS classification:
+#   auto  - a deterministic function of the inventory entry and evidence decides pass/fail
+#   semi  - presence and currency of the artefact is machine-checkable; adequacy needs attestation
+#   doc   - organisational or judgemental; no artefact the toolkit inspects
+#
+# `applies_from_tier` implements the proportionality of §5.2. `high_materiality_only` implements the
+# clauses that bind only at high risk materiality, keyed on INHERENT materiality per Response to
+# Feedback §7.21 (docs/INTERPRETATIONS.md I-3).
+
+id: airmkit-default
+version: "1"
+description: >-
+  Default control catalogue mapping the MAS-AIRM Section 4 process expectations and Section 5 life
+  cycle controls to checkable controls, with LLM- and agent-specific controls derived from §1.11,
+  §4.8 fn25, §5.15 fn46, §5.23(a) and §5.23(d).
+
+controls:
+  # =========================================================== Section 4: inventory & materiality
+  - id: AIRM-4.7-INVENTORY-ATTRIBUTES
+    title: AI inventory captures the attributes the Guidelines name
+    family: inventory
+    clauses: ["4.7"]
+    intent: >-
+      The inventory records purpose, approved scope, model type, data used, dependencies, lifecycle
+      status, materiality rating, review status, roles and documentation links, so that risk
+      assessment, scope monitoring and consistent control application are possible.
+    automatability: auto
+    automatability_rationale: >-
+      Each attribute is a field of the register; presence is decidable without judgement. Adequacy
+      of the content is not checked, which is why the control is about capture, not quality.
+    check: inventory_completeness
+    evidence: [ai_inventory_entry]
+    guidance: >-
+      §4.7 fn24 permits attribute sets to differ across use cases if the policy delineates the
+      differences; this control reports omissions as gaps so that the delineation is explicit.
+
+  - id: AIRM-4.8-FN25-AGENT-ATTRIBUTES
+    title: Agent-specific inventory attributes are recorded
+    family: inventory
+    clauses: ["4.8.fn25", "4.8"]
+    intent: >-
+      For agentic use cases the inventory records agent identifiers, the tools and systems the
+      agent can access, its components, and the guardrails imposed to manage risk.
+    requires_tags: [agent]
+    automatability: auto
+    automatability_rationale: >-
+      Footnote 25 names four attributes; each maps to a field of the agent extension.
+    check: agent_attributes
+    evidence: [ai_inventory_entry, agent_design_note]
+
+  - id: AIRM-4.5-INVENTORY-MAINTAINED
+    title: Inventory is reviewed and kept current
+    family: inventory
+    clauses: ["4.5", "4.9"]
+    intent: >-
+      Clear policies on inventory maintenance, with a frequency appropriate to the FI, reflecting
+      new, updated and decommissioned AI, under the independent oversight of a designated control
+      function.
+    automatability: semi
+    automatability_rationale: >-
+      A last-reviewed date is machine-readable, but whether the frequency is appropriate is an FI
+      judgement that MAS deliberately leaves open (Response to Feedback §6.18).
+    evidence: [inventory_policy, inventory_review_record]
+
+  - id: AIRM-4.6-FN23-REGISTER-LINKAGE
+    title: AI inventory is linked to other relevant registers
+    family: inventory
+    clauses: ["4.6", "4.6.fn23"]
+    intent: >-
+      Consistent identifiers link the AI inventory to data inventories and third-party or
+      outsourcing registers, so a consolidated view of vendor and data exposure is possible.
+    automatability: semi
+    automatability_rationale: >-
+      Presence of linkage identifiers is checkable; whether the right registers are linked is a
+      judgement MAS leaves to the FI (Response to Feedback §6.21).
+    evidence: [register_linkage_map]
+
+  - id: AIRM-4.11-MATERIALITY-ASSESSED
+    title: Inherent and residual risk materiality are assessed and recorded
+    family: materiality
+    clauses: ["4.11", "4.10", "4.12"]
+    intent: >-
+      Each use case has an inherent and a residual materiality rating from a consistently applied
+      methodology covering Impact, Complexity and Reliance.
+    automatability: auto
+    automatability_rationale: >-
+      The rubric is deterministic, so the rating and its agreement with the recorded rating are
+      both decidable. The rubric itself is the toolkit's proposal, not a MAS method.
+    check: materiality_assessed
+    evidence: [materiality_assessment]
+
+  - id: AIRM-4.11-RISK-APPETITE
+    title: Residual materiality is confirmed within risk appetite before deployment
+    family: materiality
+    clauses: ["4.11", "3.4.b"]
+    intent: >-
+      The residual risk materiality of the use case meets the FI's risk appetite before
+      deployment, and risks from AI use are addressed in the appetite framework.
+    automatability: semi
+    automatability_rationale: >-
+      The toolkit can see whether a confirmation exists but cannot evaluate an FI's appetite
+      statement, which §3.4(b) leaves to the board.
+    check: risk_appetite_confirmed
+    evidence: [risk_appetite_confirmation]
+
+  - id: AIRM-4.13-MATERIALITY-ARBITRATED
+    title: A designated control function approves the materiality rating
+    family: materiality
+    clauses: ["4.13"]
+    intent: >-
+      A control function with independent oversight is the arbitrator or approver of each use
+      case's risk materiality, and assessments are documented and regularly reviewed.
+    automatability: doc
+    automatability_rationale: >-
+      Whether the function is sufficiently independent and whether it genuinely arbitrated is an
+      organisational fact; the toolkit records the approver but cannot verify the governance.
+    evidence: [materiality_approval_record, control_function_mandate]
+
+  - id: AIRM-4.3-IDENTIFICATION-PROCESS
+    title: AI identification process with a designated control function as final arbiter
+    family: identification
+    clauses: ["4.2", "4.3"]
+    intent: >-
+      Consistent identification of AI across all business and functional areas, including AI
+      embedded in services from material third-party providers, with a designated control function
+      as the final arbiter of what counts as AI.
+    automatability: doc
+    automatability_rationale: >-
+      Coverage of an identification process cannot be verified from inside the toolkit; `airm scan`
+      provides partial technical evidence, never assurance of completeness.
+    evidence: [identification_policy, identification_coverage_report, scan_report]
+    guidance: >-
+      `airm scan` detects LLM SDKs, model endpoints, MCP configs, agent frameworks and vendor AI
+      SaaS references in code and configuration. Treat its output as candidate entries for human
+      triage, never as a complete inventory.
+
+  - id: AIRM-4.4-FN22-SHADOW-AI
+    title: Residual risk from unidentified AI is identified and mitigated
+    family: identification
+    clauses: ["4.4", "4.4.fn22"]
+    intent: >-
+      Where all AI cannot be identified (embedded AI, shadow AI), the FI identifies the resulting
+      risks and puts mitigating measures in place, such as clear permitted-use policies and
+      technical controls like network monitoring and data loss prevention.
+    automatability: semi
+    automatability_rationale: >-
+      The existence of a shadow-AI policy and of technical controls is evidenceable; the adequacy
+      of coverage is not, and no accepted metric for shadow-AI coverage exists (see the gap table).
+    evidence: [shadow_ai_policy, dlp_or_network_monitoring_evidence, scan_report]
+
+  - id: AIRM-4.2-FN21-EMBEDDED-AI
+    title: Embedded AI in material third-party services is identified
+    family: identification
+    clauses: ["4.2", "4.2.fn21"]
+    intent: >-
+      AI incorporated within, or used in the delivery of, services from material third-party
+      providers is identified and inventoried even where the service is not marketed as AI.
+    requires_third_party: true
+    automatability: auto
+    automatability_rationale: >-
+      Whether an embedded component from a material provider carries an independent assessment is
+      decidable from the register's own fields.
+    check: embedded_ai_identified
+    evidence: [vendor_ai_disclosure, third_party_assessment]
+
+  # ================================================================ Section 5: general lifecycle
+  - id: AIRM-5.1-LIFECYCLE-ROLES
+    title: Roles and responsibilities are assigned across the life cycle
+    family: governance
+    clauses: ["5.1", "4.7"]
+    intent: >-
+      Clear roles and responsibilities for life cycle controls across business and functional
+      units, recorded against the use case.
+    automatability: auto
+    automatability_rationale: Presence of an owner and developer party is decidable from the register.
+    check: roles_assigned
+    evidence: [ai_inventory_entry, raci_matrix]
+
+  - id: AIRM-5.3-CONTINGENCY-PLAN
+    title: Tested contingency plan with fallback options
+    family: contingency
+    clauses: ["5.3"]
+    intent: >-
+      High-risk use cases have contingency plans setting out fallback options such as alternative
+      systems or manual processes, reviewed and tested for operational feasibility.
+    high_materiality_only: true
+    automatability: semi
+    automatability_rationale: >-
+      A recorded plan is checkable; whether it was tested and is operationally feasible under a
+      range of conditions is not, and no evidence convention exists (see the gap table).
+    check: contingency_plan
+    evidence: [contingency_plan, contingency_test_record]
+
+  - id: AIRM-5.3-KILL-SWITCH
+    title: Kill switch or override mechanism exists with tested activation protocol
+    family: contingency
+    clauses: ["5.3", "5.3.fn29", "5.23.b"]
+    intent: >-
+      Where AI has a kill switch, clear contingency activation protocols are in place and tested
+      regularly; for high-risk AI a kill switch or override is to be considered.
+    high_materiality_only: true
+    automatability: semi
+    automatability_rationale: >-
+      Existence is a field; "tested regularly" needs a test record whose adequacy is a judgement.
+    check: kill_switch
+    evidence: [kill_switch_protocol, kill_switch_test_record]
+
+  - id: AIRM-5.2-FN28-PILOT-GUARDRAILS
+    title: Pilots and partial deployments are governed by explicit limits
+    family: lifecycle
+    clauses: ["5.2", "5.2.fn28", "5.15.fn45"]
+    intent: >-
+      Partial deployments have policies governing deviations from standard controls, including time
+      and user limits, success criteria, close monitoring and compliance with the limited scope.
+    automatability: auto
+    automatability_rationale: >-
+      Whether a pilot records a scope-limiting guardrail (rate limit, allowlist, step cap or human
+      checkpoint) is decidable from the register.
+    check: pilot_guardrails
+    evidence: [pilot_policy, pilot_success_criteria]
+
+  # ---------------------------------------------------------------------- data management §5.4
+  - id: AIRM-5.4-DATA-GOVERNANCE
+    title: Data used across the life cycle is fit for purpose, representative and governed
+    family: data
+    clauses: ["5.4", "5.4.a", "5.4.b", "5.4.c"]
+    intent: >-
+      Data is assessed as fit for purpose and representative of a range of real-world and stressed
+      conditions, with quality monitored for anomalies, drift and potential bias.
+    automatability: doc
+    automatability_rationale: >-
+      Fitness and representativeness are domain judgements. The toolkit can record a data
+      assessment artefact but cannot evaluate whether data represents the conditions of use.
+    evidence: [data_assessment, data_quality_report, datasheet]
+
+  - id: AIRM-5.4-DATA-CLASSIFICATION
+    title: Data classification guides use of data in the AI use case
+    family: data
+    clauses: ["5.4.d"]
+    intent: Data criticality and sensitivity are classified and the classification guides use.
+    automatability: semi
+    automatability_rationale: >-
+      The register records a classification; whether it is correct is a data-governance judgement.
+    evidence: [data_classification_record]
+
+  - id: AIRM-5.4-DATA-SECURITY
+    title: Secure data life cycle management for AI data and artefacts
+    family: data
+    clauses: ["5.4.e"]
+    intent: >-
+      Encryption in transit and at rest, secure handling of inputs and outputs, and timely
+      destruction or sanitisation of training data, model artefacts and outputs once no longer
+      required.
+    automatability: doc
+    automatability_rationale: >-
+      Verifying encryption and secure destruction requires access to the running environment,
+      which this toolkit deliberately does not have.
+    evidence: [encryption_evidence, data_retention_schedule, sanitisation_record]
+
+  - id: AIRM-5.4-DATA-PRIVACY
+    title: Data privacy measures for personal data used in or processed by AI
+    family: data
+    clauses: ["5.4.f", "5.4.fn30"]
+    intent: >-
+      Privacy measures consistent with applicable requirements, including consent where sensitive
+      personal data of customers or employees is used to train models or processed using AI.
+    requires_tags: [privacy]
+    automatability: doc
+    automatability_rationale: >-
+      Whether consent is valid is a legal determination under the PDPA and PDPC guidance, not a
+      property of a file.
+    evidence: [privacy_impact_assessment, consent_basis_record]
+
+  - id: AIRM-5.4-DATA-LINEAGE
+    title: Data sourcing, processing and lineage are documented
+    family: data
+    clauses: ["5.4.g", "5.17.a"]
+    intent: >-
+      Documentation of data sourcing, selection, processing and lineage, how data was assessed as
+      fit for purpose and representative, and approvals and remedial actions.
+    automatability: semi
+    automatability_rationale: Presence of a lineage artefact is checkable; its completeness is not.
+    evidence: [data_lineage_document]
+
+  # ------------------------------------------------- transparency, explainability, fairness §5.5-§5.8
+  - id: AIRM-5.5-TRANSPARENCY-CONTROLS
+    title: Transparency and explainability appropriate to context and materiality
+    family: transparency
+    clauses: ["5.5", "5.6"]
+    intent: >-
+      Controls giving an appropriate level of transparency and explainability for the use case and
+      its materiality, tailored to the needs of the intended audience.
+    automatability: doc
+    automatability_rationale: >-
+      "Appropriate level" is the judgement MAS explicitly keeps contextual (Response to Feedback
+      §10.12-§10.15); only the existence of disclosures and explanation methods is evidenceable.
+    evidence: [transparency_assessment, explainability_analysis]
+
+  - id: AIRM-5.6-CUSTOMER-DISCLOSURE
+    title: Customers are informed of AI use, consequences and redress channels
+    family: transparency
+    clauses: ["5.6", "5.6.fn34"]
+    intent: >-
+      Where AI affects customers, they are informed of the use of AI, the basis for decisions, the
+      consequences, and the channels for enquiry or redress.
+    requires_fairness: true
+    automatability: semi
+    automatability_rationale: >-
+      The existence of a disclosure artefact and a redress channel is checkable; adequacy for the
+      audience is a judgement.
+    evidence: [customer_disclosure, redress_channel_description]
+
+  - id: AIRM-5.8-FAIRNESS-ASSESSMENT
+    title: Fairness assessment with protected attributes, metrics and mitigations
+    family: fairness
+    clauses: ["5.7", "5.8", "5.8.fn36"]
+    intent: >-
+      Where fairness is relevant, protected attributes (and close proxies) are defined, systematic
+      disadvantage is tested with appropriate metrics, and results and mitigations are documented.
+    requires_fairness: true
+    automatability: semi
+    automatability_rationale: >-
+      A fairness report with metric values is machine-readable and can be threshold-checked, but
+      there is no universally applicable metric (Response to Feedback §10.21), so metric choice and
+      threshold are FI judgements requiring attestation.
+    evidence: [fairness_assessment, protected_attribute_register, fairness_metric_results]
+    guidance: >-
+      `airm.evals.fairness_from_results` ingests group metric values and compares them against the
+      thresholds configured for the use case. Metric selection should follow the FI's fairness
+      methodology; MAS names FEAT as a reference (§5.7 fn35).
+
+  # ----------------------------------------------------------------- human oversight §5.9
+  - id: AIRM-5.9-HUMAN-OVERSIGHT
+    title: Human oversight arrangement is defined and proportionate
+    family: human_oversight
+    clauses: ["5.9", "5.9.a", "5.9.b"]
+    intent: >-
+      Roles, responsibilities, escalation and decision-making for human oversight, with competent
+      personnel having the authority and ability to intervene, proportionate to materiality and
+      mindful of automation bias and decision fatigue.
+    automatability: auto
+    automatability_rationale: >-
+      Whether an oversight arrangement is recorded at all is decidable; this control checks
+      presence, and the adequacy judgement sits in AIRM-5.9-OVERSIGHT-EFFECTIVENESS.
+    check: human_oversight_recorded
+    evidence: [human_oversight_design, oversight_role_assignment]
+
+  - id: AIRM-5.9-DESIGN-FOR-OVERSIGHT
+    title: Escalation and decision-deferral mechanisms are designed in
+    family: human_oversight
+    clauses: ["5.9.c"]
+    intent: >-
+      AI systems are designed from the outset to enable oversight, including mechanisms escalating
+      outputs for human review where pre-defined conditions on reliability or accuracy are met.
+    requires_tags: [agent, genai]
+    automatability: auto
+    automatability_rationale: >-
+      For agentic use cases the human checkpoints are an inventory field, so presence is decidable.
+    check: agent_human_checkpoints
+    evidence: [agent_design_note, escalation_criteria]
+
+  - id: AIRM-5.9-OVERSIGHT-EFFECTIVENESS
+    title: Human oversight decisions and interventions are reviewed for effectiveness
+    family: human_oversight
+    clauses: ["5.9.d"]
+    intent: >-
+      Logs and records across development, deployment, operation, monitoring and incident
+      management are kept, and oversight decisions and interventions, including near misses, are
+      regularly reviewed to assess whether oversight is effective.
+    requires_live: true
+    automatability: semi
+    automatability_rationale: >-
+      An intervention log and a review record are evidenceable; whether oversight is effective
+      (and free of automation bias) has no operational metric today (see the gap table).
+    evidence: [intervention_log, oversight_effectiveness_review]
+
+  # --------------------------------------------------------------- third-party AI §5.10-§5.11
+  - id: AIRM-5.10-THIRD-PARTY-TESTING
+    title: Third-party AI is tested in the FI's own context with the FI's data
+    family: third_party
+    clauses: ["5.10"]
+    intent: >-
+      Third-party AI is reviewed and tested in the context of the FI's use cases, including with
+      the FI's own data, with compensatory testing for informational gaps, and the suitability
+      determination is documented.
+    requires_third_party: true
+    automatability: semi
+    automatability_rationale: >-
+      An eval result scoped to the use case is machine-readable; whether it compensates adequately
+      for vendor opacity is a judgement (Response to Feedback §9.10).
+    evidence: [third_party_test_report, suitability_determination]
+
+  - id: AIRM-5.11-THIRD-PARTY-TRANSPARENCY
+    title: Independent assessment, not vendor self-attestation
+    family: third_party
+    clauses: ["5.11.a", "5.11"]
+    intent: >-
+      Where vendor transparency is insufficient, the FI relies on certifications or external
+      assessments by independent and competent parties, not self-attestations, and applies
+      compensating controls.
+    requires_third_party: true
+    automatability: auto
+    automatability_rationale: >-
+      Whether an independent assessment is recorded for each component is decidable from the
+      register. Whether the assessment covers the right risks is not, so the evidence list asks
+      for the assessment scope.
+    check: third_party_transparency
+    evidence: [third_party_certification, assessment_scope_note]
+    guidance: >-
+      Response to Feedback §9.9: "relying on self-attestations or 'statements' by the third-party
+      AI provider ... would generally not be considered as effective approaches".
+
+  - id: AIRM-5.11-CHANGE-NOTIFICATION
+    title: Contractual visibility of vendor-driven changes
+    family: third_party
+    clauses: ["5.11.d", "5.11.f", "5.25.a"]
+    intent: >-
+      Contractual arrangements give the FI risk-proportionate visibility of updates or changes that
+      could affect performance, behaviour or risk profile; where significant changes may occur
+      without prior review, compensating controls such as enhanced monitoring apply.
+    requires_third_party: true
+    automatability: auto
+    automatability_rationale: Presence of a change-notification term is a register field.
+    check: third_party_change_notification
+    evidence: [vendor_contract_clause, enhanced_monitoring_plan]
+
+  - id: AIRM-5.11-CONCENTRATION
+    title: Concentration risk from third-party AI providers is assessed
+    family: third_party
+    clauses: ["5.11.c", "3.4.fn18"]
+    intent: >-
+      The extent to which use of third-party AI contributes to concentration risk, direct or
+      indirect, is assessed and reflected in risk appetite measures.
+    requires_third_party: true
+    automatability: semi
+    automatability_rationale: >-
+      The toolkit computes provider concentration across the register, which is the input; whether
+      the resulting exposure is acceptable is a risk-appetite judgement for the board.
+    evidence: [concentration_analysis]
+    guidance: >-
+      `airm.materiality.PortfolioAssessment.provider_concentration` counts high-materiality use
+      cases per provider, the measure §3.4 fn18 gives as an example.
+
+  - id: AIRM-5.11-SUPPLY-CHAIN
+    title: Supply chain assessment of models, datasets and dependencies
+    family: third_party
+    clauses: ["5.11.b"]
+    intent: >-
+      Key third-party and open-source models, datasets and dependencies have undergone supply
+      chain risk assessment and validation, including model provenance, training data integrity
+      and known vulnerabilities.
+    requires_third_party: true
+    automatability: doc
+    automatability_rationale: >-
+      Provenance and training-data integrity of a third-party model cannot be verified from the
+      FI's side; no machine-readable AI bill of materials standard exists yet (see the gap table).
+    evidence: [supply_chain_assessment, model_provenance_record]
+
+  - id: AIRM-5.11-LIMIT-SUSPEND-REPLACE
+    title: Decision to limit, suspend or replace where residual risk exceeds appetite
+    family: third_party
+    clauses: ["5.11", "5.2"]
+    intent: >-
+      Where sufficient controls cannot keep the residual risk materiality of a third-party-dependent
+      use case within appetite, the FI considers limiting or suspending the service or replacing
+      the provider, and records the decision.
+    requires_third_party: true
+    automatability: doc
+    automatability_rationale: A governance decision; the toolkit records it and nothing more.
+    evidence: [third_party_risk_decision]
+
+  # ----------------------------------------------------------------------- selection §5.12-§5.13
+  - id: AIRM-5.12-SELECTION-RATIONALE
+    title: Selection considerations are documented proportionately
+    family: selection
+    clauses: ["5.12", "5.13"]
+    intent: >-
+      Considerations during selection of systems, models or features are documented commensurate
+      with materiality, balancing performance against complexity, fairness, transparency and
+      explainability, with domain expert or user review where relevant.
+    automatability: semi
+    automatability_rationale: >-
+      A selection note is checkable for existence; the balance it strikes is a judgement, and MAS
+      softened this from a requirement to justify in all cases (Response to Feedback §10.24).
+    evidence: [selection_rationale, domain_expert_review]
+
+  # ------------------------------------------------------------- evaluation and testing §5.14-§5.15
+  - id: AIRM-5.14-EVALUATION-MEASURES
+    title: Evaluation measures and agreed performance thresholds
+    family: evaluation
+    clauses: ["5.14", "5.14.a"]
+    intent: >-
+      Evaluation measures aligned with the AI's objectives, with acceptable performance thresholds
+      clearly defined, documented and mutually agreed by business owners, developers and reviewers.
+    automatability: semi
+    automatability_rationale: >-
+      Thresholds and measured values are machine-comparable once recorded, so a breach is
+      detectable; whether the measures and thresholds are the right ones is an FI judgement that
+      MAS declines to prescribe (Response to Feedback §10.28-§10.29).
+    evidence: [evaluation_plan, threshold_agreement, evaluation_results]
+
+  - id: AIRM-5.14-TESTING-APPROACHES
+    title: Testing spans plausible conditions, edge cases and alternatives
+    family: evaluation
+    clauses: ["5.14.b", "5.14.c"]
+    intent: >-
+      Relevant testing methods including out-of-sample or out-of-time testing, sensitivity,
+      stability, sub-population analysis, stress and adversarial testing, error analysis and
+      benchmarking against alternatives, on datasets representative of the FI's context.
+    automatability: semi
+    automatability_rationale: >-
+      Which test families ran is derivable from eval tool output; representativeness of the test
+      data is a judgement.
+    evidence: [test_report, test_dataset_description]
+
+  - id: AIRM-5.15-GUARDRAIL-EFFECTIVENESS
+    title: Guardrail effectiveness is tested for Generative AI and agents
+    family: evaluation
+    clauses: ["5.15", "5.15.fn46"]
+    intent: >-
+      Controls and guardrails mitigate identified risks before deployment, and evaluation covers
+      key failure modes of Generative AI and agents together with the effectiveness of the
+      associated guardrails.
+    requires_tags: [genai, agent]
+    automatability: auto
+    automatability_rationale: >-
+      Whether each recorded guardrail has an effectiveness test with an evidence pointer is
+      decidable. Whether the measured failure rate is acceptable is a threshold question, which is
+      why RQ3 proposes tier thresholds and labels them as the authors' proposal.
+    check: guardrail_effectiveness
+    evidence: [guardrail_test_report, guardrail_inventory]
+    guidance: >-
+      Footnote 46 names the failure modes to attend to: hallucination, undesirable content, bias,
+      data leakage or disclosure, and vulnerability to adversarial attack. `airm.evals` maps
+      garak, promptfoo, deepeval, ragas and inspect-ai output onto these.
+
+  - id: AIRM-5.15-GENAI-FAILURE-MODES
+    title: Generative AI failure modes are covered by testing
+    family: evaluation
+    clauses: ["5.15.fn46", "5.15"]
+    intent: >-
+      Testing pays greater attention to hallucination, generation of undesirable content, bias,
+      data leakage or disclosure, and vulnerability to adversarial attack.
+    requires_tags: [genai]
+    automatability: semi
+    automatability_rationale: >-
+      Coverage of each named failure mode is derivable from eval results; the sufficiency of the
+      probe set is a judgement, and MAS prescribes no methodology (Response §12.7).
+    evidence: [genai_test_report, adversarial_test_report]
+
+  # ------------------------------------------------------ technology and cybersecurity §5.16, §5.22
+  - id: AIRM-5.16-SECURITY-CONTROLS
+    title: AI systems are deployed in secured environments
+    family: security
+    clauses: ["5.16", "5.16.a"]
+    intent: >-
+      Hardened configurations, network segmentation, input validation, API authentication,
+      encryption and data loss prevention, proportionate to the materiality of the supported use
+      cases.
+    automatability: doc
+    automatability_rationale: >-
+      Verifying infrastructure controls needs access to the environment; the toolkit records the
+      evidence pointer and defers to the FI's technology risk function.
+    evidence: [security_review, deployment_checklist]
+
+  - id: AIRM-5.16-ACCESS-CONTROL
+    title: Access to AI components is tightly controlled
+    family: security
+    clauses: ["5.16.b"]
+    intent: >-
+      Role-based access, multi-factor authentication, privileged access management and separation
+      of duties over AI components and infrastructure.
+    automatability: doc
+    automatability_rationale: An environment property, not a register property.
+    evidence: [access_control_matrix, privileged_access_review]
+
+  - id: AIRM-5.16-AGENT-PERMISSIONS
+    title: Agent tool and system permissions are least-privilege and declared
+    family: security
+    clauses: ["5.16.b", "5.16.c", "4.8.fn25"]
+    intent: >-
+      The tools, systems and permissions granted to an agent are declared and scoped, so that
+      observed tool use can be compared against approved scope and least privilege can be reviewed.
+    requires_tags: [agent]
+    automatability: auto
+    automatability_rationale: >-
+      Declared approved tools and permissions are register fields; their presence is decidable and
+      is the precondition for the observed-versus-approved audit in `airm.evals`.
+    check: agent_tool_scope
+    evidence: [agent_permission_matrix, tool_scope_audit]
+
+  - id: AIRM-5.16-THIRD-PARTY-COMPONENTS
+    title: Third-party plugins and APIs are governed and monitored
+    family: security
+    clauses: ["5.16.c"]
+    intent: >-
+      Controls govern the use of third-party components such as plugins and APIs, restrict data
+      exposure, and monitor for security, compliance and operational risk at providers.
+    requires_third_party: true
+    automatability: doc
+    automatability_rationale: Runtime governance of plugin traffic is outside the toolkit's view.
+    evidence: [plugin_governance_record, third_party_monitoring_evidence]
+
+  - id: AIRM-5.22-SECURITY-REVIEW
+    title: Technology and cybersecurity review before production
+    family: security
+    clauses: ["5.22", "5.22.a", "5.22.b"]
+    intent: >-
+      Reviews of architecture, APIs, plugins and third-party services for secure design,
+      segregation and least privilege, a completed go-live checklist, and vulnerability assessment,
+      penetration testing, red teaming and adversarial testing with safeguards implemented.
+    automatability: semi
+    automatability_rationale: >-
+      Presence and date of a penetration test, red-team report and go-live checklist are
+      checkable; their depth is a judgement, and MAS prescribes no methodology (Response §10.39).
+    evidence: [penetration_test_report, red_team_report, go_live_checklist]
+
+  # ------------------------------------------------- reproducibility and review §5.17-§5.21
+  - id: AIRM-5.17-DEVELOPMENT-DOCUMENTATION
+    title: Development process documented for reproducibility and auditability
+    family: documentation
+    clauses: ["5.17", "5.17.c", "5.17.d", "5.17.f"]
+    intent: >-
+      Documentation sufficient for an independent reviewer to understand and replicate the
+      implementation and, in particular, the evaluation and testing process, including code
+      versions, environments, hyperparameters, thresholds, results, assumptions and limitations.
+    automatability: auto
+    automatability_rationale: >-
+      Whether documentation is linked at all is decidable from the register. Whether it would let
+      someone replicate the evaluation is the judgement left to the reviewer, which is why the
+      evidence list asks for the reproducibility statement.
+    check: documentation_linked
+    evidence: [model_documentation, reproducibility_statement, model_card]
+    guidance: >-
+      Response to Feedback §10.44: documentation should enable replication of the evaluation and
+      testing process, not of exact outputs, since Generative AI is non-deterministic.
+
+  - id: AIRM-5.18-PRE-DEPLOYMENT-REVIEW
+    title: Pre-deployment review by parties not involved in development
+    family: review
+    clauses: ["5.18", "5.20", "5.20.fn48"]
+    intent: >-
+      Before deployment the use case is reviewed by parties not involved in its development or
+      deployment, with scope and independence proportionate to materiality.
+    automatability: auto
+    automatability_rationale: >-
+      Whether a review status other than "not reviewed" is on record is decidable; the depth of
+      the review is the reviewer's judgement.
+    check: documented_review
+    evidence: [pre_deployment_review_report]
+
+  - id: AIRM-5.19-INDEPENDENT-VALIDATION
+    title: Formal independent validation for high risk materiality
+    family: review
+    clauses: ["5.19"]
+    intent: >-
+      High-materiality use cases undergo formal independent validation by competent personnel
+      independent of the development and deployment teams, providing effective challenge across
+      conceptual soundness, data, implementation, evaluation, explainability and fairness,
+      assumptions and limitations.
+    high_materiality_only: true
+    automatability: semi
+    automatability_rationale: >-
+      Independence of the named validator from owner, developer, deployer and operator is
+      decidable from role records; whether the challenge was effective is not.
+    check: independent_validation
+    evidence: [independent_validation_report, validator_independence_statement]
+
+  - id: AIRM-5.21-FINDINGS-ACTIONED
+    title: Review findings are reported to the approval body and actioned
+    family: review
+    clauses: ["5.21"]
+    intent: >-
+      Findings, limitations, remediation actions and conditions for use are reported to the
+      relevant approval body, which ensures recommendations are actioned.
+    automatability: doc
+    automatability_rationale: A governance workflow fact, outside the toolkit's view.
+    evidence: [review_findings_register, approval_record]
+
+  # --------------------------------------------------- post-deployment monitoring §5.23-§5.24
+  - id: AIRM-5.23-MONITORING-MEASURES
+    title: Monitoring metrics with tiered thresholds and drift checks
+    family: monitoring
+    clauses: ["5.23", "5.23.a"]
+    intent: >-
+      Key metrics and acceptable thresholds defined per the risks of the use case, tiered early
+      warning levels, and checks for data, concept and model drift, with frequency and intensity
+      proportionate to materiality.
+    requires_live: true
+    automatability: semi
+    automatability_rationale: >-
+      Breaches against recorded thresholds are detectable from a monitoring feed; whether the
+      metric set is adequate is an FI judgement MAS declines to prescribe (Response §10.66).
+    evidence: [monitoring_plan, monitoring_results]
+
+  - id: AIRM-5.23-AGENT-TRACE-MONITORING
+    title: Agent reasoning, actions and tool use are monitored
+    family: monitoring
+    clauses: ["5.23.a", "5.23.d"]
+    intent: >-
+      Information flow and decision-making paths across AI workflows, including reasoning
+      processes, actions taken and tools used, are monitored and logged, with prompts, responses
+      and model versions recorded for Generative AI and agents.
+    requires_tags: [agent]
+    requires_live: true
+    automatability: auto
+    automatability_rationale: >-
+      Whether trace logging is enabled is a register field, and the toolkit can additionally audit
+      an actual trace against approved tool scope.
+    check: agent_trace_logging
+    evidence: [agent_trace_sample, tool_scope_audit]
+
+  - id: AIRM-5.23-GENAI-LOGGING
+    title: Prompts, responses and model versions are logged for Generative AI
+    family: monitoring
+    clauses: ["5.23.d"]
+    intent: >-
+      Enhanced documentation for Generative AI and agents, such as logging prompts and model
+      responses together with applicable model versions and reasoning processes, with access to
+      systems, data, pipelines and configuration controlled and logged.
+    requires_tags: [genai]
+    requires_live: true
+    applies_from_tier: Medium
+    automatability: semi
+    automatability_rationale: >-
+      A log sample proves logging exists and shows whether model version is captured; retention,
+      privacy and tamper-evidence are not standardised (see the gap table).
+    evidence: [prompt_log_sample, log_retention_policy]
+    guidance: >-
+      §5.23(d) says enhanced logging "could also be considered". This toolkit treats it as expected
+      for Generative AI and agent use cases at Medium tier and above; see
+      docs/INTERPRETATIONS.md I-9 for the lenient alternative.
+
+  - id: AIRM-5.23-INCIDENT-MANAGEMENT
+    title: AI incident and issue management with escalation
+    family: monitoring
+    clauses: ["5.23.b", "3.5.e", "3.5.fn20"]
+    intent: >-
+      Processes to report, track, escalate and resolve AI incidents and issues, with resolution
+      options from retraining to decommissioning, and user feedback channels.
+    requires_live: true
+    automatability: semi
+    automatability_rationale: >-
+      An incident log is machine-readable and the toolkit maintains one; whether escalation
+      happened in time is a process judgement.
+    evidence: [incident_log, escalation_procedure, user_feedback_channel]
+
+  - id: AIRM-5.23-ACCOUNTABLE-PERSON
+    title: An accountable person is designated for monitoring and incidents
+    family: monitoring
+    clauses: ["5.23.c"]
+    intent: Clear roles and an appropriate accountable person for monitoring deployed AI.
+    requires_live: true
+    automatability: auto
+    automatability_rationale: A named role in the register; presence is decidable.
+    check: monitoring_accountable_person
+    evidence: [ai_inventory_entry]
+
+  - id: AIRM-5.23-TRAINING-AWARENESS
+    title: Monitoring staff and users are trained to spot and report problems
+    family: capability
+    clauses: ["5.23.e", "6.1", "6.2"]
+    intent: >-
+      Persons responsible for monitoring are trained for monitoring and incident management, and
+      users are equipped to report unintended behaviour; competence extends to personnel using AI.
+    requires_live: true
+    automatability: doc
+    automatability_rationale: >-
+      Training completion records exist but competence is not inspectable from artefacts; MAS also
+      allows role-based training checks instead of individual assessment (Response §11.9).
+    evidence: [training_record, awareness_material]
+
+  - id: AIRM-5.24-REVALIDATION
+    title: Re-validation or review informed by materiality
+    family: review
+    clauses: ["5.24"]
+    intent: >-
+      Re-validations or reviews whose need, frequency and rigour are informed by materiality, with
+      regular independent re-validation for high-materiality use cases, triggered also by
+      monitoring breaches, significant changes or new external risks.
+    requires_live: true
+    automatability: semi
+    automatability_rationale: >-
+      A due date and a last-validated date are comparable, so an overdue re-validation is
+      detectable; the appropriate interval is an FI judgement.
+    evidence: [revalidation_record, revalidation_schedule]
+
+  # ------------------------------------------------------------- change management §5.25-§5.26
+  - id: AIRM-5.25-CHANGE-FRAMEWORK
+    title: Change assessment framework grades significance and triggers re-approval
+    family: change_management
+    clauses: ["5.25.a", "5.25.fn49"]
+    intent: >-
+      A framework evaluates the significance of changes based on the nature of the change and the
+      materiality of the use case; significant changes trigger review and re-approval before
+      implementation, with compensating controls where prior review is not possible.
+    automatability: semi
+    automatability_rationale: >-
+      `airm diff` classifies register changes against the default significance classes, so the
+      detection is automated; whether the classification matches the FI's framework is a judgement
+      (MAS leaves the framework to the FI, Response §10.73).
+    evidence: [change_assessment_framework, change_approval_record]
+    guidance: >-
+      Default significance classes are in docs/INTERPRETATIONS.md I-10 and
+      `airm.inventory.SIGNIFICANT_CHANGE_FIELDS`: purpose, approved scope, jurisdictions, model
+      type, data used, autonomy, agent configuration, third-party components, guardrails,
+      lifecycle status, materiality rating, automatic updates and personal data processing.
+
+  - id: AIRM-5.25-CHANGE-CONTROL
+    title: Version control and rollback over code, data and parameters
+    family: change_management
+    clauses: ["5.25.b"]
+    intent: >-
+      Change control with appropriate human oversight prevents unauthorised alteration, and version
+      control covers model code, data, parameters, hyperparameters and other key artefacts, with
+      traceability, auditability and the ability to roll back.
+    automatability: doc
+    automatability_rationale: >-
+      Verifying that a version control system covers data and parameters requires access to the
+      FI's pipelines, which the toolkit does not have.
+    evidence: [version_control_evidence, rollback_procedure]
+
+  - id: AIRM-5.25-DYNAMIC-UPDATES
+    title: Enhanced controls for automatically updating AI
+    family: change_management
+    clauses: ["5.25.c"]
+    intent: >-
+      Where AI is designed to update automatically: strict justification, a clear definition of
+      what may update automatically, enhanced data quality checks and more stringent performance
+      monitoring.
+    automatability: auto
+    automatability_rationale: >-
+      Whether automatic updates are declared and paired with recorded monitoring or guardrails is
+      decidable from the register.
+    check: dynamic_update_controls
+    evidence: [auto_update_justification, enhanced_monitoring_plan]
+
+  - id: AIRM-5.26-RETIREMENT
+    title: Retirement and decommissioning controls
+    family: retirement
+    clauses: ["5.26"]
+    intent: >-
+      Controls for retirement or decommissioning considering dependencies, data retention policies,
+      secure removal from production and stakeholder notification.
+    automatability: auto
+    automatability_rationale: >-
+      For a retired use case the presence of a decommissioning record is decidable; adequacy of
+      secure removal is not, and is covered by the data security control.
+    check: retirement_controls
+    evidence: [decommissioning_record, data_disposal_record]
+
+  # ================================================================== Section 6: capability
+  - id: AIRM-6.1-COMPETENCE
+    title: Competence of personnel developing, deploying and using AI
+    family: capability
+    clauses: ["6.1", "6.2"]
+    intent: >-
+      Necessary competence and proper conduct of personnel developing, deploying and using AI,
+      with resources proportionate to risk and regular review of capability programmes.
+    automatability: doc
+    automatability_rationale: >-
+      Organisational capability is not an artefact property; MAS also allows role-based training
+      checks in place of individual competence assessment (Response §11.9).
+    evidence: [competency_framework, training_programme_review]
+
+  - id: AIRM-6.3-INFRASTRUCTURE
+    title: Technology infrastructure is adequate for the use case
+    family: capability
+    clauses: ["6.3"]
+    intent: >-
+      Hardware and software resources are sufficient for the performance, scalability and
+      resilience needs of the use case, informed by technology risk management guidelines.
+    automatability: doc
+    automatability_rationale: A capacity and resilience judgement made outside this toolkit.
+    evidence: [capacity_assessment, resilience_test_record]
+
+  # ======================================================= Institution-level controls (scope: institution)
+  # These clauses are expectations on the FI's framework rather than on a single use case, so they
+  # are evaluated once by `airm check --institution` instead of being repeated per use case.
+
+  - id: AIRM-2.5-BASIC-POLICIES
+    title: Basic AI governance policies exist where the basic regime applies
+    family: governance
+    scope: institution
+    clauses: ["2.5", "2.3", "2.4"]
+    intent: >-
+      Where the FI's AI use is unlikely to have a material adverse impact, basic policies cover
+      accountability for AI oversight, permitted and prohibited uses with human oversight rules,
+      an approved-tool list and approval process, staff education, compliance checks, and periodic
+      or trigger-based review that the §2.3 criteria still hold.
+    automatability: doc
+    automatability_rationale: >-
+      Policy existence and content are organisational facts. The toolkit can hold the policy
+      pointer and flag the §2.5(f) review as overdue, nothing more.
+    evidence: [basic_ai_policy, approved_tool_list, staff_training_record, policy_review_record]
+    guidance: >-
+      docs/INTERPRETATIONS.md I-2: the §2.3 test is read as an FI-level test, so a single material
+      use case puts the whole FI under Sections 3-6.
+
+  - id: AIRM-3.2-RISK-FRAMEWORK-COVERAGE
+    title: Existing risk frameworks address risks from AI use
+    family: governance
+    scope: institution
+    clauses: ["3.2", "3.2.fn14", "1.6"]
+    intent: >-
+      Board and senior management ensure existing risk management frameworks, policies and
+      practices across model, operational, reputational, data, technology, cyber, third-party,
+      legal, compliance, financial, conduct and environmental risk adequately identify, assess and
+      address risks posed by AI, proportionate to the FI's size and activities.
+    automatability: doc
+    automatability_rationale: A framework-adequacy judgement for the board, not an artefact property.
+    evidence: [framework_gap_assessment, board_minutes]
+
+  - id: AIRM-3.3-COORDINATED-OVERSIGHT
+    title: Consistent, coordinated management of AI risk across functions
+    family: governance
+    scope: institution
+    clauses: ["3.3", "3.3.fn16", "3.4", "3.5"]
+    intent: >-
+      Whether through a new centralised function or existing risk functions, the FI can
+      demonstrate a consolidated view of risks from AI use and consistent, coordinated management
+      across all relevant functions, with board and senior management responsibilities discharged.
+    automatability: doc
+    automatability_rationale: >-
+      MAS removed the prescriptive dedicated-committee requirement (Response to Feedback §5.3), so
+      what remains is an outcome the FI must demonstrate, not a structure a tool can detect.
+    evidence: [governance_structure_chart, committee_terms_of_reference, board_reporting_pack]
+
+  - id: AIRM-3.6-LOCAL-ACCOUNTABILITY
+    title: Local senior management accountability where group frameworks are used
+    family: governance
+    scope: institution
+    clauses: ["3.6", "1.5", "3.4.fn17"]
+    intent: >-
+      Where group frameworks are adopted for Singapore, local senior management can demonstrate
+      visibility, input, escalation paths for Singapore-specific issues, and how it discharges its
+      oversight responsibilities to MAS.
+    automatability: doc
+    automatability_rationale: An accountability narrative, evidenced by minutes and reporting, not by data.
+    evidence: [local_oversight_record, group_framework_gap_assessment]
+
+  - id: AIRM-4.1-FRAMEWORK-PROCESSES
+    title: The framework encompasses identification, inventorisation and materiality assessment
+    family: governance
+    scope: institution
+    clauses: ["4.1", "4.3", "4.9", "4.13"]
+    intent: >-
+      Consistent and robust approaches to identify, inventorise and determine the risk materiality
+      of AI, each with a designated control function retaining independent oversight.
+    automatability: auto
+    automatability_rationale: >-
+      Whether a control function is designated for each of the three processes is decidable from
+      the register's own metadata.
+    check: control_functions_designated
+    evidence: [control_function_mandate, process_documentation]
+
+  - id: AIRM-4.6-FN23-LINKAGES-DECLARED
+    title: Linkages to other registers are declared at register level
+    family: inventory
+    scope: institution
+    clauses: ["4.6", "4.6.fn23"]
+    intent: >-
+      The register declares which other inventories it links to and by which identifier scheme, so
+      that vendor and data exposure can be consolidated.
+    automatability: auto
+    automatability_rationale: A declared mapping in the register; presence is decidable.
+    check: register_linkages_declared
+    evidence: [register_linkage_map]
+
+  - id: AIRM-1.7-PERIODIC-FRAMEWORK-REVIEW
+    title: AI risk management is reviewed regularly against AI developments
+    family: governance
+    scope: institution
+    clauses: ["1.7", "5.1", "4.8"]
+    intent: >-
+      The FI regularly reviews the adequacy of its AI risk management, its lifecycle controls and
+      its inventory design against AI developments, addressing new or accentuated risks.
+    automatability: doc
+    automatability_rationale: >-
+      A review cadence is evidenceable but whether the review genuinely addressed new risks is a
+      judgement.
+    evidence: [framework_review_record, horizon_scanning_note]
