@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+title: "airmkit: Operationalising the MAS Guidelines on AI Risk Management for LLM and Agentic Systems"
+message: "If you use this toolkit or its catalogue, crosswalk or results, please cite it."
+type: software
+license: Apache-2.0
+version: 0.1.0
+date-released: "2026-10-13"
+repository-code: "https://github.com/thanatchon36/airmkit"
+url: "https://thanatchon36.github.io/airmkit/"
+authors:
+  - family-names: Chongmankhong
+    given-names: Thanatchon
+abstract: >-
+  An open-source Python toolkit and reproducible study that operationalise the Monetary Authority
+  of Singapore's Guidelines on Artificial Intelligence Risk Management (7 October 2026) for LLM
+  and agentic AI systems. It ships a machine-readable catalogue of all 65 paragraphs, 65 controls
+  each citing the paragraph it serves, an AI inventory schema with first-class agent attributes, a
+  transparent Impact/Complexity/Reliance materiality rubric, hash-chained evidence records,
+  adapters from existing evaluation harnesses to controls, a 224-row crosswalk to ISO/IEC 42001,
+  the NIST AI RMF and its Generative AI Profile, the EU AI Act, MAS FEAT and the MAS Information
+  Paper (2024), and an audit-pack generator. Five pre-registered experiments measure how far the
+  Guidelines can be machine-checked; seven of seventeen hypotheses were refuted and all are
+  reported. Independent project, not affiliated with or endorsed by MAS, and not legal advice.
+keywords:
+  - ai-governance
+  - model-risk
+  - mas
+  - llm-evaluation
+  - agentic-ai
+  - compliance
+  - guardrails
+references:
+  - type: report
+    title: "Guidelines on Artificial Intelligence Risk Management"
+    authors:
+      - name: "Monetary Authority of Singapore"
+    year: 2026
+    date-released: "2026-10-07"
+    url: "https://www.mas.gov.sg/regulation/guidelines"
+    notes: "The primary source this toolkit indexes. MAS copyright; not reproduced here beyond citation."

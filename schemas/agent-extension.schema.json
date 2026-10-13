@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/agent-extension.schema.json",
+  "x-airmkit-version": "0.1.0",
+  "x-mas-airm-clauses": "MAS-AIRM \u00a74.8 fn25, \u00a75.16, \u00a75.23(a)",
+  "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
+  "$defs": {
+    "Guardrail": {
+      "additionalProperties": false,
+      "description": "A guardrail imposed on the use case.\n\nServes MAS-AIRM \u00a74.8 fn25 (\"the guardrails imposed to manage risk\") and \u00a75.15, which expects\nthe *effectiveness* of guardrails to be tested for Generative AI and agents. ``tested`` and\n``evidence_ref`` are what makes that expectation checkable.",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "kind": {
+          "description": "e.g. 'input_filter', 'output_filter', 'system_prompt', 'tool_allowlist', 'rate_limit', 'human_checkpoint', 'kill_switch', 'llm_judge'.",
+          "title": "Kind",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "tested": {
+          "default": false,
+          "description": "Effectiveness has been tested (MAS-AIRM \u00a75.15).",
+          "title": "Tested",
+          "type": "boolean"
+        },
+        "evidence_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Evidence id or path for the effectiveness test.",
+          "title": "Evidence Ref"
+        }
+      },
+      "required": [
+        "name",
+        "kind"
+      ],
+      "title": "Guardrail",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Agent-specific inventory attributes.\n\nImplements MAS-AIRM \u00a74.8 footnote 25 directly: \"for AI agents, relevant attributes may include\nagent-specific identifiers, information on the tools and systems the agent can access, its\ncomponents, and the guardrails imposed to manage risk\". ``human_checkpoints`` serves \u00a75.9(c)\n(design for oversight, with escalation when predefined conditions are met) and\n``approved_tools`` makes the \u00a75.23(a) tool-usage monitoring checkable against approved scope.",
+  "properties": {
+    "agent_identifier": {
+      "description": "Agent-specific identifier (MAS-AIRM \u00a74.8 fn25).",
+      "title": "Agent Identifier",
+      "type": "string"
+    },
+    "approved_tools": {
+      "description": "Tools and systems the agent may access (MAS-AIRM \u00a74.8 fn25).",
+      "items": {
+        "type": "string"
+      },
+      "title": "Approved Tools",
+      "type": "array"
+    },
+    "systems_accessible": {
+      "description": "Internal or external systems reachable by the agent.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Systems Accessible",
+      "type": "array"
+    },
+    "permissions": {
+      "description": "Permissions granted, e.g. 'read:crm', 'write:ticket'. Supports \u00a75.16(b).",
+      "items": {
+        "type": "string"
+      },
+      "title": "Permissions",
+      "type": "array"
+    },
+    "components": {
+      "description": "Sub-agents, planners, retrievers and other components (MAS-AIRM \u00a74.8 fn25).",
+      "items": {
+        "type": "string"
+      },
+      "title": "Components",
+      "type": "array"
+    },
+    "guardrails": {
+      "items": {
+        "$ref": "#/$defs/Guardrail"
+      },
+      "title": "Guardrails",
+      "type": "array"
+    },
+    "human_checkpoints": {
+      "description": "Points at which a human must approve or can intervene (MAS-AIRM \u00a75.9(c)).",
+      "items": {
+        "type": "string"
+      },
+      "title": "Human Checkpoints",
+      "type": "array"
+    },
+    "max_steps": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Cap on autonomous steps per task, a \u00a75.2 mitigant.",
+      "title": "Max Steps"
+    },
+    "can_initiate_external_actions": {
+      "default": false,
+      "description": "Whether the agent can act on systems of record or third parties (\u00a71.11).",
+      "title": "Can Initiate External Actions",
+      "type": "boolean"
+    },
+    "trace_logging": {
+      "default": false,
+      "description": "Reasoning, actions and tools are logged (MAS-AIRM \u00a75.23(a) and (d)).",
+      "title": "Trace Logging",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "agent_identifier"
+  ],
+  "title": "AgentExtension",
+  "type": "object"
+}

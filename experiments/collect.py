@@ -365,12 +365,31 @@ def collate(rqs: dict[str, dict[str, Any]], portfolio: dict[str, Any]) -> dict[s
     }
 
 
+def _without_provenance(payload: dict[str, Any]) -> dict[str, Any]:
+    """Return the payload without its own provenance block.
+
+    The provenance carries a timestamp, so two merges of identical results differ. Comparing
+    without it is how :func:`main` decides whether anything actually changed.
+    """
+    return {key: value for key, value in payload.items() if key != "provenance"}
+
+
 def main() -> None:
-    """Write results/summary.json from the per-RQ files and the worked example."""
+    """Write results/summary.json from the per-RQ files and the worked example.
+
+    If nothing but the timestamp changed, the committed provenance block is kept, so that
+    ``summary.json`` is a stable artefact: CI can fail a build whose generated files are stale
+    without failing every build for the date.
+    """
     banner("collect: merging per-RQ results into summary.json")
     rqs = load_rq_results()
     portfolio = example_pack_summary()
     summary = collate(rqs, portfolio)
+    if SUMMARY.is_file():
+        existing = json.loads(SUMMARY.read_text(encoding="utf-8"))
+        if _without_provenance(existing) == _without_provenance(summary):
+            summary["provenance"] = existing["provenance"]
+            print("  no change beyond the timestamp; keeping the committed provenance block")
     SUMMARY.parent.mkdir(parents=True, exist_ok=True)
     SUMMARY.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
     counts = summary["verdict_counts"]

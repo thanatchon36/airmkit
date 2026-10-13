@@ -1,7 +1,7 @@
 """Command-line interface for airmkit.
 
 Commands: ``init``, ``scan``, ``assess``, ``check``, ``evidence``, ``report``, ``gap``,
-``crosswalk`` and ``clauses``.
+``crosswalk``, ``clauses`` and ``schemas``.
 
 Serves the MAS-AIRM expectations by giving each of them a command a model-risk engineer can run in
 CI. Every command prints the paragraph behind what it says, because a tool that asserts a
@@ -956,6 +956,28 @@ def clauses(
         f"{sum(1 for c in controls.controls if c.scope is Scope.INSTITUTION)} of "
         f"{len(controls)} are institution-level.[/dim]"
     )
+
+
+@app.command()
+def schemas(
+    out: Annotated[
+        Path, typer.Option("--out", "-o", help="Directory to write the JSON Schemas to.")
+    ] = Path("schemas"),
+) -> None:
+    """Export a JSON Schema for every format the toolkit reads or writes.
+
+    Lets a GRC platform, a spreadsheet or a service in another language validate an AI inventory
+    register (MAS-AIRM §4.5-§4.9), a materiality assessment (§4.10-§4.13), a vendor assessment
+    (§5.10-§5.11) or an evidence record (§5.23(d)) against the same schema this library enforces,
+    without installing Python.
+    """
+    from airm.schemas import export
+
+    written = export(out)
+    for stem, path in written.items():
+        console.print(f"[green]wrote[/green] {path} [dim]({stem})[/dim]")
+    console.print(f"\n{len(written)} file(s) in {out}.")
+    _footer()
 
 
 if __name__ == "__main__":  # pragma: no cover

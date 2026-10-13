@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/audit-trail-record.schema.json",
+  "x-airmkit-version": "0.1.0",
+  "x-mas-airm-clauses": "MAS-AIRM \u00a75.23(d), \u00a75.17",
+  "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
+  "$defs": {
+    "EventType": {
+      "description": "What kind of thing the record attests to.\n\nThe set covers the activities MAS-AIRM expects to be recorded: assessments (\u00a74.13),\nevaluations and tests (\u00a75.14-\u00a75.15), reviews and validations (\u00a75.18-\u00a75.21), monitoring results\nand incidents (\u00a75.23), changes and approvals (\u00a75.25) and decommissioning (\u00a75.26).",
+      "enum": [
+        "assessment",
+        "evaluation",
+        "guardrail_test",
+        "fairness_assessment",
+        "review",
+        "independent_validation",
+        "approval",
+        "attestation",
+        "monitoring",
+        "drift_alert",
+        "incident",
+        "change",
+        "third_party_assessment",
+        "tool_scope_audit",
+        "decommission",
+        "scan"
+      ],
+      "title": "EventType",
+      "type": "string"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "description": "A piece of evidence attached to a record.\n\n``digest`` is the SHA-256 of the referenced file when the file was available at record time.\nRecording the digest rather than the file keeps the trail small while still letting a reviewer\ndetect that an evidence file has changed since it was attested (MAS-AIRM \u00a75.17).",
+      "properties": {
+        "item": {
+          "description": "Evidence item name, matching a control's evidence list.",
+          "title": "Item",
+          "type": "string"
+        },
+        "ref": {
+          "description": "Path, URL or external id of the evidence.",
+          "title": "Ref",
+          "type": "string"
+        },
+        "digest": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "SHA-256 of the file, if available.",
+          "title": "Digest"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "item",
+        "ref"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "Severity": {
+      "description": "Severity of a monitoring or incident record.",
+      "enum": [
+        "info",
+        "warning",
+        "breach",
+        "critical"
+      ],
+      "title": "Severity",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "One immutable record in the audit trail.\n\nServes MAS-AIRM \u00a75.23(d). The record is hashed over its canonical JSON form excluding its own\n``record_hash``, so the hash is reproducible by anyone holding the record.",
+  "properties": {
+    "seq": {
+      "description": "Position in the chain, starting at 0.",
+      "minimum": 0,
+      "title": "Seq",
+      "type": "integer"
+    },
+    "timestamp": {
+      "format": "date-time",
+      "title": "Timestamp",
+      "type": "string"
+    },
+    "event": {
+      "$ref": "#/$defs/EventType"
+    },
+    "use_case_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "None for institution-level records.",
+      "title": "Use Case Id"
+    },
+    "actor": {
+      "description": "Who or what created the record.",
+      "title": "Actor",
+      "type": "string"
+    },
+    "summary": {
+      "title": "Summary",
+      "type": "string"
+    },
+    "clauses": {
+      "description": "MAS-AIRM citations this record evidences.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Clauses",
+      "type": "array"
+    },
+    "severity": {
+      "$ref": "#/$defs/Severity",
+      "default": "info"
+    },
+    "outcome": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "e.g. 'pass', 'fail', 'needs_attestation'.",
+      "title": "Outcome"
+    },
+    "data": {
+      "additionalProperties": true,
+      "description": "Structured payload: metrics, thresholds, diffs.",
+      "title": "Data",
+      "type": "object"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "prev_hash": {
+      "description": "SHA-256 of the previous record, or the genesis hash.",
+      "title": "Prev Hash",
+      "type": "string"
+    },
+    "record_hash": {
+      "default": "",
+      "description": "SHA-256 over this record's canonical form.",
+      "title": "Record Hash",
+      "type": "string"
+    }
+  },
+  "required": [
+    "seq",
+    "timestamp",
+    "event",
+    "actor",
+    "summary",
+    "prev_hash"
+  ],
+  "title": "Record",
+  "type": "object"
+}

@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/incident.schema.json",
+  "x-airmkit-version": "0.1.0",
+  "x-mas-airm-clauses": "MAS-AIRM \u00a75.23(b), fn20",
+  "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
+  "$defs": {
+    "IncidentStatus": {
+      "description": "Lifecycle of an AI incident.\n\nMAS-AIRM \u00a73.5 fn20 defines an AI incident as \"incidents that involve a failure, malfunction, or\npoor performance of the underlying AI system(s) or model(s)\". Response to Feedback \u00a710.69\nconfirms MAS sets no AI-specific severity framework or reporting regime, so the statuses here\nare an ordinary workflow, not a regulatory taxonomy.",
+      "enum": [
+        "open",
+        "investigating",
+        "escalated",
+        "mitigated",
+        "resolved",
+        "closed_no_action"
+      ],
+      "title": "IncidentStatus",
+      "type": "string"
+    },
+    "Severity": {
+      "description": "Severity of a monitoring or incident record.",
+      "enum": [
+        "info",
+        "warning",
+        "breach",
+        "critical"
+      ],
+      "title": "Severity",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "An AI incident, as defined by MAS-AIRM \u00a73.5 footnote 20.\n\nServes \u00a75.23(b) (reporting, tracking, escalating and resolving) and \u00a73.5(e) (internal\nescalation for material risks and exceptions). MAS introduces no AI-specific reporting\nrequirement (Response to Feedback \u00a710.69); existing technology-risk and business-continuity\nreporting obligations continue to apply, which is why ``reported_externally`` is a plain field\nrather than a workflow.",
+  "properties": {
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "use_case_id": {
+      "title": "Use Case Id",
+      "type": "string"
+    },
+    "opened": {
+      "format": "date-time",
+      "title": "Opened",
+      "type": "string"
+    },
+    "severity": {
+      "$ref": "#/$defs/Severity"
+    },
+    "status": {
+      "$ref": "#/$defs/IncidentStatus",
+      "default": "open"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "detected_by": {
+      "description": "e.g. 'monitoring', 'user_report', 'review', 'incident'.",
+      "title": "Detected By",
+      "type": "string"
+    },
+    "failure_mode": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "For Generative AI, one of the MAS-AIRM \u00a75.15 fn46 modes: hallucination, undesirable_content, bias, data_leakage, adversarial_vulnerability.",
+      "title": "Failure Mode"
+    },
+    "impact": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Impact"
+    },
+    "escalated_to": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Per MAS-AIRM \u00a73.5(e).",
+      "title": "Escalated To"
+    },
+    "resolution": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "e.g. retraining, adjustment, redevelopment, decommissioning (\u00a75.23(b)).",
+      "title": "Resolution"
+    },
+    "near_miss": {
+      "default": false,
+      "description": "Near misses are reviewable under MAS-AIRM \u00a75.9(d).",
+      "title": "Near Miss",
+      "type": "boolean"
+    },
+    "kill_switch_activated": {
+      "default": false,
+      "description": "Per MAS-AIRM \u00a75.23(b).",
+      "title": "Kill Switch Activated",
+      "type": "boolean"
+    },
+    "reported_externally": {
+      "default": false,
+      "description": "Whether reported to a regulator under existing obligations (Response \u00a710.69).",
+      "title": "Reported Externally",
+      "type": "boolean"
+    },
+    "closed": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Closed"
+    },
+    "clauses": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Clauses",
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "use_case_id",
+    "opened",
+    "severity",
+    "title",
+    "description",
+    "detected_by"
+  ],
+  "title": "Incident",
+  "type": "object"
+}

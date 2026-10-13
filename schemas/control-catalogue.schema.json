@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/control-catalogue.schema.json",
+  "x-airmkit-version": "0.1.0",
+  "x-mas-airm-clauses": "MAS-AIRM \u00a75.2",
+  "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
+  "$defs": {
+    "Automatability": {
+      "description": "How far a control can be checked without human judgement (RQ1 classification).\n\n``AUTO``\n    A deterministic function of the inventory entry and its evidence decides pass/fail.\n``SEMI``\n    A machine can detect whether the required artefact exists and is current, but a human must\n    attest that it is adequate.\n``DOC``\n    Compliance is an organisational or judgemental fact with no artefact the toolkit inspects.\n\nSee ``docs/DECISIONS.md`` D-6. The classification is the authors' judgement relative to this\nimplementation, not a MAS classification.",
+      "enum": [
+        "auto",
+        "semi",
+        "doc"
+      ],
+      "title": "Automatability",
+      "type": "string"
+    },
+    "Control": {
+      "additionalProperties": false,
+      "description": "One control in the catalogue.\n\nEvery control must cite at least one MAS-AIRM paragraph: the MISSION requires traceability over\ncoverage, so a control with no clause reference is a validation error.",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "family": {
+          "description": "Control family, e.g. 'data', 'human_oversight', 'security'.",
+          "title": "Family",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "#/$defs/Scope",
+          "default": "use_case",
+          "description": "Whether the control is evaluated per use case or once for the institution."
+        },
+        "clauses": {
+          "description": "MAS-AIRM paragraph ids, e.g. ['5.15'] or ['5.23.a'].",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Clauses",
+          "type": "array"
+        },
+        "intent": {
+          "description": "What outcome the control is trying to secure.",
+          "title": "Intent",
+          "type": "string"
+        },
+        "applies_from_tier": {
+          "$ref": "#/$defs/Tier",
+          "default": "Low",
+          "description": "Lowest tier at which the control applies (MAS-AIRM \u00a75.2)."
+        },
+        "high_materiality_only": {
+          "default": false,
+          "description": "Applies only to High/Critical inherent tiers (MAS-AIRM \u00a75.3, \u00a75.19).",
+          "title": "High Materiality Only",
+          "type": "boolean"
+        },
+        "requires_tags": {
+          "description": "Only applies if the use case carries any of these tags (genai, agent, ...).",
+          "items": {
+            "type": "string"
+          },
+          "title": "Requires Tags",
+          "type": "array"
+        },
+        "requires_live": {
+          "default": false,
+          "description": "Only applies to piloted or deployed use cases.",
+          "title": "Requires Live",
+          "type": "boolean"
+        },
+        "requires_third_party": {
+          "default": false,
+          "title": "Requires Third Party",
+          "type": "boolean"
+        },
+        "requires_fairness": {
+          "default": false,
+          "title": "Requires Fairness",
+          "type": "boolean"
+        },
+        "automatability": {
+          "$ref": "#/$defs/Automatability",
+          "default": "doc"
+        },
+        "automatability_rationale": {
+          "default": "",
+          "description": "Why this class, for the RQ1 classification table.",
+          "title": "Automatability Rationale",
+          "type": "string"
+        },
+        "evidence": {
+          "description": "Evidence items a reviewer should expect.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence",
+          "type": "array"
+        },
+        "check": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Name of a registered check function, if any.",
+          "title": "Check"
+        },
+        "guidance": {
+          "default": "",
+          "title": "Guidance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "family",
+        "clauses",
+        "intent"
+      ],
+      "title": "Control",
+      "type": "object"
+    },
+    "Scope": {
+      "description": "Whether a control is evaluated per use case or once for the institution.\n\nMAS-AIRM mixes the two: \u00a75.15 is about a use case's guardrails, while \u00a73.3 and \u00a74.1 are about\nthe institution's framework. Evaluating institution-level clauses once avoids reporting the\nsame organisational gap eight times.",
+      "enum": [
+        "use_case",
+        "institution"
+      ],
+      "title": "Scope",
+      "type": "string"
+    },
+    "Tier": {
+      "description": "Overall risk materiality tier of a use case.\n\nThe tier is what Section 5 controls are calibrated against (MAS-AIRM \u00a75.2). ``HIGH`` and\n``CRITICAL`` both count as \"high risk materiality\" for the clauses that bind only at that\nlevel (\u00a75.3 contingency plans, \u00a75.19 formal independent validation, \u00a75.23(b) kill switches,\n\u00a75.24 independent re-validation). Per Response to Feedback \u00a77.21 those triggers key on\n*inherent* materiality; see ``docs/INTERPRETATIONS.md`` I-3.",
+      "enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ],
+      "title": "Tier",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "The control catalogue, loaded from ``controls.yaml`` inside this package.",
+  "properties": {
+    "id": {
+      "default": "airmkit-default",
+      "title": "Id",
+      "type": "string"
+    },
+    "version": {
+      "default": "1",
+      "title": "Version",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "title": "Description",
+      "type": "string"
+    },
+    "controls": {
+      "items": {
+        "$ref": "#/$defs/Control"
+      },
+      "title": "Controls",
+      "type": "array"
+    }
+  },
+  "title": "ControlCatalogue",
+  "type": "object"
+}

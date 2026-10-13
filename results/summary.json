@@ -1,11 +1,11 @@
 {
   "provenance": {
     "airmkit_version": "0.1.0",
-    "git_revision": "36497bd",
+    "git_revision": "2481930",
     "python": "3.11.17",
     "platform": "Darwin arm64",
     "seed": 20261013,
-    "generated_at": "2026-10-13T11:04:16+00:00",
+    "generated_at": "2026-10-13T11:11:31+00:00",
     "merged_from": {
       "rq1": "2026-10-13T10:51:05+00:00",
       "rq2": "2026-10-13T11:03:56+00:00",

@@ -1,0 +1,272 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/eval-result.schema.json",
+  "x-airmkit-version": "0.1.0",
+  "x-mas-airm-clauses": "MAS-AIRM \u00a75.14-\u00a75.15, fn46",
+  "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
+  "$defs": {
+    "FailureMode": {
+      "description": "The Generative AI failure modes MAS-AIRM \u00a75.15 footnote 46 names.\n\nFootnote 46: \"for Generative AI, evaluation and testing should pay greater attention to\nhallucinations, generation of undesirable content such as toxic, harmful or biased content,\nbias, data leakages or disclosures, and vulnerability to adversarial attacks.\"\n\n``TOOL_MISUSE`` is not in footnote 46. It is added for agents, whose risk \u00a71.11 describes as\nautonomously executing \"unauthorised or erroneous actions\", and is labelled as an addition\nwherever it is reported.",
+      "enum": [
+        "hallucination",
+        "undesirable_content",
+        "bias",
+        "data_leakage",
+        "adversarial_vulnerability",
+        "tool_misuse"
+      ],
+      "title": "FailureMode",
+      "type": "string"
+    },
+    "MetricResult": {
+      "additionalProperties": false,
+      "description": "One measured metric with its threshold and verdict.\n\nMAS-AIRM \u00a75.14(a) expects \"acceptable performance thresholds\" that are \"clearly defined,\ndocumented, and mutually agreed upon by business owners, developers and reviewers\". MAS sets no\nvalues (Response to Feedback \u00a710.29), so the threshold must come from the FI; when none is\nsupplied the metric is recorded without a verdict rather than silently judged.",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "number"
+        },
+        "threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Threshold"
+        },
+        "direction": {
+          "default": "higher_is_better",
+          "description": "'higher_is_better' or 'lower_is_better'; decides how threshold is applied.",
+          "title": "Direction",
+          "type": "string"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        },
+        "n": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Sample size, for interval reporting.",
+          "title": "N"
+        },
+        "failure_mode": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FailureMode"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "name",
+        "value"
+      ],
+      "title": "MetricResult",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "A normalised evaluation result from any supported tool.\n\nThis is the shape every adapter produces, and the shape :mod:`airm.controls` and\n:mod:`airm.monitor` consume. ``model`` and ``model_digest`` are mandatory-by-convention for\nreproducibility: MAS-AIRM \u00a75.17 as clarified by Response to Feedback \u00a710.44 expects the\n*evaluation and testing process* to be replicable even where outputs are non-deterministic,\nwhich requires knowing which model version produced them.",
+  "properties": {
+    "source": {
+      "description": "Tool that produced the result, e.g. 'garak', 'inspect-ai'.",
+      "title": "Source",
+      "type": "string"
+    },
+    "use_case_id": {
+      "title": "Use Case Id",
+      "type": "string"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Id"
+    },
+    "ran_at": {
+      "format": "date-time",
+      "title": "Ran At",
+      "type": "string"
+    },
+    "model": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Model identifier under test.",
+      "title": "Model"
+    },
+    "model_digest": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Model digest or quantisation, for reproducibility (\u00a75.17).",
+      "title": "Model Digest"
+    },
+    "seed": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Seed"
+    },
+    "temperature": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Temperature"
+    },
+    "dataset": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Dataset or probe set used (\u00a75.14(b)).",
+      "title": "Dataset"
+    },
+    "metrics": {
+      "items": {
+        "$ref": "#/$defs/MetricResult"
+      },
+      "title": "Metrics",
+      "type": "array"
+    },
+    "failure_modes_covered": {
+      "items": {
+        "$ref": "#/$defs/FailureMode"
+      },
+      "title": "Failure Modes Covered",
+      "type": "array"
+    },
+    "total": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Total"
+    },
+    "failures": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Failures"
+    },
+    "clauses": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Clauses",
+      "type": "array"
+    },
+    "raw_ref": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Path to the tool's own output, kept as primary evidence.",
+      "title": "Raw Ref"
+    },
+    "notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "source",
+    "use_case_id"
+  ],
+  "title": "EvalResult",
+  "type": "object"
+}

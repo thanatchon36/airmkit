@@ -51,6 +51,7 @@ def templates() -> list[Path]:
     found.extend(sorted((DOCS_DIR / "posts").glob("*.md.in")))
     return [path for path in found if path.is_file()]
 
+
 PLACEHOLDER = re.compile(r"\{\{([a-z0-9_.:]+)\}\}")
 
 RQ_TITLES = {
@@ -497,6 +498,16 @@ def render(template: str, summary: dict[str, Any]) -> tuple[str, set[str]]:
     return rendered, used
 
 
+def summary_date(summary: dict[str, Any]) -> str:
+    """Return the date of the run the summary describes, for ``{{DATE}}``.
+
+    Deliberately not today's date: the paper is dated by the results it reports, so re-rendering
+    an unchanged summary produces an unchanged paper and CI can detect a stale artefact.
+    """
+    generated = str(summary["provenance"]["generated_at"])
+    return generated[:10] if len(generated) >= 10 else dt.date.today().isoformat()
+
+
 def render_file(path: Path, summary: dict[str, Any]) -> tuple[Path, str, set[str]]:
     """Render one template to its sibling without the ``.in`` suffix.
 
@@ -504,7 +515,7 @@ def render_file(path: Path, summary: dict[str, Any]) -> tuple[Path, str, set[str
         The path written, the rendered text and the number keys it used.
     """
     rendered, used = render(path.read_text(encoding="utf-8"), summary)
-    rendered = rendered.replace("{{DATE}}", dt.date.today().isoformat())
+    rendered = rendered.replace("{{DATE}}", summary_date(summary))
     target = path.with_suffix("")
     target.write_text(rendered, encoding="utf-8")
     return target, rendered, used

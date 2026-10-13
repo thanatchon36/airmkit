@@ -1,0 +1,305 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/vendor-register.schema.json",
+  "x-airmkit-version": "0.1.0",
+  "x-mas-airm-clauses": "MAS-AIRM \u00a75.10-\u00a75.11",
+  "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
+  "$defs": {
+    "Assurance": {
+      "description": "What kind of assurance the FI holds about the provider.\n\nMAS-AIRM \u00a75.11(a) accepts \"certifications or external assessments of the AI provider performed\nby independent and competent parties (i.e. not self-attestations)\". Response to Feedback \u00a79.9\nis explicit that self-attestation unsupported by evidence \"would generally not be considered as\neffective\". :meth:`is_independent` encodes exactly that line.",
+      "enum": [
+        "none",
+        "self_attestation",
+        "independent_assessment",
+        "certification",
+        "fi_own_testing"
+      ],
+      "title": "Assurance",
+      "type": "string"
+    },
+    "Consideration": {
+      "description": "The eight third-party considerations MAS-AIRM \u00a75.11 lists.\n\nResponse to Feedback \u00a79.5 confirms each \"may be met to varying degrees depending on the nature\nand risk materiality of the AI use case\", which is why each carries a status rather than a\npass/fail.",
+      "enum": [
+        "transparency",
+        "supply_chain",
+        "concentration",
+        "change_management",
+        "contingency",
+        "legal_agreements",
+        "capabilities",
+        "complexity"
+      ],
+      "title": "Consideration",
+      "type": "string"
+    },
+    "ConsiderationRecord": {
+      "additionalProperties": false,
+      "description": "The FI's finding on one \u00a75.11 consideration.",
+      "properties": {
+        "consideration": {
+          "$ref": "#/$defs/Consideration"
+        },
+        "status": {
+          "$ref": "#/$defs/ConsiderationStatus"
+        },
+        "finding": {
+          "description": "What the FI found, in its own words.",
+          "title": "Finding",
+          "type": "string"
+        },
+        "evidence_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence Ref"
+        },
+        "compensating_controls": {
+          "description": "Controls applied where the consideration is not fully met, e.g. additional testing on the FI's own data or greater human oversight (MAS-AIRM \u00a75.11(a), Response \u00a79.10).",
+          "items": {
+            "type": "string"
+          },
+          "title": "Compensating Controls",
+          "type": "array"
+        }
+      },
+      "required": [
+        "consideration",
+        "status",
+        "finding"
+      ],
+      "title": "ConsiderationRecord",
+      "type": "object"
+    },
+    "ConsiderationStatus": {
+      "description": "How far a \u00a75.11 consideration has been met.",
+      "enum": [
+        "met",
+        "partially_met",
+        "not_met",
+        "not_relevant"
+      ],
+      "title": "ConsiderationStatus",
+      "type": "string"
+    },
+    "Decision": {
+      "description": "The onboarding or continuation decision.\n\nMAS-AIRM \u00a75.11: where residual risk materiality cannot be kept within appetite, \"the FI should\nconsider limiting or suspending the third-party AI service, or replacing the relevant\nthird-party provider\".",
+      "enum": [
+        "onboard",
+        "onboard_with_conditions",
+        "limit",
+        "suspend",
+        "replace",
+        "reject"
+      ],
+      "title": "Decision",
+      "type": "string"
+    },
+    "VendorAssessment": {
+      "additionalProperties": false,
+      "description": "An assessment of one third-party AI provider or component.\n\nServes MAS-AIRM \u00a75.10-\u00a75.11. The assessment is per provider-component-use-case triple, because\n\u00a75.10 requires testing \"in the context of the FI's use cases (including using the FI's own\ndata)\": the same model assessed for one use case is not thereby assessed for another.",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "component": {
+          "title": "Component",
+          "type": "string"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version"
+        },
+        "use_case_ids": {
+          "description": "Use cases this assessment covers.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Use Case Ids",
+          "type": "array"
+        },
+        "assessed_on": {
+          "format": "date",
+          "title": "Assessed On",
+          "type": "string"
+        },
+        "assessed_by": {
+          "default": "",
+          "title": "Assessed By",
+          "type": "string"
+        },
+        "embedded": {
+          "default": false,
+          "description": "AI inside a service not marketed as AI (MAS-AIRM \u00a74.2 fn21).",
+          "title": "Embedded",
+          "type": "boolean"
+        },
+        "material_provider": {
+          "default": false,
+          "description": "Material third-party service provider per the FI's own register (\u00a74.2).",
+          "title": "Material Provider",
+          "type": "boolean"
+        },
+        "assurance": {
+          "$ref": "#/$defs/Assurance",
+          "default": "none"
+        },
+        "assurance_scope": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Which AI risks the certification or external assessment covers. \u00a75.11(a) expects coverage of key risks; a certificate of unknown scope is not assurance.",
+          "title": "Assurance Scope"
+        },
+        "assurance_body": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Who performed the assessment, for the independence test.",
+          "title": "Assurance Body"
+        },
+        "fi_testing_done": {
+          "default": false,
+          "description": "FI tested the component on its own data and use case (MAS-AIRM \u00a75.10).",
+          "title": "Fi Testing Done",
+          "type": "boolean"
+        },
+        "fi_testing_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Fi Testing Ref"
+        },
+        "considerations": {
+          "items": {
+            "$ref": "#/$defs/ConsiderationRecord"
+          },
+          "title": "Considerations",
+          "type": "array"
+        },
+        "residual_within_appetite": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Per MAS-AIRM \u00a75.11; the FI's own determination.",
+          "title": "Residual Within Appetite"
+        },
+        "decision": {
+          "$ref": "#/$defs/Decision",
+          "default": "onboard_with_conditions"
+        },
+        "decision_rationale": {
+          "default": "",
+          "title": "Decision Rationale",
+          "type": "string"
+        },
+        "decision_by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Decision By"
+        },
+        "review_due": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Review Due"
+        },
+        "clauses": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Clauses",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "provider",
+        "component"
+      ],
+      "title": "VendorAssessment",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "A collection of vendor assessments.\n\nSupports the concentration view MAS-AIRM \u00a75.11(c) and \u00a73.4 footnote 18 ask for, across\nproviders rather than within one use case.",
+  "properties": {
+    "institution": {
+      "title": "Institution",
+      "type": "string"
+    },
+    "as_of": {
+      "format": "date",
+      "title": "As Of",
+      "type": "string"
+    },
+    "assessments": {
+      "items": {
+        "$ref": "#/$defs/VendorAssessment"
+      },
+      "title": "Assessments",
+      "type": "array"
+    }
+  },
+  "required": [
+    "institution"
+  ],
+  "title": "VendorRegister",
+  "type": "object"
+}

@@ -461,3 +461,10 @@ class TestCli:
             ],
         )
         assert result.exit_code == 2
+
+    def test_schemas_exports_every_format(self, tmp_path):
+        result = runner.invoke(app, ["schemas", "--out", str(tmp_path / "s")])
+        assert result.exit_code == 0
+        written = sorted(p.name for p in (tmp_path / "s").glob("*.schema.json"))
+        assert "ai-inventory-register.schema.json" in written
+        assert len(written) >= 20

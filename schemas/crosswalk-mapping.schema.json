@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/crosswalk-mapping.schema.json",
+  "x-airmkit-version": "0.1.0",
+  "x-mas-airm-clauses": "MAS-AIRM Annex-style crosswalk",
+  "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
+  "$defs": {
+    "Coverage": {
+      "description": "How far another framework covers a MAS-AIRM expectation.",
+      "enum": [
+        "full",
+        "partial",
+        "none"
+      ],
+      "title": "Coverage",
+      "type": "string"
+    },
+    "Framework": {
+      "description": "Frameworks the crosswalk maps to.",
+      "enum": [
+        "iso_42001",
+        "nist_ai_rmf",
+        "nist_genai_profile",
+        "eu_ai_act",
+        "mas_feat",
+        "mas_info_paper_2024"
+      ],
+      "title": "Framework",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "One mapping row: a MAS-AIRM paragraph to a framework's provisions.",
+  "properties": {
+    "clause": {
+      "description": "MAS-AIRM paragraph id, e.g. '5.19'.",
+      "title": "Clause",
+      "type": "string"
+    },
+    "framework": {
+      "$ref": "#/$defs/Framework"
+    },
+    "refs": {
+      "description": "Provision references in the other framework.",
+      "items": {
+        "type": "string"
+      },
+      "title": "Refs",
+      "type": "array"
+    },
+    "coverage": {
+      "$ref": "#/$defs/Coverage"
+    },
+    "justification": {
+      "description": "Why this coverage level, so a reader can disagree with the row.",
+      "title": "Justification",
+      "type": "string"
+    },
+    "confidence": {
+      "default": "medium",
+      "description": "'high', 'medium' or 'low' confidence in the mapping.",
+      "title": "Confidence",
+      "type": "string"
+    },
+    "gap": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "What MAS-AIRM requires that the other framework does not.",
+      "title": "Gap"
+    }
+  },
+  "required": [
+    "clause",
+    "framework",
+    "coverage",
+    "justification"
+  ],
+  "title": "Mapping",
+  "type": "object"
+}

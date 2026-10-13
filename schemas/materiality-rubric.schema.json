@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/materiality-rubric.schema.json",
+  "x-airmkit-version": "0.1.0",
+  "x-mas-airm-clauses": "MAS-AIRM \u00a74.10-\u00a74.12",
+  "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
+  "$defs": {
+    "Dimension": {
+      "description": "The three risk dimensions MAS-AIRM \u00a74.12 requires at minimum.",
+      "enum": [
+        "impact",
+        "complexity",
+        "reliance"
+      ],
+      "title": "Dimension",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "A configurable scoring rubric for the three MAS-AIRM \u00a74.12 dimensions.\n\nA rubric is a set of *signals* per dimension. Each signal reads one field of the use case,\nmatches it against configured values, and contributes a level with a reason. The dimension's\nlevel is the maximum level any of its signals raised (a conservative choice: one critical\nsignal is enough), and the overall tier combines the three dimension levels by the configured\nmethod.\n\nCombination methods:\n\n``max_with_impact_gate`` (default)\n    Tier rank is the maximum of the three dimension ranks, but Complexity and Reliance may\n    raise it at most ``gate_headroom`` levels above Impact. This implements Response to\n    Feedback \u00a77.9 (Complexity is not to be assessed in isolation or determine materiality on a\n    standalone basis) and \u00a77.5 (anchor on the consequences of failure), while keeping the\n    strictest reading of \u00a74.12's \"minimally covering\" all three.\n\n``max``\n    Plain maximum of the three ranks.\n\n``impact_primary``\n    Tier equals the Impact rank, raised one level if either other dimension is Critical. This\n    is the lenient variant Response to Feedback \u00a77.16 reports some respondents asking for.\n\n``weighted``\n    Weighted mean of the three ranks, banded by ``weighted_bands``. Used as the RQ2\n    sensitivity check.",
+  "properties": {
+    "id": {
+      "default": "default-v1",
+      "title": "Id",
+      "type": "string"
+    },
+    "version": {
+      "default": "1",
+      "title": "Version",
+      "type": "string"
+    },
+    "title": {
+      "default": "airmkit default MAS-AIRM risk materiality rubric",
+      "title": "Title",
+      "type": "string"
+    },
+    "description": {
+      "default": "",
+      "title": "Description",
+      "type": "string"
+    },
+    "combination": {
+      "default": "max_with_impact_gate",
+      "title": "Combination",
+      "type": "string"
+    },
+    "gate_headroom": {
+      "default": 1,
+      "description": "How many levels Complexity/Reliance may lift the tier above Impact.",
+      "maximum": 3,
+      "minimum": 0,
+      "title": "Gate Headroom",
+      "type": "integer"
+    },
+    "weights": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/Dimension"
+      },
+      "title": "Weights",
+      "type": "object"
+    },
+    "weighted_bands": {
+      "description": "Upper bounds separating Low/Medium/High/Critical for the weighted method.",
+      "items": {
+        "type": "number"
+      },
+      "title": "Weighted Bands",
+      "type": "array"
+    },
+    "signals": {
+      "additionalProperties": {
+        "items": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "propertyNames": {
+        "$ref": "#/$defs/Dimension"
+      },
+      "title": "Signals",
+      "type": "object"
+    },
+    "residual_credits": {
+      "description": "Control-based reductions applied to the inherent tier to obtain residual materiality (MAS-AIRM \u00a74.11). MAS prescribes no residual methodology (Response \u00a77.22).",
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Residual Credits",
+      "type": "array"
+    },
+    "residual_floor": {
+      "default": "one_level",
+      "description": "How far controls may reduce the tier: 'one_level' (default, strict), 'two_levels', or 'none' for no reduction.",
+      "title": "Residual Floor",
+      "type": "string"
+    },
+    "citations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Citations",
+      "type": "array"
+    }
+  },
+  "title": "Rubric",
+  "type": "object"
+}

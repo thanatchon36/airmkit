@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/use-case-control-report.schema.json",
+  "x-airmkit-version": "0.1.0",
+  "x-mas-airm-clauses": "MAS-AIRM \u00a75.2, \u00a75.18",
+  "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
+  "$defs": {
+    "Automatability": {
+      "description": "How far a control can be checked without human judgement (RQ1 classification).\n\n``AUTO``\n    A deterministic function of the inventory entry and its evidence decides pass/fail.\n``SEMI``\n    A machine can detect whether the required artefact exists and is current, but a human must\n    attest that it is adequate.\n``DOC``\n    Compliance is an organisational or judgemental fact with no artefact the toolkit inspects.\n\nSee ``docs/DECISIONS.md`` D-6. The classification is the authors' judgement relative to this\nimplementation, not a MAS classification.",
+      "enum": [
+        "auto",
+        "semi",
+        "doc"
+      ],
+      "title": "Automatability",
+      "type": "string"
+    },
+    "CheckResult": {
+      "additionalProperties": false,
+      "description": "The outcome of one control for one use case, with its reason and evidence pointers.",
+      "properties": {
+        "control_id": {
+          "title": "Control Id",
+          "type": "string"
+        },
+        "outcome": {
+          "$ref": "#/$defs/Outcome"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        },
+        "clauses": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Clauses",
+          "type": "array"
+        },
+        "automatability": {
+          "$ref": "#/$defs/Automatability",
+          "default": "doc"
+        },
+        "evidence_required": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Required",
+          "type": "array"
+        },
+        "evidence_found": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Found",
+          "type": "array"
+        },
+        "evidence_missing": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Evidence Missing",
+          "type": "array"
+        },
+        "effective_by": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Date the underlying clause must be met (MAS-AIRM \u00a71.8).",
+          "title": "Effective By"
+        }
+      },
+      "required": [
+        "control_id",
+        "outcome",
+        "reason"
+      ],
+      "title": "CheckResult",
+      "type": "object"
+    },
+    "Outcome": {
+      "description": "Result of evaluating a control against a use case.",
+      "enum": [
+        "pass",
+        "fail",
+        "needs_attestation",
+        "not_applicable"
+      ],
+      "title": "Outcome",
+      "type": "string"
+    },
+    "Tier": {
+      "description": "Overall risk materiality tier of a use case.\n\nThe tier is what Section 5 controls are calibrated against (MAS-AIRM \u00a75.2). ``HIGH`` and\n``CRITICAL`` both count as \"high risk materiality\" for the clauses that bind only at that\nlevel (\u00a75.3 contingency plans, \u00a75.19 formal independent validation, \u00a75.23(b) kill switches,\n\u00a75.24 independent re-validation). Per Response to Feedback \u00a77.21 those triggers key on\n*inherent* materiality; see ``docs/INTERPRETATIONS.md`` I-3.",
+      "enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ],
+      "title": "Tier",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "All control results for one use case, plus counts.",
+  "properties": {
+    "use_case_id": {
+      "title": "Use Case Id",
+      "type": "string"
+    },
+    "inherent_tier": {
+      "$ref": "#/$defs/Tier"
+    },
+    "residual_tier": {
+      "$ref": "#/$defs/Tier"
+    },
+    "results": {
+      "items": {
+        "$ref": "#/$defs/CheckResult"
+      },
+      "title": "Results",
+      "type": "array"
+    }
+  },
+  "required": [
+    "use_case_id",
+    "inherent_tier",
+    "residual_tier"
+  ],
+  "title": "UseCaseReport",
+  "type": "object"
+}

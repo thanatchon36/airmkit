@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/shadow-ai-scan-report.schema.json",
+  "x-airmkit-version": "0.1.0",
+  "x-mas-airm-clauses": "MAS-AIRM \u00a74.4 fn22, \u00a74.2 fn21",
+  "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
+  "$defs": {
+    "Finding": {
+      "additionalProperties": false,
+      "description": "One match of one signal in one file.",
+      "properties": {
+        "signal_id": {
+          "title": "Signal Id",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/SignalKind"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "confidence": {
+          "title": "Confidence",
+          "type": "string"
+        },
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "line": {
+          "title": "Line",
+          "type": "integer"
+        },
+        "excerpt": {
+          "description": "The matched line, truncated and secret-redacted.",
+          "title": "Excerpt",
+          "type": "string"
+        },
+        "citation": {
+          "title": "Citation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "signal_id",
+        "kind",
+        "label",
+        "confidence",
+        "path",
+        "line",
+        "excerpt",
+        "citation"
+      ],
+      "title": "Finding",
+      "type": "object"
+    },
+    "SignalKind": {
+      "description": "What kind of AI usage a signal indicates.\n\nThe kinds map onto the identification scope the Guidelines set: ``llm_sdk``, ``model_endpoint``\nand ``agent_framework`` are AI the FI builds with; ``mcp_config`` and ``tool_integration`` are\nthe tool access that \u00a71.11 and \u00a74.8 footnote 25 care about; ``vendor_ai_saas`` is the embedded\nAI of \u00a74.2 footnote 21; ``public_ai_tool`` is the shadow-AI exposure of \u00a74.4 footnote 22.",
+      "enum": [
+        "llm_sdk",
+        "model_endpoint",
+        "local_model",
+        "agent_framework",
+        "mcp_config",
+        "tool_integration",
+        "ml_framework",
+        "vendor_ai_saas",
+        "public_ai_tool",
+        "eval_tooling",
+        "guardrail"
+      ],
+      "title": "SignalKind",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "The result of a scan.\n\nThe report is explicitly *candidates for triage*, not an inventory. ``caveat`` is carried in\nthe serialised output so that the limitation travels with the data into whatever consumes it.",
+  "properties": {
+    "root": {
+      "title": "Root",
+      "type": "string"
+    },
+    "scanned_at": {
+      "format": "date-time",
+      "title": "Scanned At",
+      "type": "string"
+    },
+    "files_scanned": {
+      "default": 0,
+      "title": "Files Scanned",
+      "type": "integer"
+    },
+    "files_skipped": {
+      "default": 0,
+      "title": "Files Skipped",
+      "type": "integer"
+    },
+    "findings": {
+      "items": {
+        "$ref": "#/$defs/Finding"
+      },
+      "title": "Findings",
+      "type": "array"
+    },
+    "citations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Citations",
+      "type": "array"
+    },
+    "caveat": {
+      "default": "Candidate signals for human triage, not an inventory and not assurance of completeness. A clean scan means this scanner found nothing, not that there is nothing. MAS-AIRM \u00a74.3 makes a designated control function the final arbiter of whether a given use constitutes AI use.",
+      "title": "Caveat",
+      "type": "string"
+    }
+  },
+  "required": [
+    "root"
+  ],
+  "title": "ScanReport",
+  "type": "object"
+}

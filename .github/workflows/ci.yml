@@ -1,0 +1,104 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - run: uv venv -p 3.11
+      - run: uv pip install -e ".[dev,report,experiments]"
+      - name: ruff check
+        run: .venv/bin/ruff check src tests experiments
+      - name: ruff format
+        run: .venv/bin/ruff format --check src tests experiments
+      - name: mypy --strict
+        run: .venv/bin/mypy
+
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ["3.11", "3.12", "3.13"]
+        exclude:
+          # One macOS job is enough to catch arm64 wheel problems.
+          - os: macos-latest
+            python: "3.11"
+          - os: macos-latest
+            python: "3.12"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - run: uv venv -p ${{ matrix.python }}
+      - run: uv pip install -e ".[dev,report,experiments]"
+      - name: Tests with coverage
+        run: .venv/bin/python -m pytest tests/ -q --cov=airm --cov-report=term-missing --cov-fail-under=85
+
+  quick:
+    # The worked example and the generated artefacts: schemas, clause index, summary.json, paper.
+    # Each has a staleness test, and this job proves a fresh clone regenerates them unchanged.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - run: uv venv -p 3.11
+      - run: uv pip install -e ".[dev,report,experiments,docs]"
+      - name: Worked example
+        run: |
+          .venv/bin/airm assess -r examples/synthetic_bank/ai-inventory.yaml
+          .venv/bin/airm report -r examples/synthetic_bank/ai-inventory.yaml \
+            --vendors examples/synthetic_bank/third-party-assessments.yaml \
+            --trail examples/synthetic_bank/evidence/trail.jsonl \
+            -o examples/synthetic_bank/output
+      - name: Regenerate schemas, clause index, summary and paper
+        env:
+          PYTHONPATH: experiments
+        run: |
+          .venv/bin/airm schemas --out schemas
+          .venv/bin/airm clauses --format markdown -o docs/clause-index.md
+          .venv/bin/python experiments/collect.py
+          .venv/bin/python experiments/render_paper.py
+      - name: Fail if a generated artefact is stale
+        run: |
+          if ! git diff --quiet -- schemas docs results/summary.json paper/paper.md; then
+            echo "::error::Generated files are stale. Run 'make schemas paper docs' and commit."
+            git --no-pager diff --stat -- schemas docs results/summary.json paper/paper.md
+            exit 1
+          fi
+      - name: Build the docs site
+        run: .venv/bin/mkdocs build --strict
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv venv -p 3.11
+      - run: uv pip install build twine
+      - run: .venv/bin/python -m build
+      - run: .venv/bin/python -m twine check dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: distributions
+          path: dist/

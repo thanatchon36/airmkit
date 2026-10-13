@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/guardrail-probe-suite-result.schema.json",
+  "x-airmkit-version": "0.1.0",
+  "x-mas-airm-clauses": "MAS-AIRM \u00a75.15 fn46",
+  "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
+  "$defs": {
+    "GuardrailPattern": {
+      "description": "Guardrail patterns compared by the suite.\n\nThese are the common patterns a financial institution actually deploys, in increasing order of\ncost. RQ3 asks whether any of them reaches the thresholds a high-materiality use case would\nneed under MAS-AIRM \u00a75.15.",
+      "enum": [
+        "none",
+        "system_prompt",
+        "filter",
+        "llm_judge",
+        "layered"
+      ],
+      "title": "GuardrailPattern",
+      "type": "string"
+    },
+    "ProbeFamily": {
+      "description": "Families of probe, each mapped to a MAS-AIRM footnote 46 failure mode.",
+      "enum": [
+        "direct_jailbreak",
+        "indirect_injection",
+        "pii_leakage",
+        "policy_evasion",
+        "benign_control"
+      ],
+      "title": "ProbeFamily",
+      "type": "string"
+    },
+    "ProbeOutcome": {
+      "additionalProperties": false,
+      "description": "The outcome of one probe under one guardrail pattern.",
+      "properties": {
+        "probe_id": {
+          "title": "Probe Id",
+          "type": "string"
+        },
+        "family": {
+          "$ref": "#/$defs/ProbeFamily"
+        },
+        "pattern": {
+          "$ref": "#/$defs/GuardrailPattern"
+        },
+        "succeeded": {
+          "description": "For attack families, True means the attack succeeded (the guardrail failed). For benign controls, True means the model refused (over-refusal).",
+          "title": "Succeeded",
+          "type": "boolean"
+        },
+        "blocked_by": {
+          "default": "none",
+          "description": "Which guardrail layer blocked, if any.",
+          "title": "Blocked By",
+          "type": "string"
+        },
+        "response_excerpt": {
+          "default": "",
+          "description": "First 200 characters of the response.",
+          "title": "Response Excerpt",
+          "type": "string"
+        }
+      },
+      "required": [
+        "probe_id",
+        "family",
+        "pattern",
+        "succeeded"
+      ],
+      "title": "ProbeOutcome",
+      "type": "object"
+    },
+    "ProbeRun": {
+      "additionalProperties": false,
+      "description": "Aggregate results for one guardrail pattern.",
+      "properties": {
+        "pattern": {
+          "$ref": "#/$defs/GuardrailPattern"
+        },
+        "outcomes": {
+          "items": {
+            "$ref": "#/$defs/ProbeOutcome"
+          },
+          "title": "Outcomes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "pattern"
+      ],
+      "title": "ProbeRun",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "The full comparison across guardrail patterns, with reproducibility metadata.",
+  "properties": {
+    "ran_at": {
+      "format": "date-time",
+      "title": "Ran At",
+      "type": "string"
+    },
+    "backend": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Backend",
+      "type": "object"
+    },
+    "probe_count": {
+      "default": 0,
+      "title": "Probe Count",
+      "type": "integer"
+    },
+    "runs": {
+      "items": {
+        "$ref": "#/$defs/ProbeRun"
+      },
+      "title": "Runs",
+      "type": "array"
+    },
+    "clauses": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Clauses",
+      "type": "array"
+    },
+    "disclaimer": {
+      "default": "Attack success rates are measured on a small published probe set against one model and say nothing about other models. The tier thresholds are the authors' proposal: MAS sets no performance thresholds (Response to Feedback \u00a710.29).",
+      "title": "Disclaimer",
+      "type": "string"
+    }
+  },
+  "title": "ProbeSuiteResult",
+  "type": "object"
+}

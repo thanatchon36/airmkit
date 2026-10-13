@@ -1,0 +1,600 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/ai-use-case.schema.json",
+  "x-airmkit-version": "0.1.0",
+  "x-mas-airm-clauses": "MAS-AIRM \u00a74.7, fn24",
+  "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
+  "$defs": {
+    "AgentExtension": {
+      "additionalProperties": false,
+      "description": "Agent-specific inventory attributes.\n\nImplements MAS-AIRM \u00a74.8 footnote 25 directly: \"for AI agents, relevant attributes may include\nagent-specific identifiers, information on the tools and systems the agent can access, its\ncomponents, and the guardrails imposed to manage risk\". ``human_checkpoints`` serves \u00a75.9(c)\n(design for oversight, with escalation when predefined conditions are met) and\n``approved_tools`` makes the \u00a75.23(a) tool-usage monitoring checkable against approved scope.",
+      "properties": {
+        "agent_identifier": {
+          "description": "Agent-specific identifier (MAS-AIRM \u00a74.8 fn25).",
+          "title": "Agent Identifier",
+          "type": "string"
+        },
+        "approved_tools": {
+          "description": "Tools and systems the agent may access (MAS-AIRM \u00a74.8 fn25).",
+          "items": {
+            "type": "string"
+          },
+          "title": "Approved Tools",
+          "type": "array"
+        },
+        "systems_accessible": {
+          "description": "Internal or external systems reachable by the agent.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Systems Accessible",
+          "type": "array"
+        },
+        "permissions": {
+          "description": "Permissions granted, e.g. 'read:crm', 'write:ticket'. Supports \u00a75.16(b).",
+          "items": {
+            "type": "string"
+          },
+          "title": "Permissions",
+          "type": "array"
+        },
+        "components": {
+          "description": "Sub-agents, planners, retrievers and other components (MAS-AIRM \u00a74.8 fn25).",
+          "items": {
+            "type": "string"
+          },
+          "title": "Components",
+          "type": "array"
+        },
+        "guardrails": {
+          "items": {
+            "$ref": "#/$defs/Guardrail"
+          },
+          "title": "Guardrails",
+          "type": "array"
+        },
+        "human_checkpoints": {
+          "description": "Points at which a human must approve or can intervene (MAS-AIRM \u00a75.9(c)).",
+          "items": {
+            "type": "string"
+          },
+          "title": "Human Checkpoints",
+          "type": "array"
+        },
+        "max_steps": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Cap on autonomous steps per task, a \u00a75.2 mitigant.",
+          "title": "Max Steps"
+        },
+        "can_initiate_external_actions": {
+          "default": false,
+          "description": "Whether the agent can act on systems of record or third parties (\u00a71.11).",
+          "title": "Can Initiate External Actions",
+          "type": "boolean"
+        },
+        "trace_logging": {
+          "default": false,
+          "description": "Reasoning, actions and tools are logged (MAS-AIRM \u00a75.23(a) and (d)).",
+          "title": "Trace Logging",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "agent_identifier"
+      ],
+      "title": "AgentExtension",
+      "type": "object"
+    },
+    "AutonomyLevel": {
+      "description": "How much the use case relies on the AI to act without a human.\n\nNot a MAS taxonomy. It operationalises the Reliance dimension of MAS-AIRM \u00a74.12(c) (\"the\nextent of autonomy granted to the AI system or model and the degree of human involvement\") and\nthe agent risks of \u00a71.11. Response to Feedback \u00a77.18 contrasts automated trade execution\n(higher) with staff reviewing every recommendation (lower), which is the gradient below.\n\n``AUTONOMOUS_DECISIONING`` and ``AUTONOMOUS_AGENT`` are deliberately distinct. A real-time\nfraud model that blocks a transaction without human review is fully autonomous in the \u00a74.12(c)\nsense, but it is not an AI agent: it has no tools and no systems access, so the agent\nattributes of \u00a74.8 footnote 25 do not apply to it. Conflating the two would demand agent\nidentifiers and tool allowlists from a scoring model, and would understate the distinct risk\n\u00a71.11 describes, where \"an AI agent with access to tools could autonomously execute\nunauthorised or erroneous actions\".",
+      "enum": [
+        "assistive",
+        "human_in_the_loop",
+        "human_over_the_loop",
+        "autonomous_decisioning",
+        "autonomous_agent",
+        "multi_agent"
+      ],
+      "title": "AutonomyLevel",
+      "type": "string"
+    },
+    "Dependency": {
+      "additionalProperties": false,
+      "description": "A dependency of the use case on another system, model or dataset.\n\nServes MAS-AIRM \u00a74.7 (\"dependencies\") and \u00a74.10 fn26, which requires dependencies between AI\nsystems or models to be considered where they affect the use case's risk profile. The\n``identifier`` field carries the shared key that \u00a74.6 fn23 expects for linking the AI inventory\nto data and third-party registers.",
+      "properties": {
+        "kind": {
+          "description": "One of 'model', 'system', 'dataset', 'service', 'use_case'.",
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "identifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Shared identifier linking to another register (MAS-AIRM \u00a74.6 fn23).",
+          "title": "Identifier"
+        },
+        "affects_risk_profile": {
+          "default": false,
+          "description": "Whether this dependency changes the use case's risk profile (\u00a74.10 fn26).",
+          "title": "Affects Risk Profile",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "kind",
+        "name"
+      ],
+      "title": "Dependency",
+      "type": "object"
+    },
+    "Guardrail": {
+      "additionalProperties": false,
+      "description": "A guardrail imposed on the use case.\n\nServes MAS-AIRM \u00a74.8 fn25 (\"the guardrails imposed to manage risk\") and \u00a75.15, which expects\nthe *effectiveness* of guardrails to be tested for Generative AI and agents. ``tested`` and\n``evidence_ref`` are what makes that expectation checkable.",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "kind": {
+          "description": "e.g. 'input_filter', 'output_filter', 'system_prompt', 'tool_allowlist', 'rate_limit', 'human_checkpoint', 'kill_switch', 'llm_judge'.",
+          "title": "Kind",
+          "type": "string"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "tested": {
+          "default": false,
+          "description": "Effectiveness has been tested (MAS-AIRM \u00a75.15).",
+          "title": "Tested",
+          "type": "boolean"
+        },
+        "evidence_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Evidence id or path for the effectiveness test.",
+          "title": "Evidence Ref"
+        }
+      },
+      "required": [
+        "name",
+        "kind"
+      ],
+      "title": "Guardrail",
+      "type": "object"
+    },
+    "LifecycleStatus": {
+      "description": "Lifecycle status of an AI use case.\n\nServes MAS-AIRM \u00a74.7 (\"lifecycle status\") and \u00a75.1 fn27, which defines the life cycle as\nrunning from inception to retirement or decommissioning. ``pilot`` is included because the\nResponse to Feedback \u00a72.9 confirms pilots and proof-of-concept deployments are in scope, and\n\u00a75.2 fn28 governs partial deployments.",
+      "enum": [
+        "proposed",
+        "in_development",
+        "pilot",
+        "deployed",
+        "suspended",
+        "retired"
+      ],
+      "title": "LifecycleStatus",
+      "type": "string"
+    },
+    "ReviewStatus": {
+      "description": "Model review status.\n\nServes MAS-AIRM \u00a74.7 (\"model review status\"), \u00a75.18-\u00a75.21 (pre-deployment reviews) and \u00a75.24\n(re-validation). ``independent_validation`` is the formal independent validation that \u00a75.19\nexpects for high-materiality use cases; ``peer_review`` is the \u00a75.20 alternative.",
+      "enum": [
+        "not_reviewed",
+        "in_review",
+        "peer_review",
+        "independent_validation",
+        "revalidation_due"
+      ],
+      "title": "ReviewStatus",
+      "type": "string"
+    },
+    "Role": {
+      "additionalProperties": false,
+      "description": "A named person or function accountable for part of the use case.\n\nServes MAS-AIRM \u00a74.7 (\"key roles and responsibilities (e.g., owners, developers)\"), \u00a75.1\n(assign roles across units) and \u00a75.23(c) (an accountable person for monitoring).",
+      "properties": {
+        "role": {
+          "description": "Role name, e.g. 'owner', 'developer', 'validator', 'monitor'.",
+          "title": "Role",
+          "type": "string"
+        },
+        "party": {
+          "description": "Person, team or function holding the role.",
+          "title": "Party",
+          "type": "string"
+        },
+        "function": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Control function or business unit, used to test independence (MAS-AIRM \u00a75.19).",
+          "title": "Function"
+        }
+      },
+      "required": [
+        "role",
+        "party"
+      ],
+      "title": "Role",
+      "type": "object"
+    },
+    "ThirdPartyComponent": {
+      "additionalProperties": false,
+      "description": "A third-party AI component the use case relies on.\n\nServes MAS-AIRM \u00a71.10 fn10 (definition of third-party AI), \u00a74.2 fn21 (embedded AI in\nthird-party services) and \u00a75.10-\u00a75.11 (third-party AI management). ``embedded`` marks AI inside\na service not marketed as AI, which \u00a74.2 requires to be identified at least for material\nproviders.",
+      "properties": {
+        "provider": {
+          "title": "Provider",
+          "type": "string"
+        },
+        "component": {
+          "description": "Model, service or tool name.",
+          "title": "Component",
+          "type": "string"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Version"
+        },
+        "embedded": {
+          "default": false,
+          "description": "AI incorporated within a service not sold as AI (MAS-AIRM \u00a74.2 fn21).",
+          "title": "Embedded",
+          "type": "boolean"
+        },
+        "material_provider": {
+          "default": false,
+          "description": "Whether the FI's third-party register marks this a material provider. Not inferred; see docs/INTERPRETATIONS.md I-11 (MAS-AIRM \u00a74.2).",
+          "title": "Material Provider",
+          "type": "boolean"
+        },
+        "fine_tuned_by_fi": {
+          "default": false,
+          "description": "FI modified or fine-tuned the component, engaging \u00a75.10 fn38.",
+          "title": "Fine Tuned By Fi",
+          "type": "boolean"
+        },
+        "independent_assessment": {
+          "default": false,
+          "description": "An independent certification or external assessment exists (MAS-AIRM \u00a75.11(a)); vendor self-attestations do not count (Response to Feedback \u00a79.9).",
+          "title": "Independent Assessment",
+          "type": "boolean"
+        },
+        "change_notification": {
+          "default": false,
+          "description": "Contractual visibility of post-deployment changes (MAS-AIRM \u00a75.11(d)).",
+          "title": "Change Notification",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "provider",
+        "component"
+      ],
+      "title": "ThirdPartyComponent",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "An AI use case as recorded in the AI inventory.\n\nImplements the attribute list of MAS-AIRM \u00a74.7 (purpose and description, approved scope of use,\nmodel type, data used, dependencies, lifecycle status, assigned risk materiality rating, model\nreview status, key roles and responsibilities, links to essential documentation), plus the\nfields the rest of the toolkit needs to evaluate Section 5 controls: autonomy and human\noversight (\u00a74.12(c), \u00a75.9), third-party components (\u00a75.10-\u00a75.11), guardrails (\u00a75.15) and the\nagent extension of \u00a74.8 fn25.\n\nThe entry is the unit of risk materiality assessment, which MAS-AIRM \u00a74.10 and Response to\nFeedback \u00a77.5 anchor on the *use case* rather than the system or model.",
+  "properties": {
+    "id": {
+      "description": "Stable lowercase slug, e.g. 'credit-decision-model'. Rejected rather than normalised if it is not already a slug: silently rewriting an id would make the register file and the entry disagree, and the id is the key every other module, report anchor and evidence path uses.",
+      "pattern": "^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$",
+      "title": "Id",
+      "type": "string"
+    },
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "purpose": {
+      "description": "Purpose and description (MAS-AIRM \u00a74.7).",
+      "title": "Purpose",
+      "type": "string"
+    },
+    "business_function": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Business line or function, supporting \u00a73.5(d) role assignment.",
+      "title": "Business Function"
+    },
+    "approved_scope": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Approved scope of use including jurisdiction (MAS-AIRM \u00a74.7).",
+      "title": "Approved Scope"
+    },
+    "jurisdictions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Jurisdictions",
+      "type": "array"
+    },
+    "model_type": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "e.g. 'gradient_boosting', 'llm_rag', 'llm_agent' (MAS-AIRM \u00a74.7, \u00a71.3 fn6).",
+      "title": "Model Type"
+    },
+    "data_used": {
+      "description": "Datasets or data categories used (MAS-AIRM \u00a74.7).",
+      "items": {
+        "type": "string"
+      },
+      "title": "Data Used",
+      "type": "array"
+    },
+    "data_classification": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Highest data classification processed (MAS-AIRM \u00a75.4(d), \u00a74.12(a)).",
+      "title": "Data Classification"
+    },
+    "processes_personal_data": {
+      "default": false,
+      "description": "Engages \u00a75.4(f) data privacy and raises Impact (\u00a74.12(a)).",
+      "title": "Processes Personal Data",
+      "type": "boolean"
+    },
+    "dependencies": {
+      "items": {
+        "$ref": "#/$defs/Dependency"
+      },
+      "title": "Dependencies",
+      "type": "array"
+    },
+    "lifecycle_status": {
+      "$ref": "#/$defs/LifecycleStatus",
+      "default": "proposed"
+    },
+    "risk_materiality_rating": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Assigned rating (MAS-AIRM \u00a74.7); set by airm.materiality, not by hand.",
+      "title": "Risk Materiality Rating"
+    },
+    "review_status": {
+      "$ref": "#/$defs/ReviewStatus",
+      "default": "not_reviewed"
+    },
+    "roles": {
+      "items": {
+        "$ref": "#/$defs/Role"
+      },
+      "title": "Roles",
+      "type": "array"
+    },
+    "documentation": {
+      "description": "Links to essential documentation (MAS-AIRM \u00a74.7).",
+      "items": {
+        "type": "string"
+      },
+      "title": "Documentation",
+      "type": "array"
+    },
+    "third_party": {
+      "items": {
+        "$ref": "#/$defs/ThirdPartyComponent"
+      },
+      "title": "Third Party",
+      "type": "array"
+    },
+    "guardrails": {
+      "items": {
+        "$ref": "#/$defs/Guardrail"
+      },
+      "title": "Guardrails",
+      "type": "array"
+    },
+    "agent": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AgentExtension"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Agent attributes (MAS-AIRM \u00a74.8 fn25)."
+    },
+    "autonomy": {
+      "$ref": "#/$defs/AutonomyLevel",
+      "default": "assistive"
+    },
+    "human_oversight": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "How human oversight is implemented (MAS-AIRM \u00a75.9, fn37).",
+      "title": "Human Oversight"
+    },
+    "affects_individuals": {
+      "default": false,
+      "description": "Whether outputs affect customers or individuals. Drives fairness and transparency relevance (MAS-AIRM \u00a75.6-\u00a75.8); see docs/INTERPRETATIONS.md I-7.",
+      "title": "Affects Individuals",
+      "type": "boolean"
+    },
+    "fairness_relevant": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Explicit override of fairness relevance (MAS-AIRM \u00a75.8).",
+      "title": "Fairness Relevant"
+    },
+    "contingency_plan": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Fallback options for high-risk use cases (MAS-AIRM \u00a75.3).",
+      "title": "Contingency Plan"
+    },
+    "kill_switch": {
+      "default": false,
+      "description": "Kill switch or override exists (MAS-AIRM \u00a75.3 fn29, \u00a75.23(b)).",
+      "title": "Kill Switch",
+      "type": "boolean"
+    },
+    "auto_updates": {
+      "default": false,
+      "description": "AI is designed to update automatically, engaging MAS-AIRM \u00a75.25(c).",
+      "title": "Auto Updates",
+      "type": "boolean"
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags",
+      "type": "array"
+    },
+    "owner_attestation_date": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Owner Attestation Date"
+    },
+    "last_reviewed": {
+      "anyOf": [
+        {
+          "format": "date",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Last inventory review (MAS-AIRM \u00a74.5, \u00a74.8).",
+      "title": "Last Reviewed"
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Notes"
+    }
+  },
+  "required": [
+    "id",
+    "name",
+    "purpose"
+  ],
+  "title": "UseCase",
+  "type": "object"
+}

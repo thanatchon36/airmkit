@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/tool-scope-audit.schema.json",
+  "x-airmkit-version": "0.1.0",
+  "x-mas-airm-clauses": "MAS-AIRM \u00a75.16, \u00a75.23(a)",
+  "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
+  "additionalProperties": false,
+  "description": "Comparison of an agent's observed tool use against its approved scope.\n\nServes MAS-AIRM \u00a74.8 footnote 25 (the tools and systems the agent can access are inventory\nattributes), \u00a75.23(a) (monitor \"actions taken, tools used\") and \u00a75.16(b) (least privilege).\nThis is the check that makes \"monitoring of scope adherence\" (\u00a74.7) real for agents: the\ninventory declares the approved tools, the trace shows the used tools, and the difference is\nthe finding.",
+  "properties": {
+    "use_case_id": {
+      "title": "Use Case Id",
+      "type": "string"
+    },
+    "agent_identifier": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Agent Identifier"
+    },
+    "approved": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Approved",
+      "type": "array"
+    },
+    "observed": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Observed",
+      "type": "array"
+    },
+    "unapproved": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Unapproved",
+      "type": "array"
+    },
+    "unused": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Unused",
+      "type": "array"
+    },
+    "calls": {
+      "default": 0,
+      "title": "Calls",
+      "type": "integer"
+    },
+    "clauses": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Clauses",
+      "type": "array"
+    }
+  },
+  "required": [
+    "use_case_id"
+  ],
+  "title": "ToolScopeAudit",
+  "type": "object"
+}

@@ -1,0 +1,84 @@
+site_name: airmkit
+site_description: >-
+  Operationalise the MAS Guidelines on AI Risk Management (7 October 2026) for LLM and agentic AI
+  systems: clause catalogue, inventory schema, materiality rubric, control checks and audit packs.
+site_url: https://thanatchon36.github.io/airmkit/
+repo_url: https://github.com/thanatchon36/airmkit
+repo_name: thanatchon36/airmkit
+edit_uri: edit/main/docs/
+copyright: >-
+  Apache-2.0. Independent open-source project, not affiliated with or endorsed by the Monetary
+  Authority of Singapore. Not legal or regulatory advice.
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+plugins:
+  - search
+  - include-markdown
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - Home: index.md
+  - Concepts: concepts.md
+  - CLI reference: cli.md
+  - Cookbook: cookbook.md
+  - Clause index: clause-index.md
+  - For risk leaders:
+      - Executive summary: EXEC_SUMMARY.md
+      - What changed from the consultation: WHAT_CHANGED.md
+      - Interpretations: INTERPRETATIONS.md
+  - Research:
+      - Research questions: RESEARCH_QUESTIONS.md
+      - Literature review: literature/REVIEW.md
+      - Design decisions: DECISIONS.md
+      - Future work: FUTURE_WORK.md
+  - Project:
+      - Progress: PROGRESS.md
+      - Plan: PLAN.md
+      - LinkedIn drafts: posts/README.md
+
+# The primary MAS PDFs and their text extracts stay in the repository for offline citation
+# checking, but they are MAS copyright and must not be republished on the site.
+exclude_docs: |
+  sources/**
+  *.md.in
+  posts/*.md.in
+
+not_in_nav: |
+  posts/*.md

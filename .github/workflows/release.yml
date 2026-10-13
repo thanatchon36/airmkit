@@ -1,0 +1,85 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv venv -p 3.11
+      - run: uv pip install -e ".[dev,report,experiments]" build twine
+      - name: Gate the release on lint and tests
+        run: |
+          .venv/bin/ruff check src tests experiments
+          .venv/bin/mypy
+          .venv/bin/python -m pytest tests/ -q
+      - name: Check the tag matches the package version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          version=$(.venv/bin/python -c "import airm; print(airm.__version__)")
+          if [ "$tag" != "$version" ]; then
+            echo "::error::tag $tag does not match airm.__version__ $version"
+            exit 1
+          fi
+      - run: .venv/bin/python -m build
+      - run: .venv/bin/python -m twine check dist/*
+      - uses: actions/upload-artifact@v4
+        with:
+          name: distributions
+          path: dist/
+
+  pypi:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      # PyPI trusted publishing: no API token is stored in this repository.
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: distributions
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+
+  github-release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: distributions
+          path: dist/
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/* \
+            --title "airmkit $GITHUB_REF_NAME" \
+            --notes "See CHANGELOG and docs/PROGRESS.md. Independent project, not affiliated with or endorsed by MAS; not legal or regulatory advice."
+
+  docs:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv venv -p 3.11
+      - run: uv pip install -e ".[docs]"
+      - name: Regenerate the clause index and publish the site
+        run: |
+          uv pip install -e "."
+          .venv/bin/airm clauses --format markdown -o docs/clause-index.md
+          .venv/bin/mkdocs gh-deploy --force

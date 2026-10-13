@@ -2,7 +2,7 @@
 
 **For CROs and Heads of Model Risk.** Every number is generated from `results/summary.json`;
 nothing here is typed by hand. Generated 2026-10-13 from airmkit 0.1.0
-(36497bd).
+(2481930).
 
 > airmkit is an independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. It is not legal, regulatory or compliance advice and is not a substitute for reading the Guidelines on Artificial Intelligence Risk Management (7 October 2026). Interpretations and all thresholds are the authors'.
 

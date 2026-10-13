@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/portfolio-assessment.schema.json",
+  "x-airmkit-version": "0.1.0",
+  "x-mas-airm-clauses": "MAS-AIRM \u00a73.4, \u00a74.11",
+  "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
+  "$defs": {
+    "Assessment": {
+      "additionalProperties": false,
+      "description": "A complete risk materiality assessment of one use case.\n\nServes MAS-AIRM \u00a74.11 (inherent and residual) and \u00a74.13 (documented, arbitrable). The\n``approved_by`` and ``approved_on`` fields exist because \u00a74.13 makes a designated control\nfunction the arbitrator or approver of the rating; the toolkit computes, it does not approve.",
+      "properties": {
+        "use_case_id": {
+          "title": "Use Case Id",
+          "type": "string"
+        },
+        "rubric_id": {
+          "title": "Rubric Id",
+          "type": "string"
+        },
+        "rubric_version": {
+          "title": "Rubric Version",
+          "type": "string"
+        },
+        "assessed_on": {
+          "format": "date",
+          "title": "Assessed On",
+          "type": "string"
+        },
+        "dimensions": {
+          "additionalProperties": {
+            "$ref": "#/$defs/DimensionScore"
+          },
+          "propertyNames": {
+            "$ref": "#/$defs/Dimension"
+          },
+          "title": "Dimensions",
+          "type": "object"
+        },
+        "inherent_tier": {
+          "$ref": "#/$defs/Tier"
+        },
+        "residual_tier": {
+          "$ref": "#/$defs/Tier"
+        },
+        "mitigation_notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Mitigation Notes",
+          "type": "array"
+        },
+        "within_risk_appetite": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Whether residual materiality meets the FI's risk appetite (MAS-AIRM \u00a74.11). The toolkit cannot know an FI's appetite; set it from the FI's own appetite statement.",
+          "title": "Within Risk Appetite"
+        },
+        "approved_by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Designated control function approving the rating (\u00a74.13).",
+          "title": "Approved By"
+        },
+        "approved_on": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Approved On"
+        },
+        "citations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Citations",
+          "type": "array"
+        },
+        "disclaimer": {
+          "default": "Tiering and thresholds are this toolkit's proposal, not a MAS requirement: MAS declines to prescribe a formula or a universal 'high' threshold (Response to Feedback \u00a77.19).",
+          "title": "Disclaimer",
+          "type": "string"
+        }
+      },
+      "required": [
+        "use_case_id",
+        "rubric_id",
+        "rubric_version",
+        "dimensions",
+        "inherent_tier",
+        "residual_tier"
+      ],
+      "title": "Assessment",
+      "type": "object"
+    },
+    "Dimension": {
+      "description": "The three risk dimensions MAS-AIRM \u00a74.12 requires at minimum.",
+      "enum": [
+        "impact",
+        "complexity",
+        "reliance"
+      ],
+      "title": "Dimension",
+      "type": "string"
+    },
+    "DimensionScore": {
+      "additionalProperties": false,
+      "description": "The assessed level of one dimension, with the reasons that produced it.",
+      "properties": {
+        "dimension": {
+          "$ref": "#/$defs/Dimension"
+        },
+        "level": {
+          "$ref": "#/$defs/Level"
+        },
+        "score": {
+          "description": "Weighted signal score before banding.",
+          "title": "Score",
+          "type": "number"
+        },
+        "reasons": {
+          "description": "Human-readable reasons, each naming its signal.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        },
+        "citation": {
+          "description": "The MAS-AIRM paragraph the dimension derives from.",
+          "title": "Citation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "dimension",
+        "level",
+        "score",
+        "citation"
+      ],
+      "title": "DimensionScore",
+      "type": "object"
+    },
+    "Level": {
+      "description": "Level of a single risk dimension.\n\nFour levels, not a MAS taxonomy. Response to Feedback \u00a77.18 gives only relative illustrations\n(\"higher vs lower Impact, Complexity or Reliance\") and declines absolute ratings.",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "title": "Level",
+      "type": "string"
+    },
+    "Tier": {
+      "description": "Overall risk materiality tier of a use case.\n\nThe tier is what Section 5 controls are calibrated against (MAS-AIRM \u00a75.2). ``HIGH`` and\n``CRITICAL`` both count as \"high risk materiality\" for the clauses that bind only at that\nlevel (\u00a75.3 contingency plans, \u00a75.19 formal independent validation, \u00a75.23(b) kill switches,\n\u00a75.24 independent re-validation). Per Response to Feedback \u00a77.21 those triggers key on\n*inherent* materiality; see ``docs/INTERPRETATIONS.md`` I-3.",
+      "enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ],
+      "title": "Tier",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Assessments for every use case in a register, plus portfolio-level views.\n\nThe aggregate view supports MAS-AIRM \u00a73.4(b) and \u00a73.4 fn18, which give \"number of material AI\nuse cases with dependencies on a single provider\" as an example quantitative risk-appetite\nmeasure, and \u00a73.5(f) reporting to the board.",
+  "properties": {
+    "institution": {
+      "title": "Institution",
+      "type": "string"
+    },
+    "rubric_id": {
+      "title": "Rubric Id",
+      "type": "string"
+    },
+    "assessed_on": {
+      "format": "date",
+      "title": "Assessed On",
+      "type": "string"
+    },
+    "assessments": {
+      "additionalProperties": {
+        "$ref": "#/$defs/Assessment"
+      },
+      "title": "Assessments",
+      "type": "object"
+    }
+  },
+  "required": [
+    "institution",
+    "rubric_id"
+  ],
+  "title": "PortfolioAssessment",
+  "type": "object"
+}
