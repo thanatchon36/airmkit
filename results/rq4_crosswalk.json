@@ -1,0 +1,372 @@
+{
+  "provenance": {
+    "airmkit_version": "0.1.0",
+    "git_revision": "d0957df",
+    "python": "3.11.17",
+    "platform": "Darwin arm64",
+    "seed": 20261013,
+    "generated_at": "2026-10-13T10:48:23+00:00"
+  },
+  "question": "What share of MAS-AIRM expectations is covered, partially covered or uncovered by ISO/IEC 42001, NIST AI RMF and the EU AI Act, and what residual work does an already-certified institution face?",
+  "method": "224 hand-authored mapping rows over 51 expectation paragraphs. The denominator is the expectation count, not the mapped-row count, so an unmapped expectation counts against coverage rather than being excluded.",
+  "expectations": 51,
+  "per_framework": {
+    "iso_42001": {
+      "full": 19,
+      "partial": 31,
+      "none": 1,
+      "full_share": 0.3725,
+      "title": "ISO/IEC 42001:2023 Artificial intelligence management system",
+      "binding_law": false
+    },
+    "nist_ai_rmf": {
+      "full": 25,
+      "partial": 25,
+      "none": 1,
+      "full_share": 0.4902,
+      "title": "NIST AI Risk Management Framework 1.0 (NIST AI 100-1)",
+      "binding_law": false
+    },
+    "nist_genai_profile": {
+      "full": 15,
+      "partial": 15,
+      "none": 21,
+      "full_share": 0.2941,
+      "title": "NIST AI RMF Generative AI Profile (NIST AI 600-1)",
+      "binding_law": false
+    },
+    "eu_ai_act": {
+      "full": 22,
+      "partial": 27,
+      "none": 2,
+      "full_share": 0.4314,
+      "title": "Regulation (EU) 2024/1689 (Artificial Intelligence Act)",
+      "binding_law": true
+    },
+    "mas_feat": {
+      "full": 4,
+      "partial": 9,
+      "none": 38,
+      "full_share": 0.0784,
+      "title": "MAS FEAT Principles (2018)",
+      "binding_law": false
+    },
+    "mas_info_paper_2024": {
+      "full": 23,
+      "partial": 3,
+      "none": 25,
+      "full_share": 0.451,
+      "title": "MAS Information Paper on AI Model Risk Management (Dec 2024)",
+      "binding_law": false
+    }
+  },
+  "union_all": {
+    "full": 41,
+    "partial": 10,
+    "none": 0
+  },
+  "union_international": {
+    "frameworks": [
+      "iso_42001",
+      "nist_ai_rmf",
+      "eu_ai_act"
+    ],
+    "full": 33,
+    "full_share": 0.6471,
+    "residue": [
+      "2.2",
+      "2.5",
+      "3.4",
+      "3.6",
+      "4.1",
+      "4.2",
+      "4.3",
+      "4.4",
+      "4.6",
+      "4.8",
+      "4.9",
+      "4.12",
+      "4.13",
+      "5.10",
+      "5.11",
+      "5.19",
+      "5.20",
+      "5.22"
+    ],
+    "per_clause": {
+      "1.6": "full",
+      "1.7": "full",
+      "2.2": "partial",
+      "2.5": "partial",
+      "3.2": "full",
+      "3.3": "full",
+      "3.4": "partial",
+      "3.5": "full",
+      "3.6": "partial",
+      "4.1": "partial",
+      "4.2": "partial",
+      "4.3": "partial",
+      "4.4": "partial",
+      "4.5": "full",
+      "4.6": "partial",
+      "4.7": "full",
+      "4.8": "partial",
+      "4.9": "partial",
+      "4.10": "full",
+      "4.11": "full",
+      "4.12": "partial",
+      "4.13": "partial",
+      "5.1": "full",
+      "5.2": "full",
+      "5.3": "full",
+      "5.4": "full",
+      "5.5": "full",
+      "5.6": "full",
+      "5.7": "full",
+      "5.8": "full",
+      "5.9": "full",
+      "5.10": "partial",
+      "5.11": "partial",
+      "5.12": "full",
+      "5.13": "full",
+      "5.14": "full",
+      "5.15": "full",
+      "5.16": "full",
+      "5.17": "full",
+      "5.18": "full",
+      "5.19": "partial",
+      "5.20": "partial",
+      "5.21": "full",
+      "5.22": "partial",
+      "5.23": "full",
+      "5.24": "full",
+      "5.25": "full",
+      "5.26": "full",
+      "6.1": "full",
+      "6.2": "full",
+      "6.3": "full"
+    }
+  },
+  "residue_all_frameworks": {
+    "2.2": {
+      "heading": "Application of the Guidelines",
+      "summary": "Unless 2.3 applies, an FI must establish oversight frameworks with AI identification, materiality assessment and inventory (Sections 3-4) and apply lifecycle controls and capabilities (Sections 5-6), calibrated by relevance and risk materiality.",
+      "predicted": false,
+      "best_coverage": "partial"
+    },
+    "2.5": {
+      "heading": "Application of the Guidelines",
+      "summary": "Basic AI governance must minimally include accountable senior management, permitted and prohibited uses with human oversight rules, an approved-tool list and approval process, staff education, compliance checks, and periodic/trigger-based review of the 2.3 criteria.",
+      "predicted": false,
+      "best_coverage": "partial"
+    },
+    "3.4": {
+      "heading": "AI Oversight",
+      "summary": "Board (or delegated committee) approves and reviews the AI governance approach and strategic direction, embeds AI risks in the risk appetite framework, sets roles, maintains adequate AI understanding, and reviews these regularly.",
+      "predicted": false,
+      "best_coverage": "partial"
+    },
+    "3.6": {
+      "heading": "AI Oversight",
+      "summary": "Local senior management remains accountable that group frameworks address Singapore-specific requirements, has visibility and input, has escalation paths for local issues, and can demonstrate oversight to MAS.",
+      "predicted": true,
+      "best_coverage": "partial"
+    },
+    "4.1": {
+      "heading": "Key AI Risk Management Systems, Policies and Procedures",
+      "summary": "The AI risk framework must include systems, policies and procedures for identification, inventorisation and risk materiality assessment, applied consistently, with controls proportionate to assessed materiality.",
+      "predicted": false,
+      "best_coverage": "partial"
+    },
+    "4.4": {
+      "heading": "AI Identification",
+      "summary": "Keep residual risk from unidentified AI (embedded AI, shadow AI) within risk appetite: identify the risks from identification constraints and put mitigating measures in place.",
+      "predicted": true,
+      "best_coverage": "partial"
+    },
+    "4.8": {
+      "heading": "AI Inventory",
+      "summary": "Regularly review inventory design so attributes cover newer AI technologies (e.g. agent attributes, guardrails) and third-party AI information.",
+      "predicted": true,
+      "best_coverage": "partial"
+    },
+    "4.13": {
+      "heading": "AI Risk Materiality Assessment",
+      "summary": "Designate a control function to own the materiality framework and arbitrate or approve ratings, with independent oversight, clear documentation and regular review of assessments.",
+      "predicted": true,
+      "best_coverage": "partial"
+    },
+    "5.11": {
+      "heading": "Third-Party AI Management",
+      "summary": "FI retains accountability for third-party AI; assess transparency, supply chain, concentration, change notification, contingency, legal terms, capabilities and complexity; if residual risk exceeds appetite, limit, suspend or replace the provider.",
+      "predicted": false,
+      "best_coverage": "partial"
+    },
+    "5.20": {
+      "heading": "Pre-Deployment Reviews",
+      "summary": "Non-high-materiality use cases may use other documented reviews, such as peer review by qualified individuals not involved in development or deployment.",
+      "predicted": false,
+      "best_coverage": "partial"
+    }
+  },
+  "residual_work": {
+    "iso_only": {
+      "uncovered": [
+        "3.6"
+      ],
+      "partial": [
+        "2.2",
+        "2.5",
+        "3.4",
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.5",
+        "4.6",
+        "4.7",
+        "4.8",
+        "4.9",
+        "4.12",
+        "4.13",
+        "5.3",
+        "5.6",
+        "5.7",
+        "5.8",
+        "5.9",
+        "5.10",
+        "5.11",
+        "5.13",
+        "5.15",
+        "5.16",
+        "5.18",
+        "5.19",
+        "5.20",
+        "5.22",
+        "5.24",
+        "5.25",
+        "5.26"
+      ]
+    },
+    "iso_nist": {
+      "uncovered": [
+        "3.6"
+      ],
+      "partial": [
+        "2.2",
+        "2.5",
+        "3.4",
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.6",
+        "4.7",
+        "4.8",
+        "4.9",
+        "4.12",
+        "4.13",
+        "5.6",
+        "5.7",
+        "5.10",
+        "5.11",
+        "5.16",
+        "5.19",
+        "5.20",
+        "5.22",
+        "5.24",
+        "5.25"
+      ]
+    },
+    "international": {
+      "uncovered": [],
+      "partial": [
+        "2.2",
+        "2.5",
+        "3.4",
+        "3.6",
+        "4.1",
+        "4.2",
+        "4.3",
+        "4.4",
+        "4.6",
+        "4.8",
+        "4.9",
+        "4.12",
+        "4.13",
+        "5.10",
+        "5.11",
+        "5.19",
+        "5.20",
+        "5.22"
+      ]
+    },
+    "all": {
+      "uncovered": [],
+      "partial": [
+        "2.2",
+        "2.5",
+        "3.4",
+        "3.6",
+        "4.1",
+        "4.4",
+        "4.8",
+        "4.13",
+        "5.11",
+        "5.20"
+      ]
+    }
+  },
+  "mapping_confidence": {
+    "medium": 106,
+    "high": 100,
+    "low": 18
+  },
+  "low_confidence_rows": [
+    "3.4/eu_ai_act",
+    "3.6/eu_ai_act",
+    "4.3/eu_ai_act",
+    "4.8/eu_ai_act",
+    "4.9/eu_ai_act",
+    "4.13/eu_ai_act",
+    "4.4/iso_42001",
+    "4.6/iso_42001",
+    "4.8/iso_42001",
+    "5.3/iso_42001",
+    "5.13/iso_42001",
+    "5.20/iso_42001",
+    "5.9/mas_feat",
+    "5.1/mas_feat",
+    "4.6/nist_ai_rmf",
+    "4.8/nist_ai_rmf",
+    "5.20/nist_ai_rmf",
+    "4.8/nist_genai_profile"
+  ],
+  "verdicts": [
+    {
+      "hypothesis": "H4(a) no single framework fully covers more than 60% of expectations",
+      "holds": true,
+      "detail": "highest single-framework full coverage is nist_ai_rmf at 49.0%"
+    },
+    {
+      "hypothesis": "H4(b) the international union leaves at least 10% with no full mapping",
+      "holds": true,
+      "detail": "18/51 = 35.3% of expectations have no full mapping in ISO 42001, NIST AI RMF or the EU AI Act"
+    },
+    {
+      "hypothesis": "H4(c) the residue is concentrated in the predicted clauses",
+      "holds": false,
+      "detail": "4 of 10 residual clauses were predicted: \u00a73.6, \u00a74.4, \u00a74.13, \u00a74.8. Not predicted: \u00a72.2, \u00a72.5, \u00a73.4, \u00a74.1, \u00a75.11, \u00a75.20"
+    }
+  ],
+  "threats_to_validity": [
+    "Mapping is interpretive and performed by one annotator. Every row carries a justification, a confidence flag and a gap note so it can be disputed individually rather than only in aggregate.",
+    "The comparison is asymmetric by nature: ISO 42001 certifies a management system, the EU AI Act regulates products through conformity assessment, and the NIST AI RMF is voluntary. 'Full' coverage means an equivalent obligation exists, not that holding one discharges the other.",
+    "EU AI Act obligations attach to a system's risk classification, so a mapping may be full for an Annex III high-risk use and irrelevant for everything else.",
+    "18 rows are flagged low confidence and are the first place a reader should look to disagree.",
+    "The MAS Information Paper predates the Guidelines and reports observed practice rather than imposing expectations, so its high 'full' count says the Guidelines codified existing practice, not that an institution can rely on it."
+  ],
+  "figures": [
+    "rq4_crosswalk_coverage.png"
+  ]
+}

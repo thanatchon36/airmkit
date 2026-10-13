@@ -1,0 +1,1 @@
+Applicable MAS-AIRM controls as a use case moves up the autonomy ladder, holding purpose, data and model family fixed. Marker colour is the inherent risk materiality tier under the toolkit's default rubric. Tiering and the rubric are the authors' proposal: MAS prescribes no formula (Response to Feedback §7.19).

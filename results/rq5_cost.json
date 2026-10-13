@@ -1,0 +1,231 @@
+{
+  "provenance": {
+    "airmkit_version": "0.1.0",
+    "git_revision": "d0957df",
+    "python": "3.11.17",
+    "platform": "Darwin arm64",
+    "seed": 20261013,
+    "generated_at": "2026-10-13T10:49:31+00:00"
+  },
+  "question": "How many controls, evidence items and estimated person-hours does each materiality tier require, and where is the long tail?",
+  "method": "Applicable controls and their evidence items are counted per use case from the control catalogue, then multiplied by a per-item effort estimate that varies with the control's automatability class and a tier multiplier. Institution-level controls are counted once.",
+  "estimates": {
+    "effort_per_item_hours": {
+      "auto": 1.0,
+      "semi": 3.0,
+      "doc": 6.0
+    },
+    "tier_multiplier": {
+      "Low": 0.6,
+      "Medium": 0.8,
+      "High": 1.0,
+      "Critical": 1.3
+    },
+    "recurring_fraction": 0.35,
+    "note": "These are assumptions, not measurements. They are published so that a reader can substitute their own and recompute. Measuring them would need a user study; see docs/FUTURE_WORK.md."
+  },
+  "per_use_case": {
+    "credit-decision-model": {
+      "tier": "Critical",
+      "residual": "High",
+      "applicable_controls": 43,
+      "evidence_items": 84,
+      "evidence_item_instances": 87,
+      "by_class": {
+        "auto": 10,
+        "semi": 20,
+        "doc": 13
+      },
+      "first_time_hours": 408.2,
+      "recurring_hours_per_year": 142.9
+    },
+    "aml-alert-triage": {
+      "tier": "Critical",
+      "residual": "High",
+      "applicable_controls": 43,
+      "evidence_items": 84,
+      "evidence_item_instances": 87,
+      "by_class": {
+        "auto": 10,
+        "semi": 20,
+        "doc": 13
+      },
+      "first_time_hours": 408.2,
+      "recurring_hours_per_year": 142.9
+    },
+    "customer-service-chatbot": {
+      "tier": "High",
+      "residual": "Medium",
+      "applicable_controls": 55,
+      "evidence_items": 105,
+      "evidence_item_instances": 109,
+      "by_class": {
+        "auto": 15,
+        "semi": 24,
+        "doc": 16
+      },
+      "first_time_hours": 375.0,
+      "recurring_hours_per_year": 131.2
+    },
+    "policy-rag-assistant": {
+      "tier": "Medium",
+      "residual": "Medium",
+      "applicable_controls": 49,
+      "evidence_items": 92,
+      "evidence_item_instances": 96,
+      "by_class": {
+        "auto": 15,
+        "semi": 19,
+        "doc": 15
+      },
+      "first_time_hours": 264.0,
+      "recurring_hours_per_year": 92.4
+    },
+    "kyc-document-agent": {
+      "tier": "Critical",
+      "residual": "High",
+      "applicable_controls": 58,
+      "evidence_items": 108,
+      "evidence_item_instances": 115,
+      "by_class": {
+        "auto": 18,
+        "semi": 24,
+        "doc": 16
+      },
+      "first_time_hours": 495.3,
+      "recurring_hours_per_year": 173.4
+    },
+    "card-fraud-scoring": {
+      "tier": "Critical",
+      "residual": "High",
+      "applicable_controls": 43,
+      "evidence_items": 84,
+      "evidence_item_instances": 87,
+      "by_class": {
+        "auto": 10,
+        "semi": 20,
+        "doc": 13
+      },
+      "first_time_hours": 408.2,
+      "recurring_hours_per_year": 142.9
+    },
+    "vendor-txn-monitoring": {
+      "tier": "Critical",
+      "residual": "Critical",
+      "applicable_controls": 51,
+      "evidence_items": 97,
+      "evidence_item_instances": 101,
+      "by_class": {
+        "auto": 13,
+        "semi": 22,
+        "doc": 16
+      },
+      "first_time_hours": 466.7,
+      "recurring_hours_per_year": 163.3
+    },
+    "research-signal-agent": {
+      "tier": "High",
+      "residual": "Medium",
+      "applicable_controls": 55,
+      "evidence_items": 101,
+      "evidence_item_instances": 108,
+      "by_class": {
+        "auto": 18,
+        "semi": 22,
+        "doc": 15
+      },
+      "first_time_hours": 354.0,
+      "recurring_hours_per_year": 123.9
+    }
+  },
+  "institution_level": {
+    "controls": 7,
+    "evidence_items": 16,
+    "first_time_hours": 81.0,
+    "outcomes": {
+      "pass": 2,
+      "fail": 0,
+      "needs_attestation": 5,
+      "not_applicable": 0
+    }
+  },
+  "by_tier": {
+    "Low": {
+      "use_cases": 0
+    },
+    "Medium": {
+      "use_cases": 1,
+      "mean_controls": 49.0,
+      "mean_evidence_items": 92.0,
+      "mean_first_time_hours": 264.0
+    },
+    "High": {
+      "use_cases": 2,
+      "mean_controls": 55.0,
+      "mean_evidence_items": 103.0,
+      "mean_first_time_hours": 364.5
+    },
+    "Critical": {
+      "use_cases": 5,
+      "mean_controls": 47.6,
+      "mean_evidence_items": 91.4,
+      "mean_first_time_hours": 437.3
+    }
+  },
+  "totals": {
+    "first_time_hours": 3260.6,
+    "recurring_hours_per_year": 1141.2,
+    "effort_by_class": {
+      "auto": 223.7,
+      "semi": 1200.3,
+      "doc": 1836.6
+    },
+    "effort_share_by_class": {
+      "auto": 0.0684,
+      "semi": 0.3681,
+      "doc": 0.5632
+    },
+    "effort_by_category": {
+      "documentation_and_review": 863.5,
+      "operational_controls": 503.2,
+      "data_and_fairness": 704.7,
+      "people_and_third_party": 640.6,
+      "evaluation_and_testing": 548.6
+    },
+    "effort_share_by_category": {
+      "documentation_and_review": 0.2647,
+      "data_and_fairness": 0.216,
+      "people_and_third_party": 0.1963,
+      "evaluation_and_testing": 0.1681,
+      "operational_controls": 0.1543
+    },
+    "gini_across_use_cases": 0.0897
+  },
+  "verdicts": [
+    {
+      "hypothesis": "H5(a) Critical requires more than twice the evidence of the lowest tier present (Medium)",
+      "holds": false,
+      "detail": "Critical mean 91.4 evidence items vs Medium mean 92.0; ratio 0.993. The portfolio contains no Low-tier use case, so Medium is substituted for Low and the hypothesis is weaker than written."
+    },
+    {
+      "hypothesis": "H5(b) more than half of total effort sits in the semi and doc classes",
+      "holds": true,
+      "detail": "semi 36.8% + doc 56.3% = 93.1%"
+    },
+    {
+      "hypothesis": "H5(c) documentation and review is the largest effort category",
+      "holds": true,
+      "detail": "largest category is documentation_and_review at 26.5%; evaluation_and_testing is 16.8%"
+    }
+  ],
+  "threats_to_validity": [
+    "Person-hours are not measured. They are a transparent assumption set, reported in full, and every derived number moves with them.",
+    "The portfolio is synthetic and deliberately spans the tier range, so its mix is not representative of any real institution's AI estate.",
+    "The portfolio contains no Low-tier use case, because under the default rubric a Generative AI use case cannot be rated Low: GenAI sets Complexity to High and the impact gate permits one level above Impact. H5(a) is therefore tested against Medium rather than Low and is weaker than written.",
+    "Effort is counted per evidence item, which treats a one-line attestation and a full validation report as comparable units within a class.",
+    "Reuse across use cases is ignored: a data lineage document covering one dataset serves every use case that uses it, so the portfolio total overstates marginal cost."
+  ],
+  "figures": [
+    "rq5_effort_by_use_case.png"
+  ]
+}

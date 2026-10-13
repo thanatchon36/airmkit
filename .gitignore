@@ -16,3 +16,5 @@ paper/paper.docx
 docs/sources/text/mas_consultation_annex_b_submissions.txt
 .DS_Store
 examples/synthetic_bank/output/
+results/cache/
+experiments/__pycache__/
