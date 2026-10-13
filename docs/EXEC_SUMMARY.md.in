@@ -1,0 +1,83 @@
+# MAS AI Risk Management Guidelines: what they require, what a tool can check, what still needs people
+
+**For CROs and Heads of Model Risk.** Every number is generated from `results/summary.json`;
+nothing here is typed by hand. Generated {{DATE}} from airmkit {{text:version}}
+({{text:git_revision}}).
+
+> {{text:disclaimer}}
+
+## The deadlines
+
+MAS issued the Guidelines on **7 October 2026**, phased (§1.8): **Sections 3-4 by 7 Oct 2027** -
+governance and control functions, AI identification including embedded third-party AI (§4.2,
+fn21), the inventory with agent attributes (fn25), use-case materiality over Impact, Complexity
+and Reliance (§4.12), and residual risk from *unidentified* AI kept within appetite (§4.4, fn22).
+**Sections 5-6 by 7 Oct 2028** - the lifecycle controls and the competence of staff *using* AI
+(§6.1), with high-risk lifecycle controls expected sooner.
+
+Two things to plan around. **MAS prescribes no formula, metric or threshold** for materiality,
+performance or guardrails (Resp §7.19, §10.29): every number you use is yours to defend. And the
+final text, while more proportionate than the draft, is **tighter on third-party AI and on
+generative AI and agents**: you retain primary accountability and must be able to limit, suspend
+or replace a provider (§5.11), vendor self-attestation generally does not close a transparency gap
+(Resp §9.9), and guardrails must be tested **for effectiveness** (§5.15, fn46).
+
+## What tooling covers
+
+Of {{catalogue.expectations}} expectation paragraphs, **{{rq1.auto_share}}** admit a fully
+automated check, {{rq1.semi_share}} are semi-automatable (a tool confirms the artefact exists and
+is current; a person judges adequacy) and {{rq1.doc_share}} are documentary. The distribution
+matters more: **Section 4 is {{rq1.section4_auto_share}} automatable, Section 3 is
+{{rq1.section3_auto_share}}.** Tooling can carry the 2027 obligations and much less of the 2028
+ones. On our {{portfolio.use_cases}}-use-case fictional portfolio,
+**{{rq5.semi_doc_effort_share}} of estimated effort is attestation and documentation** against
+{{rq5.auto_effort_share}} a tool finishes unaided, spread evenly across use cases (Gini
+{{rq5.gini}}). Headcount, not tooling, is the binding constraint. *(Hours are our estimates from a
+published table, not measurements.)*
+
+## Four findings worth acting on
+
+1. **A system becoming an agent raises the control set, not the tier.**
+   {{rq2.agent_step_controls}} controls first bind at the agent step - guardrail effectiveness
+   testing, tool permissions, trace monitoring - but only {{rq2.tier_gains}} of
+   {{rq2.subjects}} use cases gained a tier, because tier is dominated by consequence. Review the
+   control set, not the label.
+2. **Guardrail tests against attacks only will mislead you.** Attack success fell from
+   {{rq3.asr_none}} unguarded to {{rq3.asr_layered}} layered on a local model - and the same
+   layered defence refused **{{rq3.over_refusal_layered}} of benign in-scope requests**. Against
+   our pre-registered joint criterion, {{rq3.patterns_meeting_both}} of {{rq3.patterns}} patterns
+   passed. Require a benign control set in every guardrail report you accept, internal or vendor.
+3. **ISO 42001 and NIST alignment leaves governance work, not agent work.** No framework fully
+   covers more than {{rq4.best_single_framework_share}} of expectations; the ISO + NIST + EU AI Act
+   union leaves **{{rq4.union_residue_share}} with no full mapping**. The residue is the
+   applicability test and basic regime (§2.2, §2.5), board responsibilities (§3.4), identification
+   and shadow AI (§4.1, §4.4), materiality arbitration (§4.13), third-party accountability (§5.11)
+   and independent validation scope (§5.20) - not the agent clauses, which the NIST Generative AI
+   Profile covers well. If you are certified, that list is your remaining work.
+4. **Proportionality scales rigour, not volume.** Critical-tier use cases need
+   {{rq5.critical_evidence_items}} evidence items on average against
+   {{rq5.medium_evidence_items}} for Medium. The same artefacts are required; what changes is the
+   depth of review and who signs.
+
+## Next quarter
+
+Build the inventory first - it is the 2027 obligation, the most automatable, and everything else
+depends on it. Write down your materiality method and the reason behind each signal, since MAS
+will not supply one. Run a shadow-AI sweep and record the residual-risk *decision*, not only the
+findings. Change your guardrail test template to report over-refusal beside attack success.
+Re-scope third-party assessments to the eight §5.11 considerations.
+
+## Reproduce or dispute it
+
+```bash
+pip install airmkit
+airm clauses                                # clause catalogue with effective dates
+airm assess -r ai-inventory.yaml            # materiality, with reasons for every score
+airm check  -r ai-inventory.yaml            # pass / fail / needs-attestation / not-applicable
+airm report -r ai-inventory.yaml -o pack/   # the full audit pack
+```
+
+Every control cites the paragraph it serves and every automatability class carries a written
+justification, so one judgement can be disputed without rejecting the method. The worked example,
+the five experiments, the pre-registered thresholds and all {{verdicts.refuted}} refuted
+hypotheses are in the repository: **<https://github.com/thanatchon36/airmkit>**

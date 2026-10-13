@@ -1,0 +1,11 @@
+The MAS AI Risk Management Guidelines ask for something most AI inventories cannot answer: what is *not* in them.
+
+§4.4 and fn22 require residual risk from **unidentified** AI - shadow AI, embedded AI - to be kept within risk appetite, with mitigations. §4.2 and fn21 require identification to minimally cover AI embedded in services from material third-party providers. Neither is satisfiable by a register you fill in from what teams declare.
+
+fn25 adds the attributes an agentic entry needs: agent identifiers, the tools and systems it can access, its components, its guardrails. Most inventory schemas have nowhere to put them.
+
+So the toolkit ships a Pydantic/JSON Schema inventory that includes the agent extension, plus `airm scan`, which walks a repository and flags LLM SDK imports, model endpoints, MCP server configs, agent frameworks and vendor AI SaaS references as *candidate* entries. It is a heuristic, not coverage, and scan output is treated as data, never as configuration.
+
+Section 4 is the most automatable part of the Guidelines (84.6%) and the first to take effect, on 7 Oct 2027. Start here.
+
+https://github.com/thanatchon36/airmkit

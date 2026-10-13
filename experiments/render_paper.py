@@ -34,9 +34,22 @@ from typing import Any
 from _common import REPO, RESULTS, banner
 
 PAPER_DIR = REPO / "paper"
+DOCS_DIR = REPO / "docs"
 TEMPLATE = PAPER_DIR / "paper.md.in"
 OUTPUT = PAPER_DIR / "paper.md"
 SUMMARY = RESULTS / "summary.json"
+
+
+def templates() -> list[Path]:
+    """Return every ``*.md.in`` template, paper first.
+
+    The paper, the executive summary and the LinkedIn drafts all quote results, so they are all
+    rendered from the same summary by the same substitution rules. A draft that quotes a number
+    by hand would drift from the paper the first time an experiment is re-run.
+    """
+    found = [TEMPLATE, DOCS_DIR / "EXEC_SUMMARY.md.in"]
+    found.extend(sorted((DOCS_DIR / "posts").glob("*.md.in")))
+    return [path for path in found if path.is_file()]
 
 PLACEHOLDER = re.compile(r"\{\{([a-z0-9_.:]+)\}\}")
 
@@ -422,9 +435,13 @@ def text(summary: dict[str, Any], name: str) -> str:
     """
     if name == "disclaimer":
         return str(summary["disclaimer"])
+    if name == "version":
+        return str(summary["provenance"]["airmkit_version"])
+    if name == "git_revision":
+        return str(summary["provenance"]["git_revision"])
     disclosures = summary["disclosures"]
     if name not in disclosures:
-        known = ", ".join(["disclaimer", *sorted(disclosures)])
+        known = ", ".join(["disclaimer", "version", "git_revision", *sorted(disclosures)])
         raise KeyError(f"unknown text {name!r}; known: {known}")
     return str(disclosures[name])
 
@@ -480,23 +497,36 @@ def render(template: str, summary: dict[str, Any]) -> tuple[str, set[str]]:
     return rendered, used
 
 
+def render_file(path: Path, summary: dict[str, Any]) -> tuple[Path, str, set[str]]:
+    """Render one template to its sibling without the ``.in`` suffix.
+
+    Returns:
+        The path written, the rendered text and the number keys it used.
+    """
+    rendered, used = render(path.read_text(encoding="utf-8"), summary)
+    rendered = rendered.replace("{{DATE}}", dt.date.today().isoformat())
+    target = path.with_suffix("")
+    target.write_text(rendered, encoding="utf-8")
+    return target, rendered, used
+
+
 def main() -> None:
-    """Render paper/paper.md and report any unused numbers."""
-    banner("render_paper: injecting results/summary.json into paper/paper.md")
+    """Render every template from results/summary.json and report any unused numbers."""
+    banner("render_paper: injecting results/summary.json into the paper and communications")
     if not SUMMARY.is_file():
         raise FileNotFoundError(f"{SUMMARY} not found; run `python experiments/collect.py` first")
     summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
-    template = TEMPLATE.read_text(encoding="utf-8")
-    rendered, used = render(template, summary)
-    rendered = rendered.replace("{{DATE}}", dt.date.today().isoformat())
-    OUTPUT.write_text(rendered, encoding="utf-8")
+
+    used: set[str] = set()
+    for path in templates():
+        target, rendered, consumed = render_file(path, summary)
+        used |= consumed
+        print(f"  {target.relative_to(REPO)}: {len(rendered.split())} words")
 
     unused = sorted(set(summary["numbers"]) - used)
     print(f"  {len(used)} of {len(summary['numbers'])} numbers used")
     if unused:
-        print(f"  not used in the prose ({len(unused)}): {', '.join(unused)}")
-    print(f"  {len(rendered.splitlines())} lines, {len(rendered.split())} words")
-    print(f"  result: {OUTPUT}")
+        print(f"  not quoted anywhere ({len(unused)}): {', '.join(unused)}")
 
 
 if __name__ == "__main__":

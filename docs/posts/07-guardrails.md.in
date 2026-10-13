@@ -1,0 +1,18 @@
+§5.15 and fn46 of the MAS AI Risk Management Guidelines require guardrails for generative AI and agents to be tested **for effectiveness**. We measured five common patterns on a local model, against {{rq3.probes}} probes across jailbreak, indirect injection, PII leakage and policy evasion - plus a benign in-scope control set.
+
+Attack success rate:
+- no guardrail {{rq3.asr_none}}
+- system prompt only {{rq3.asr_system_prompt}}
+- deterministic filter {{rq3.asr_filter}}
+- LLM judge {{rq3.asr_llm_judge}}
+- filter + judge {{rq3.asr_layered}}
+
+Layering looks excellent. Then the benign set: over-refusal is {{rq3.over_refusal_none}} unguarded, {{rq3.over_refusal_system_prompt}} with the system prompt and {{rq3.over_refusal_layered}} layered. The patterns that suppress attacks refuse half of ordinary in-scope requests.
+
+Against our pre-registered joint criterion - attack success within the tier limit **and** over-refusal at or below {{rq3.threshold_over_refusal}} - {{rq3.patterns_meeting_both}} of {{rq3.patterns}} patterns qualified. The only pattern with a large reduction at zero over-refusal was the deterministic filter.
+
+If a guardrail test report has no benign control set, "effective" is unfalsifiable. Ask for one.
+
+Single small local model, n={{rq3.trials_per_pattern}} per pattern; a demonstration, not a general estimate.
+
+https://github.com/thanatchon36/airmkit

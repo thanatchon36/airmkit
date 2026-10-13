@@ -164,6 +164,40 @@ def test_committed_paper_matches_the_template_and_results(paper: str) -> None:
     assert committed == date_line.sub('date: ""', paper)
 
 
+POSTS = sorted((REPO / "docs" / "posts").glob("*.md.in"))
+
+
+def test_there_are_eight_to_ten_posts() -> None:
+    """MISSION asks for 8-10 drafts: one per Guidelines section, plus launch and retrospective."""
+    assert 8 <= len(POSTS) <= 10
+
+
+@pytest.mark.parametrize("template_path", POSTS, ids=lambda p: p.name)
+def test_each_post_fits_linkedin_and_ends_with_the_repo_link(
+    template_path: Path, summary: dict
+) -> None:
+    rendered, _ = render_paper.render(template_path.read_text(encoding="utf-8"), summary)
+    assert len(rendered) <= 1300, f"{template_path.name} is {len(rendered)} characters"
+    assert rendered.rstrip().endswith("https://github.com/thanatchon36/airmkit")
+    assert not render_paper.PLACEHOLDER.search(rendered)
+
+
+@pytest.mark.parametrize("template_path", POSTS, ids=lambda p: p.name)
+def test_each_post_is_committed_as_rendered(template_path: Path, summary: dict) -> None:
+    rendered, _ = render_paper.render(template_path.read_text(encoding="utf-8"), summary)
+    assert template_path.with_suffix("").read_text(encoding="utf-8") == rendered
+
+
+def test_exec_summary_is_committed_as_rendered(summary: dict) -> None:
+    template_path = REPO / "docs" / "EXEC_SUMMARY.md.in"
+    rendered, _ = render_paper.render(template_path.read_text(encoding="utf-8"), summary)
+    rendered = rendered.replace("{{DATE}}", "")
+    committed = template_path.with_suffix("").read_text(encoding="utf-8")
+    assert re.sub(r"Generated \S+ from", "Generated  from", committed) == re.sub(
+        r"Generated \S+ from", "Generated  from", rendered
+    )
+
+
 def test_committed_summary_matches_the_committed_results(summary: dict) -> None:
     """results/summary.json is a build artefact of the five RQ files."""
     fresh = collect.collate(collect.load_rq_results(), collect.example_pack_summary())

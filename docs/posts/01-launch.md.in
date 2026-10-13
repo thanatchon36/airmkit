@@ -1,0 +1,15 @@
+We built an open-source toolkit for the MAS Guidelines on AI Risk Management (7 Oct 2026), and measured how far such guidance can actually be automated.
+
+What is in it:
+- A machine-readable clause catalogue: {{catalogue.paragraphs}} paragraphs, {{catalogue.expectations}} expectations, {{catalogue.normative_footnotes}} footnotes that carry requirements (including the fn25 agent attributes).
+- {{controls.total}} controls, each citing the paragraph it serves, each labelled by how far it can be automated.
+- A crosswalk to ISO/IEC 42001, NIST AI RMF + GenAI Profile, EU AI Act, FEAT and the 2024 MAS Information Paper: {{rq4.mapping_rows}} rows.
+- A worked example on a fictional bank with {{portfolio.use_cases}} synthetic use cases, and five pre-registered experiments.
+
+The headline: {{rq1.auto_share}} of expectations admit a fully automated check. Section 4 (inventory, materiality) is {{rq1.section4_auto_share}} automatable. Section 3 (governance) is {{rq1.section3_auto_share}}.
+
+Of {{verdicts.total}} hypotheses fixed before the experiments ran, {{verdicts.refuted}} were refuted. Those are in the repo too.
+
+Not affiliated with MAS. Not legal advice. Apache-2.0.
+
+https://github.com/thanatchon36/airmkit

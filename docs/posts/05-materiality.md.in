@@ -1,0 +1,11 @@
+MAS will not give you a materiality formula. Response to Feedback §7.19 says a prescribed methodology would not suit every institution. §4.12 gives you three axes - Impact, Complexity, Reliance - and leaves the rest to you.
+
+So we published one, to be argued with. 23 signals, each citing the paragraph it derives from, producing an inherent and a residual tier, every score carrying its reasons, configurable in YAML.
+
+Two findings from running it:
+
+**Autonomy moves the control set, not the tier.** Moving a use case up a six-rung autonomy ladder, {{rq2.agent_step_controls}} controls first bind at the agent step - guardrail testing, tool permissions, trace monitoring - but only {{rq2.tier_gains}} of {{rq2.subjects}} use cases gained a tier. Tier is dominated by consequence. A tier label alone does not tell a reviewer whether agent controls are in force.
+
+**Under our defaults, no generative-AI use case can be rated Low**, because GenAI sets Complexity to High and the impact gate permits one level above Impact. We report that as a finding rather than tuning it away. If you think the gate is wrong, the rubric is a YAML file.
+
+https://github.com/thanatchon36/airmkit
