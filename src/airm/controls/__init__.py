@@ -18,7 +18,7 @@ A ``doc`` control is always ``needs_attestation`` when applicable.
 from __future__ import annotations
 
 import datetime as dt
-from collections.abc import Callable, Iterable
+from collections.abc import Callable, Iterable, Iterator
 from enum import StrEnum
 from importlib import resources
 from pathlib import Path
@@ -33,14 +33,14 @@ from airm.materiality import Assessment, Tier, assess
 
 __all__ = [
     "Automatability",
-    "InstitutionReport",
-    "Scope",
-    "check_institution",
     "CheckResult",
     "Control",
     "ControlCatalogue",
+    "InstitutionReport",
     "Outcome",
+    "Scope",
     "UseCaseReport",
+    "check_institution",
     "check_register",
     "check_use_case",
     "load_controls",
@@ -202,13 +202,12 @@ class Control(_Model):
     def _known_check(self) -> Self:
         """A named check must exist, and only `auto`/`semi` controls may have one."""
         institution_checks = {"control_functions_designated", "register_linkages_declared"}
-        if self.check is not None and self.check not in _CHECKS:
-            if not (self.scope is Scope.INSTITUTION and self.check in institution_checks):
-                raise ValueError(f"control {self.id}: unknown check {self.check!r}")
+        unknown = self.check is not None and self.check not in _CHECKS
+        handled_elsewhere = self.scope is Scope.INSTITUTION and self.check in institution_checks
+        if unknown and not handled_elsewhere:
+            raise ValueError(f"control {self.id}: unknown check {self.check!r}")
         if self.check is None and self.automatability is Automatability.AUTO:
-            raise ValueError(
-                f"control {self.id}: automatability 'auto' requires a check function"
-            )
+            raise ValueError(f"control {self.id}: automatability 'auto' requires a check function")
         return self
 
     @property
@@ -255,9 +254,7 @@ class Control(_Model):
                 f"applies from tier {self.applies_from_tier.value}; inherent tier is "
                 f"{assessment.inherent_tier.value}"
             )
-        if self.requires_tags and not set(self.requires_tags).intersection(
-            use_case.catalogue_tags
-        ):
+        if self.requires_tags and not set(self.requires_tags).intersection(use_case.catalogue_tags):
             return False, f"applies only to use cases tagged {sorted(self.requires_tags)}"
         if self.requires_live and not use_case.lifecycle_status.is_live:
             return False, (
@@ -391,7 +388,7 @@ class ControlCatalogue(_Model):
                     )
         return self
 
-    def __iter__(self) -> Any:  # type: ignore[override]
+    def __iter__(self) -> Iterator[Control]:  # type: ignore[override]
         """Iterate over controls."""
         return iter(self.controls)
 
@@ -566,7 +563,9 @@ class InstitutionReport(_Model):
 
 
 def check_institution(
-    register: Register, *, catalogue: ControlCatalogue | None = None,
+    register: Register,
+    *,
+    catalogue: ControlCatalogue | None = None,
     evidence: dict[str, str] | None = None,
 ) -> InstitutionReport:
     """Evaluate the institution-level controls once against a register.
@@ -674,9 +673,7 @@ def check_register(
     active_catalogue = catalogue or load_controls()
     evidence = evidence or {}
     return {
-        uc.id: check_use_case(
-            uc, catalogue=active_catalogue, evidence=evidence.get(uc.id, {})
-        )
+        uc.id: check_use_case(uc, catalogue=active_catalogue, evidence=evidence.get(uc.id, {}))
         for uc in register.use_cases
     }
 
@@ -731,8 +728,7 @@ def _check_guardrail_effectiveness(
     without_evidence = [g.name for g in rails if g.tested and not g.evidence_ref]
     if without_evidence:
         return Outcome.FAIL, (
-            f"guardrails marked tested but with no evidence pointer: "
-            f"{', '.join(without_evidence)}"
+            f"guardrails marked tested but with no evidence pointer: {', '.join(without_evidence)}"
         )
     return Outcome.PASS, f"{len(rails)} guardrail(s) tested with evidence pointers"
 
@@ -810,9 +806,7 @@ def _check_agent_checkpoints(
             "no human checkpoints recorded for an agent; §5.9(c) expects mechanisms to escalate "
             "for human review where pre-defined conditions are met"
         )
-    return Outcome.PASS, (
-        f"{len(use_case.agent.human_checkpoints)} human checkpoint(s) recorded"
-    )
+    return Outcome.PASS, (f"{len(use_case.agent.human_checkpoints)} human checkpoint(s) recorded")
 
 
 @register_check("agent_tool_scope")
@@ -894,7 +888,11 @@ def _check_embedded_ai(
     embedded = [c for c in use_case.third_party if c.embedded]
     if not embedded:
         return Outcome.NOT_APPLICABLE, "no embedded third-party AI recorded"
-    unassessed = [f"{c.provider}/{c.component}" for c in embedded if c.material_provider and not c.independent_assessment]
+    unassessed = [
+        f"{c.provider}/{c.component}"
+        for c in embedded
+        if c.material_provider and not c.independent_assessment
+    ]
     if unassessed:
         return Outcome.FAIL, (
             f"embedded AI from material providers with no independent assessment: "
@@ -1057,9 +1055,7 @@ def filter_by_use_case(
     active_assessment = assessment or assess(use_case)
     active_catalogue = catalogue or load_controls()
     return tuple(
-        c
-        for c in active_catalogue.controls
-        if c.applies_to(use_case, active_assessment)[0]
+        c for c in active_catalogue.controls if c.applies_to(use_case, active_assessment)[0]
     )
 
 

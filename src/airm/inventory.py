@@ -31,15 +31,15 @@ __all__ = [
     "Dependency",
     "Guardrail",
     "LifecycleStatus",
-    "RegisterDiff",
     "Register",
+    "RegisterDiff",
     "ReviewStatus",
     "Role",
     "ThirdPartyComponent",
     "UseCase",
 ]
 
-_ID_PATTERN = r"^[a-z0-9][a-z0-9-]{1,62}[a-z0-9]$"
+_ID_PATTERN = r"^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$"
 
 
 class LifecycleStatus(StrEnum):
@@ -136,7 +136,9 @@ class Role(_Model):
     party: str = Field(description="Person, team or function holding the role.")
     function: str | None = Field(
         default=None,
-        description="Control function or business unit, used to test independence (MAS-AIRM §5.19).",
+        description=(
+            "Control function or business unit, used to test independence (MAS-AIRM §5.19)."
+        ),
     )
 
 
@@ -286,7 +288,7 @@ class Completeness(_Model):
 
     @property
     def is_complete(self) -> bool:
-        """Whether every expected attribute, including agent attributes where relevant, is present."""
+        """Whether every expected attribute, agent attributes included, is present."""
         return not self.missing and not self.agent_missing
 
 

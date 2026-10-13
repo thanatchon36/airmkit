@@ -224,9 +224,7 @@ class PortfolioAssessment(_Model):
     @property
     def high_materiality_ids(self) -> tuple[str, ...]:
         """Ids of use cases whose inherent tier is High or Critical."""
-        return tuple(
-            sorted(uc for uc, a in self.assessments.items() if a.is_high_materiality)
-        )
+        return tuple(sorted(uc for uc, a in self.assessments.items() if a.is_high_materiality))
 
     def provider_concentration(self, register: Register) -> dict[str, int]:
         """Return provider -> number of high-materiality use cases depending on it.
@@ -322,7 +320,8 @@ class Rubric(_Model):
         allowed = {"max_with_impact_gate", "max", "impact_primary", "weighted"}
         if self.combination not in allowed:
             raise ValueError(
-                f"unknown combination method {self.combination!r}; expected one of {sorted(allowed)}"
+                f"unknown combination method {self.combination!r}; "
+                f"expected one of {sorted(allowed)}"
             )
         if self.residual_floor not in {"one_level", "two_levels", "none"}:
             raise ValueError(f"unknown residual_floor {self.residual_floor!r}")
@@ -382,7 +381,11 @@ class Rubric(_Model):
             how = f"max(impact={impact}, complexity={complexity}, reliance={reliance})"
         elif self.combination == "impact_primary":
             rank = impact + (1 if max(complexity, reliance) == Level.CRITICAL.rank else 0)
-            how = f"impact={impact} raised by critical secondary dimension" if rank > impact else f"impact={impact}"
+            how = (
+                f"impact={impact} raised by critical secondary dimension"
+                if rank > impact
+                else f"impact={impact}"
+            )
         elif self.combination == "weighted":
             mean = (
                 self.weights[Dimension.IMPACT] * impact
@@ -532,9 +535,7 @@ def _evaluate_signal(signal: dict[str, Any], use_case: UseCase) -> tuple[bool, s
         if isinstance(val, (list, tuple)):
             if not val:
                 return "(empty)"
-            parts = [
-                str(getattr(v, "name", None) or getattr(v, "id", None) or v) for v in val
-            ]
+            parts = [str(getattr(v, "name", None) or getattr(v, "id", None) or v) for v in val]
             return ", ".join(parts)
         return str(val)
 

@@ -69,10 +69,15 @@ src = ["src", "tests", "experiments"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "N", "UP", "B", "A", "C4", "SIM", "RUF", "ANN", "D"]
-ignore = ["D203", "D213", "ANN401", "D107"]
+# D401: properties and __len__ legitimately read as noun phrases ("Number of controls.").
+# RUF001: the section sign and en dash are required to cite MAS paragraphs faithfully.
+ignore = ["D203", "D213", "ANN401", "D107", "D401", "RUF001", "RUF002", "RUF003"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["D", "ANN", "S101"]
+# The probe definitions are data: regular expressions and prompt text that wrapping would make
+# harder to read and harder to compare against the published techniques they cite.
+"src/airm/evals/probes.py" = ["E501"]
 "experiments/*" = ["D", "ANN"]
 
 [tool.ruff.lint.pydocstyle]

@@ -369,7 +369,9 @@ def load_catalogue() -> Catalogue:
         resources.files("airm.catalog").joinpath("mas_airm_2026.yaml").read_text(encoding="utf-8")
     )
     raw: dict[str, Any] = yaml.safe_load(text)
-    paragraphs = tuple(sorted((_parse_paragraph(p) for p in raw["paragraphs"]), key=lambda p: p.sort_key))
+    paragraphs = tuple(
+        sorted((_parse_paragraph(p) for p in raw["paragraphs"]), key=lambda p: p.sort_key)
+    )
     sections = tuple(
         Section(
             id=str(s["id"]),
@@ -380,4 +382,6 @@ def load_catalogue() -> Catalogue:
         for s in raw["sections"]
     )
     footnotes = tuple(sorted((_parse_footnote(f) for f in raw["footnotes"]), key=lambda f: f.id))
-    return Catalogue(meta=raw["meta"], sections=sections, paragraphs=paragraphs, footnotes=footnotes)
+    return Catalogue(
+        meta=raw["meta"], sections=sections, paragraphs=paragraphs, footnotes=footnotes
+    )
