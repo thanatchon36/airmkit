@@ -20,7 +20,7 @@ from pathlib import Path
 from typing import Annotated, Any, Self
 
 import yaml
-from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from airm.catalog import cite, load_catalogue
 
@@ -322,7 +322,12 @@ class UseCase(_Model):
     """
 
     id: Annotated[str, Field(pattern=_ID_PATTERN)] = Field(
-        description="Stable slug, e.g. 'credit-decision-model'."
+        description=(
+            "Stable lowercase slug, e.g. 'credit-decision-model'. Rejected rather than "
+            "normalised if it is not already a slug: silently rewriting an id would make the "
+            "register file and the entry disagree, and the id is the key every other module, "
+            "report anchor and evidence path uses."
+        )
     )
     name: str
     purpose: str = Field(description="Purpose and description (MAS-AIRM §4.7).")
@@ -395,12 +400,6 @@ class UseCase(_Model):
         default=None, description="Last inventory review (MAS-AIRM §4.5, §4.8)."
     )
     notes: str | None = None
-
-    @field_validator("id")
-    @classmethod
-    def _lower_id(cls, value: str) -> str:
-        """Ids are lowercase slugs so that paths and report anchors are stable."""
-        return value.lower()
 
     @model_validator(mode="after")
     def _agent_consistency(self) -> Self:

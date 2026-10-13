@@ -1055,7 +1055,9 @@ def filter_by_use_case(
     active_assessment = assessment or assess(use_case)
     active_catalogue = catalogue or load_controls()
     return tuple(
-        c for c in active_catalogue.controls if c.applies_to(use_case, active_assessment)[0]
+        c
+        for c in active_catalogue.controls
+        if c.scope is Scope.USE_CASE and c.applies_to(use_case, active_assessment)[0]
     )
 
 

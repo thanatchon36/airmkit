@@ -1,0 +1,368 @@
+# Generated from a hand-authored mapping table; every row carries its justification.
+# Scoped to generative AI by design: see the description field.
+version: '1'
+description: MAS-AIRM to the NIST AI RMF Generative AI Profile (NIST AI 600-1, July 2024). References
+  are the Profile's suggested-action identifiers, which carry the function and subcategory of the parent
+  NIST AI RMF (for example 'MS-2.11-001' is a Measure 2.11 action), together with its twelve GenAI risk
+  categories where a whole category is the relevant unit. The Profile is scoped to generative AI, so
+  it is silent by design on MAS-AIRM's general governance, identification, inventory and materiality
+  machinery; a coverage of 'none' or 'partial' there reflects that scope rather than a defect. Mapped
+  clauses are limited to those where generative AI is the subject, which is why this file has fewer
+  rows than the others.
+mappings:
+- clause: '1.7'
+  framework: nist_genai_profile
+  refs:
+  - GV-1.2-001
+  - GV-4.3-001
+  - MG-4.1-001
+  coverage: partial
+  justification: The Profile requires GenAI risk documentation and policies to be reviewed as the technology
+    and its risks evolve.
+  confidence: medium
+  gap: No equivalent of MAS-AIRM's expectation that the FI review its whole AI risk management framework,
+    not only its GenAI practices.
+- clause: '1.10'
+  framework: nist_genai_profile
+  refs:
+  - GenAI risk categories 2.1-2.12
+  coverage: full
+  justification: The Profile's twelve GenAI risk categories (CBRN, confabulation, dangerous content,
+    data privacy, environmental, harmful bias, human-AI configuration, information integrity, information
+    security, intellectual property, obscene content, value chain) are a superset of the risks MAS-AIRM
+    1.10 lists.
+  confidence: high
+- clause: '1.11'
+  framework: nist_genai_profile
+  refs:
+  - GV-1.3-004
+  - MS-2.6-003
+  - MG-3.2-004
+  coverage: partial
+  justification: The Profile addresses human-AI configuration and value-chain risks that agentic deployment
+    amplifies, and asks for guardrails on autonomous capability.
+  confidence: medium
+  gap: Published before agentic deployment became common; no treatment of tool access, chained actions
+    or multi-agent systems as MAS-AIRM 1.11 and footnote 25 describe.
+- clause: '2.5'
+  framework: nist_genai_profile
+  refs:
+  - GV-1.2-001
+  - GV-6.1-001
+  - GV-4.1-001
+  coverage: partial
+  justification: The Profile asks for GenAI acceptable-use policies, approved-use documentation and
+    third-party GenAI policies.
+  confidence: medium
+  gap: No approved-tool list with a request process, and no periodic re-test of whether the lighter
+    regime still applies.
+- clause: '4.2'
+  framework: nist_genai_profile
+  refs:
+  - GV-1.6-001
+  - GV-6.1-002
+  - MP-4.1-001
+  coverage: partial
+  justification: The Profile asks for an inventory of GenAI systems including third-party components
+    and their provenance.
+  confidence: medium
+  gap: Covers GenAI only, so it cannot satisfy MAS-AIRM 4.2's expectation of consistent identification
+    across all AI, and does not address embedded AI in services not sold as AI.
+- clause: '4.4'
+  framework: nist_genai_profile
+  refs:
+  - GV-1.3-003
+  - GV-6.1-003
+  - MG-1.2-001
+  coverage: partial
+  justification: The Profile addresses unapproved GenAI use and asks organisations to document acceptable
+    use and monitor for deviations.
+  confidence: medium
+  gap: No expectation to quantify or keep within appetite the residual risk from AI that was never identified.
+- clause: '4.7'
+  framework: nist_genai_profile
+  refs:
+  - GV-1.6-001
+  - GV-1.6-002
+  - MP-2.2-001
+  coverage: partial
+  justification: The Profile asks the GenAI inventory to record model provenance, version, intended
+    use and known limitations.
+  confidence: medium
+  gap: Attribute set is GenAI-specific and omits the risk materiality rating and model review status
+    MAS-AIRM 4.7 names.
+- clause: '4.8'
+  framework: nist_genai_profile
+  refs:
+  - GV-1.6-002
+  - MP-2.2-001
+  coverage: partial
+  justification: The Profile asks that inventory content be revisited as GenAI capabilities change.
+  confidence: low
+  gap: 'No agent-specific attributes: the tools and systems an agent can access, its components and
+    its guardrails have no counterpart.'
+- clause: '4.12'
+  framework: nist_genai_profile
+  refs:
+  - MP-5.1-001
+  - MP-5.1-002
+  - MS-1.1-001
+  - GV-1.3-002
+  coverage: partial
+  justification: The Profile asks for likelihood and magnitude of GenAI harms to be estimated and for
+    risk tolerances to account for GenAI's novelty.
+  confidence: medium
+  gap: Impact is well covered; Complexity and Reliance as distinct assessment dimensions are not, and
+    the Profile sets no tiering.
+- clause: '5.4'
+  framework: nist_genai_profile
+  refs:
+  - MP-4.1-003
+  - MS-2.2-001
+  - MS-2.8-001
+  - GV-6.1-004
+  coverage: full
+  justification: The Profile's data-privacy, information-integrity and value-chain actions cover provenance,
+    quality, representativeness, consent for training data and secure handling of prompts and outputs.
+  confidence: high
+- clause: '5.5'
+  framework: nist_genai_profile
+  refs:
+  - MS-2.8-001
+  - MS-2.9-001
+  - GV-4.2-001
+  - MP-2.2-002
+  coverage: full
+  justification: The Profile requires documentation of GenAI capabilities and limitations for affected
+    actors and asks that explanations be appropriate to the audience, including disclosure of synthetic
+    content.
+  confidence: high
+- clause: '5.6'
+  framework: nist_genai_profile
+  refs:
+  - MS-2.8-002
+  - GV-4.2-002
+  - MP-5.2-001
+  coverage: partial
+  justification: The Profile asks that disclosures reach end users and that feedback channels exist.
+  confidence: medium
+  gap: No scaling of the degree by risk materiality, and no named high-impact financial domains.
+- clause: '5.7'
+  framework: nist_genai_profile
+  refs:
+  - MS-2.11-001
+  - MS-2.11-002
+  - GenAI 2.6 Harmful Bias
+  coverage: full
+  justification: Harmful bias and homogenisation is one of the Profile's twelve risk categories, with
+    actions to define, evaluate and mitigate it across the lifecycle.
+  confidence: high
+- clause: '5.8'
+  framework: nist_genai_profile
+  refs:
+  - MS-2.11-001
+  - MS-2.11-003
+  - MS-4.2-001
+  coverage: full
+  justification: The Profile requires bias evaluation with documented metrics, including evaluation
+    of disparate performance across demographic groups, and tracking of mitigations.
+  confidence: high
+- clause: '5.9'
+  framework: nist_genai_profile
+  refs:
+  - GV-3.2-001
+  - GV-3.2-002
+  - MS-2.8-003
+  - MP-3.5-001
+  coverage: full
+  justification: Human-AI configuration is a dedicated risk category, with actions on oversight design,
+    operator proficiency, automation bias and intervention.
+  confidence: high
+- clause: '5.10'
+  framework: nist_genai_profile
+  refs:
+  - GV-6.1-001
+  - GV-6.2-001
+  - MP-4.1-002
+  - MG-3.1-001
+  coverage: full
+  justification: The Profile's value-chain and third-party actions require pre-deployment evaluation
+    of acquired GenAI in the acquirer's context, with documented results.
+  confidence: high
+- clause: '5.11'
+  framework: nist_genai_profile
+  refs:
+  - GV-6.1-002
+  - GV-6.2-002
+  - MG-3.2-001
+  - MP-4.1-004
+  coverage: partial
+  justification: The Profile asks acquirers to obtain provenance and evaluation information from GenAI
+    suppliers and to plan for supplier failure.
+  confidence: medium
+  gap: Does not reject self-attestation, says nothing about concentration risk, and has no limit / suspend
+    / replace expectation.
+- clause: '5.13'
+  framework: nist_genai_profile
+  refs:
+  - MP-2.2-003
+  - MG-1.2-002
+  - GenAI 2.2 Confabulation
+  coverage: full
+  justification: Confabulation and opacity are explicit risk categories, and the Profile asks organisations
+    to weigh deployment of novel GenAI capability against their ability to measure and mitigate its
+    risks.
+  confidence: high
+- clause: '5.14'
+  framework: nist_genai_profile
+  refs:
+  - MS-1.1-002
+  - MS-2.3-001
+  - MS-2.5-001
+  - MS-2.6-001
+  - MS-4.2-002
+  coverage: full
+  justification: The Profile sets out GenAI-specific evaluation practice including structured public
+    feedback, field testing and measurement of each risk category against defined thresholds.
+  confidence: high
+- clause: '5.15'
+  framework: nist_genai_profile
+  refs:
+  - MS-2.6-002
+  - MS-2.6-003
+  - MS-2.7-001
+  - MG-2.2-001
+  - MG-4.1-002
+  coverage: full
+  justification: The Profile requires red-teaming and adversarial testing of GenAI and, distinctively,
+    evaluation of the safeguards themselves, which is exactly the guardrail-effectiveness expectation
+    of MAS-AIRM 5.15.
+  confidence: high
+- clause: '5.16'
+  framework: nist_genai_profile
+  refs:
+  - MS-2.7-002
+  - GenAI 2.9 Information Security
+  - MG-2.2-002
+  coverage: full
+  justification: Information security is a dedicated risk category covering prompt injection, data poisoning,
+    model theft and the security of the surrounding system.
+  confidence: high
+- clause: '5.17'
+  framework: nist_genai_profile
+  refs:
+  - MS-2.13-001
+  - MP-2.1-001
+  - GV-1.4-001
+  - MS-2.8-004
+  coverage: full
+  justification: The Profile asks for documentation sufficient for independent evaluation, and explicitly
+    accepts that non-deterministic output makes exact replication infeasible, which matches Response
+    to Feedback 10.44.
+  confidence: high
+- clause: '5.18'
+  framework: nist_genai_profile
+  refs:
+  - MS-1.3-001
+  - MS-4.1-001
+  coverage: partial
+  justification: The Profile asks for independent evaluation and external red-teaming of GenAI before
+    deployment.
+  confidence: medium
+  gap: No requirement that the reviewer be a party uninvolved in development, and no tie to a materiality
+    threshold.
+- clause: '5.19'
+  framework: nist_genai_profile
+  refs:
+  - MS-1.3-002
+  - MS-2.6-004
+  coverage: partial
+  justification: External red-teaming and third-party evaluation are recommended for higher-risk GenAI
+    deployments.
+  confidence: medium
+  gap: No formal independent validation construct, and no coverage of conceptual soundness in the model-risk
+    sense.
+- clause: '5.22'
+  framework: nist_genai_profile
+  refs:
+  - MS-2.6-005
+  - MS-2.7-003
+  - MG-2.2-003
+  coverage: full
+  justification: Pre-deployment security actions cover red-teaming, prompt-injection testing, supply-chain
+    scanning of model artefacts and remediation before release.
+  confidence: high
+- clause: '5.23'
+  framework: nist_genai_profile
+  refs:
+  - MG-4.1-001
+  - MG-4.2-001
+  - MS-2.4-001
+  - MS-3.1-001
+  - MG-4.3-001
+  coverage: full
+  justification: The Profile requires post-deployment monitoring of GenAI including user feedback, incident
+    response, content provenance tracking and logging of prompts and outputs.
+  confidence: high
+- clause: '5.24'
+  framework: nist_genai_profile
+  refs:
+  - MG-4.1-003
+  - MS-2.4-002
+  coverage: partial
+  justification: Continuous monitoring and periodic re-evaluation of GenAI are required as models and
+    usage change.
+  confidence: medium
+  gap: No independent re-validation keyed on materiality.
+- clause: '5.25'
+  framework: nist_genai_profile
+  refs:
+  - MG-4.1-004
+  - GV-1.4-002
+  - MS-2.4-003
+  coverage: partial
+  justification: The Profile asks organisations to re-evaluate after model updates, including supplier-driven
+    version changes, and to version prompts and configurations.
+  confidence: medium
+  gap: No change-significance framework with re-approval, and no treatment of automatically updating
+    AI.
+- clause: '5.26'
+  framework: nist_genai_profile
+  refs:
+  - GV-1.7-001
+  - MG-2.3-001
+  coverage: partial
+  justification: The Profile covers decommissioning of GenAI systems including handling of data and
+    artefacts.
+  confidence: medium
+  gap: Thinner than MAS-AIRM 5.26 on dependencies and stakeholder notification.
+- clause: '6.1'
+  framework: nist_genai_profile
+  refs:
+  - GV-2.2-001
+  - GV-3.2-003
+  - MP-3.5-002
+  coverage: full
+  justification: The Profile requires GenAI-specific training for developers, deployers and users, including
+    on the limitations of the technology.
+  confidence: high
+- clause: '6.2'
+  framework: nist_genai_profile
+  refs:
+  - GV-2.2-002
+  - GV-4.3-002
+  coverage: full
+  justification: Training and awareness must be kept current as GenAI capabilities and risks change,
+    which is the substance of MAS-AIRM 6.2.
+  confidence: medium
+- clause: '6.3'
+  framework: nist_genai_profile
+  refs:
+  - MP-2.1-002
+  - MS-2.7-004
+  - GenAI 2.5 Environmental
+  coverage: partial
+  justification: The Profile addresses compute, infrastructure and the environmental cost of GenAI workloads.
+  confidence: medium
+  gap: No availability, resilience or scalability adequacy expectation of the kind MAS-AIRM 6.3 and
+    the Technology Risk Management Guidelines set.

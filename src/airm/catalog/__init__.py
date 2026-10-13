@@ -100,6 +100,7 @@ class Footnote:
     tags: tuple[str, ...] = ()
     attributes: tuple[str, ...] = ()
     failure_modes: tuple[str, ...] = ()
+    treated_as_binding: bool = False
 
     @property
     def citation(self) -> str:
@@ -108,8 +109,16 @@ class Footnote:
 
     @property
     def is_normative(self) -> bool:
-        """Whether the footnote carries an expectation or a scoping rule, not just a reference."""
-        return self.kind in ("expectation", "scope", "definition")
+        """Whether this toolkit treats the footnote as carrying a requirement.
+
+        Two things are kept apart deliberately. ``kind`` records how MAS *words* the footnote:
+        footnote 25 says agent attributes "may include", so its kind is ``guidance``.
+        ``treated_as_binding`` records that this toolkit nevertheless *enforces* it, which is an
+        interpretation, not a reading of the text. Per the MISSION's rule to implement the stricter
+        reading by default, footnotes 21, 22, 23, 25, 34, 45 and 49 are enforced and the lenient
+        alternative is a config option; see ``docs/INTERPRETATIONS.md`` I-5, I-6 and I-9.
+        """
+        return self.kind in ("expectation", "scope", "definition") or self.treated_as_binding
 
 
 @dataclass(frozen=True)
@@ -262,10 +271,12 @@ class Catalogue:
         return tuple(self.footnote(i) for i in para.footnote_ids)
 
     def normative_footnotes(self) -> tuple[Footnote, ...]:
-        """Return footnotes that carry a requirement, scope rule or definition.
+        """Return footnotes this toolkit treats as carrying a requirement.
 
-        These are the footnotes the toolkit treats as binding, such as footnote 22 (shadow-AI
-        technical controls) and footnote 25 (agent inventory attributes).
+        Includes footnotes MAS words as expectations or scoping rules, and those the toolkit
+        enforces by interpretation: footnote 22 (shadow-AI technical controls), footnote 25 (agent
+        inventory attributes), footnote 45 (pilot guardrails) and footnote 49 (change classes).
+        See :attr:`Footnote.is_normative`.
         """
         return tuple(f for f in self.footnotes if f.is_normative)
 
@@ -345,6 +356,7 @@ def _parse_footnote(raw: dict[str, Any]) -> Footnote:
         tags=tuple(raw.get("tags", ())),
         attributes=tuple(raw.get("attributes", ())),
         failure_modes=tuple(raw.get("failure_modes", ())),
+        treated_as_binding=bool(raw.get("treated_as_binding", False)),
     )
 
 

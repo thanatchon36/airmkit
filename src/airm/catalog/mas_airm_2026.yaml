@@ -1319,6 +1319,7 @@ footnotes:
     kind: scope
     summary: "Embedded AI example: SaaS not sold as AI but containing AI features the FI uses."
     tags: [third-party, identification]
+    treated_as_binding: true
   - id: 22
     anchored_to: "4.4"
     page: 14
@@ -1328,12 +1329,14 @@ footnotes:
       and public tools, and technical controls such as network monitoring and data loss prevention
       to detect unauthorised AI use.
     tags: [shadow-ai, security]
+    treated_as_binding: true
   - id: 23
     anchored_to: "4.6"
     page: 14
     kind: guidance
     summary: Linkages via consistent data asset identifiers to data inventories and vendor/service identifiers to third-party registers.
     tags: [inventory, third-party, data]
+    treated_as_binding: true
   - id: 24
     anchored_to: "4.7"
     page: 14
@@ -1351,6 +1354,7 @@ footnotes:
       - tools_and_systems_accessible
       - components
       - guardrails
+    treated_as_binding: true
   - id: 26
     anchored_to: "4.10"
     page: 15
@@ -1404,6 +1408,7 @@ footnotes:
     kind: guidance
     summary: Customer disclosures need not be technical (effects, basis for decisions, redress); technical detail suits internal evaluators; IMDA chatbot transparency guidelines referenced.
     tags: [transparency, genai]
+    treated_as_binding: true
   - id: 35
     anchored_to: "5.7"
     page: 20
@@ -1467,6 +1472,7 @@ footnotes:
     kind: guidance
     summary: Pilots or phased rollouts with guardrails can be used to obtain representative data when testing data is limited.
     tags: [guardrails, testing]
+    treated_as_binding: true
   - id: 46
     anchored_to: "5.15"
     page: 24
@@ -1499,6 +1505,7 @@ footnotes:
     kind: guidance
     summary: "Change examples: training data, model/system architecture, key assumptions, scope of use, downstream impact."
     tags: [change-management]
+    treated_as_binding: true
   - id: 50
     anchored_to: "6.3"
     page: 30
