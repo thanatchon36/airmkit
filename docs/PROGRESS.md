@@ -101,3 +101,37 @@ Status of each MISSION phase. Update before compacting context so work can resum
   the published artefacts.
 - The RQ3 figure and the paper's RQ3 section quote one small local model at 16 attack trials per
   pattern. Raising n is in `docs/FUTURE_WORK.md`.
+
+## Release status — v0.1.0 not yet tagged
+
+Everything the release needs is in place and verified: CI is green on Ubuntu and macOS across
+Python 3.11-3.13 (including the job that regenerates every artefact and fails on a stale one),
+`make publish` builds an sdist and wheel that pass `twine check`, and the wheel installed into a
+clean venv runs the CLI with the packaged catalogue, controls and crosswalk data. The docs site is
+live at <https://thanatchon36.github.io/airmkit/> and GitHub topics and homepage are set. The name
+`airmkit` is free on PyPI.
+
+**Blocked on one manual step**: PyPI trusted publishing cannot be configured from here. Before the
+tag is pushed, add a pending trusted publisher at <https://pypi.org/manage/account/publishing/>:
+
+| Field | Value |
+|---|---|
+| PyPI project name | `airmkit` |
+| Owner | `thanatchon36` |
+| Repository name | `airmkit` |
+| Workflow name | `release.yml` |
+| Environment name | `pypi` |
+
+Then create a GitHub environment called `pypi` (Settings → Environments) and push the tag:
+
+```bash
+git tag -a v0.1.0 -m "airmkit 0.1.0" && git push origin v0.1.0
+```
+
+`release.yml` re-runs lint and tests, checks the tag matches `airm.__version__`, publishes to PyPI
+without a stored token, creates the GitHub release with the distributions attached, and redeploys
+the docs. A tag fires once: if the trusted publisher is missing, the tag has to be deleted and
+re-pushed.
+
+Also still manual: a Zenodo DOI (connect the repository at <https://zenodo.org/account/settings/github/>
+before tagging if the DOI should cover v0.1.0) and branch protection on `main`.
