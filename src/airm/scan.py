@@ -137,7 +137,13 @@ _SECRET_PATTERN = re.compile(
     (sk-[A-Za-z0-9_\-]{12,}
     |AIza[0-9A-Za-z_\-]{20,}
     |xox[abprs]-[A-Za-z0-9\-]{10,}
-    |(?:api[_-]?key|apikey|token|secret|password|bearer)\s*[:=]\s*["']?[A-Za-z0-9_\-/+.]{12,})
+    |gh[pousr]_[A-Za-z0-9]{16,}
+    |AKIA[0-9A-Z]{12,}
+    |ASIA[0-9A-Z]{12,}
+    |hf_[A-Za-z0-9]{16,}
+    |-{5}BEGIN[A-Z\s]*PRIVATE\s+KEY-{5}
+    |ey[A-Za-z0-9_\-]{8,}\.[A-Za-z0-9_\-]{8,}\.[A-Za-z0-9_\-]{8,}
+    |(?:api[_-]?key|apikey|token|secret|password|passwd|bearer|credential)\s*[:=]\s*["']?[A-Za-z0-9_\-/+.]{12,})
     """
 )
 

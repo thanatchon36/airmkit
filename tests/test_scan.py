@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import pytest
+
 from airm.scan import (
     DEFAULT_EXCLUDES,
     SIGNALS,
@@ -165,3 +167,50 @@ def test_scanning_this_repository_finds_its_own_signals():
     report = scan_path("src", min_confidence="medium")
     assert report.files_scanned > 5
     assert report.kinds
+
+
+class TestSecretRedaction:
+    """Findings are recorded in reports and often committed, so a matched line must not carry a
+    credential out of the file it was found in."""
+
+    @pytest.mark.parametrize(
+        "line",
+        [
+            "OPENAI_API_KEY=sk-abcdefghijklmnopqrstuvwxyz0123",
+            "GOOGLE_KEY=AIzaSyA1234567890abcdefghijklmnopqrst",
+            "SLACK=xoxb-1234567890-abcdefghij",
+            "token: ghp_abcdefghijklmnopqrstuvwxyz0123",
+            "AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE",
+            "HF_TOKEN=hf_abcdefghijklmnopqrstuvwx",
+            'auth = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dBjftJeZ4CVPmB92K27uhbU"',
+            "-----BEGIN RSA PRIVATE KEY-----",
+            'password = "hunter2hunter2hunter2"',
+        ],
+    )
+    def test_credentials_are_redacted(self, line):
+        from airm.scan import _redact
+
+        redacted = _redact(line)
+        assert "[REDACTED]" in redacted
+        for secret in (
+            "sk-abcdef",
+            "AIzaSyA1",
+            "xoxb-1234",
+            "ghp_abcdef",
+            "AKIAIOSFODNN7EXAMPLE",
+            "hf_abcdef",
+            "dBjftJeZ",
+            "PRIVATE KEY",
+            "hunter2",
+        ):
+            assert secret not in redacted
+
+    def test_ordinary_code_is_left_alone(self):
+        from airm.scan import _redact
+
+        assert _redact('  model = "claude-opus-5"  ') == 'model = "claude-opus-5"'
+
+    def test_redacted_line_is_truncated(self):
+        from airm.scan import MAX_LINE_CHARS, _redact
+
+        assert len(_redact("import anthropic  # " + "x" * 2000)) == MAX_LINE_CHARS

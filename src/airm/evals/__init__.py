@@ -204,13 +204,27 @@ class EvalResult(_Model):
         raise KeyError(f"no metric named {name!r} in this result")
 
 
+MAX_REPORT_BYTES = 64_000_000
+"""Largest eval report this module will read: beyond this it is a data dump, not a report."""
+
+
 def _load_json(path: str | Path) -> Any:
     """Read a JSON or JSONL file produced by an eval tool.
 
     Tool output is untrusted data: it is parsed, never evaluated, and a JSONL file is read line by
-    line so that one malformed record does not discard the run.
+    line so that one malformed record does not discard the run. The file is size-capped, so a
+    runaway harness log cannot exhaust memory in whatever pipeline calls this.
+
+    Raises:
+        ValueError: If the file is larger than :data:`MAX_REPORT_BYTES`.
     """
     target = Path(path)
+    size = target.stat().st_size
+    if size > MAX_REPORT_BYTES:
+        raise ValueError(
+            f"{target} is {size} bytes, above the {MAX_REPORT_BYTES}-byte cap for an eval report; "
+            "filter or split it before adapting it to evidence"
+        )
     text = target.read_text(encoding="utf-8", errors="replace")
     if target.suffix == ".jsonl":
         records = []

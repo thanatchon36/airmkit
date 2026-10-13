@@ -160,8 +160,7 @@ class Evidence(_Model):
             The evidence entry with its digest filled in.
         """
         target = Path(path)
-        digest = hashlib.sha256(target.read_bytes()).hexdigest()
-        return cls(item=item, ref=str(target), digest=digest, note=note)
+        return cls(item=item, ref=str(target), digest=_file_digest(target), note=note)
 
     def verify(self) -> bool | None:
         """Re-hash the referenced file and compare with the recorded digest.
@@ -175,7 +174,21 @@ class Evidence(_Model):
         target = Path(self.ref)
         if not target.is_file():
             return None
-        return hashlib.sha256(target.read_bytes()).hexdigest() == self.digest
+        return _file_digest(target) == self.digest
+
+
+def _file_digest(path: Path, *, chunk_bytes: int = 1 << 20) -> str:
+    """Return the SHA-256 of a file, read in chunks.
+
+    Evidence files can be large (a dataset, an eval dump, a model card with figures). Reading one
+    in chunks keeps the memory cost constant, so attesting a large artefact cannot exhaust memory
+    on the machine running the attestation.
+    """
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        while chunk := handle.read(chunk_bytes):
+            digest.update(chunk)
+    return digest.hexdigest()
 
 
 class Record(_Model):

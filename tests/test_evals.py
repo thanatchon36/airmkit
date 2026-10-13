@@ -434,3 +434,22 @@ class TestSuite:
     def test_pattern_descriptions_exist(self):
         for pattern in GuardrailPattern:
             assert pattern.description
+
+
+class TestReportSizeCap:
+    def test_an_oversized_report_is_refused(self, tmp_path, monkeypatch):
+        """A runaway harness log must not be loaded into memory unbounded."""
+        import airm.evals as evals
+
+        target = tmp_path / "report.json"
+        target.write_text('{"results": []}', encoding="utf-8")
+        monkeypatch.setattr(evals, "MAX_REPORT_BYTES", 4)
+        with pytest.raises(ValueError, match="above the"):
+            evals._load_json(target)
+
+    def test_a_normal_report_is_read(self, tmp_path):
+        import airm.evals as evals
+
+        target = tmp_path / "report.json"
+        target.write_text('{"results": [1, 2]}', encoding="utf-8")
+        assert evals._load_json(target) == {"results": [1, 2]}

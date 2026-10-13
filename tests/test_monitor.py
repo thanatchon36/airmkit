@@ -256,3 +256,22 @@ def test_example_trail_verifies():
     assert trail.verify()
     assert len(trail) > 10
     assert len(trail.incidents()) == 2
+
+
+class TestLargeEvidenceFiles:
+    def test_digest_is_chunked_and_matches_hashlib(self, tmp_path):
+        """Evidence files can be large; hashing must not load the whole file into memory."""
+        import hashlib
+
+        from airm.monitor import Evidence
+
+        target = tmp_path / "big.bin"
+        payload = b"x" * (3 * (1 << 20) + 17)  # spans several 1 MiB chunks
+        target.write_bytes(payload)
+
+        item = Evidence.from_file("dataset", target)
+        assert item.digest == hashlib.sha256(payload).hexdigest()
+        assert item.verify() is True
+
+        target.write_bytes(payload + b"!")
+        assert item.verify() is False
