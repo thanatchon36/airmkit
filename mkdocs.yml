@@ -64,6 +64,7 @@ nav:
       - What changed from the consultation: WHAT_CHANGED.md
       - Interpretations: INTERPRETATIONS.md
   - Research:
+      - The paper: paper.md
       - Research questions: RESEARCH_QUESTIONS.md
       - Literature review: literature/REVIEW.md
       - Design decisions: DECISIONS.md

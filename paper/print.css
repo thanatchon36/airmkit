@@ -1,0 +1,207 @@
+/* Print stylesheet for paper/paper.pdf, applied by pandoc + WeasyPrint.
+   A4, numbered pages, serif body, and tables that stay readable when a column count is high.
+   Deliberately plain: this is a working paper, not a brochure. */
+
+@page {
+  size: A4;
+  margin: 22mm 20mm 20mm 20mm;
+  @bottom-center {
+    content: counter(page);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 9pt;
+    color: #595959;
+  }
+  @top-center {
+    content: "Operationalising the MAS Guidelines on AI Risk Management";
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 8pt;
+    color: #8c8c8c;
+  }
+}
+
+@page :first {
+  @top-center { content: none; }
+}
+
+html {
+  font-size: 10.5pt;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.45;
+  color: #1a1a1a;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Title block */
+header#title-block-header {
+  margin-bottom: 14mm;
+}
+
+h1.title {
+  font-size: 19pt;
+  line-height: 1.25;
+  text-align: left;
+  margin-bottom: 4mm;
+}
+
+p.author,
+p.date {
+  text-align: left;
+  margin: 0;
+  font-size: 11pt;
+  color: #333333;
+}
+
+#abstract,
+div.abstract {
+  margin-top: 8mm;
+  font-size: 9.8pt;
+  text-align: justify;
+}
+
+#abstract h2,
+div.abstract h2 {
+  font-size: 10.5pt;
+  margin-bottom: 2mm;
+}
+
+/* Headings */
+h1, h2, h3, h4 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: left;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+h1 {
+  font-size: 14pt;
+  margin-top: 9mm;
+  margin-bottom: 3mm;
+  padding-bottom: 1.5mm;
+  border-bottom: 0.4pt solid #d9d9d9;
+}
+
+h2 {
+  font-size: 11.5pt;
+  margin-top: 6mm;
+  margin-bottom: 2mm;
+}
+
+h3 {
+  font-size: 10.5pt;
+  margin-top: 5mm;
+}
+
+/* Table of contents */
+nav#TOC {
+  break-after: page;
+  page-break-after: always;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 9.5pt;
+}
+
+nav#TOC ul {
+  list-style: none;
+  padding-left: 4mm;
+}
+
+nav#TOC > ul {
+  padding-left: 0;
+}
+
+nav#TOC a {
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+/* Tables: the paper has several wide ones, so they shrink rather than overflow. */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 8.2pt;
+  margin: 4mm 0 5mm 0;
+  text-align: left;
+  break-inside: auto;
+}
+
+thead {
+  display: table-header-group;
+}
+
+th, td {
+  border-bottom: 0.4pt solid #d9d9d9;
+  padding: 1.4mm 2mm 1.4mm 0;
+  vertical-align: top;
+  text-align: left;
+  hyphens: auto;
+  word-break: break-word;
+}
+
+th {
+  border-bottom: 0.8pt solid #8c8c8c;
+  font-weight: 600;
+}
+
+tr {
+  break-inside: avoid;
+}
+
+/* Figures */
+figure {
+  margin: 5mm 0;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+figcaption {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 8pt;
+  color: #4c4c4c;
+  text-align: left;
+  margin-top: 2mm;
+}
+
+/* Quotes carry the verbatim disclosures, which must stay visually distinct from our prose. */
+blockquote {
+  margin: 4mm 0;
+  padding: 2mm 0 2mm 4mm;
+  border-left: 1.5pt solid #d9d9d9;
+  color: #333333;
+  font-size: 9.3pt;
+}
+
+code {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 8.8pt;
+}
+
+pre {
+  background: #f4f4f4;
+  padding: 2.5mm 3mm;
+  font-size: 8.5pt;
+  break-inside: avoid;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+a {
+  color: #1a3f73;
+}
+
+ul, ol {
+  padding-left: 6mm;
+}
+
+li {
+  margin-bottom: 1mm;
+}

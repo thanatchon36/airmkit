@@ -198,6 +198,48 @@ def test_exec_summary_is_committed_as_rendered(summary: dict) -> None:
     )
 
 
+def test_docs_copy_of_the_paper_is_web_readable(paper: str) -> None:
+    """docs/paper.md is what the site serves, so it must not keep pandoc-only constructs."""
+    docs_paper = (REPO / "docs" / "paper.md").read_text(encoding="utf-8")
+    assert docs_paper.startswith("# Operationalising the MAS Guidelines")
+    assert "## Abstract" in docs_paper
+    assert not docs_paper.startswith("---"), "pandoc front matter would hide the title"
+    assert "](../results/figures/" not in docs_paper, "figures must resolve inside docs/"
+    assert "](figures/rq1_automatability_by_section.png)" in docs_paper
+    assert "paper/paper.pdf" in docs_paper, "the web copy should offer the PDF"
+
+
+def test_docs_figures_are_copies_of_the_committed_figures() -> None:
+    committed = sorted((REPO / "results" / "figures").glob("*.png"))
+    assert committed
+    for figure in committed:
+        copy = REPO / "docs" / "figures" / figure.name
+        assert copy.is_file(), f"{figure.name} is missing from docs/figures; run `make paper`"
+        assert copy.read_bytes() == figure.read_bytes(), f"{figure.name} is stale"
+
+
+def test_docs_copy_is_the_render_of_the_committed_paper(paper: str) -> None:
+    expected = render_paper.write_docs_paper(
+        paper.replace(
+            "{{DATE}}",
+            render_paper.summary_date(
+                json.loads((REPO / "results" / "summary.json").read_text(encoding="utf-8"))
+            ),
+        )
+    )
+    assert expected.read_text(encoding="utf-8") == (REPO / "docs" / "paper.md").read_text(
+        encoding="utf-8"
+    )
+
+
+def test_the_pdf_is_committed_and_plausible() -> None:
+    """The README links paper/paper.pdf, so a missing or truncated file is a broken promise."""
+    pdf = REPO / "paper" / "paper.pdf"
+    assert pdf.is_file(), "paper/paper.pdf is missing; run `make paper`"
+    assert pdf.stat().st_size > 100_000, "paper/paper.pdf looks truncated"
+    assert pdf.read_bytes()[:5] == b"%PDF-"
+
+
 def test_committed_summary_matches_the_committed_results(summary: dict) -> None:
     """results/summary.json is a build artefact of the five RQ files."""
     fresh = collect.collate(collect.load_rq_results(), collect.example_pack_summary())

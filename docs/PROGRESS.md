@@ -51,9 +51,16 @@ Status of each MISSION phase. Update before compacting context so work can resum
   asserts the committed paper is the render of the committed template and results. ~8,100 words.
 - `docs/EXEC_SUMMARY.md` (one page, CRO audience) and `docs/posts/` (10 drafts, each ≤1,300
   characters, ending with the repo link) render from the same summary. Tests enforce the limit.
-- Cut: a PDF in the repository. No LaTeX engine is installed on the build machine, so `make paper`
-  writes DOCX and HTML and degrades with an explicit message; the PDF target works wherever
-  tectonic, xelatex, pdflatex or typst is present.
+- `paper/paper.pdf` (22 pages) is committed and linked from the README. No LaTeX engine is
+  installed on the build machine, so `experiments/make_pdf.py` takes the HTML route: pandoc with
+  `paper/print.css` (A4, numbered pages, table-of-contents page) then WeasyPrint. `make paper`
+  still prefers tectonic, xelatex, pdflatex or typst where one exists. The PDF build needs the
+  `paper` extra and system pango and cairo, so CI does not build it; a test asserts the committed
+  file exists and is a plausible PDF.
+- `docs/paper.md` is a web-readable copy of the paper for the docs site, written by
+  `render_paper.py`: the pandoc front matter becomes ordinary Markdown and the figures are copied
+  to `docs/figures/` so they resolve under mkdocs. Live at
+  <https://thanatchon36.github.io/airmkit/paper/>.
 
 ## Phase 6 — Packaging, docs, publication — **shipped**
 - `Makefile`: `setup quick test lint format schemas example experiments collect paper docs

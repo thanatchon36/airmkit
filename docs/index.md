@@ -44,6 +44,8 @@ airm report --register ai-inventory.yaml --out audit-pack/
   map an eval harness result to a control, fork the rubric.
 - **[Clause index](clause-index.md)** — every paragraph of the Guidelines and what implements it,
   generated from the catalogue.
+- **[The paper](paper.md)** — the full study, or the
+  [PDF](https://github.com/thanatchon36/airmkit/raw/main/paper/paper.pdf) (22 pages).
 - **[Executive summary](EXEC_SUMMARY.md)** — one page for a CRO: the deadlines, what a tool can
   check, and the four findings worth acting on.
 

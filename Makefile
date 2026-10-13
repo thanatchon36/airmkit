@@ -32,7 +32,7 @@ help: ## Show this help
 
 setup: ## Create .venv with uv and install the package with every extra
 	uv venv -p 3.11
-	uv pip install -e ".[dev,report,experiments,ollama]"
+	uv pip install -e ".[dev,report,experiments,ollama,paper]"
 	@echo "Ollama is optional: RQ3 needs `ollama serve` and a model ≤4B (qwen3.5:0.8b by default)."
 
 lint: ## ruff check + ruff format --check + mypy --strict
@@ -83,9 +83,7 @@ ifeq ($(PANDOC),)
 else
 	cd paper && $(PANDOC) paper.md -o paper.docx --toc
 ifeq ($(PDF_ENGINE),)
-	@echo "No LaTeX/typst engine found; writing paper/paper.html instead of paper.pdf."
-	@echo "For a PDF: brew install tectonic (or basictex), then re-run make paper."
-	cd paper && $(PANDOC) paper.md -o paper.html --standalone --toc --embed-resources
+	$(EXPERIMENT_ENV) $(PY) experiments/make_pdf.py
 else
 	cd paper && $(PANDOC) paper.md -o paper.pdf --toc --pdf-engine=$(PDF_ENGINE)
 endif
@@ -107,7 +105,7 @@ reproduce: ## Rebuild every artefact in the paper from the committed sources
 
 clean: ## Remove build, cache and generated example output
 	rm -rf build dist *.egg-info .pytest_cache .mypy_cache .ruff_cache htmlcov .coverage
-	rm -rf $(EXAMPLE_OUT) site paper/paper.pdf paper/paper.html paper/paper.docx
+	rm -rf $(EXAMPLE_OUT) site paper/paper.html paper/paper.docx
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +
 
 publish: ## Build the sdist and wheel, check them, and print the release steps

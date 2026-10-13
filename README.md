@@ -18,6 +18,10 @@ produce and an auditor can read: a machine-readable clause index, an AI inventor
 first-class support for agents, a transparent risk-materiality rubric, a control catalogue where
 every control cites a paragraph, evidence records that cannot be quietly edited, and an audit pack.
 
+**[Read the paper on the web](https://thanatchon36.github.io/airmkit/paper/)** ·
+**[PDF](paper/paper.pdf)** · **[Docs](https://thanatchon36.github.io/airmkit/)** ·
+**[One page for a CRO](docs/EXEC_SUMMARY.md)**
+
 > **Not affiliated with MAS. Not legal or regulatory advice.** Independent open-source project.
 > Every interpretation and every threshold is the authors'; MAS declines to prescribe materiality
 > formulae, metrics or testing methodologies (Response to Feedback §7.19, §10.28, §10.66).
@@ -105,6 +109,19 @@ adopt the formats without Python — regenerate them with `airm schemas`.
 Full documentation, including a concepts guide, the CLI reference and a cookbook, is at
 **<https://thanatchon36.github.io/airmkit/>** (`make docs` builds it locally).
 
+## The paper
+
+*Operationalising the MAS Guidelines on AI Risk Management for LLM and Agentic Systems: A
+Machine-Checkable Control Catalogue and Empirical Study.*
+
+| | |
+|---|---|
+| 📄 **Read it on the web** | **<https://thanatchon36.github.io/airmkit/paper/>** |
+| ⬇️ **Download the PDF** (22 pp) | **[`paper/paper.pdf`](paper/paper.pdf)** — [direct download](https://github.com/thanatchon36/airmkit/raw/main/paper/paper.pdf) |
+| 📝 Markdown source | [`paper/paper.md`](paper/paper.md), rendered from [`paper/paper.md.in`](paper/paper.md.in) |
+| 🔢 Every number in it | injected from [`results/summary.json`](results/summary.json); nothing is typed by hand |
+| 📋 One page for a CRO | [`docs/EXEC_SUMMARY.md`](docs/EXEC_SUMMARY.md) |
+
 ## Research
 
 The repository is also a reproducible study of how far these Guidelines can be machine-checked.
@@ -112,14 +129,20 @@ Five questions, thresholds fixed in advance, in [`docs/RESEARCH_QUESTIONS.md`](d
 automatability of each expectation, how autonomy changes materiality, measured guardrail failure
 rates on a local model, crosswalk coverage, and the shape of the compliance workload.
 
+Of 17 pre-registered hypotheses, 10 held and **7 were refuted** — including that the guardrail
+patterns which suppress attacks also refuse half of benign in-scope requests, and that what an
+ISO 42001 + NIST-aligned institution still owes is governance machinery rather than the agent
+clauses. All of them are reported, with the thresholds they failed.
+
 ```bash
 make reproduce     # rebuilds every table and figure in paper/paper.md
 make quick         # under 5 minutes, no model calls
 ```
 
-Results are in [`results/summary.json`](results/summary.json) and the paper in
-[`paper/`](paper/). Headline findings and their caveats are in
-[`docs/EXEC_SUMMARY.md`](docs/EXEC_SUMMARY.md).
+Results are in [`results/summary.json`](results/summary.json), the figures in
+[`results/figures/`](results/figures/) with their captions, and the write-up in
+[`paper/paper.md`](paper/paper.md) ([PDF](paper/paper.pdf),
+[web](https://thanatchon36.github.io/airmkit/paper/)). `make paper` rebuilds all three.
 
 ## Clause index
 
