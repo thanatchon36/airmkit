@@ -1,0 +1,5 @@
+<!-- SYNTHETIC EVIDENCE for a fictional institution. Generated for the airmkit worked example. Not a real artefact and not based on any real institution. -->
+
+# Trading signal research agent: Agent permission matrix
+
+Read market data, write draft note. No order or execution permission.

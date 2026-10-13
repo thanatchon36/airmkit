@@ -1,0 +1,559 @@
+# Generated from a hand-authored mapping table; every row carries its justification.
+# Mapping is interpretive: see docs/RESEARCH_QUESTIONS.md RQ4 threats to validity.
+version: '1'
+description: MAS-AIRM to the NIST AI Risk Management Framework 1.0 (NIST AI 100-1) and its Generative
+  AI Profile (NIST AI 600-1). References are function and subcategory identifiers, e.g. 'MEASURE 2.11';
+  references prefixed 'GenAI' are Generative AI Profile risk categories. NIST AI RMF is voluntary guidance.
+mappings:
+- clause: '1.6'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.3
+  - MAP 1.5
+  coverage: full
+  justification: GOVERN 1.3 requires risk management activities and resources to be proportionate to
+    identified risk.
+  confidence: high
+- clause: '1.7'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.2
+  - GOVERN 4.3
+  - MANAGE 4.1
+  coverage: full
+  justification: Policies are reviewed and updated, and post-deployment monitoring plans include mechanisms
+    for continual improvement.
+  confidence: high
+- clause: '2.2'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.1
+  - GOVERN 1.2
+  - MAP 1.1
+  coverage: partial
+  justification: GOVERN 1 requires legal requirements and policies to be understood and implemented.
+  confidence: medium
+  gap: NIST is voluntary and has no tiered applicability regime; nothing keyed on material adverse impact.
+- clause: '2.5'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.2
+  - GOVERN 4.1
+  - GOVERN 2.1
+  coverage: partial
+  justification: Policies, accountability structures and a culture of risk awareness are required.
+  confidence: medium
+  gap: No approved-tool list or new-tool approval process, which is the practical core of basic AI governance.
+- clause: '3.2'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.1
+  - GOVERN 1.2
+  - GOVERN 2.1
+  - GOVERN 4.1
+  coverage: full
+  justification: GOVERN requires AI risk management to be integrated into broader enterprise risk management
+    with accountability structures.
+  confidence: high
+- clause: '3.3'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 2.1
+  - GOVERN 2.2
+  - GOVERN 4.1
+  - GOVERN 3.1
+  coverage: full
+  justification: Roles and responsibilities are documented, teams are diverse and cross-functional,
+    and organisational practices are in place.
+  confidence: high
+- clause: '3.4'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.1
+  - GOVERN 1.3
+  - GOVERN 2.3
+  - GOVERN 4.1
+  coverage: partial
+  justification: GOVERN 2.3 makes executive leadership responsible for decisions about AI risk, and
+    GOVERN 1.3 addresses risk tolerance.
+  confidence: medium
+  gap: NIST speaks of risk tolerance rather than a risk appetite framework with quantitative measures,
+    and has no board construct.
+- clause: '3.5'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 2.1
+  - GOVERN 2.2
+  - GOVERN 3.2
+  - MANAGE 2.1
+  coverage: full
+  justification: Roles, responsibilities, lines of communication and resource allocation for AI risk
+    management are all required.
+  confidence: high
+- clause: '3.6'
+  framework: nist_ai_rmf
+  refs: []
+  coverage: none
+  justification: NIST AI RMF has no provisions about group frameworks or local regulatory accountability.
+  confidence: high
+  gap: Entirely absent.
+- clause: '4.1'
+  framework: nist_ai_rmf
+  refs:
+  - MAP 1.1
+  - MAP 1.5
+  - GOVERN 1.6
+  - MEASURE 1.1
+  coverage: partial
+  justification: GOVERN 1.6 requires an inventory of AI systems and MAP 1 establishes context and categorisation.
+  confidence: medium
+  gap: NIST does not require designated control functions over identification, inventory and materiality
+    as distinct processes.
+- clause: '4.2'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.6
+  - MAP 1.1
+  - MAP 4.1
+  coverage: partial
+  justification: GOVERN 1.6 requires mechanisms to inventory AI systems, resourced according to risk.
+  confidence: medium
+  gap: No expectation covering AI embedded in third-party services that are not marketed as AI.
+- clause: '4.3'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 2.1
+  - GOVERN 1.6
+  coverage: partial
+  justification: Roles and responsibilities for inventory mechanisms are documented.
+  confidence: medium
+  gap: No final arbiter of what constitutes AI use, and no independence requirement.
+- clause: '4.4'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.3
+  - GOVERN 4.1
+  - MAP 1.1
+  - MANAGE 1.2
+  coverage: partial
+  justification: Risk tolerance and the treatment of unmeasurable or unknown risks are addressed; MANAGE
+    1.2 covers unacceptable risk.
+  confidence: medium
+  gap: No shadow-AI concept and no technical detection controls.
+- clause: '4.5'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.6
+  coverage: full
+  justification: GOVERN 1.6 is explicitly an AI system inventory requirement, periodically updated.
+  confidence: high
+- clause: '4.6'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.6
+  - MAP 4.1
+  coverage: partial
+  justification: Inventory and third-party resource mapping both exist.
+  confidence: low
+  gap: No requirement for consistent identifiers linking the AI inventory to other registers.
+- clause: '4.7'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.6
+  - MAP 1.1
+  - MAP 2.1
+  - MAP 2.2
+  coverage: partial
+  justification: The inventory and MAP activities require purpose, context, capability and documentation
+    of the AI system.
+  confidence: medium
+  gap: NIST names no fixed attribute list, in particular no risk materiality rating or model review
+    status attribute.
+- clause: '4.8'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.2
+  - MANAGE 4.1
+  coverage: partial
+  justification: Policy review and continual improvement cover periodic reassessment.
+  confidence: low
+  gap: No requirement to review the inventory design for newer AI technologies; no agent attributes.
+- clause: '4.9'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.6
+  - GOVERN 2.1
+  coverage: partial
+  justification: Inventory responsibility is assigned.
+  confidence: medium
+  gap: No designated control function with independent oversight of accuracy and completeness.
+- clause: '4.10'
+  framework: nist_ai_rmf
+  refs:
+  - MAP 1.5
+  - MEASURE 1.1
+  - MEASURE 2.1
+  - GOVERN 1.3
+  coverage: full
+  justification: MAP 1.5 requires organisational risk tolerances to be determined and MEASURE 1.1 methods
+    selected for the identified risks and context.
+  confidence: high
+- clause: '4.11'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 2.1
+  - MANAGE 1.1
+  - MANAGE 1.3
+  - MANAGE 2.2
+  coverage: full
+  justification: MANAGE 1.3 requires residual risks to be documented and MANAGE 2.2 risk treatment to
+    be applied and tracked.
+  confidence: high
+- clause: '4.12'
+  framework: nist_ai_rmf
+  refs:
+  - MAP 1.1
+  - MAP 2.2
+  - MAP 3.1
+  - MAP 5.1
+  - MEASURE 2.1
+  coverage: partial
+  justification: MAP 5.1 addresses likelihood and magnitude of impact, and MAP 2.2 the AI system's knowledge
+    limits.
+  confidence: medium
+  gap: The three-dimension triad is not NIST's framing; Reliance, in particular the degree of autonomy,
+    has no direct subcategory.
+- clause: '4.13'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 2.1
+  - GOVERN 4.1
+  - MANAGE 1.1
+  coverage: partial
+  justification: Decision-making about risk is assigned to accountable roles.
+  confidence: medium
+  gap: No designated control function arbitrating each use case's materiality.
+- clause: '5.1'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.2
+  - MAP 1.1
+  - MANAGE 1.1
+  - MANAGE 2.1
+  coverage: full
+  justification: The four functions span the lifecycle with roles documented at each stage.
+  confidence: high
+- clause: '5.2'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 1.3
+  - MANAGE 1.2
+  - MANAGE 1.3
+  - MANAGE 2.1
+  coverage: full
+  justification: Risk-proportionate treatment with documented residual risk is the central MANAGE mechanism.
+  confidence: high
+- clause: '5.3'
+  framework: nist_ai_rmf
+  refs:
+  - MANAGE 2.3
+  - MANAGE 2.4
+  - MANAGE 4.3
+  coverage: full
+  justification: MANAGE 2.3 requires mechanisms to supersede, disengage or deactivate AI systems, and
+    MANAGE 2.4 fallback and incident response plans.
+  confidence: high
+- clause: '5.4'
+  framework: nist_ai_rmf
+  refs:
+  - MAP 2.3
+  - MEASURE 2.2
+  - MEASURE 2.4
+  - MEASURE 2.8
+  - GOVERN 6.1
+  coverage: partial
+  justification: Data quality, representativeness and documentation of training data are addressed across
+    MAP and MEASURE.
+  confidence: medium
+  gap: NIST does not organise data governance into MAS-AIRM's seven named limbs, and privacy and classification
+    are thinner.
+- clause: '5.5'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 2.8
+  - MEASURE 2.9
+  - GOVERN 4.2
+  - MAP 2.2
+  coverage: full
+  justification: MEASURE 2.9 requires the AI model to be explained and validated and documentation to
+    enable understanding by relevant actors.
+  confidence: high
+- clause: '5.6'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 2.9
+  - GOVERN 4.2
+  - MAP 5.2
+  coverage: partial
+  justification: Explanation requirements are to be set according to context and MAP 5.2 covers feedback
+    to end users.
+  confidence: medium
+  gap: No scaling by risk materiality and no named high-impact domains.
+- clause: '5.7'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 2.11
+  - MAP 1.1
+  - GOVERN 3.2
+  coverage: partial
+  justification: MEASURE 2.11 requires fairness and bias to be evaluated with results documented.
+  confidence: medium
+  gap: No requirement to define what the organisation considers 'fair' outcomes.
+- clause: '5.8'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 2.11
+  - MEASURE 2.1
+  - MEASURE 4.2
+  coverage: full
+  justification: MEASURE 2.11 requires fairness and bias evaluation using appropriate metrics with results
+    documented and mitigations tracked.
+  confidence: high
+- clause: '5.9'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 3.2
+  - MEASURE 2.8
+  - MANAGE 2.2
+  - MAP 3.5
+  coverage: full
+  justification: GOVERN 3.2 covers human-AI configuration policies and oversight, and MAP 3.5 the human
+    oversight requirements and operator proficiency.
+  confidence: high
+- clause: '5.10'
+  framework: nist_ai_rmf
+  refs:
+  - MAP 4.1
+  - MAP 4.2
+  - GOVERN 6.1
+  - MEASURE 2.4
+  coverage: partial
+  justification: GOVERN 6.1 requires policies for third-party AI risks and MAP 4 the risks of third-party
+    software and data.
+  confidence: medium
+  gap: No requirement to test third-party AI in the FI's own use-case context using the FI's own data.
+- clause: '5.11'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 6.1
+  - GOVERN 6.2
+  - MAP 4.1
+  - MANAGE 3.1
+  - MANAGE 3.2
+  coverage: partial
+  justification: MANAGE 3 is dedicated to third-party risk, requiring monitoring and contingency for
+    third-party AI.
+  confidence: medium
+  gap: Does not reject self-attestation, and concentration risk is absent; the limit / suspend / replace
+    expectation has no counterpart.
+- clause: '5.12'
+  framework: nist_ai_rmf
+  refs:
+  - MAP 2.1
+  - MAP 2.2
+  - MEASURE 2.1
+  - MANAGE 1.4
+  coverage: full
+  justification: MAP 2.1 requires task and method documentation, and MANAGE 1.4 the justification for
+    the approach chosen.
+  confidence: medium
+- clause: '5.13'
+  framework: nist_ai_rmf
+  refs:
+  - MAP 2.2
+  - MAP 5.1
+  - MANAGE 1.2
+  - GenAI 2.2
+  coverage: full
+  justification: The GenAI Profile addresses confabulation and opacity of newer models explicitly, with
+    MANAGE 1.2 on unacceptable risk.
+  confidence: medium
+- clause: '5.14'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 1.1
+  - MEASURE 2.3
+  - MEASURE 2.5
+  - MEASURE 2.6
+  - MEASURE 2.7
+  coverage: full
+  justification: MEASURE 2 requires validity, reliability, safety and security to be evaluated and documented
+    with appropriate methods and metrics.
+  confidence: high
+- clause: '5.15'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 2.6
+  - MEASURE 2.7
+  - MANAGE 2.2
+  - GenAI 2.6
+  - GenAI 2.7
+  coverage: full
+  justification: The GenAI Profile requires evaluation of information security and of safety guardrails,
+    including adversarial testing, and MEASURE 2.7 security and resilience evaluation.
+  confidence: medium
+- clause: '5.16'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 2.7
+  - MANAGE 2.2
+  - GenAI 2.7
+  - GOVERN 1.5
+  coverage: partial
+  justification: Security and resilience evaluation and the GenAI Profile's information-security actions
+    cover much of this.
+  confidence: medium
+  gap: 'NIST is outcome-stated, not control-stated: role-based access, MFA and separation of duties
+    are not named.'
+- clause: '5.17'
+  framework: nist_ai_rmf
+  refs:
+  - MAP 2.1
+  - MEASURE 1.2
+  - MEASURE 2.8
+  - GOVERN 1.4
+  - MEASURE 2.13
+  coverage: full
+  justification: MEASURE 2.13 requires documentation sufficient for assessment and reproducibility,
+    and GOVERN 1.4 that risk management processes be documented.
+  confidence: high
+- clause: '5.18'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 1.3
+  - MEASURE 4.1
+  - GOVERN 4.1
+  coverage: full
+  justification: MEASURE 1.3 requires independent assessors, internal or external, to be involved in
+    measurement and testing.
+  confidence: high
+- clause: '5.19'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 1.3
+  - MEASURE 4.1
+  - MEASURE 2.13
+  coverage: partial
+  justification: MEASURE 1.3 is explicitly about independent assessment capability.
+  confidence: medium
+  gap: NIST does not tie formal independent validation to a high-materiality threshold or specify its
+    scope.
+- clause: '5.20'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 1.3
+  - MEASURE 4.1
+  coverage: partial
+  justification: Independent assessment is required but proportionality of form is not specified.
+  confidence: low
+  gap: No documented-peer-review alternative for lower materiality.
+- clause: '5.21'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 4.3
+  - MANAGE 2.2
+  - MANAGE 4.1
+  - GOVERN 4.3
+  coverage: full
+  justification: MEASURE 4.3 requires measurable performance improvements and findings to be documented
+    and acted on, with GOVERN 4.3 on reporting.
+  confidence: high
+- clause: '5.22'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 2.7
+  - GenAI 2.7
+  - MANAGE 2.2
+  coverage: partial
+  justification: Security and resilience evaluation includes red-teaming in the GenAI Profile.
+  confidence: medium
+  gap: No pre-production go-live checklist or environment segregation review.
+- clause: '5.23'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 2.4
+  - MEASURE 3.1
+  - MEASURE 4.1
+  - MANAGE 4.1
+  - MANAGE 4.2
+  - GenAI 4.1
+  coverage: full
+  justification: MEASURE 2.4 requires deployed system monitoring including drift, and MANAGE 4 post-deployment
+    monitoring, incident response and appeal mechanisms.
+  confidence: high
+- clause: '5.24'
+  framework: nist_ai_rmf
+  refs:
+  - MEASURE 2.4
+  - MEASURE 4.1
+  - MANAGE 4.1
+  - MANAGE 2.4
+  coverage: partial
+  justification: Continuous monitoring and periodic re-measurement are required.
+  confidence: medium
+  gap: No independent re-validation requirement keyed on high materiality.
+- clause: '5.25'
+  framework: nist_ai_rmf
+  refs:
+  - MANAGE 4.1
+  - MEASURE 2.4
+  - GOVERN 1.4
+  - GenAI 4.1
+  coverage: partial
+  justification: Post-deployment monitoring plans include change tracking and version control.
+  confidence: medium
+  gap: No change-significance framework with re-approval, and no provisions for automatically updating
+    AI.
+- clause: '5.26'
+  framework: nist_ai_rmf
+  refs:
+  - MANAGE 2.3
+  - MANAGE 4.1
+  - GOVERN 1.7
+  coverage: full
+  justification: GOVERN 1.7 covers decommissioning processes for AI systems, including data and risk
+    considerations.
+  confidence: high
+- clause: '6.1'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 2.2
+  - GOVERN 3.2
+  - GOVERN 4.1
+  - MAP 3.5
+  coverage: full
+  justification: GOVERN 2.2 requires personnel to be trained and GOVERN 4.1 a culture where AI risk
+    is considered; MAP 3.5 covers operator proficiency.
+  confidence: high
+- clause: '6.2'
+  framework: nist_ai_rmf
+  refs:
+  - GOVERN 2.2
+  - GOVERN 4.3
+  - MANAGE 4.1
+  coverage: full
+  justification: Training must be provided and kept current as risks change.
+  confidence: medium
+- clause: '6.3'
+  framework: nist_ai_rmf
+  refs:
+  - MAP 2.1
+  - MEASURE 2.7
+  - GOVERN 1.5
+  - MANAGE 2.1
+  coverage: partial
+  justification: Resource and infrastructure considerations appear in MAP and MANAGE but are not a dedicated
+    requirement.
+  confidence: medium
+  gap: No dedicated technology infrastructure adequacy expectation covering availability, resilience
+    and scalability.

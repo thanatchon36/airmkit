@@ -1,0 +1,555 @@
+# Generated from a hand-authored mapping table; every row carries its justification.
+# Mapping is interpretive: see docs/RESEARCH_QUESTIONS.md RQ4 threats to validity.
+version: '1'
+description: MAS-AIRM to Regulation (EU) 2024/1689 (Artificial Intelligence Act). References are Articles,
+  Annexes and Recitals. The Act is binding law whose obligations attach to a system's risk classification
+  and to the provider or deployer role, so an obligation may be 'full' in substance while applying only
+  to Annex III high-risk systems. Credit scoring and life and health insurance pricing are Annex III
+  high-risk uses, which is where the overlap with MAS-AIRM is strongest.
+mappings:
+- clause: '1.6'
+  framework: eu_ai_act
+  refs:
+  - Art. 9(1)-(2)
+  - Recital 65
+  coverage: partial
+  justification: The risk management system must be proportionate and iterative, but the Act's obligations
+    attach to classification as high-risk, not to institution size.
+  confidence: medium
+  gap: Proportionality in the Act is risk-class based, not calibrated to the deployer's size and nature
+    of activities.
+- clause: '1.7'
+  framework: eu_ai_act
+  refs:
+  - Art. 9(2)
+  - Art. 72
+  - Art. 17(1)(f)
+  coverage: full
+  justification: The risk management system is a continuous iterative process requiring regular systematic
+    review, supported by post-market monitoring.
+  confidence: high
+- clause: '2.2'
+  framework: eu_ai_act
+  refs:
+  - Art. 6
+  - Annex III
+  - Art. 26
+  - Art. 9
+  - Art. 17
+  coverage: partial
+  justification: The Act has its own tiered regime with prohibited, high-risk, limited-risk and minimal-risk
+    tiers.
+  confidence: high
+  gap: The Act's tiers are fixed by use category, not by the institution's assessment of material adverse
+    impact; a use outside Annex III attracts almost no obligations.
+- clause: '2.5'
+  framework: eu_ai_act
+  refs:
+  - Art. 4
+  - Art. 26(2)
+  - Art. 50
+  coverage: partial
+  justification: Art. 4 requires AI literacy measures and Art. 26(2) that deployers assign competent,
+    trained human oversight.
+  confidence: medium
+  gap: No approved-tool list, no new-tool approval process, and no general internal AI acceptable-use
+    policy requirement.
+- clause: '3.2'
+  framework: eu_ai_act
+  refs:
+  - Art. 9
+  - Art. 17
+  - Art. 26
+  coverage: partial
+  justification: A risk management system and a quality management system are required of providers,
+    and deployers must use systems per instructions.
+  confidence: medium
+  gap: Nothing addressed to a board, and no requirement to integrate AI risk into enterprise-wide risk
+    frameworks.
+- clause: '3.3'
+  framework: eu_ai_act
+  refs:
+  - Art. 17(1)
+  - Art. 22
+  - Art. 26(1)
+  coverage: partial
+  justification: The quality management system requires an accountability framework and defined responsibilities.
+  confidence: medium
+  gap: No requirement for a consolidated organisation-wide view of AI risk across functions.
+- clause: '3.4'
+  framework: eu_ai_act
+  refs:
+  - Art. 17(1)(a)
+  - Art. 22
+  coverage: partial
+  justification: A compliance strategy and authorised representative arrangements are required.
+  confidence: low
+  gap: No board approval of an AI governance approach and no risk appetite framework.
+- clause: '3.5'
+  framework: eu_ai_act
+  refs:
+  - Art. 17
+  - Art. 22
+  - Art. 26(1)-(2)
+  coverage: partial
+  justification: The quality management system assigns management responsibility for compliance.
+  confidence: medium
+  gap: Senior-management duties such as escalation of AI incidents internally and updating a board are
+    absent.
+- clause: '3.6'
+  framework: eu_ai_act
+  refs:
+  - Art. 22
+  - Art. 25
+  coverage: partial
+  justification: Authorised representatives and the allocation of responsibilities along the value chain
+    address cross-border structures.
+  confidence: low
+  gap: Nothing on a local entity relying on a group framework and remaining accountable to its own supervisor.
+- clause: '4.1'
+  framework: eu_ai_act
+  refs:
+  - Art. 9
+  - Art. 17
+  - Art. 11
+  - Art. 26
+  coverage: partial
+  justification: Risk management and quality management systems with technical documentation presume
+    the equivalent processes.
+  confidence: medium
+  gap: No requirement for a distinct identification process, an AI inventory, or a use-case materiality
+    assessment methodology.
+- clause: '4.2'
+  framework: eu_ai_act
+  refs:
+  - Art. 6
+  - Art. 25
+  - Art. 26
+  coverage: partial
+  justification: Deployers must determine whether a system falls in scope and providers must classify
+    their systems.
+  confidence: medium
+  gap: Classification is of known AI systems; there is no duty to discover AI embedded in procured services.
+- clause: '4.3'
+  framework: eu_ai_act
+  refs:
+  - Art. 17(1)
+  - Art. 26(2)
+  coverage: partial
+  justification: The quality management system requires responsibilities to be defined.
+  confidence: low
+  gap: No designated control function as final arbiter of what constitutes AI.
+- clause: '4.4'
+  framework: eu_ai_act
+  refs:
+  - Art. 9
+  - Art. 26
+  coverage: none
+  justification: The Act contains no provisions on unidentified or unauthorised AI use within an organisation.
+  confidence: high
+  gap: Shadow AI and embedded-AI discovery have no counterpart.
+- clause: '4.5'
+  framework: eu_ai_act
+  refs:
+  - Art. 49
+  - Art. 71
+  - Art. 11
+  - Art. 26(5)
+  coverage: partial
+  justification: High-risk systems must be registered in the EU database, which is a public inventory
+    of in-scope systems.
+  confidence: medium
+  gap: The database covers high-risk systems only, not the institution's whole AI estate, and is not
+    an internal management inventory.
+- clause: '4.6'
+  framework: eu_ai_act
+  refs:
+  - Art. 49
+  - Art. 11
+  coverage: none
+  justification: The Act requires no linkage between an AI register and other internal registers.
+  confidence: medium
+  gap: Absent.
+- clause: '4.7'
+  framework: eu_ai_act
+  refs:
+  - Annex IV
+  - Art. 11
+  - Art. 49
+  - Annex VIII
+  coverage: full
+  justification: Annex IV technical documentation and Annex VIII registration information together require
+    purpose, intended use, data, dependencies, versions and responsible parties.
+  confidence: medium
+- clause: '4.8'
+  framework: eu_ai_act
+  refs:
+  - Art. 9(2)
+  - Art. 72
+  coverage: partial
+  justification: The iterative risk management system and post-market monitoring require reassessment.
+  confidence: low
+  gap: No review of inventory design, and no agent-specific attributes.
+- clause: '4.9'
+  framework: eu_ai_act
+  refs:
+  - Art. 17(1)
+  - Art. 49
+  coverage: partial
+  justification: Registration and documentation duties fall on identified responsible persons.
+  confidence: low
+  gap: No designated control function with independent oversight of inventory completeness.
+- clause: '4.10'
+  framework: eu_ai_act
+  refs:
+  - Art. 9(2)(a)-(b)
+  - Art. 27
+  coverage: partial
+  justification: Art. 9 requires identification and estimation of risks and Art. 27 a fundamental-rights
+    impact assessment for certain deployers including financial institutions.
+  confidence: medium
+  gap: Risk classification is largely pre-determined by Annex III rather than produced by the institution's
+    own methodology.
+- clause: '4.11'
+  framework: eu_ai_act
+  refs:
+  - Art. 9(2)-(5)
+  coverage: full
+  justification: Art. 9 requires risks to be estimated, evaluated and then re-evaluated after mitigation,
+    with residual risk judged acceptable.
+  confidence: high
+- clause: '4.12'
+  framework: eu_ai_act
+  refs:
+  - Art. 9(2)
+  - Art. 27
+  - Recital 65
+  coverage: partial
+  justification: Risk estimation considers harm to health, safety and fundamental rights, which is the
+    Impact dimension.
+  confidence: medium
+  gap: Complexity and Reliance as assessment dimensions are absent; autonomy appears in the definition
+    of AI, not in risk classification.
+- clause: '4.13'
+  framework: eu_ai_act
+  refs:
+  - Art. 17(1)
+  - Art. 27
+  coverage: partial
+  justification: Responsibility for the assessment is assigned.
+  confidence: low
+  gap: No arbitrating control function for a materiality rating.
+- clause: '5.1'
+  framework: eu_ai_act
+  refs:
+  - Art. 9
+  - Art. 17
+  - Art. 16
+  - Art. 26
+  coverage: full
+  justification: Providers must operate a lifecycle risk management system and a quality management
+    system covering design through post-market.
+  confidence: high
+- clause: '5.2'
+  framework: eu_ai_act
+  refs:
+  - Art. 9(2)-(5)
+  - Recital 65
+  coverage: full
+  justification: Risk management measures must be proportionate and residual risk judged acceptable.
+  confidence: high
+- clause: '5.3'
+  framework: eu_ai_act
+  refs:
+  - Art. 15(4)
+  - Art. 14(4)(e)
+  - Art. 26(5)
+  coverage: full
+  justification: Art. 14(4)(e) requires a stop button or equivalent for human oversight and Art. 15(4)
+    resilience and fail-safe plans.
+  confidence: high
+- clause: '5.4'
+  framework: eu_ai_act
+  refs:
+  - Art. 10
+  - Art. 10(2)-(5)
+  coverage: full
+  justification: Art. 10 is a dedicated data governance article covering relevance, representativeness,
+    completeness, bias examination and special-category data.
+  confidence: high
+- clause: '5.5'
+  framework: eu_ai_act
+  refs:
+  - Art. 13
+  - Art. 11
+  - Art. 50
+  - Art. 86
+  coverage: full
+  justification: Art. 13 requires transparency and instructions for use enabling interpretation of output,
+    Art. 50 disclosure of AI interaction, and Art. 86 a right to explanation.
+  confidence: high
+- clause: '5.6'
+  framework: eu_ai_act
+  refs:
+  - Art. 13
+  - Art. 50
+  - Art. 86
+  - Art. 26(7)
+  - Annex III(5)(b)
+  coverage: full
+  justification: Credit scoring is an Annex III high-risk use, attracting the full transparency and
+    explanation obligations the MAS clause describes for the same domain.
+  confidence: high
+- clause: '5.7'
+  framework: eu_ai_act
+  refs:
+  - Art. 10(2)(f)-(g)
+  - Art. 9(2)
+  - Art. 27
+  - Recital 67
+  coverage: full
+  justification: Art. 10 requires examination for possible biases likely to affect health, safety or
+    fundamental rights and appropriate mitigation.
+  confidence: high
+- clause: '5.8'
+  framework: eu_ai_act
+  refs:
+  - Art. 10(2)(f)-(g)
+  - Art. 10(5)
+  - Art. 15(3)
+  - Art. 27
+  coverage: full
+  justification: Bias detection and correction are required, with Art. 10(5) permitting processing of
+    special categories strictly for bias detection.
+  confidence: high
+- clause: '5.9'
+  framework: eu_ai_act
+  refs:
+  - Art. 14
+  - Art. 26(2)
+  - Art. 26(5)
+  coverage: full
+  justification: Art. 14 is a dedicated human oversight article, including automation bias awareness,
+    intervention and the stop function.
+  confidence: high
+- clause: '5.10'
+  framework: eu_ai_act
+  refs:
+  - Art. 25
+  - Art. 26
+  - Art. 16
+  - Art. 28
+  coverage: partial
+  justification: Art. 25 allocates responsibilities along the value chain and Art. 26 obliges deployers
+    to use systems per instructions.
+  confidence: medium
+  gap: No duty to test a supplier's AI in the deployer's own context with the deployer's own data, nor
+    compensatory testing for disclosure gaps.
+- clause: '5.11'
+  framework: eu_ai_act
+  refs:
+  - Art. 25
+  - Art. 26
+  - Art. 16(j)
+  - Art. 53
+  coverage: partial
+  justification: The Act allocates obligations between providers and deployers and requires GPAI providers
+    to supply downstream information.
+  confidence: medium
+  gap: No concentration risk, no rejection of self-attestation (conformity assessment is often self-assessment),
+    and no limit / suspend / replace duty.
+- clause: '5.12'
+  framework: eu_ai_act
+  refs:
+  - Art. 9(2)
+  - Annex IV(2)
+  - Art. 11
+  coverage: full
+  justification: Annex IV requires the design choices, rationale and assumptions to be documented, including
+    trade-offs made.
+  confidence: medium
+- clause: '5.13'
+  framework: eu_ai_act
+  refs:
+  - Art. 9(2)
+  - Art. 55
+  - Recital 65
+  coverage: partial
+  justification: Systemic-risk GPAI obligations address frontier-model risk.
+  confidence: medium
+  gap: No expectation addressed to a deployer weighing newer models against its own capability to mitigate.
+- clause: '5.14'
+  framework: eu_ai_act
+  refs:
+  - Art. 9(6)-(8)
+  - Art. 15
+  - Art. 17(1)(d)
+  coverage: full
+  justification: Art. 9(6) requires testing against preliminarily defined metrics and probabilistic
+    thresholds appropriate to the intended purpose.
+  confidence: high
+- clause: '5.15'
+  framework: eu_ai_act
+  refs:
+  - Art. 9(5)
+  - Art. 15(1)
+  - Art. 15(5)
+  - Art. 55(1)(b)
+  coverage: partial
+  justification: Art. 15(5) requires resilience against adversarial attempts including data poisoning
+    and adversarial examples, and Art. 55 adversarial testing for systemic-risk models.
+  confidence: medium
+  gap: The Act requires safeguards but not measurement of guardrail effectiveness as a distinct obligation
+    for every in-scope system.
+- clause: '5.16'
+  framework: eu_ai_act
+  refs:
+  - Art. 15
+  - Art. 15(5)
+  - Art. 12
+  - Annex IV(2)(g)
+  coverage: full
+  justification: Art. 15 requires an appropriate level of cybersecurity, with specific resilience measures
+    and technical solutions.
+  confidence: high
+- clause: '5.17'
+  framework: eu_ai_act
+  refs:
+  - Art. 11
+  - Annex IV
+  - Art. 12
+  - Art. 18
+  - Art. 19
+  coverage: full
+  justification: Annex IV technical documentation plus Art. 12 automatic logging and Art. 18-19 record-keeping
+    give a reproducible and auditable trail.
+  confidence: high
+- clause: '5.18'
+  framework: eu_ai_act
+  refs:
+  - Art. 43
+  - Art. 17(1)(d)
+  - Art. 19
+  - Annex VI
+  - Annex VII
+  coverage: full
+  justification: Conformity assessment before placing on the market, with Annex VII providing notified-body
+    assessment, is the pre-deployment review.
+  confidence: high
+- clause: '5.19'
+  framework: eu_ai_act
+  refs:
+  - Art. 43
+  - Annex VII
+  - Art. 31
+  coverage: partial
+  justification: Annex VII third-party conformity assessment by a notified body is genuinely independent,
+    and Art. 31 sets independence requirements.
+  confidence: high
+  gap: For most Annex III high-risk systems Art. 43 permits internal control (self-assessment), so independent
+    validation is not guaranteed; the trigger is also the use category, not the institution's materiality
+    rating.
+- clause: '5.20'
+  framework: eu_ai_act
+  refs:
+  - Art. 43
+  - Annex VI
+  coverage: partial
+  justification: Annex VI internal control is the lighter alternative.
+  confidence: medium
+  gap: No requirement that the reviewer be uninvolved in development, which Annex VI does not impose.
+- clause: '5.21'
+  framework: eu_ai_act
+  refs:
+  - Art. 20
+  - Art. 73
+  - Art. 79
+  - Art. 17(1)(i)
+  coverage: full
+  justification: Corrective actions, incident reporting and the obligation to act on non-conformity
+    cover reporting and actioning findings.
+  confidence: high
+- clause: '5.22'
+  framework: eu_ai_act
+  refs:
+  - Art. 15(5)
+  - Art. 43
+  - Annex IV(2)(g)
+  coverage: partial
+  justification: Cybersecurity resilience must be demonstrated as part of conformity assessment.
+  confidence: medium
+  gap: No named pre-production penetration testing, red teaming or go-live checklist obligation.
+- clause: '5.23'
+  framework: eu_ai_act
+  refs:
+  - Art. 72
+  - Art. 12
+  - Art. 26(5)
+  - Art. 73
+  - Art. 86
+  coverage: full
+  justification: Art. 72 requires a post-market monitoring system and plan, Art. 26(5) deployer monitoring,
+    Art. 12 logging and Art. 73 serious incident reporting.
+  confidence: high
+- clause: '5.24'
+  framework: eu_ai_act
+  refs:
+  - Art. 43(4)
+  - Art. 72
+  - Art. 9(2)
+  coverage: full
+  justification: Substantial modification triggers a new conformity assessment, and post-market monitoring
+    feeds the iterative risk management system.
+  confidence: medium
+- clause: '5.25'
+  framework: eu_ai_act
+  refs:
+  - Art. 43(4)
+  - Art. 3(23)
+  - Art. 17(1)(c)
+  - Art. 72
+  coverage: full
+  justification: The substantial-modification concept with re-assessment is precisely a change-significance
+    framework with re-approval, and Art. 17(1)(c) requires design and change control procedures.
+  confidence: high
+- clause: '5.26'
+  framework: eu_ai_act
+  refs:
+  - Art. 19
+  - Art. 12
+  - Art. 73
+  coverage: partial
+  justification: Record retention obligations survive the system's operational life.
+  confidence: medium
+  gap: No retirement or decommissioning control covering dependencies, secure removal and stakeholder
+    notification.
+- clause: '6.1'
+  framework: eu_ai_act
+  refs:
+  - Art. 4
+  - Art. 26(2)
+  - Art. 14(4)(a)
+  coverage: full
+  justification: Art. 4 requires providers and deployers to ensure a sufficient level of AI literacy
+    among staff, and Art. 26(2) that overseers be competent and trained.
+  confidence: high
+- clause: '6.2'
+  framework: eu_ai_act
+  refs:
+  - Art. 4
+  - Art. 17(1)
+  - Art. 72
+  coverage: partial
+  justification: AI literacy must be ensured on an ongoing basis.
+  confidence: medium
+  gap: No requirement to review capability programmes for newer AI technologies.
+- clause: '6.3'
+  framework: eu_ai_act
+  refs:
+  - Art. 15
+  - Art. 15(4)
+  - Annex IV(2)
+  coverage: partial
+  justification: Accuracy, robustness and resilience obligations imply adequate infrastructure.
+  confidence: medium
+  gap: No dedicated technology infrastructure adequacy requirement covering availability and scalability.

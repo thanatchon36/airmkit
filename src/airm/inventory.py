@@ -91,18 +91,32 @@ class AutonomyLevel(StrEnum):
     extent of autonomy granted to the AI system or model and the degree of human involvement") and
     the agent risks of §1.11. Response to Feedback §7.18 contrasts automated trade execution
     (higher) with staff reviewing every recommendation (lower), which is the gradient below.
+
+    ``AUTONOMOUS_DECISIONING`` and ``AUTONOMOUS_AGENT`` are deliberately distinct. A real-time
+    fraud model that blocks a transaction without human review is fully autonomous in the §4.12(c)
+    sense, but it is not an AI agent: it has no tools and no systems access, so the agent
+    attributes of §4.8 footnote 25 do not apply to it. Conflating the two would demand agent
+    identifiers and tool allowlists from a scoring model, and would understate the distinct risk
+    §1.11 describes, where "an AI agent with access to tools could autonomously execute
+    unauthorised or erroneous actions".
     """
 
     ASSISTIVE = "assistive"
     HUMAN_IN_THE_LOOP = "human_in_the_loop"
     HUMAN_OVER_THE_LOOP = "human_over_the_loop"
+    AUTONOMOUS_DECISIONING = "autonomous_decisioning"
     AUTONOMOUS_AGENT = "autonomous_agent"
     MULTI_AGENT = "multi_agent"
 
     @property
     def rank(self) -> int:
-        """Ordinal rank, 0 (assistive) to 4 (multi-agent), for rubric scoring."""
+        """Ordinal rank, 0 (assistive) to 5 (multi-agent), for rubric scoring."""
         return _AUTONOMY_RANK[self]
+
+    @property
+    def is_autonomous(self) -> bool:
+        """Whether the AI acts without human review of each decision (MAS-AIRM §4.12(c))."""
+        return self.rank >= AutonomyLevel.AUTONOMOUS_DECISIONING.rank
 
     @property
     def is_agentic(self) -> bool:
@@ -114,8 +128,9 @@ _AUTONOMY_RANK: dict[AutonomyLevel, int] = {
     AutonomyLevel.ASSISTIVE: 0,
     AutonomyLevel.HUMAN_IN_THE_LOOP: 1,
     AutonomyLevel.HUMAN_OVER_THE_LOOP: 2,
-    AutonomyLevel.AUTONOMOUS_AGENT: 3,
-    AutonomyLevel.MULTI_AGENT: 4,
+    AutonomyLevel.AUTONOMOUS_DECISIONING: 3,
+    AutonomyLevel.AUTONOMOUS_AGENT: 4,
+    AutonomyLevel.MULTI_AGENT: 5,
 }
 
 
@@ -438,6 +453,58 @@ class UseCase(_Model):
         """Guardrails on the use case and on its agent extension (MAS-AIRM §5.15, §4.8 fn25)."""
         agent_rails = tuple(self.agent.guardrails) if self.agent else ()
         return tuple(self.guardrails) + agent_rails
+
+    @property
+    def regulated_domain_exposure(self) -> bool:
+        """Whether the use case sits in a regulated domain *and* drives an external outcome.
+
+        Serves MAS-AIRM §4.12(a), which measures Impact by "the potential consequences of a
+        failure, malfunction, or poor performance of the AI on the FI ... and its customers or
+        other stakeholders". Domain adjacency alone is not consequence: an internal research
+        assistant whose every output is signed off by an analyst before it goes anywhere does not
+        carry the impact of the credit model that prices a customer's loan, even though both touch
+        a regulated business.
+
+        True when the use case carries a regulated-domain tag and either affects individuals or is
+        not confined to internal, assistive use. §5.6 and §5.7 name credit decisioning, insurance
+        underwriting, financial advisory and fund management as the domains warranting the most
+        attention, and footnote 12 contrasts them with low-materiality assistive copilots.
+        """
+        if not self._regulated_tags():
+            return False
+        internal_only = {"internal", "assistive", "productivity"}.intersection(self.tags)
+        return self.affects_individuals or not internal_only
+
+    @property
+    def regulated_domain_internal_only(self) -> bool:
+        """Whether the use case touches a regulated domain but only as internal, reviewed input.
+
+        The complement of :attr:`regulated_domain_exposure` *within* the regulated domains, so
+        that a use case with no regulated-domain tag at all is neither. MAS-AIRM §2.2 footnote 12
+        draws exactly this distinction: transparency, explainability and fairness controls matter
+        most for credit scoring and underwriting, while for "AI used in low risk materiality areas
+        to assist humans and not for decision making" some controls are less relevant.
+        """
+        return bool(self._regulated_tags()) and not self.regulated_domain_exposure
+
+    def _regulated_tags(self) -> set[str]:
+        """Return the regulated-domain tags this use case carries."""
+        regulated = {
+            "credit",
+            "underwriting",
+            "insurance",
+            "advisory",
+            "fund_management",
+            "trading",
+            "aml",
+            "financial-crime",
+            "fraud",
+            "capital",
+            "regulatory_reporting",
+            "claims",
+            "onboarding",
+        }
+        return regulated.intersection(self.tags)
 
     @property
     def has_tested_guardrail(self) -> bool:

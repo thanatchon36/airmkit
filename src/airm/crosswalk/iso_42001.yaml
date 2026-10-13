@@ -1,0 +1,557 @@
+# Generated from a hand-authored mapping table; every row carries its justification.
+# Mapping is interpretive: see docs/RESEARCH_QUESTIONS.md RQ4 threats to validity.
+version: '1'
+description: MAS-AIRM to ISO/IEC 42001:2023. References are clause numbers and Annex A control numbers
+  of ISO/IEC 42001:2023. ISO 42001 is a certifiable management-system standard; coverage 'full' means
+  it imposes an equivalent obligation on the management system, not that certification evidences the
+  MAS clause for a particular use case.
+mappings:
+- clause: '1.6'
+  framework: iso_42001
+  refs:
+  - '4.1'
+  - '4.3'
+  - 6.1.2
+  coverage: full
+  justification: ISO 42001 scoping and the risk assessment process both require the AIMS to be proportionate
+    to the organisation's context and the significance of its AI.
+  confidence: high
+- clause: '1.7'
+  framework: iso_42001
+  refs:
+  - '9.3'
+  - '10.2'
+  - 6.1.2
+  coverage: full
+  justification: Management review (9.3) and continual improvement (10.2) require periodic reassessment
+    of the AIMS against changes, including new AI developments.
+  confidence: high
+- clause: '2.2'
+  framework: iso_42001
+  refs:
+  - '4.3'
+  - '4.4'
+  - Annex A.2
+  coverage: partial
+  justification: ISO requires an AI management system with policies and processes, but sets no two-regime
+    structure keyed on material adverse impact.
+  confidence: medium
+  gap: No equivalent of the basic-regime test in MAS-AIRM 2.3, and no named identification/inventory/materiality
+    triad as the minimum scope.
+- clause: '2.5'
+  framework: iso_42001
+  refs:
+  - A.2.2
+  - A.2.3
+  - A.3.2
+  - A.4.2
+  - '7.2'
+  - '7.3'
+  coverage: partial
+  justification: Annex A gives AI policy, roles and awareness controls which cover most of the basic-policy
+    content.
+  confidence: medium
+  gap: No approved-tool list, no process for requesting new tools, and no periodic re-test of whether
+    the lighter regime still applies.
+- clause: '3.2'
+  framework: iso_42001
+  refs:
+  - '5.1'
+  - '5.2'
+  - 6.1.1
+  - A.2.2
+  coverage: full
+  justification: Leadership commitment (5.1) and the requirement to integrate the AIMS into business
+    processes and existing risk management cover this.
+  confidence: high
+- clause: '3.3'
+  framework: iso_42001
+  refs:
+  - '5.3'
+  - A.3.2
+  - '7.4'
+  coverage: full
+  justification: Organisational roles, responsibilities and authorities (5.3) with Annex A.3.2 role
+    allocation and internal communication cover consistent, coordinated management.
+  confidence: medium
+- clause: '3.4'
+  framework: iso_42001
+  refs:
+  - '5.1'
+  - '5.2'
+  - '6.2'
+  - '9.3'
+  coverage: partial
+  justification: ISO assigns policy approval and review to top management, but has no board-level construct
+    and no risk appetite framework.
+  confidence: high
+  gap: No requirement to embed AI risk in a risk appetite framework with qualitative statements and
+    quantitative measures, and no board competence expectation.
+- clause: '3.5'
+  framework: iso_42001
+  refs:
+  - '5.3'
+  - '7.1'
+  - '8.1'
+  - '10.1'
+  coverage: full
+  justification: Roles and authorities, resources, operational planning and nonconformity handling together
+    match the senior management duties listed.
+  confidence: medium
+- clause: '3.6'
+  framework: iso_42001
+  refs: []
+  coverage: none
+  justification: ISO 42001 is organisation-scoped and says nothing about group frameworks or a local
+    entity's accountability to its own regulator.
+  confidence: high
+  gap: 'Entirely absent: local senior management accountability where a group framework is adopted,
+    and the ability to demonstrate oversight to MAS.'
+- clause: '4.1'
+  framework: iso_42001
+  refs:
+  - 6.1.2
+  - A.4.2
+  - A.6.2.2
+  coverage: partial
+  justification: The AI risk assessment process and the AI system lifecycle controls presume an inventory,
+    and A.4.2 requires a resource inventory.
+  confidence: medium
+  gap: ISO does not name identification, inventorisation and materiality assessment as three distinct
+    processes each needing a designated control function.
+- clause: '4.2'
+  framework: iso_42001
+  refs:
+  - A.4.2
+  - A.10.2
+  - 6.1.2
+  coverage: partial
+  justification: A.4.2 requires documented AI system resources; A.10.2 addresses suppliers.
+  confidence: medium
+  gap: No expectation to identify AI embedded in third-party services not sold as AI, which is the hardest
+    part of MAS-AIRM 4.2.
+- clause: '4.3'
+  framework: iso_42001
+  refs:
+  - '5.3'
+  - A.3.2
+  coverage: partial
+  justification: Roles and responsibilities for AI must be allocated and communicated.
+  confidence: medium
+  gap: No designated control function acting as final arbiter of what constitutes AI use, and no independence
+    expectation over business units.
+- clause: '4.4'
+  framework: iso_42001
+  refs:
+  - 6.1.2
+  - 6.1.3
+  - '8.2'
+  coverage: partial
+  justification: The risk treatment process requires residual risk to be accepted by risk owners, which
+    is the general shape of the expectation.
+  confidence: low
+  gap: Nothing on shadow AI or on technical controls such as DLP and network monitoring to detect unauthorised
+    AI use.
+- clause: '4.5'
+  framework: iso_42001
+  refs:
+  - A.4.2
+  - '7.5'
+  coverage: partial
+  justification: A.4.2 requires documented information on AI system resources, and 7.5 governs documented
+    information generally.
+  confidence: medium
+  gap: ISO's resource documentation is not a use-case-level inventory with maintenance policies and
+    an update frequency.
+- clause: '4.6'
+  framework: iso_42001
+  refs:
+  - A.4.2
+  - 7.5.3
+  coverage: partial
+  justification: Control of documented information implies linkage, but ISO does not require it between
+    registers.
+  confidence: low
+  gap: No requirement for consistent identifiers linking the AI inventory to data and third-party registers.
+- clause: '4.7'
+  framework: iso_42001
+  refs:
+  - A.4.2
+  - A.6.2.2
+  - A.6.2.7
+  coverage: partial
+  justification: A.6.2.2 requires AI system documentation covering purpose, and A.6.2.7 requires system
+    and data documentation.
+  confidence: medium
+  gap: ISO names no attribute list; MAS-AIRM 4.7 names ten attributes including risk materiality rating
+    and model review status.
+- clause: '4.8'
+  framework: iso_42001
+  refs:
+  - '9.3'
+  - '10.2'
+  coverage: partial
+  justification: Management review covers the AIMS, which would include documentation design.
+  confidence: low
+  gap: No expectation to review inventory design for newer AI technologies, and nothing resembling the
+    agent attributes of footnote 25.
+- clause: '4.9'
+  framework: iso_42001
+  refs:
+  - '5.3'
+  - A.3.2
+  - A.4.2
+  coverage: partial
+  justification: Roles for AI resources must be allocated.
+  confidence: medium
+  gap: No designated control function with independent oversight of inventory accuracy and completeness.
+- clause: '4.10'
+  framework: iso_42001
+  refs:
+  - 6.1.2
+  - A.5.2
+  coverage: full
+  justification: ISO requires a defined, repeatable AI risk assessment process and an AI system impact
+    assessment process, applied consistently.
+  confidence: high
+- clause: '4.11'
+  framework: iso_42001
+  refs:
+  - 6.1.2
+  - 6.1.3
+  - '8.2'
+  coverage: full
+  justification: ISO's risk assessment requires risks to be assessed before and after treatment, with
+    residual risk accepted by risk owners.
+  confidence: high
+- clause: '4.12'
+  framework: iso_42001
+  refs:
+  - 6.1.2
+  - A.5.2
+  - A.5.4
+  coverage: partial
+  justification: ISO requires risk and impact assessment criteria, and A.5.4 addresses assessing impacts
+    on individuals and society.
+  confidence: medium
+  gap: ISO sets no dimensions; the Impact / Complexity / Reliance triad, and in particular Complexity
+    and Reliance, has no ISO counterpart.
+- clause: '4.13'
+  framework: iso_42001
+  refs:
+  - '5.3'
+  - 6.1.3
+  - A.3.2
+  coverage: partial
+  justification: Risk owners must approve risk treatment plans and accept residual risk.
+  confidence: medium
+  gap: No designated control function arbitrating or approving the materiality rating of each use case.
+- clause: '5.1'
+  framework: iso_42001
+  refs:
+  - A.6.1.2
+  - A.6.2
+  - '8.1'
+  coverage: full
+  justification: A.6 requires objectives and processes for the responsible development of AI systems
+    across the lifecycle, with roles allocated.
+  confidence: high
+- clause: '5.2'
+  framework: iso_42001
+  refs:
+  - 6.1.3
+  - '8.1'
+  - A.6.1.2
+  coverage: full
+  justification: Risk-proportionate treatment with residual risk acceptance is the core ISO mechanism.
+  confidence: medium
+- clause: '5.3'
+  framework: iso_42001
+  refs:
+  - A.6.2.6
+  - A.9.2
+  coverage: partial
+  justification: A.6.2.6 covers AI system deployment planning and A.9 the responsible use of AI systems.
+  confidence: low
+  gap: No contingency-plan requirement with tested fallback options and kill-switch activation protocols
+    for high-risk AI.
+- clause: '5.4'
+  framework: iso_42001
+  refs:
+  - A.7.2
+  - A.7.3
+  - A.7.4
+  - A.7.5
+  - A.7.6
+  coverage: full
+  justification: A.7 is a dedicated data-for-AI clause covering data management, acquisition, quality,
+    provenance and preparation.
+  confidence: high
+- clause: '5.5'
+  framework: iso_42001
+  refs:
+  - A.8.2
+  - A.8.3
+  - A.9.3
+  - A.6.2.8
+  coverage: full
+  justification: A.8 requires information for interested parties, including system documentation and
+    explanations, and A.6.2.8 covers recording explanations.
+  confidence: high
+- clause: '5.6'
+  framework: iso_42001
+  refs:
+  - A.8.2
+  - A.8.3
+  - A.9.3
+  - A.5.2
+  coverage: partial
+  justification: ISO requires information appropriate to interested parties and an impact assessment
+    that would drive the degree.
+  confidence: medium
+  gap: No expectation that the degree scale with risk materiality, and no named high-impact domains
+    such as credit decisioning or underwriting.
+- clause: '5.7'
+  framework: iso_42001
+  refs:
+  - A.5.4
+  - A.7.4
+  - A.9.4
+  coverage: partial
+  justification: A.5.4 addresses assessing impacts on individuals and groups, which encompasses unfair
+    outcomes.
+  confidence: medium
+  gap: No requirement to define what the organisation considers 'fair', which MAS-AIRM 5.7 makes explicit.
+- clause: '5.8'
+  framework: iso_42001
+  refs:
+  - A.5.4
+  - A.6.2.4
+  coverage: partial
+  justification: Impact assessment and verification and validation of AI systems would encompass bias
+    testing.
+  confidence: medium
+  gap: No requirement to define protected attributes and their proxies, or to use fairness metrics and
+    document mitigation.
+- clause: '5.9'
+  framework: iso_42001
+  refs:
+  - A.9.2
+  - A.9.3
+  - A.6.2.6
+  coverage: partial
+  justification: A.9 covers responsible use including human oversight of AI systems in use.
+  confidence: medium
+  gap: No treatment of automation bias and decision fatigue, and no requirement to review oversight
+    interventions and near misses for effectiveness.
+- clause: '5.10'
+  framework: iso_42001
+  refs:
+  - A.10.2
+  - A.10.3
+  - A.10.4
+  - A.6.2.4
+  coverage: partial
+  justification: A.10 covers third-party and customer relationships, allocating responsibilities along
+    the AI value chain, with verification and validation applying to acquired systems.
+  confidence: medium
+  gap: No requirement to test third-party AI in the FI's own use-case context with its own data, nor
+    compensatory testing for disclosure gaps.
+- clause: '5.11'
+  framework: iso_42001
+  refs:
+  - A.10.2
+  - A.10.3
+  - A.10.4
+  coverage: partial
+  justification: A.10.2 requires processes for allocating responsibilities with suppliers and assessing
+    them.
+  confidence: medium
+  gap: ISO does not reject vendor self-attestation, does not address concentration risk, and has no
+    limit / suspend / replace expectation.
+- clause: '5.12'
+  framework: iso_42001
+  refs:
+  - A.6.1.2
+  - A.6.2.3
+  - A.6.2.4
+  coverage: full
+  justification: A.6.2.3 requires requirements and specification for AI systems and A.6.1.2 processes
+    for responsible design, which is where selection sits.
+  confidence: medium
+- clause: '5.13'
+  framework: iso_42001
+  refs:
+  - A.6.1.2
+  - A.6.2.3
+  - 6.1.2
+  coverage: partial
+  justification: Risk assessment would surface hallucination and opacity risks of newer models.
+  confidence: low
+  gap: No explicit expectation to weigh the benefits of newer, less-understood models against heightened
+    risk and the FI's own capability to mitigate.
+- clause: '5.14'
+  framework: iso_42001
+  refs:
+  - A.6.2.4
+  - A.6.2.5
+  coverage: full
+  justification: A.6.2.4 is verification and validation of AI systems, including acceptance criteria
+    and testing, and A.6.2.5 covers deployment readiness.
+  confidence: high
+- clause: '5.15'
+  framework: iso_42001
+  refs:
+  - A.6.2.4
+  - A.6.2.5
+  - 6.1.3
+  coverage: partial
+  justification: Verification and validation plus risk treatment cover putting controls in place before
+    deployment.
+  confidence: medium
+  gap: No requirement to test the effectiveness of guardrails, and no named Generative AI failure modes.
+- clause: '5.16'
+  framework: iso_42001
+  refs:
+  - A.6.2.6
+  - A.4.3
+  - A.4.4
+  coverage: partial
+  justification: A.4 covers computing, data and system resources and A.6.2.6 deployment, but ISO 42001
+    defers security to ISO 27001.
+  confidence: high
+  gap: ISO 42001 has no detailed security control set; the institution would need ISO 27001 for the
+    MAS-AIRM 5.16 content.
+- clause: '5.17'
+  framework: iso_42001
+  refs:
+  - A.6.2.7
+  - A.6.2.8
+  - '7.5'
+  - A.4.5
+  coverage: full
+  justification: A.6.2.7 requires AI system and data documentation and A.6.2.8 records of AI system
+    use, sufficient for review.
+  confidence: high
+- clause: '5.18'
+  framework: iso_42001
+  refs:
+  - A.6.2.4
+  - A.6.2.5
+  coverage: partial
+  justification: Verification and validation before release is required, as is deployment readiness.
+  confidence: medium
+  gap: ISO does not require the reviewer to be a party not involved in development, which is the substance
+    of MAS-AIRM 5.18.
+- clause: '5.19'
+  framework: iso_42001
+  refs:
+  - A.6.2.4
+  - '9.2'
+  coverage: partial
+  justification: Internal audit (9.2) requires objectivity and impartiality, and verification and validation
+    must be planned.
+  confidence: medium
+  gap: No formal independent validation keyed on high risk materiality, and ISO's internal audit is
+    of the management system, not of a model.
+- clause: '5.20'
+  framework: iso_42001
+  refs:
+  - A.6.2.4
+  coverage: partial
+  justification: Verification and validation is required for all AI systems.
+  confidence: low
+  gap: No proportionate alternative of documented peer review for lower-materiality use cases.
+- clause: '5.21'
+  framework: iso_42001
+  refs:
+  - '9.2'
+  - '10.1'
+  - 6.1.3
+  coverage: full
+  justification: Nonconformity and corrective action (10.1) plus audit reporting require findings to
+    be reported and actioned.
+  confidence: medium
+- clause: '5.22'
+  framework: iso_42001
+  refs:
+  - A.6.2.6
+  - A.4.3
+  coverage: partial
+  justification: Deployment controls are required but the security content is thin.
+  confidence: high
+  gap: No vulnerability assessment, penetration testing, red teaming or adversarial testing requirement;
+    these sit in ISO 27001.
+- clause: '5.23'
+  framework: iso_42001
+  refs:
+  - A.6.2.6
+  - A.6.2.8
+  - A.9.2
+  - '9.1'
+  coverage: full
+  justification: A.6.2.6 covers operation and monitoring, A.6.2.8 event logging, and 9.1 monitoring,
+    measurement and analysis.
+  confidence: high
+- clause: '5.24'
+  framework: iso_42001
+  refs:
+  - '9.1'
+  - '9.2'
+  - '9.3'
+  - A.6.2.4
+  coverage: partial
+  justification: Periodic monitoring, internal audit and management review provide the review cadence.
+  confidence: medium
+  gap: No independent re-validation keyed on high risk materiality, and no named triggers such as monitoring
+    breaches or interconnected findings.
+- clause: '5.25'
+  framework: iso_42001
+  refs:
+  - A.6.2.6
+  - '8.1'
+  - 7.5.3
+  coverage: partial
+  justification: Operational planning and control plus documented information control cover change in
+    general terms.
+  confidence: medium
+  gap: No change-significance framework, no re-approval trigger, and nothing on AI designed to update
+    automatically.
+- clause: '5.26'
+  framework: iso_42001
+  refs:
+  - A.6.2.6
+  - A.7.6
+  coverage: partial
+  justification: Lifecycle coverage extends to the end of life and data handling.
+  confidence: medium
+  gap: No explicit retirement controls covering dependencies, data retention, secure removal from production
+    and stakeholder notification.
+- clause: '6.1'
+  framework: iso_42001
+  refs:
+  - '7.2'
+  - '7.3'
+  - A.3.2
+  - A.4.2
+  coverage: full
+  justification: Competence (7.2) and awareness (7.3) require the organisation to determine and ensure
+    the competence of persons affecting AIMS performance.
+  confidence: high
+- clause: '6.2'
+  framework: iso_42001
+  refs:
+  - '7.2'
+  - '9.3'
+  coverage: full
+  justification: Competence must be evaluated and retained, and management review covers programme adequacy.
+  confidence: high
+- clause: '6.3'
+  framework: iso_42001
+  refs:
+  - A.4.3
+  - A.4.4
+  - '7.1'
+  coverage: full
+  justification: A.4.3 and A.4.4 cover computing and networking resources and tooling for AI systems.
+  confidence: high

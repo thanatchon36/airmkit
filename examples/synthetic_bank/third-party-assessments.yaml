@@ -1,0 +1,168 @@
+institution: Merlion Commercial Bank (fictional)
+as_of: '2026-10-13'
+assessments:
+- id: VA-NORTHSTAR-LLM
+  provider: NorthStar AI (fictional)
+  component: hosted-llm
+  version: 2026-07
+  use_case_ids:
+  - customer-service-chatbot
+  - policy-rag-assistant
+  - kyc-document-agent
+  - research-signal-agent
+  assessed_on: '2026-07-15'
+  assessed_by: Third-Party Risk Management
+  embedded: false
+  material_provider: true
+  assurance: certification
+  assurance_scope: ISO/IEC 42001 certification covering the model hosting service,
+    plus SOC 2 Type II for the platform. Does not cover model behaviour on the bank's
+    use cases.
+  assurance_body: Accredited certification body (fictional)
+  fi_testing_done: true
+  fi_testing_ref: docs/mrm/northstar-llm-fi-context-tests.md
+  considerations:
+  - consideration: transparency
+    status: partially_met
+    finding: Model card and evaluation summary provided; training data composition
+      withheld as proprietary.
+    compensating_controls:
+    - Additional testing on the bank's own data per use case
+    - Greater human oversight on customer-facing use
+  - consideration: supply_chain
+    status: partially_met
+    finding: Provider attests to base-model provenance but will not name upstream
+      training sources.
+    compensating_controls:
+    - Contractual indemnity for intellectual property claims
+  - consideration: concentration
+    status: not_met
+    finding: Four of eight AI use cases depend on this single provider, including
+      two of high materiality.
+    compensating_controls:
+    - Second provider qualified for the policy assistant as a fallback
+  - consideration: change_management
+    status: met
+    finding: Contract gives 30 days notice of model version changes and 90 days for
+      deprecations.
+    compensating_controls: []
+  - consideration: contingency
+    status: met
+    finding: Fallback to live agents for the chatbot and to manual review for the
+      KYC agent; both tested.
+    compensating_controls: []
+  - consideration: legal_agreements
+    status: met
+    finding: Agreement includes performance guarantees, data protection terms, right
+      to audit and change notification.
+    compensating_controls: []
+  - consideration: capabilities
+    status: partially_met
+    finding: Agent platform team is experienced with retrieval but this is the bank's
+      first agentic deployment.
+    compensating_controls:
+    - External review of the agent design
+    - Pilot limited to 50 cases a day
+  - consideration: complexity
+    status: partially_met
+    finding: Agentic use of the model is new to the bank, so a deeper assessment was
+      performed for the KYC agent.
+    compensating_controls:
+    - Dedicated agent threat model and tool-scope audit
+  residual_within_appetite: true
+  decision: onboard_with_conditions
+  decision_rationale: Approved subject to concentration being reported to the Technology
+    and Operations Risk Committee quarterly, and to a second provider being qualified
+    for at least one material use case before the KYC agent exits pilot.
+  decision_by: Technology and Operations Risk Committee
+  review_due: '2027-07-15'
+  clauses:
+  - MAS-AIRM §5.10
+  - MAS-AIRM §5.11
+- id: VA-NORTHSTAR-SURVEILLANCE
+  provider: NorthStar Surveillance (fictional)
+  component: anomaly-engine
+  version: '7.1'
+  use_case_ids:
+  - vendor-txn-monitoring
+  assessed_on: '2026-02-20'
+  assessed_by: Third-Party Risk Management
+  embedded: false
+  material_provider: true
+  assurance: self_attestation
+  fi_testing_done: false
+  considerations:
+  - consideration: transparency
+    status: not_met
+    finding: Vendor declines to disclose model architecture, training data or validation
+      results, and offers only a signed self-attestation that its models are 'validated'.
+    compensating_controls: []
+  - consideration: change_management
+    status: not_met
+    finding: Vendor updates its models on its own release cycle with no advance notice
+      to clients.
+    compensating_controls: []
+  - consideration: legal_agreements
+    status: partially_met
+    finding: Agreement has service levels but no right to audit and no AI-specific
+      change notification clause.
+    compensating_controls:
+    - Renegotiation requested at the 2027 renewal
+  residual_within_appetite: false
+  decision: limit
+  decision_rationale: 'Residual risk is outside appetite: no independent assurance,
+    no testing on the bank''s own data and no visibility of vendor-driven changes.
+    Per MAS-AIRM 5.11 the service is limited to a supplementary ranking input feeding
+    the existing alert queue, with no reliance for alert closure, pending either an
+    independent assessment or replacement at the 2027 renewal.'
+  decision_by: Financial Crime Compliance and Third-Party Risk Management
+  review_due: '2026-12-31'
+  clauses:
+  - MAS-AIRM §5.10
+  - MAS-AIRM §5.11
+- id: VA-DOCUPARSE
+  provider: DocuParse (fictional)
+  component: ocr-extraction
+  version: '4.2'
+  use_case_ids:
+  - kyc-document-agent
+  assessed_on: '2026-08-05'
+  assessed_by: Client Onboarding and Third-Party Risk Management
+  embedded: true
+  material_provider: true
+  assurance: fi_own_testing
+  assurance_scope: The bank tested extraction accuracy on 500 synthetic onboarding
+    documents; the vendor provided no AI documentation.
+  fi_testing_done: true
+  fi_testing_ref: docs/mrm/docuparse-extraction-accuracy.md
+  considerations:
+  - consideration: transparency
+    status: not_met
+    finding: AI extraction was introduced into the product without notice; the vendor
+      does not market it as AI and provides no model documentation.
+    compensating_controls:
+    - Accuracy testing on the bank's own synthetic document set
+    - Field-level confidence thresholds with human review below them
+  - consideration: change_management
+    status: not_met
+    finding: No notification of AI model changes; the capability appeared in a minor
+      version upgrade.
+    compensating_controls:
+    - Monthly re-run of the accuracy test suite as enhanced monitoring per MAS-AIRM
+      5.25(a)
+  - consideration: complexity
+    status: met
+    finding: Extraction is a bounded task with a measurable ground truth, so compensatory
+      testing is tractable.
+    compensating_controls: []
+  residual_within_appetite: true
+  decision: onboard_with_conditions
+  decision_rationale: 'Embedded AI identified during the agentic KYC design review,
+    not at procurement. Retained with compensatory controls: accuracy testing on the
+    bank''s own data, confidence thresholds routing low-confidence fields to a human,
+    and monthly regression testing in place of vendor change notification.'
+  decision_by: Head of Client Onboarding
+  review_due: '2027-02-05'
+  clauses:
+  - MAS-AIRM §5.10
+  - MAS-AIRM §5.11

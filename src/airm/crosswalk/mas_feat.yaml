@@ -1,0 +1,133 @@
+# Generated from a hand-authored mapping table; every row carries its justification.
+# Mapping is interpretive: see docs/RESEARCH_QUESTIONS.md RQ4 threats to validity.
+version: '1'
+description: MAS-AIRM to the MAS FEAT Principles (2018), which MAS-AIRM 1.2 confirms continue to apply
+  and 5.7 footnote 35 names as a reference for defining 'fair' outcomes. References are the FEAT principle
+  numbers 1 to 14 with their grouping. FEAT is a principles document, so coverage is strongest on fairness
+  and transparency and absent on lifecycle mechanics.
+mappings:
+- clause: '5.7'
+  framework: mas_feat
+  refs:
+  - 'Fairness: Justifiability 1'
+  - 'Fairness: Justifiability 2'
+  coverage: full
+  justification: FEAT principles 1 and 2 require that individuals or groups are not systematically disadvantaged
+    through AIDA-driven decisions unless justified, and that use of personal attributes is justified.
+  confidence: high
+- clause: '5.8'
+  framework: mas_feat
+  refs:
+  - 'Fairness: Accuracy and Bias 3'
+  - 'Fairness: Accuracy and Bias 4'
+  - 'Fairness: Justifiability 2'
+  coverage: full
+  justification: Principles 3 and 4 require data and models to be reviewed and validated to minimise
+    unintentional bias and decisions reviewed so models behave as intended.
+  confidence: high
+- clause: '5.5'
+  framework: mas_feat
+  refs:
+  - Transparency 12
+  - Transparency 13
+  - Transparency 14
+  coverage: full
+  justification: Principles 12 to 14 require proactive disclosure of AIDA use, and clear explanations
+    on request of the data used, how it affects the decision, and the consequences.
+  confidence: high
+- clause: '5.6'
+  framework: mas_feat
+  refs:
+  - Transparency 12
+  - Transparency 13
+  - Transparency 14
+  - Accountability 10
+  coverage: full
+  justification: The transparency principles plus the right to enquire, appeal and request review map
+    directly onto customer notification and redress channels.
+  confidence: high
+- clause: '3.4'
+  framework: mas_feat
+  refs:
+  - Accountability 7
+  - Accountability 9
+  coverage: partial
+  justification: Principle 7 requires approval by an appropriate internal authority and principle 9
+    that management and board awareness be proactively raised.
+  confidence: medium
+  gap: FEAT has no risk appetite framework and no requirement to approve an overall governance approach.
+- clause: '3.5'
+  framework: mas_feat
+  refs:
+  - Accountability 7
+  - Accountability 9
+  coverage: partial
+  justification: Internal approval and board awareness are required.
+  confidence: medium
+  gap: No escalation process for incidents, no resourcing or competence duty.
+- clause: '5.11'
+  framework: mas_feat
+  refs:
+  - Accountability 8
+  coverage: partial
+  justification: Principle 8 makes firms accountable for both internally developed and externally sourced
+    AIDA models, which is the accountability core of MAS-AIRM 5.11.
+  confidence: high
+  gap: FEAT states the accountability but none of the eight assessment considerations, and nothing on
+    concentration or limit / suspend / replace.
+- clause: '5.10'
+  framework: mas_feat
+  refs:
+  - Accountability 8
+  coverage: partial
+  justification: Accountability extends to externally sourced models.
+  confidence: medium
+  gap: No testing-in-context or compensatory-testing expectation.
+- clause: '5.9'
+  framework: mas_feat
+  refs:
+  - Accountability 7
+  - Ethics 6
+  coverage: partial
+  justification: Internal authority approval and holding AIDA decisions to the same ethical standards
+    as human decisions imply human accountability.
+  confidence: low
+  gap: No human oversight design, capability or effectiveness-review expectations.
+- clause: '5.14'
+  framework: mas_feat
+  refs:
+  - 'Fairness: Accuracy and Bias 3'
+  - 'Fairness: Accuracy and Bias 4'
+  coverage: partial
+  justification: Data and models must be regularly reviewed and validated for accuracy and relevance.
+  confidence: medium
+  gap: No evaluation measures, thresholds or testing approaches.
+- clause: '5.23'
+  framework: mas_feat
+  refs:
+  - 'Fairness: Accuracy and Bias 4'
+  coverage: partial
+  justification: Principle 4 requires AIDA-driven decisions to be regularly reviewed so that models
+    behave as designed and intended, which is ongoing monitoring in substance.
+  confidence: medium
+  gap: No metrics, thresholds, drift checks or incident management.
+- clause: '5.4'
+  framework: mas_feat
+  refs:
+  - 'Fairness: Accuracy and Bias 3'
+  - 'Fairness: Justifiability 2'
+  coverage: partial
+  justification: Data review and validation for accuracy and relevance, and justification of personal
+    attributes used as inputs.
+  confidence: medium
+  gap: No data classification, security, privacy or lineage limbs.
+- clause: '5.1'
+  framework: mas_feat
+  refs:
+  - Ethics 5
+  - Ethics 6
+  - Accountability 7
+  coverage: partial
+  justification: Alignment with the firm's ethical standards and internal approval sit across the lifecycle.
+  confidence: low
+  gap: FEAT is a principles document and defines no lifecycle control set.

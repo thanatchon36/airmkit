@@ -34,14 +34,24 @@ signals:
   # ---------------------------------------------------------------- Impact §4.12(a)
   impact:
     - id: IMP-DOMAIN-CRITICAL
-      derives_from: "MAS-AIRM §4.12(a); §5.6; §5.7; Response §7.18 (credit scoring illustration)"
+      derives_from: "MAS-AIRM §4.12(a); §5.6; §5.7; §2.2 fn12; Response §7.18 (credit scoring illustration)"
       reason: >-
-        use case is in a domain where poor performance materially affects customers' access to or
-        pricing of financial services
-      field: tags
-      contains_any: [credit, underwriting, insurance, advisory, fund_management, trading, aml, fraud, capital, regulatory_reporting]
+        use case is in a regulated domain and drives an outcome affecting customers, the FI's
+        regulatory obligations or its financial position
+      field: regulated_domain_exposure
+      is_true: true
       level: critical
       weight: 1.0
+
+    - id: IMP-DOMAIN-INTERNAL
+      derives_from: "MAS-AIRM §4.12(a); §2.2 fn12 (low risk materiality assistive use)"
+      reason: >-
+        use case touches a regulated domain but only as internal, human-reviewed input, so a
+        failure does not directly reach customers or regulatory outcomes
+      field: regulated_domain_internal_only
+      is_true: true
+      level: medium
+      weight: 0.4
 
     - id: IMP-AFFECTS-INDIVIDUALS
       derives_from: "MAS-AIRM §4.12(a) (impact on customers or other stakeholders)"
@@ -157,7 +167,7 @@ signals:
       derives_from: "MAS-AIRM §4.12(c) (extent of autonomy granted); Response §7.18 (automated execution)"
       reason: decisions or actions are executed autonomously with limited review of each instance
       field: autonomy
-      autonomy_at_least: autonomous_agent
+      autonomy_at_least: autonomous_decisioning
       level: critical
       weight: 1.0
 

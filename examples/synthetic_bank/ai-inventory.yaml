@@ -1,0 +1,640 @@
+institution: Merlion Commercial Bank (fictional)
+register_id: ai-inventory
+version: '3'
+as_of: '2026-10-13'
+linked_registers:
+  third_party_register: VEND-id
+  data_inventory: DATA-id
+  it_asset_register: SYS-id
+control_functions:
+  identification: Model Risk Management
+  inventory: Model Risk Management
+  materiality: Model Risk Management
+use_cases:
+- id: credit-decision-model
+  name: Retail credit decision model
+  purpose: Score retail unsecured loan applications to support approve, refer or decline
+    decisions.
+  business_function: Retail Credit Risk
+  approved_scope: Singapore retail unsecured lending only; not for SME or mortgage
+    lending.
+  jurisdictions:
+  - SG
+  model_type: gradient_boosting
+  data_used:
+  - bureau_data_synth
+  - application_data_synth
+  - internal_repayment_history_synth
+  data_classification: confidential
+  processes_personal_data: true
+  dependencies:
+  - kind: dataset
+    name: credit_bureau_extract
+    identifier: DATA-0101
+    affects_risk_profile: true
+  - kind: system
+    name: loan_origination_system
+    identifier: SYS-0042
+    affects_risk_profile: false
+  lifecycle_status: deployed
+  risk_materiality_rating: Critical
+  review_status: independent_validation
+  roles:
+  - role: owner
+    party: Head of Retail Credit Risk
+    function: Retail Credit Risk
+  - role: developer
+    party: Credit Modelling team
+    function: Data Science
+  - role: validator
+    party: Model Validation unit
+    function: Model Risk Management
+  - role: monitor
+    party: Credit Portfolio Monitoring
+    function: Retail Credit Risk
+  - role: accountable_person
+    party: Head of Retail Credit Risk
+    function: Retail Credit Risk
+  documentation:
+  - docs/mrm/credit-decision-model-card.md
+  - docs/mrm/credit-decision-explainability-analysis.md
+  - docs/mrm/credit-decision-fairness-assessment.md
+  - docs/mrm/credit-decision-validation-report.md
+  third_party: []
+  guardrails:
+  - name: score override band
+    kind: human_checkpoint
+    description: Applications within 20 points of the cut-off are referred to an underwriter.
+    tested: true
+    evidence_ref: EV-CREDIT-0003
+  autonomy: human_in_the_loop
+  human_oversight: Underwriter reviews every referred application and may override
+    any decision with recorded reasons.
+  affects_individuals: true
+  contingency_plan: Fall back to the previous scorecard, then to full manual underwriting;
+    tested quarterly.
+  kill_switch: true
+  auto_updates: false
+  tags:
+  - credit
+  - retail
+  last_reviewed: '2026-09-30'
+- id: aml-alert-triage
+  name: AML alert triage model
+  purpose: Rank transaction monitoring alerts so that investigators work the highest-risk
+    alerts first.
+  business_function: Financial Crime Compliance
+  approved_scope: Triage and prioritisation only; must not close or dismiss an alert
+    autonomously.
+  jurisdictions:
+  - SG
+  model_type: gradient_boosting
+  data_used:
+  - transaction_data_synth
+  - alert_disposition_history_synth
+  - customer_profile_synth
+  data_classification: confidential
+  processes_personal_data: true
+  dependencies:
+  - kind: system
+    name: transaction_monitoring_system
+    identifier: SYS-0088
+    affects_risk_profile: true
+  lifecycle_status: deployed
+  risk_materiality_rating: Critical
+  review_status: independent_validation
+  roles:
+  - role: owner
+    party: Head of Financial Crime Compliance
+    function: Compliance
+  - role: developer
+    party: Financial Crime Analytics
+    function: Compliance
+  - role: validator
+    party: Model Validation unit
+    function: Model Risk Management
+  - role: monitor
+    party: FCC Quality Assurance
+    function: Compliance
+  - role: accountable_person
+    party: Head of Financial Crime Compliance
+    function: Compliance
+  documentation:
+  - docs/mrm/aml-triage-model-card.md
+  - docs/mrm/aml-triage-validation-report.md
+  - docs/mrm/aml-triage-feature-importance.md
+  third_party: []
+  guardrails:
+  - name: no autonomous closure
+    kind: tool_allowlist
+    description: The model can only reorder a queue; alert closure requires an investigator.
+    tested: true
+    evidence_ref: EV-AML-0007
+  - name: minimum review rate
+    kind: rate_limit
+    description: At least 5% of low-ranked alerts are sampled and reviewed each month.
+    tested: true
+    evidence_ref: EV-AML-0008
+  autonomy: human_over_the_loop
+  human_oversight: Every alert is still dispositioned by an investigator; the model
+    only orders the queue.
+  affects_individuals: true
+  contingency_plan: Revert to the rules-based alert ordering; investigators continue
+    unaffected.
+  kill_switch: true
+  auto_updates: false
+  tags:
+  - aml
+  - financial-crime
+  last_reviewed: '2026-08-15'
+- id: customer-service-chatbot
+  name: Customer service chatbot
+  purpose: Answer retail customers' questions about products, fees and account servicing
+    in the mobile app.
+  business_function: Customer Experience
+  approved_scope: Product and servicing information only; must not give financial
+    advice, quote rates or confirm transactions.
+  jurisdictions:
+  - SG
+  model_type: llm_rag
+  data_used:
+  - product_factsheets_synth
+  - faq_corpus_synth
+  - fee_schedule_synth
+  data_classification: internal
+  processes_personal_data: true
+  dependencies:
+  - kind: dataset
+    name: product_knowledge_base
+    identifier: DATA-0210
+    affects_risk_profile: false
+  - kind: service
+    name: hosted_llm_api
+    identifier: VEND-0012
+    affects_risk_profile: true
+  lifecycle_status: deployed
+  risk_materiality_rating: High
+  review_status: peer_review
+  roles:
+  - role: owner
+    party: Head of Digital Channels
+    function: Customer Experience
+  - role: developer
+    party: Conversational AI team
+    function: Technology
+  - role: validator
+    party: Second Line Technology Risk
+    function: Technology Risk
+  - role: monitor
+    party: Contact Centre Quality
+    function: Customer Experience
+  - role: accountable_person
+    party: Head of Digital Channels
+    function: Customer Experience
+  documentation:
+  - docs/mrm/chatbot-model-card.md
+  - docs/mrm/chatbot-eval-plan.md
+  third_party:
+  - provider: NorthStar AI (fictional)
+    component: hosted-llm
+    version: 2026-07
+    embedded: false
+    material_provider: true
+    fine_tuned_by_fi: false
+    independent_assessment: true
+    change_notification: true
+  guardrails:
+  - name: advice refusal filter
+    kind: output_filter
+    description: Blocks responses that recommend products or quote returns.
+    tested: true
+    evidence_ref: EV-CHAT-0011
+  - name: grounding check
+    kind: llm_judge
+    description: Second pass verifies the answer is supported by a retrieved document.
+    tested: true
+    evidence_ref: EV-CHAT-0012
+  - name: handoff to human
+    kind: human_checkpoint
+    description: Escalates to a live agent after two low-confidence turns.
+    tested: false
+  autonomy: human_over_the_loop
+  human_oversight: Live-agent handoff on low confidence; daily sampling of transcripts
+    by Contact Centre Quality.
+  affects_individuals: true
+  contingency_plan: Disable the assistant and route all chats to live agents; tested
+    monthly.
+  kill_switch: true
+  auto_updates: false
+  tags:
+  - genai
+  - customer-facing
+  last_reviewed: '2026-09-01'
+- id: policy-rag-assistant
+  name: Internal policy assistant
+  purpose: Help staff find and understand internal policies and procedures.
+  business_function: Operations
+  approved_scope: Internal staff use only; answers are informational and must not
+    be quoted to customers.
+  jurisdictions:
+  - SG
+  model_type: llm_rag
+  data_used:
+  - internal_policy_corpus_synth
+  data_classification: internal
+  processes_personal_data: false
+  dependencies:
+  - kind: dataset
+    name: policy_corpus
+    identifier: DATA-0001
+    affects_risk_profile: false
+  lifecycle_status: deployed
+  risk_materiality_rating: Medium
+  review_status: peer_review
+  roles:
+  - role: owner
+    party: Head of Operations
+    function: Operations
+  - role: developer
+    party: Knowledge Engineering
+    function: Technology
+  - role: validator
+    party: Operational Risk
+    function: Operational Risk
+  - role: monitor
+    party: Operations Support
+    function: Operations
+  documentation:
+  - docs/mrm/policy-assistant-model-card.md
+  third_party:
+  - provider: NorthStar AI (fictional)
+    component: hosted-llm
+    version: 2026-07
+    embedded: false
+    material_provider: true
+    fine_tuned_by_fi: false
+    independent_assessment: true
+    change_notification: true
+  guardrails:
+  - name: citation requirement
+    kind: output_filter
+    description: Answers without a policy citation are suppressed.
+    tested: true
+    evidence_ref: EV-POLICY-0004
+  autonomy: assistive
+  human_oversight: Staff read the cited policy before relying on the answer.
+  affects_individuals: false
+  kill_switch: false
+  auto_updates: false
+  tags:
+  - genai
+  - internal
+  - assistive
+  last_reviewed: '2026-09-20'
+- id: kyc-document-agent
+  name: Agentic KYC document processor
+  purpose: Read corporate onboarding documents, extract entity and ownership data,
+    check it against registries and prepare a KYC file for review.
+  business_function: Client Onboarding
+  approved_scope: Corporate onboarding in Singapore; prepares files for review and
+    must not approve onboarding.
+  jurisdictions:
+  - SG
+  model_type: llm_agent
+  data_used:
+  - onboarding_documents_synth
+  - corporate_registry_extract_synth
+  - sanctions_list_synth
+  data_classification: confidential
+  processes_personal_data: true
+  dependencies:
+  - kind: system
+    name: kyc_case_management
+    identifier: SYS-0131
+    affects_risk_profile: true
+  - kind: service
+    name: corporate_registry_api
+    identifier: VEND-0033
+    affects_risk_profile: false
+  - kind: use_case
+    name: customer-service-chatbot
+    identifier: policy-rag-assistant
+    affects_risk_profile: false
+  lifecycle_status: pilot
+  risk_materiality_rating: Critical
+  review_status: in_review
+  roles:
+  - role: owner
+    party: Head of Client Onboarding
+    function: Client Onboarding
+  - role: developer
+    party: Agent Platform team
+    function: Technology
+  - role: monitor
+    party: Onboarding Quality Assurance
+    function: Client Onboarding
+  - role: accountable_person
+    party: Head of Client Onboarding
+    function: Client Onboarding
+  documentation:
+  - docs/mrm/kyc-agent-design-note.md
+  - docs/mrm/kyc-agent-eval-plan.md
+  third_party:
+  - provider: NorthStar AI (fictional)
+    component: hosted-llm
+    version: 2026-07
+    embedded: false
+    material_provider: true
+    fine_tuned_by_fi: false
+    independent_assessment: true
+    change_notification: true
+  - provider: DocuParse (fictional)
+    component: ocr-extraction
+    version: '4.2'
+    embedded: true
+    material_provider: true
+    fine_tuned_by_fi: false
+    independent_assessment: false
+    change_notification: false
+  guardrails: []
+  agent:
+    agent_identifier: AGT-KYC-001
+    approved_tools:
+    - ocr_extract
+    - registry_lookup
+    - sanctions_screen
+    - case_note_write
+    systems_accessible:
+    - kyc_case_management
+    - corporate_registry_api
+    - sanctions_list_service
+    permissions:
+    - read:onboarding_documents
+    - read:registry
+    - write:case_note
+    components:
+    - document_classifier
+    - extraction_planner
+    - registry_reconciler
+    - summariser
+    guardrails:
+    - name: tool allowlist
+      kind: tool_allowlist
+      description: The agent may call only the four approved tools; any other call
+        is refused and logged.
+      tested: true
+      evidence_ref: EV-KYC-0021
+    - name: indirect injection filter
+      kind: input_filter
+      description: Strips instruction-like content from scanned documents before the
+        model sees it.
+      tested: false
+    - name: no approval authority
+      kind: human_checkpoint
+      description: The agent cannot set an onboarding decision; it writes a case note
+        only.
+      tested: true
+      evidence_ref: EV-KYC-0022
+    human_checkpoints:
+    - before writing a case note
+    - before any sanctions match is recorded
+    - at file completion, reviewed by an onboarding analyst
+    max_steps: 25
+    can_initiate_external_actions: true
+    trace_logging: true
+  autonomy: autonomous_agent
+  human_oversight: An onboarding analyst reviews every completed file; the agent cannot
+    approve onboarding.
+  affects_individuals: true
+  contingency_plan: Suspend the agent and revert to manual document review; the pilot
+    is capped at 50 files a day.
+  kill_switch: true
+  auto_updates: false
+  tags:
+  - agent
+  - genai
+  - aml
+  - onboarding
+  last_reviewed: '2026-10-01'
+  notes: Pilot limited to 50 cases per day and to two onboarding teams, per MAS-AIRM
+    5.2 fn28.
+- id: card-fraud-scoring
+  name: Card fraud scoring model
+  purpose: Score card transactions in real time to block or step up authentication
+    on suspected fraud.
+  business_function: Fraud Risk
+  approved_scope: Card-not-present transactions for Singapore-issued cards.
+  jurisdictions:
+  - SG
+  model_type: neural_network
+  data_used:
+  - card_transaction_stream_synth
+  - confirmed_fraud_labels_synth
+  - device_signals_synth
+  data_classification: confidential
+  processes_personal_data: true
+  dependencies:
+  - kind: system
+    name: authorisation_switch
+    identifier: SYS-0003
+    affects_risk_profile: true
+  lifecycle_status: deployed
+  risk_materiality_rating: Critical
+  review_status: independent_validation
+  roles:
+  - role: owner
+    party: Head of Fraud Risk
+    function: Fraud Risk
+  - role: developer
+    party: Fraud Analytics
+    function: Data Science
+  - role: validator
+    party: Model Validation unit
+    function: Model Risk Management
+  - role: monitor
+    party: Fraud Operations
+    function: Fraud Risk
+  - role: accountable_person
+    party: Head of Fraud Risk
+    function: Fraud Risk
+  documentation:
+  - docs/mrm/fraud-model-card.md
+  - docs/mrm/fraud-validation-report.md
+  - docs/mrm/fraud-explainability-analysis.md
+  third_party: []
+  guardrails:
+  - name: block rate circuit breaker
+    kind: rate_limit
+    description: Automatic blocking is suspended if the block rate exceeds twice the
+      trailing average.
+    tested: true
+    evidence_ref: EV-FRAUD-0014
+  - name: customer redress path
+    kind: human_checkpoint
+    description: Blocked customers reach a human within one call; blocks are reversible.
+    tested: true
+    evidence_ref: EV-FRAUD-0015
+  autonomy: autonomous_decisioning
+  human_oversight: Fraud Operations reviews all blocks within 24 hours and can reverse
+    any of them; thresholds are reviewed monthly.
+  affects_individuals: true
+  contingency_plan: Switch to rules-only scoring; tested quarterly with the authorisation
+    switch team.
+  kill_switch: true
+  auto_updates: true
+  tags:
+  - fraud
+  - real-time
+  last_reviewed: '2026-09-10'
+- id: vendor-txn-monitoring
+  name: Vendor transaction monitoring AI
+  purpose: Vendor-hosted anomaly detection supplementing rules-based transaction monitoring
+    for correspondent banking.
+  business_function: Financial Crime Compliance
+  approved_scope: Correspondent banking flows only; output feeds the existing alert
+    queue.
+  jurisdictions:
+  - SG
+  model_type: vendor_anomaly_detection
+  data_used:
+  - correspondent_payment_messages_synth
+  data_classification: confidential
+  processes_personal_data: true
+  dependencies:
+  - kind: service
+    name: vendor_monitoring_platform
+    identifier: VEND-0051
+    affects_risk_profile: true
+  lifecycle_status: deployed
+  risk_materiality_rating: Critical
+  review_status: not_reviewed
+  roles:
+  - role: owner
+    party: Head of Financial Crime Compliance
+    function: Compliance
+  - role: developer
+    party: Vendor (NorthStar Surveillance, fictional)
+    function: External
+  - role: monitor
+    party: FCC Quality Assurance
+    function: Compliance
+  documentation:
+  - docs/mrm/vendor-txn-monitoring-due-diligence.md
+  third_party:
+  - provider: NorthStar Surveillance (fictional)
+    component: anomaly-engine
+    version: '7.1'
+    embedded: false
+    material_provider: true
+    fine_tuned_by_fi: false
+    independent_assessment: false
+    change_notification: false
+  guardrails:
+  - name: alert volume cap
+    kind: rate_limit
+    description: Vendor alerts above a daily cap are queued rather than dropped.
+    tested: false
+  autonomy: human_over_the_loop
+  human_oversight: All vendor alerts are dispositioned by investigators; no autonomous
+    action.
+  affects_individuals: true
+  kill_switch: false
+  auto_updates: false
+  tags:
+  - aml
+  - financial-crime
+  - third-party
+  last_reviewed: '2026-06-30'
+  notes: Vendor declines to disclose training data or model architecture; see the
+    third-party assessment register.
+- id: research-signal-agent
+  name: Trading signal research agent
+  purpose: Multi-agent workflow that gathers public research, forms candidate trading
+    hypotheses and drafts a research note for a human analyst.
+  business_function: Markets Research
+  approved_scope: Research idea generation only; no order generation, no execution,
+    no client distribution without analyst sign-off.
+  jurisdictions:
+  - SG
+  model_type: llm_multi_agent
+  data_used:
+  - public_research_corpus_synth
+  - market_data_synth
+  data_classification: internal
+  processes_personal_data: false
+  dependencies:
+  - kind: service
+    name: market_data_feed
+    identifier: VEND-0077
+    affects_risk_profile: false
+  - kind: service
+    name: hosted_llm_api
+    identifier: VEND-0012
+    affects_risk_profile: true
+  lifecycle_status: pilot
+  risk_materiality_rating: High
+  review_status: not_reviewed
+  roles:
+  - role: owner
+    party: Head of Markets Research
+    function: Markets
+  - role: developer
+    party: Quant Research Engineering
+    function: Markets
+  documentation:
+  - docs/mrm/research-agent-design-note.md
+  third_party:
+  - provider: NorthStar AI (fictional)
+    component: hosted-llm
+    version: 2026-07
+    embedded: false
+    material_provider: true
+    fine_tuned_by_fi: false
+    independent_assessment: true
+    change_notification: true
+  guardrails: []
+  agent:
+    agent_identifier: AGT-RSCH-001
+    approved_tools:
+    - web_search
+    - market_data_query
+    - note_draft
+    systems_accessible:
+    - market_data_feed
+    - research_note_store
+    permissions:
+    - read:market_data
+    - write:draft_note
+    components:
+    - planner_agent
+    - retrieval_agent
+    - critic_agent
+    - writer_agent
+    guardrails:
+    - name: no execution tools
+      kind: tool_allowlist
+      description: No order-management or execution tool is reachable by any agent
+        in the workflow.
+      tested: true
+      evidence_ref: EV-RSCH-0031
+    human_checkpoints:
+    - analyst sign-off before any note leaves the research store
+    max_steps: 40
+    can_initiate_external_actions: false
+    trace_logging: false
+  autonomy: multi_agent
+  human_oversight: An analyst signs off every note; the agent cannot publish or trade.
+  affects_individuals: false
+  kill_switch: false
+  auto_updates: false
+  tags:
+  - agent
+  - genai
+  - trading
+  - internal
+  last_reviewed: '2026-10-05'
+  notes: Pilot with two analysts. Trace logging not yet enabled, which the control
+    check flags.
+notes: Synthetic portfolio for a fictional bank. All use cases, data and evaluation
+  results are invented for demonstration and research. No real institution data appears
+  anywhere in this repository.

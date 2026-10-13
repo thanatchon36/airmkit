@@ -1,0 +1,208 @@
+# Generated from a hand-authored mapping table; every row carries its justification.
+# Mapping is interpretive: see docs/RESEARCH_QUESTIONS.md RQ4 threats to validity.
+version: '1'
+description: MAS-AIRM to the MAS Information Paper on Artificial Intelligence Model Risk Management
+  (December 2024). References are the Information Paper's chapter and section headings. The Information
+  Paper reports good practices observed in a thematic review of banks rather than imposing expectations,
+  and it predates the Guidelines; where it is 'full' the Guidelines largely codify what it observed.
+mappings:
+- clause: '4.2'
+  framework: mas_info_paper_2024
+  refs:
+  - 5.1 Identification
+  coverage: full
+  justification: The Information Paper's identification chapter documents observed practice of clear
+    AI definitions, criteria and processes supported by systems, which MAS-AIRM 4.2 turns into an expectation.
+  confidence: high
+- clause: '4.3'
+  framework: mas_info_paper_2024
+  refs:
+  - 5.1 Identification
+  coverage: full
+  justification: Observed good practice included a designated second-line function arbitrating whether
+    a model is AI.
+  confidence: medium
+- clause: '4.5'
+  framework: mas_info_paper_2024
+  refs:
+  - 5.2 Inventory
+  coverage: full
+  justification: The inventory chapter describes maintaining a complete and current AI inventory as
+    good practice.
+  confidence: high
+- clause: '4.6'
+  framework: mas_info_paper_2024
+  refs:
+  - 5.2 Inventory
+  coverage: full
+  justification: Observed practice included linking the AI inventory to model, data and vendor inventories.
+  confidence: medium
+- clause: '4.7'
+  framework: mas_info_paper_2024
+  refs:
+  - 5.2 Inventory
+  coverage: full
+  justification: The attribute list in MAS-AIRM 4.7 closely follows the attributes the Information Paper
+    observed banks capturing.
+  confidence: high
+- clause: '4.9'
+  framework: mas_info_paper_2024
+  refs:
+  - 5.2 Inventory
+  coverage: full
+  justification: Designated ownership of the inventory with second-line oversight was observed practice.
+  confidence: medium
+- clause: '4.10'
+  framework: mas_info_paper_2024
+  refs:
+  - 5.3 Risk Materiality Assessment
+  coverage: full
+  justification: The Information Paper documents risk materiality assessment methodologies applied consistently
+    across the AI portfolio.
+  confidence: high
+- clause: '4.11'
+  framework: mas_info_paper_2024
+  refs:
+  - 5.3 Risk Materiality Assessment
+  coverage: full
+  justification: Inherent and residual materiality with tiering was observed practice.
+  confidence: high
+- clause: '4.12'
+  framework: mas_info_paper_2024
+  refs:
+  - 5.3 Risk Materiality Assessment
+  coverage: full
+  justification: The Impact, Complexity and Reliance dimensions derive from the dimensions the Information
+    Paper observed banks using.
+  confidence: high
+- clause: '3.2'
+  framework: mas_info_paper_2024
+  refs:
+  - 4. Governance and Oversight
+  coverage: full
+  justification: The governance chapter documents board and senior management oversight of AI risk integrated
+    with existing frameworks.
+  confidence: high
+- clause: '3.3'
+  framework: mas_info_paper_2024
+  refs:
+  - 4. Governance and Oversight
+  coverage: full
+  justification: Cross-functional coordination structures for AI risk were observed practice.
+  confidence: high
+- clause: '3.5'
+  framework: mas_info_paper_2024
+  refs:
+  - 4. Governance and Oversight
+  coverage: full
+  justification: Senior management implementation responsibilities and escalation were documented.
+  confidence: medium
+- clause: '5.4'
+  framework: mas_info_paper_2024
+  refs:
+  - 6.2 Data Management
+  coverage: full
+  justification: The data management section covers fitness, representativeness, quality, classification,
+    security, privacy and lineage, which MAS-AIRM 5.4 restates as limbs (a) to (g).
+  confidence: high
+- clause: '5.12'
+  framework: mas_info_paper_2024
+  refs:
+  - 6.3 Development
+  coverage: full
+  justification: Model and feature selection with documented justification was observed practice.
+  confidence: high
+- clause: '5.14'
+  framework: mas_info_paper_2024
+  refs:
+  - 6.3 Development
+  - 6.4 Validation
+  coverage: full
+  justification: Evaluation measures, thresholds and testing approaches including out-of-sample and
+    stress testing are documented.
+  confidence: high
+- clause: '5.17'
+  framework: mas_info_paper_2024
+  refs:
+  - 6.3 Development
+  coverage: full
+  justification: Documentation enabling reproducibility by an independent reviewer was observed practice.
+  confidence: high
+- clause: '5.18'
+  framework: mas_info_paper_2024
+  refs:
+  - 6.4 Validation
+  coverage: full
+  justification: Pre-deployment review by parties not involved in development is documented.
+  confidence: high
+- clause: '5.19'
+  framework: mas_info_paper_2024
+  refs:
+  - 6.4 Validation
+  coverage: full
+  justification: Independent validation for higher-materiality models, with effective challenge, is
+    the Information Paper's central validation practice.
+  confidence: high
+- clause: '5.23'
+  framework: mas_info_paper_2024
+  refs:
+  - 6.5 Deployment, Monitoring and Change Management
+  coverage: full
+  justification: Ongoing monitoring with metrics, thresholds and drift checks is documented.
+  confidence: high
+- clause: '5.24'
+  framework: mas_info_paper_2024
+  refs:
+  - 6.5 Deployment, Monitoring and Change Management
+  coverage: full
+  justification: Periodic re-validation informed by materiality was observed practice.
+  confidence: high
+- clause: '5.25'
+  framework: mas_info_paper_2024
+  refs:
+  - 6.5 Deployment, Monitoring and Change Management
+  coverage: full
+  justification: Change management with significance assessment and re-approval is documented.
+  confidence: high
+- clause: '5.5'
+  framework: mas_info_paper_2024
+  refs:
+  - 7.1 Generative AI
+  coverage: partial
+  justification: The Generative AI chapter addresses explainability challenges of generative models.
+  confidence: medium
+  gap: The Information Paper describes practice rather than setting a transparency expectation, and
+    predates the final Guidelines' audience-needs framing.
+- clause: '5.15'
+  framework: mas_info_paper_2024
+  refs:
+  - 7.1 Generative AI
+  coverage: partial
+  justification: The Generative AI chapter covers guardrails and testing for generative models including
+    hallucination and prompt-related risks.
+  confidence: medium
+  gap: It does not frame guardrail effectiveness as a thing to be measured, and has nothing on AI agents.
+- clause: '5.11'
+  framework: mas_info_paper_2024
+  refs:
+  - 7.2 Third-Party AI
+  coverage: partial
+  justification: The third-party chapter covers vendor due diligence and the bank's retained accountability.
+  confidence: medium
+  gap: Predates the final Guidelines' rejection of self-attestation and the limit / suspend / replace
+    expectation.
+- clause: '5.10'
+  framework: mas_info_paper_2024
+  refs:
+  - 7.2 Third-Party AI
+  coverage: full
+  justification: Testing vendor models in the bank's own context, including compensatory testing where
+    disclosure is limited, is documented practice.
+  confidence: high
+- clause: '6.1'
+  framework: mas_info_paper_2024
+  refs:
+  - 4. Governance and Oversight
+  coverage: full
+  justification: Capability and resourcing for AI risk management were part of the governance observations.
+  confidence: medium
