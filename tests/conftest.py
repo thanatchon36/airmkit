@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import datetime as dt
+import sys
 from pathlib import Path
 
 import pytest
@@ -21,6 +22,12 @@ from airm.inventory import (
 )
 
 EXAMPLE_DIR = Path(__file__).resolve().parents[1] / "examples" / "synthetic_bank"
+
+# The experiment scripts are not part of the installed package, but collect.py produces
+# results/summary.json, which the paper depends on, so it is tested like any other code.
+EXPERIMENTS_DIR = Path(__file__).resolve().parents[1] / "experiments"
+if str(EXPERIMENTS_DIR) not in sys.path:
+    sys.path.insert(0, str(EXPERIMENTS_DIR))
 
 
 @pytest.fixture
