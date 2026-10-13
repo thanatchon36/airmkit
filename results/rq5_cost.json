@@ -1,11 +1,11 @@
 {
   "provenance": {
     "airmkit_version": "0.1.0",
-    "git_revision": "d0957df",
+    "git_revision": "6b8cbaf",
     "python": "3.11.17",
     "platform": "Darwin arm64",
     "seed": 20261013,
-    "generated_at": "2026-10-13T10:49:31+00:00"
+    "generated_at": "2026-10-13T10:51:07+00:00"
   },
   "question": "How many controls, evidence items and estimated person-hours does each materiality tier require, and where is the long tail?",
   "method": "Applicable controls and their evidence items are counted per use case from the control catalogue, then multiplied by a per-item effort estimate that varies with the control's automatability class and a tier multiplier. Institution-level controls are counted once.",

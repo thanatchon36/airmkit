@@ -30,8 +30,7 @@ from _common import (
     verdict,
     write_result,
 )
-
-from airm.controls import Automatability, Scope, check_institution, load_controls
+from airm.controls import Scope, check_institution, load_controls
 from airm.inventory import Register
 from airm.materiality import Tier, assess_register
 

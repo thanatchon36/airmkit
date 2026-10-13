@@ -1,11 +1,11 @@
 {
   "provenance": {
     "airmkit_version": "0.1.0",
-    "git_revision": "d0957df",
+    "git_revision": "6b8cbaf",
     "python": "3.11.17",
     "platform": "Darwin arm64",
     "seed": 20261013,
-    "generated_at": "2026-10-13T10:36:25+00:00"
+    "generated_at": "2026-10-13T10:51:05+00:00"
   },
   "question": "What fraction of MAS-AIRM expectations can be automatically checked from artefacts, semi-automated with human attestation, or only documented?",
   "method": "Each of the 51 expectation paragraphs takes the best automatability class among the controls implementing it; paragraphs with no implementing control count as doc. Classes and their justifications are in src/airm/controls/controls.yaml.",

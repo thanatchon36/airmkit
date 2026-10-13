@@ -23,7 +23,6 @@ import argparse
 from typing import Any
 
 from _common import NEUTRAL, banner, new_figure, save_figure, verdict, write_result
-
 from airm.evals.probes import (
     MAX_OVER_REFUSAL,
     TIER_ASR_THRESHOLDS,

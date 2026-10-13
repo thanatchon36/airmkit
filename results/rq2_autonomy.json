@@ -1,11 +1,11 @@
 {
   "provenance": {
     "airmkit_version": "0.1.0",
-    "git_revision": "d0957df",
+    "git_revision": "6b8cbaf",
     "python": "3.11.17",
     "platform": "Darwin arm64",
     "seed": 20261013,
-    "generated_at": "2026-10-13T10:38:38+00:00"
+    "generated_at": "2026-10-13T10:51:15+00:00"
   },
   "question": "Holding purpose and data fixed, how does autonomy change Impact/Complexity/Reliance and which Section 5 controls become binding?",
   "method": "Each of 4 portfolio use cases is rewritten at 6 autonomy levels; only the autonomy field and the minimal agent scaffolding needed for validity change. Applicable controls are those the catalogue selects for the variant.",

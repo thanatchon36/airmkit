@@ -15,13 +15,13 @@ attributable to autonomy alone.
 
 from __future__ import annotations
 
+from itertools import pairwise
 from typing import Any
 
 from _common import TIER_COLOURS, banner, new_figure, save_figure, verdict, write_result
-
-from airm.controls import Scope, filter_by_use_case, load_controls
+from airm.controls import filter_by_use_case, load_controls
 from airm.inventory import AgentExtension, AutonomyLevel, Guardrail, Register, UseCase
-from airm.materiality import Dimension, Rubric, Tier, assess, load_rubric
+from airm.materiality import Dimension, Rubric, Tier, load_rubric
 
 LADDER = [
     AutonomyLevel.ASSISTIVE,
@@ -162,7 +162,7 @@ def main() -> None:
     taus = {}
     for uc_id, rows in ladders.items():
         counts = [int(r["applicable"]) for r in rows]
-        monotone[uc_id] = all(b >= a for a, b in zip(counts, counts[1:], strict=False))
+        monotone[uc_id] = all(b >= a for a, b in pairwise(counts))
         taus[uc_id] = kendall_tau([int(r["rank"]) for r in rows], counts)
         by_level = {r["autonomy"]: r for r in rows}
         before = by_level[STEP_OF_INTEREST[0].value]
@@ -170,7 +170,7 @@ def main() -> None:
         tier_gain[uc_id] = Tier(after["inherent"]).rank - Tier(before["inherent"]).rank
         deltas = {
             f"{a['autonomy']}->{b['autonomy']}": int(b["applicable"]) - int(a["applicable"])
-            for a, b in zip(rows, rows[1:], strict=False)
+            for a, b in pairwise(rows)
         }
         biggest_step[uc_id] = max(deltas, key=lambda k: deltas[k])
 

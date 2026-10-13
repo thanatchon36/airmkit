@@ -18,7 +18,6 @@ from __future__ import annotations
 from collections import Counter
 
 from _common import NEUTRAL, banner, new_figure, save_figure, share, verdict, write_result
-
 from airm.catalog import load_catalogue
 from airm.crosswalk import Coverage, Framework, load_crosswalk, residual_work
 

@@ -17,9 +17,8 @@ from __future__ import annotations
 from collections import Counter
 
 from _common import CLASS_COLOURS, banner, new_figure, save_figure, share, verdict, write_result
-
 from airm.catalog import load_catalogue
-from airm.controls import Automatability, Scope, load_controls
+from airm.controls import Scope, load_controls
 
 CLASS_ORDER = ["auto", "semi", "doc"]
 RANK = {"auto": 2, "semi": 1, "doc": 0}
