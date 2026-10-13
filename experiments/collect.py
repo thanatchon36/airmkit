@@ -158,7 +158,7 @@ def disclosures(rqs: dict[str, dict[str, Any]]) -> dict[str, Any]:
         "rq3_backend": (
             f"{backend['backend']} {backend['model']} at temperature {backend['temperature']}, "
             f"seed {backend['seed']}, num_predict {backend['num_predict']}, "
-            f"thinking disabled ({backend['think']})"
+            f"think={backend['think']}"
         ),
         "rq3_is_mock": bool(rq3["is_mock"]),
         "rq3_joint_criterion": rq3["joint_criterion"]["note"],

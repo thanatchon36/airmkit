@@ -1,11 +1,11 @@
 {
   "provenance": {
     "airmkit_version": "0.1.0",
-    "git_revision": "6b8cbaf",
+    "git_revision": "36497bd",
     "python": "3.11.17",
     "platform": "Darwin arm64",
     "seed": 20261013,
-    "generated_at": "2026-10-13T10:51:15+00:00"
+    "generated_at": "2026-10-13T11:03:56+00:00"
   },
   "question": "Holding purpose and data fixed, how does autonomy change Impact/Complexity/Reliance and which Section 5 controls become binding?",
   "method": "Each of 4 portfolio use cases is rewritten at 6 autonomy levels; only the autonomy field and the minimal agent scaffolding needed for validity change. Applicable controls are those the catalogue selects for the variant.",
@@ -1114,17 +1114,17 @@
     {
       "hypothesis": "H2(a) applicable control count is monotone non-decreasing in autonomy",
       "holds": true,
-      "detail": "monotone for 4/4 use cases; Kendall tau = {'credit-decision-model': 0.7303, 'aml-alert-triage': 0.7303, 'customer-service-chatbot': 0.7303, 'policy-rag-assistant': 0.7303}"
+      "detail": "monotone for 4/4 use cases; Kendall tau 0.7303-0.7303"
     },
     {
       "hypothesis": "H2(b) at least 3 of 4 gain a tier from human-in-the-loop to autonomous agent",
       "holds": false,
-      "detail": "tier gains {'credit-decision-model': 0, 'aml-alert-triage': 0, 'customer-service-chatbot': 1, 'policy-rag-assistant': 0}"
+      "detail": "tier gains: credit-decision-model +0, aml-alert-triage +0, customer-service-chatbot +1, policy-rag-assistant +0"
     },
     {
       "hypothesis": "H2(c) the largest control delta is at the human-in-the-loop to agent step",
       "holds": false,
-      "detail": "largest step per use case: {'credit-decision-model': 'autonomous_decisioning->autonomous_agent', 'aml-alert-triage': 'autonomous_decisioning->autonomous_agent', 'customer-service-chatbot': 'autonomous_decisioning->autonomous_agent', 'policy-rag-assistant': 'autonomous_decisioning->autonomous_agent'}"
+      "detail": "the largest step is autonomous_decisioning->autonomous_agent for 4/4 use cases, not human_in_the_loop->autonomous_agent"
     },
     {
       "hypothesis": "H2(c-revised) the largest control delta is at the agentic boundary",

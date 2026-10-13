@@ -198,17 +198,20 @@ def main() -> None:
             "H2(a) applicable control count is monotone non-decreasing in autonomy",
             all(monotone.values()),
             f"monotone for {sum(monotone.values())}/{len(monotone)} use cases; "
-            f"Kendall tau = {taus}",
+            f"Kendall tau {min(taus.values())}-{max(taus.values())}",
         ),
         verdict(
             "H2(b) at least 3 of 4 gain a tier from human-in-the-loop to autonomous agent",
             sum(1 for gain in tier_gain.values() if gain >= 1) >= 3,
-            f"tier gains {tier_gain}",
+            "tier gains: "
+            + ", ".join(f"{use_case} +{gain}" for use_case, gain in tier_gain.items()),
         ),
         verdict(
             "H2(c) the largest control delta is at the human-in-the-loop to agent step",
             sum(1 for step in biggest_step.values() if step == target_step) >= 3,
-            f"largest step per use case: {biggest_step}",
+            f"the largest step is {sorted(set(biggest_step.values()))[0]} for "
+            f"{sum(1 for s in biggest_step.values() if s == sorted(set(biggest_step.values()))[0])}"
+            f"/{len(biggest_step)} use cases, not {target_step}",
         ),
         verdict(
             "H2(c-revised) the largest control delta is at the agentic boundary",
