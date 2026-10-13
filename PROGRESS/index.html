@@ -590,6 +590,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../paper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The paper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../RESEARCH_QUESTIONS/" class="md-nav__link">
         
   
@@ -921,6 +949,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#release-status-v010-not-yet-tagged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release status — v0.1.0 not yet tagged
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1118,6 +1157,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#release-status-v010-not-yet-tagged" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release status — v0.1.0 not yet tagged
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1194,9 +1244,16 @@
   asserts the committed paper is the render of the committed template and results. ~8,100 words.</li>
 <li><code>docs/EXEC_SUMMARY.md</code> (one page, CRO audience) and <code>docs/posts/</code> (10 drafts, each ≤1,300
   characters, ending with the repo link) render from the same summary. Tests enforce the limit.</li>
-<li>Cut: a PDF in the repository. No LaTeX engine is installed on the build machine, so <code>make paper</code>
-  writes DOCX and HTML and degrades with an explicit message; the PDF target works wherever
-  tectonic, xelatex, pdflatex or typst is present.</li>
+<li><code>paper/paper.pdf</code> (22 pages) is committed and linked from the README. No LaTeX engine is
+  installed on the build machine, so <code>experiments/make_pdf.py</code> takes the HTML route: pandoc with
+  <code>paper/print.css</code> (A4, numbered pages, table-of-contents page) then WeasyPrint. <code>make paper</code>
+  still prefers tectonic, xelatex, pdflatex or typst where one exists. The PDF build needs the
+  <code>paper</code> extra and system pango and cairo, so CI does not build it; a test asserts the committed
+  file exists and is a plausible PDF.</li>
+<li><code>docs/paper.md</code> is a web-readable copy of the paper for the docs site, written by
+  <code>render_paper.py</code>: the pandoc front matter becomes ordinary Markdown and the figures are copied
+  to <code>docs/figures/</code> so they resolve under mkdocs. Live at
+  <a href="https://thanatchon36.github.io/airmkit/paper/">https://thanatchon36.github.io/airmkit/paper/</a>.</li>
 </ul>
 <h2 id="phase-6-packaging-docs-publication-shipped">Phase 6 — Packaging, docs, publication — <strong>shipped</strong><a class="headerlink" href="#phase-6-packaging-docs-publication-shipped" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1249,6 +1306,54 @@
 <li>The RQ3 figure and the paper's RQ3 section quote one small local model at 16 attack trials per
   pattern. Raising n is in <code>docs/FUTURE_WORK.md</code>.</li>
 </ul>
+<h2 id="release-status-v010-not-yet-tagged">Release status — v0.1.0 not yet tagged<a class="headerlink" href="#release-status-v010-not-yet-tagged" title="Permanent link">&para;</a></h2>
+<p>Everything the release needs is in place and verified: CI is green on Ubuntu and macOS across
+Python 3.11-3.13 (including the job that regenerates every artefact and fails on a stale one),
+<code>make publish</code> builds an sdist and wheel that pass <code>twine check</code>, and the wheel installed into a
+clean venv runs the CLI with the packaged catalogue, controls and crosswalk data. The docs site is
+live at <a href="https://thanatchon36.github.io/airmkit/">https://thanatchon36.github.io/airmkit/</a> and GitHub topics and homepage are set. The name
+<code>airmkit</code> is free on PyPI.</p>
+<p><strong>Blocked on one manual step</strong>: PyPI trusted publishing cannot be configured from here. Before the
+tag is pushed, add a pending trusted publisher at <a href="https://pypi.org/manage/account/publishing/">https://pypi.org/manage/account/publishing/</a>:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PyPI project name</td>
+<td><code>airmkit</code></td>
+</tr>
+<tr>
+<td>Owner</td>
+<td><code>thanatchon36</code></td>
+</tr>
+<tr>
+<td>Repository name</td>
+<td><code>airmkit</code></td>
+</tr>
+<tr>
+<td>Workflow name</td>
+<td><code>release.yml</code></td>
+</tr>
+<tr>
+<td>Environment name</td>
+<td><code>pypi</code></td>
+</tr>
+</tbody>
+</table>
+<p>Then create a GitHub environment called <code>pypi</code> (Settings → Environments) and push the tag:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span>v0.1.0<span class="w"> </span>-m<span class="w"> </span><span class="s2">"airmkit 0.1.0"</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>v0.1.0
+</code></pre></div>
+<p><code>release.yml</code> re-runs lint and tests, checks the tag matches <code>airm.__version__</code>, publishes to PyPI
+without a stored token, creates the GitHub release with the distributions attached, and redeploys
+the docs. A tag fires once: if the trusted publisher is missing, the tag has to be deleted and
+re-pushed.</p>
+<p>Also still manual: a Zenodo DOI (connect the repository at <a href="https://zenodo.org/account/settings/github/">https://zenodo.org/account/settings/github/</a>
+before tagging if the DOI should cover v0.1.0) and branch protection on <code>main</code>.</p>
 
 
 

@@ -1,0 +1,2317 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Operationalise the MAS Guidelines on AI Risk Management (7 October 2026) for LLM and agentic AI systems: clause catalogue, inventory schema, materiality rubric, control checks and audit packs.">
+      
+      
+      
+        <link rel="canonical" href="https://thanatchon36.github.io/airmkit/paper/">
+      
+      
+        <link rel="prev" href="../INTERPRETATIONS/">
+      
+      
+        <link rel="next" href="../RESEARCH_QUESTIONS/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>The paper - airmkit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#operationalising-the-mas-guidelines-on-ai-risk-management-for-llm-and-agentic-systems-a-machine-checkable-control-catalogue-and-empirical-study" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="airmkit" class="md-header__button md-logo" aria-label="airmkit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            airmkit
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              The paper
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/thanatchon36/airmkit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    thanatchon36/airmkit
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="airmkit" class="md-nav__button md-logo" aria-label="airmkit" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    airmkit
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/thanatchon36/airmkit" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    thanatchon36/airmkit
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cookbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cookbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../clause-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clause index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    For risk leaders
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    For risk leaders
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EXEC_SUMMARY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executive summary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../WHAT_CHANGED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What changed from the consultation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../INTERPRETATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interpretations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The paper
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    The paper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#abstract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Abstract
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RESEARCH_QUESTIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../literature/REVIEW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Literature review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DECISIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FUTURE_WORK/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Future work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Project
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PROGRESS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Progress
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../posts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LinkedIn drafts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#abstract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Abstract
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="operationalising-the-mas-guidelines-on-ai-risk-management-for-llm-and-agentic-systems-a-machine-checkable-control-catalogue-and-empirical-study">Operationalising the MAS Guidelines on AI Risk Management for LLM and Agentic Systems: A Machine-Checkable Control Catalogue and Empirical Study<a class="headerlink" href="#operationalising-the-mas-guidelines-on-ai-risk-management-for-llm-and-agentic-systems-a-machine-checkable-control-catalogue-and-empirical-study" title="Permanent link">&para;</a></h1>
+<p>Thanatchon Chongmankhong · 2026-10-13</p>
+<p><a href="https://github.com/thanatchon36/airmkit/raw/main/paper/paper.pdf">Download the PDF</a> · <a href="https://github.com/thanatchon36/airmkit/blob/main/paper/paper.md">Markdown source</a> · <a href="https://github.com/thanatchon36/airmkit/blob/main/results/summary.json">results/summary.json</a>, from which every number here is injected</p>
+<h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">&para;</a></h2>
+<p>The Monetary Authority of Singapore issued its Guidelines on Artificial Intelligence Risk
+Management on 7 October 2026, with Sections 3-4 effective 7 October 2027 and Sections 5-6
+effective 7 October 2028. The Guidelines are deliberately qualitative: they prescribe no
+materiality formula, no metric and no testing threshold. This paper asks how much of such a
+text can be turned into machine-checkable controls, and reports what happens when the attempt
+is made. We extract 65 paragraphs, of which 51
+are expectations, into a machine-readable catalogue; implement 65 controls, each
+citing the paragraph it serves; and run five pre-registered experiments over a fictional bank's
+portfolio of 8 synthetic AI use cases. Of 17 hypotheses
+fixed before the experiments ran, 10 held and 7 were refuted.
+45.1% of expectations admit a fully automated check, but automatability is
+concentrated: Section 4 (identification, inventory, materiality) is 84.6%
+automatable while Section 3 (governance) is 0.0%. Guardrail measurement
+on a local qwen3.5:0.8b model found that the patterns which suppress attacks most also refuse
+benign in-scope requests: no pattern met both pre-registered thresholds, and the only pattern
+with a large reduction at zero over-refusal was a deterministic filter. A crosswalk of
+224 mapping rows shows no single framework fully covers more than
+49.0% of expectations, and the union of ISO/IEC 42001, the NIST AI
+RMF and the EU AI Act still leaves 35.3% with no full mapping - the
+residue being governance machinery and MAS-specific proportionality, not the agent-specific
+clauses. Estimated compliance effort does not scale with materiality tier in evidence <em>volume</em>
+(91.4 items for Critical against 92.0 for
+Medium); it scales in rigour, and 93.1% of estimated effort sits in work
+that automation cannot finish. We release the catalogue, controls, crosswalk and experiments as
+an Apache-2.0 Python package, <code>airmkit</code>, so that each classification can be disputed
+individually.</p>
+<blockquote>
+<p><strong>Disclaimer.</strong> airmkit is an independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. It is not legal, regulatory or compliance advice and is not a substitute for reading the Guidelines on Artificial Intelligence Risk Management (7 October 2026). Interpretations and all thresholds are the authors'.</p>
+</blockquote>
+<h1 id="1-introduction">1. Introduction<a class="headerlink" href="#1-introduction" title="Permanent link">&para;</a></h1>
+<p>Financial regulators have moved from principles to expectations for artificial intelligence. The
+Monetary Authority of Singapore (MAS) issued its <em>Guidelines on Artificial Intelligence Risk
+Management</em> on 7 October 2026, following consultation P017-2025. The Guidelines cover governance
+and oversight (Section 3), AI identification, inventory and risk materiality assessment (Section
+4), lifecycle controls from data through retirement (Section 5), and capabilities (Section 6),
+with a phased transition: Sections 3-4 by 7 October 2027 and Sections 5-6 by 7 October 2028
+(§1.8).</p>
+<p>Like most supervisory guidance, the text is qualitative by design. It requires an institution to
+assess the risk materiality of each AI use case along Impact, Complexity and Reliance (§4.12) but
+prescribes no formula; it requires guardrails for generative AI and agents to be tested for
+effectiveness (§5.15, fn46) but sets no threshold. MAS says so explicitly in its Response to
+Feedback: indicative thresholds would depend on the risk materiality of the use case and the
+institution's risk appetite (Resp §10.29), and a prescribed materiality methodology would not
+suit every institution (Resp §7.19).</p>
+<p>This creates a gap that every affected institution must close on its own, and closes it twice
+over for agentic systems, where the artefacts to be governed - tool permissions, autonomy level,
+guardrail test results, action traces - have no settled inventory schema. The practical question
+is not whether such guidance <em>should</em> be operationalised but how far it <em>can</em> be, and what is
+left when the automatable part is finished.</p>
+<p>We attempt the operationalisation and measure the attempt. Our contributions are:</p>
+<ol>
+<li>A <strong>machine-readable clause catalogue</strong> of the Guidelines: 65 paragraphs,
+   51 of them expectations, with 51 footnotes of
+   which 29 carry requirements (including the agent inventory
+   attributes of fn25 and the shadow-AI controls of fn22).</li>
+<li>A <strong>control catalogue</strong> of 65 controls, each citing the paragraphs it serves,
+   classified by how far it can be automated, with 58 evaluated per use
+   case and 7 per institution. Exactly one expectation
+   (§2.2) has no implementing control, for the reason given in
+   §6.1.</li>
+<li>A <strong>crosswalk</strong> of 224 mapping rows to ISO/IEC 42001, the NIST AI RMF and its
+   Generative AI Profile, the EU AI Act, the MAS FEAT principles and the MAS Information Paper on
+   AI Model Risk Management (2024).</li>
+<li><strong>Five pre-registered experiments</strong> over a synthetic portfolio, with thresholds and refutation
+   criteria fixed before the runs, and both the held and the refuted verdicts reported.</li>
+<li>An <strong>Apache-2.0 toolkit</strong> (<code>pip install airmkit</code>) that produces the inventory register,
+   materiality report, control applicability statement, gap analysis by effective date and board
+   one-pager as reproducible artefacts.</li>
+</ol>
+<p>The paper's most useful findings are negative. Automation stops well short of the Guidelines'
+substance; guardrails that look effective against attacks are unusable against benign traffic;
+and the work an internationally certified institution still faces is governance work, not agent
+work. Each of these is reported with the pre-registered threshold it failed.</p>
+<h1 id="2-background-the-guidelines-and-what-changed">2. Background: the Guidelines and what changed<a class="headerlink" href="#2-background-the-guidelines-and-what-changed" title="Permanent link">&para;</a></h1>
+<h2 id="21-structure">2.1 Structure<a class="headerlink" href="#21-structure" title="Permanent link">&para;</a></h2>
+<p>The Guidelines apply to all financial institutions, on a group basis for locally incorporated
+institutions under consolidated supervision or owning critical information infrastructure (§1.2).
+Section 2 sets the applicability test: an institution whose AI use could have a material adverse
+impact applies the full regime, while one below that test applies a basic governance regime
+(§2.2-§2.5). Section 3 assigns governance to the board and senior management, with control
+functions for identification, inventory and materiality assessment (§3.3-§3.6). Section 4 requires
+AI identification including embedded third-party AI (§4.2, fn21), residual-risk management for
+<em>unidentified</em> AI (§4.4, fn22), an inventory with specified attributes (§4.5-§4.9, fn24-fn25), and
+a use-case-level risk materiality assessment over Impact, Complexity and Reliance (§4.10-§4.13).
+Section 5 covers the lifecycle: data, transparency and explainability, fairness, human oversight,
+third-party AI, selection, evaluation and testing, security, pre-deployment review and
+independent validation, monitoring, change management and retirement (§5.1-§5.26). Section 6
+covers competence, conduct and capability, extended in the final text to personnel <em>using</em> AI
+(§6.1).</p>
+<h2 id="22-consultation-to-final">2.2 Consultation to final<a class="headerlink" href="#22-consultation-to-final" title="Permanent link">&para;</a></h2>
+<p>We diffed the November 2025 consultation draft against the final text, recording 36 substantive
+changes with a full paragraph concordance (<code>docs/WHAT_CHANGED.md</code>). The net direction is
+<em>proportionate</em>, not <em>lenient</em>. Eased: the single 12-month transition became phased (§1.8); the
+"integrated into business processes" applicability test became a material-adverse-impact test, and
+the annex flowchart and example list were deleted (§2.2-§2.4); a dedicated cross-functional AI
+committee is no longer required (§3.3); the inventory must be accurate "to the extent possible or
+practicable" with an institution-chosen update frequency (§4.5); human review of <em>all</em> AI outputs
+became "effective human oversight" (§2.5); data representativeness moved from "the full range" to
+"a range" of real-world conditions (§5.4(b)).</p>
+<p>Tightened, and relevant to this paper: residual risk from unidentified AI must now be kept within
+appetite with specified mitigations (§4.4, fn22); agent inventory attributes - identifiers, tools
+and systems accessible, components, guardrails - appear as an example attribute set (fn25);
+evaluation of generative AI and agents must cover key failure modes <em>and the effectiveness of the
+associated guardrails</em> (§5.15, fn46); third-party AI carries the institution's primary
+accountability, with limit, suspend or replace where residual risk exceeds appetite, and
+certifications or independent external assessments rather than vendor self-attestations
+(§5.10-§5.11, Resp §9.9); enhanced generative-AI and agent logging covering prompts, responses,
+model versions and reasoning became a monitoring consideration (§5.23(d)); and the board must
+approve and regularly review the strategic direction for AI use (§3.4).</p>
+<p>Two of these shape the experiments directly. The guardrail-effectiveness duty of §5.15 is what
+RQ3 measures, and fn25 is what makes an agent inventory schema necessary at all.</p>
+<h1 id="3-related-frameworks-and-prior-work">3. Related frameworks and prior work<a class="headerlink" href="#3-related-frameworks-and-prior-work" title="Permanent link">&para;</a></h1>
+<p>Four bodies of work bear on this problem.</p>
+<p><strong>Supervisory and standards frameworks.</strong> ISO/IEC 42001:2023 specifies an AI management system;
+the NIST AI Risk Management Framework 1.0 and its Generative AI Profile (NIST AI 600-1) organise
+risk functions and generative-AI-specific risks; the EU AI Act imposes product obligations on
+high-risk systems. In the financial sector, SR 11-7 (US), SS1/23 (UK PRA), the HKMA's GenAI
+guidance and MAS' own FEAT principles and Information Paper on AI Model Risk Management (2024)
+define model-risk practice. Section 7 measures how much of the Guidelines these already cover.</p>
+<p><strong>Agent governance and visibility.</strong> The agent-specific clauses (§1.11, fn25, §5.9, §5.23(a))
+presuppose that an institution can enumerate an agent's tools, permissions and actions. The
+visibility literature proposes agent identifiers and activity logs as governance primitives, and
+tool-manifest conventions exist in practice, but no inventory schema has been standardised. The
+toolkit proposes one and ships it as JSON Schema.</p>
+<p><strong>Guardrail and robustness evaluation.</strong> Adversarial suites for jailbreaks, indirect prompt
+injection and data exfiltration are well developed, and existing harnesses are the right tools
+for running them. What is missing is the mapping from a harness result to a supervisory control,
+and any accepted pass threshold per risk tier. We therefore build adapters rather than a harness,
+and we report our thresholds as proposals.</p>
+<p><strong>Evaluation validity.</strong> The measurement literature warns that a benchmark number is an
+instrument reading, not a property of the system. Section 7.3 reports two instrument defects we
+found in our own guardrail measurement, both of which would have produced flattering results.</p>
+<p>A gap table in <code>docs/literature/REVIEW.md</code> lists the expectations with no established
+implementation pattern. The clauses it flags - shadow-AI coverage (§4.4), machine-readable vendor
+AI disclosure (§4.2), guardrail thresholds per tier (§5.15), traces checked against approved scope
+(§5.23(a)), a taxonomy of significant LLM changes (§5.25), tested kill switches (§5.3), automation
+bias (§5.9) and user competence (§6.1) - are also, with one exception discussed in Section 7.4,
+the clauses that resist automation.</p>
+<h1 id="4-method">4. Method<a class="headerlink" href="#4-method" title="Permanent link">&para;</a></h1>
+<h2 id="41-clause-extraction">4.1 Clause extraction<a class="headerlink" href="#41-clause-extraction" title="Permanent link">&para;</a></h2>
+<p>The primary sources were acquired directly from mas.gov.sg and hashed; <code>docs/sources/MANIFEST.md</code>
+records SHA-256 for all 11 documents. Each paragraph of the Guidelines was transcribed into
+<code>src/airm/catalog/mas_airm_2026.yaml</code> with its section, heading, a summary of at most 40 words in
+our own words, a classification as expectation, definition or guidance, who it applies to, its
+effective date and tags. Footnotes were included where they carry a requirement. The catalogue is
+the single source of truth for every citation in the toolkit and in this paper: a control that
+cites a paragraph not in the catalogue fails the test suite.</p>
+<p>Where a paragraph reads two ways we implemented the stricter reading as the default, exposed the
+lenient reading as configuration, and documented both. Eleven such interpretations are recorded
+in <code>docs/INTERPRETATIONS.md</code> and referenced from the controls that depend on them.</p>
+<h2 id="42-controls-and-automatability-classification">4.2 Controls and automatability classification<a class="headerlink" href="#42-controls-and-automatability-classification" title="Permanent link">&para;</a></h2>
+<p>Each control carries an id, the paragraphs it serves, applicability by materiality tier and by
+scope, the evidence items it requires, an optional automated check, and an automatability class.
+The three classes are the paper's main instrument:</p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Meaning</th>
+<th>Expectations</th>
+<th>Controls</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auto</code></td>
+<td>a deterministic function of the inventory entry and its evidence decides the outcome</td>
+<td>23 (45.1%)</td>
+<td>20 (30.8%)</td>
+</tr>
+<tr>
+<td><code>semi</code></td>
+<td>presence and currency of the artefact is machine-checkable; adequacy needs human attestation</td>
+<td>16 (31.4%)</td>
+<td>24 (36.9%)</td>
+</tr>
+<tr>
+<td><code>doc</code></td>
+<td>organisational or judgemental; no artefact the toolkit inspects</td>
+<td>12 (23.5%)</td>
+<td>21 (32.3%)</td>
+</tr>
+</tbody>
+</table>
+<p>An important consequence: a <code>semi</code> control never reports <code>PASS</code>. When its automated check
+succeeds, the outcome is <code>NEEDS_ATTESTATION</code>, because the toolkit has confirmed that an artefact
+exists and is current but cannot judge whether it is adequate. This is deliberate, and it means
+the attestation count in Section 6 should not be read as a failure count.</p>
+<h2 id="43-materiality-rubric">4.3 Materiality rubric<a class="headerlink" href="#43-materiality-rubric" title="Permanent link">&para;</a></h2>
+<p>The rubric scores Impact, Complexity and Reliance from 23 signals on the inventory entry, each
+citing the paragraph it derives from, and combines them into an inherent tier of Low, Medium, High
+or Critical, with a residual tier after declared mitigations. Every score carries its reasons. The
+rubric is deterministic and configurable in YAML.</p>
+<p>The rubric is <strong>our proposal, not a MAS methodology</strong>, and MAS declines to prescribe one (Resp
+§7.19). One structural property of our defaults is worth stating early because it affects RQ5:
+because generative AI sets Complexity to High and the impact gate permits a tier at most one level
+above Impact, <strong>no generative-AI use case can be rated Low</strong> under the defaults. We report this as
+a finding rather than tuning it away, and Section 7.5 shows how it weakens one hypothesis.</p>
+<h2 id="44-synthetic-portfolio">4.4 Synthetic portfolio<a class="headerlink" href="#44-synthetic-portfolio" title="Permanent link">&para;</a></h2>
+<p>The worked example is a fictional bank, Merlion Commercial Bank (fictional), with
+8 AI use cases spanning the materiality range: a credit decision model, AML
+alert triage, a customer-service chatbot, an internal policy RAG assistant, an agentic KYC
+document processor, card fraud scoring, a vendor-provided transaction monitoring service and a
+trading-signal research agent. 2 are agentic and 7
+are high materiality. The portfolio carries three third-party assessments, 266 synthetic evidence
+files and a hash-chained audit trail. No real institution data is used anywhere in this work.</p>
+<table>
+<thead>
+<tr>
+<th>Use case</th>
+<th>Inherent</th>
+<th>Residual</th>
+<th>Applicable controls</th>
+<th>auto</th>
+<th>semi</th>
+<th>doc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>credit-decision-model</code></td>
+<td>Critical</td>
+<td>High</td>
+<td>43</td>
+<td>10</td>
+<td>20</td>
+<td>13</td>
+</tr>
+<tr>
+<td><code>aml-alert-triage</code></td>
+<td>Critical</td>
+<td>High</td>
+<td>43</td>
+<td>10</td>
+<td>20</td>
+<td>13</td>
+</tr>
+<tr>
+<td><code>customer-service-chatbot</code></td>
+<td>High</td>
+<td>Medium</td>
+<td>55</td>
+<td>15</td>
+<td>24</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>policy-rag-assistant</code></td>
+<td>Medium</td>
+<td>Medium</td>
+<td>49</td>
+<td>15</td>
+<td>19</td>
+<td>15</td>
+</tr>
+<tr>
+<td><code>kyc-document-agent</code></td>
+<td>Critical</td>
+<td>High</td>
+<td>58</td>
+<td>18</td>
+<td>24</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>card-fraud-scoring</code></td>
+<td>Critical</td>
+<td>High</td>
+<td>43</td>
+<td>10</td>
+<td>20</td>
+<td>13</td>
+</tr>
+<tr>
+<td><code>vendor-txn-monitoring</code></td>
+<td>Critical</td>
+<td>Critical</td>
+<td>51</td>
+<td>13</td>
+<td>22</td>
+<td>16</td>
+</tr>
+<tr>
+<td><code>research-signal-agent</code></td>
+<td>High</td>
+<td>Medium</td>
+<td>55</td>
+<td>18</td>
+<td>22</td>
+<td>15</td>
+</tr>
+</tbody>
+</table>
+<h2 id="45-pre-registration">4.5 Pre-registration<a class="headerlink" href="#45-pre-registration" title="Permanent link">&para;</a></h2>
+<p>Five research questions, with hypotheses, metrics and decision thresholds, were fixed in
+<code>docs/RESEARCH_QUESTIONS.md</code> before the experiments were implemented:</p>
+<ul>
+<li><strong>RQ1 Automatability.</strong> What fraction of MAS-AIRM expectations can be automatically checked from artefacts, semi-automated with human attestation, or only documented? <em>Method:</em> Each of the 51 expectation paragraphs takes the best automatability class among the controls implementing it; paragraphs with no implementing control count as doc. Classes and their justifications are in src/airm/controls/controls.yaml.</li>
+<li><strong>RQ2 Autonomy and materiality.</strong> Holding purpose and data fixed, how does autonomy change Impact/Complexity/Reliance and which Section 5 controls become binding? <em>Method:</em> Each of 4 portfolio use cases is rewritten at 6 autonomy levels; only the autonomy field and the minimal agent scaffolding needed for validity change. Applicable controls are those the catalogue selects for the variant.</li>
+<li><strong>RQ3 Guardrail effectiveness.</strong> For common guardrail patterns, what is the measured failure rate under standard adversarial probe families, and does it meet a defensible threshold per materiality tier? <em>Method:</em> 20 probes across 5 families (4 attack families plus a benign control set) run under 5 guardrail patterns. Detection is by regular expression, never by a model, so the measurement does not depend on the thing being measured. Wilson 95% intervals throughout.</li>
+<li><strong>RQ4 Crosswalk coverage.</strong> What share of MAS-AIRM expectations is covered, partially covered or uncovered by ISO/IEC 42001, NIST AI RMF and the EU AI Act, and what residual work does an already-certified institution face? <em>Method:</em> 224 hand-authored mapping rows over 51 expectation paragraphs. The denominator is the expectation count, not the mapped-row count, so an unmapped expectation counts against coverage rather than being excluded.</li>
+<li><strong>RQ5 Cost of compliance.</strong> How many controls, evidence items and estimated person-hours does each materiality tier require, and where is the long tail? <em>Method:</em> Applicable controls and their evidence items are counted per use case from the control catalogue, then multiplied by a per-item effort estimate that varies with the control's automatability class and a tier multiplier. Institution-level controls are counted once.</li>
+</ul>
+<p>Verdicts are mechanical against the recorded thresholds. Where implementation forced a change to
+a pre-registered construct, the original hypothesis is reported as refuted on its original
+wording and the revised one is labelled as not pre-registered; Section 7.2 is the one such case.</p>
+<h1 id="5-the-toolkit">5. The toolkit<a class="headerlink" href="#5-the-toolkit" title="Permanent link">&para;</a></h1>
+<p><code>airmkit</code> installs as <code>pip install airmkit</code> and imports as <code>airm</code>. Thirteen modules follow the
+structure of the Guidelines:</p>
+<ul>
+<li><code>airm.inventory</code> - Pydantic models for a use case per §4.7, with an agent extension carrying the
+  fn25 attributes, plus register validation, diff and completeness scoring.</li>
+<li><code>airm.scan</code> - shadow-AI discovery over a repository (§4.4, fn22): LLM SDK imports, model
+  endpoints, MCP server configs, agent frameworks and vendor AI SaaS references, emitted as
+  candidate inventory entries. Scan output is treated as data, never as configuration.</li>
+<li><code>airm.materiality</code> - the rubric of Section 4.3 above (§4.10-§4.13).</li>
+<li><code>airm.controls</code> - the 65 controls, in 20 families, covering
+  53 paragraphs, with the checks that decide their outcomes.</li>
+<li><code>airm.evals</code> - adapters mapping existing eval tools to controls, a fairness disparity check, an
+  agent tool-scope audit comparing observed tool use against approved scope (§5.23(a)), and a
+  guardrail probe runner (§5.15).</li>
+<li><code>airm.monitor</code> - an append-only hash-chained JSONL audit trail with tamper detection and
+  evidence digests (§5.23(d)).</li>
+<li><code>airm.thirdparty</code> - vendor assessment over the eight §5.11 considerations, with the
+  limit/suspend/replace decision record.</li>
+<li><code>airm.crosswalk</code> - the mapping data and a query API.</li>
+<li><code>airm.report</code> - the audit pack: inventory register, materiality report, control applicability
+  statement, gap analysis by effective date, crosswalk coverage, clause index, board one-pager and
+  third-party report, as Markdown with DOCX output.</li>
+</ul>
+<p>The CLI is <code>airm init | scan | assess | check | evidence | report | gap | crosswalk | clauses</code>.
+JSON Schemas for every model are exported under <code>schemas/</code> so that institutions using GRC tools
+or spreadsheets can adopt the formats without adopting the library.</p>
+<h1 id="6-the-portfolio-as-the-toolkit-rates-it">6. The portfolio as the toolkit rates it<a class="headerlink" href="#6-the-portfolio-as-the-toolkit-rates-it" title="Permanent link">&para;</a></h1>
+<p>Running the full pack over the synthetic portfolio produces these outcomes across use-case and
+institution-level controls:</p>
+<table>
+<thead>
+<tr>
+<th>Outcome</th>
+<th>Checks</th>
+<th>Share</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pass</td>
+<td>70</td>
+<td>14.9%</td>
+</tr>
+<tr>
+<td>fail</td>
+<td>30</td>
+<td>6.4%</td>
+</tr>
+<tr>
+<td>needs attestation</td>
+<td>277</td>
+<td>58.8%</td>
+</tr>
+<tr>
+<td>not applicable</td>
+<td>94</td>
+<td>20.0%</td>
+</tr>
+</tbody>
+</table>
+<p>277 checks need attestation, which is what the <code>semi</code> class is for:
+the artefact was found and is current, and a human must judge adequacy. 30 are
+genuine automated-check failures. 94 controls do not apply to the use
+case in question, mostly because of tier or because the use case is not agentic.</p>
+<p>One expectation, §2.2, has no implementing control. This is
+deliberate: §2.2 is the roll-up clause stating that Sections 3-6 apply unless §2.3 does, so it is
+satisfied by the catalogue as a whole rather than by any single check. We report it as uncovered
+rather than writing a control that would always pass.</p>
+<h1 id="7-results">7. Results<a class="headerlink" href="#7-results" title="Permanent link">&para;</a></h1>
+<p>Of 17 pre-registered hypotheses, 10 held and 7
+were refuted:</p>
+<table>
+<thead>
+<tr>
+<th>RQ</th>
+<th>Hypothesis</th>
+<th>Verdict</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RQ1</td>
+<td>H1(a) auto share is below 50% of expectation paragraphs</td>
+<td>holds</td>
+<td>auto = 45.1% (23/51)</td>
+</tr>
+<tr>
+<td>RQ1</td>
+<td>H1(a) semi is the largest class</td>
+<td><strong>refuted</strong></td>
+<td>semi = 16, auto = 23, doc = 12</td>
+</tr>
+<tr>
+<td>RQ1</td>
+<td>H1(b) Section 4 auto share exceeds Section 3</td>
+<td>holds</td>
+<td>Section 4 = 84.6%, Section 3 = 0.0%</td>
+</tr>
+<tr>
+<td>RQ2</td>
+<td>H2(a) applicable control count is monotone non-decreasing in autonomy</td>
+<td>holds</td>
+<td>monotone for 4/4 use cases; Kendall tau 0.7303-0.7303</td>
+</tr>
+<tr>
+<td>RQ2</td>
+<td>H2(b) at least 3 of 4 gain a tier from human-in-the-loop to autonomous agent</td>
+<td><strong>refuted</strong></td>
+<td>tier gains: credit-decision-model +0, aml-alert-triage +0, customer-service-chatbot +1, policy-rag-assistant +0</td>
+</tr>
+<tr>
+<td>RQ2</td>
+<td>H2(c) the largest control delta is at the human-in-the-loop to agent step</td>
+<td><strong>refuted</strong></td>
+<td>the largest step is autonomous_decisioning-&gt;autonomous_agent for 4/4 use cases, not human_in_the_loop-&gt;autonomous_agent</td>
+</tr>
+<tr>
+<td>RQ2</td>
+<td>H2(c-revised) the largest control delta is at the agentic boundary</td>
+<td>holds</td>
+<td>the autonomous_decisioning to autonomous_agent step is largest for 4/4 use cases; not pre-registered, see post_hoc_disclosure</td>
+</tr>
+<tr>
+<td>RQ3</td>
+<td>H3(a) system-prompt-only leaves ASR above 20% on at least one family</td>
+<td>holds</td>
+<td>worst family ASR under system_prompt = 75.0%</td>
+</tr>
+<tr>
+<td>RQ3</td>
+<td>H3(b) layering beats the best single pattern (non-overlapping 95% intervals)</td>
+<td><strong>refuted</strong></td>
+<td>layered 6.2% [0.01,0.28] vs best single filter 12.5% [0.04,0.36]</td>
+</tr>
+<tr>
+<td>RQ3</td>
+<td>H3(c) no pattern reaches 1% ASR on indirect injection with acceptable over-refusal</td>
+<td>holds</td>
+<td>no pattern's upper confidence bound on indirect injection falls below 1% with over-refusal at or below 5%</td>
+</tr>
+<tr>
+<td>RQ3</td>
+<td>H3(d) at least one pattern meets the High-tier ASR limit without over-refusing</td>
+<td><strong>refuted</strong></td>
+<td>patterns meeting both pre-registered thresholds: none. The patterns that cut attack success most also refuse ordinary in-scope requests: over-refusal is 50% under system_prompt and 50% under layered, against 0% unguarded.</td>
+</tr>
+<tr>
+<td>RQ4</td>
+<td>H4(a) no single framework fully covers more than 60% of expectations</td>
+<td>holds</td>
+<td>highest single-framework full coverage is nist_ai_rmf at 49.0%</td>
+</tr>
+<tr>
+<td>RQ4</td>
+<td>H4(b) the international union leaves at least 10% with no full mapping</td>
+<td>holds</td>
+<td>18/51 = 35.3% of expectations have no full mapping in ISO 42001, NIST AI RMF or the EU AI Act</td>
+</tr>
+<tr>
+<td>RQ4</td>
+<td>H4(c) the residue is concentrated in the predicted clauses</td>
+<td><strong>refuted</strong></td>
+<td>4 of 10 residual clauses were predicted: §3.6, §4.4, §4.13, §4.8. Not predicted: §2.2, §2.5, §3.4, §4.1, §5.11, §5.20</td>
+</tr>
+<tr>
+<td>RQ5</td>
+<td>H5(a) Critical requires more than twice the evidence of the lowest tier present (Medium)</td>
+<td><strong>refuted</strong></td>
+<td>Critical mean 91.4 evidence items vs Medium mean 92.0; ratio 0.993. The portfolio contains no Low-tier use case, so Medium is substituted for Low and the hypothesis is weaker than written.</td>
+</tr>
+<tr>
+<td>RQ5</td>
+<td>H5(b) more than half of total effort sits in the semi and doc classes</td>
+<td>holds</td>
+<td>semi 36.8% + doc 56.3% = 93.1%</td>
+</tr>
+<tr>
+<td>RQ5</td>
+<td>H5(c) documentation and review is the largest effort category</td>
+<td>holds</td>
+<td>largest category is documentation_and_review at 26.5%; evaluation_and_testing is 16.8%</td>
+</tr>
+</tbody>
+</table>
+<h2 id="71-rq1-automatability-stops-at-the-governance-boundary">7.1 RQ1: automatability stops at the governance boundary<a class="headerlink" href="#71-rq1-automatability-stops-at-the-governance-boundary" title="Permanent link">&para;</a></h2>
+<p>23 of 51 expectation paragraphs (45.1%) admit a
+fully automated check, 16 (31.4%) are semi-automatable and
+12 (23.5%) are documentary. H1(a) predicted that the automatable share
+would be below half, which held, and that <code>semi</code> would be the largest class, which was refuted at
+paragraph level: <code>auto</code> is larger (23 against 16).</p>
+<p>That refutation is an artefact of the unit of analysis, and the control-level view corrects it. A
+paragraph takes the <em>best</em> class among the controls implementing it, so one automatable control in
+a paragraph with four documentary ones makes the paragraph <code>auto</code>. Counted per control, <code>semi</code> is
+the largest class (24 of 65, 36.9%) and
+<code>auto</code> is the smallest (20, 30.8%). We report the
+paragraph-level number as the headline because that is what was pre-registered, and we regard the
+control-level number as the more honest one.</p>
+<table>
+<thead>
+<tr>
+<th>Section</th>
+<th>Expectations</th>
+<th>auto</th>
+<th>semi</th>
+<th>doc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Section 1</td>
+<td>2</td>
+<td>0.0%</td>
+<td>0.0%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>Section 2</td>
+<td>2</td>
+<td>0.0%</td>
+<td>0.0%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td>Section 3</td>
+<td>5</td>
+<td>0.0%</td>
+<td>40.0%</td>
+<td>60.0%</td>
+</tr>
+<tr>
+<td>Section 4</td>
+<td>13</td>
+<td>84.6%</td>
+<td>15.4%</td>
+<td>0.0%</td>
+</tr>
+<tr>
+<td>Section 5</td>
+<td>26</td>
+<td>46.2%</td>
+<td>46.2%</td>
+<td>7.7%</td>
+</tr>
+<tr>
+<td>Section 6</td>
+<td>3</td>
+<td>0.0%</td>
+<td>0.0%</td>
+<td>100.0%</td>
+</tr>
+<tr>
+<td><strong>All</strong></td>
+<td><strong>51</strong></td>
+<td><strong>45.1%</strong></td>
+<td><strong>31.4%</strong></td>
+<td><strong>23.5%</strong></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Automatability of MAS-AIRM expectation paragraphs by section, as implemented by this toolkit. auto: a deterministic function of the inventory entry and its evidence decides pass/fail. semi: presence and currency of the artefact is machine-checkable but adequacy needs human attestation. doc: organisational or judgemental, with no artefact the toolkit inspects. Classification is the authors' judgement relative to this implementation, not a MAS classification." src="../figures/rq1_automatability_by_section.png" /></p>
+<p>The distribution matters more than the total. Section 4 - identification, inventory, materiality -
+is 84.6% automatable, because its subject matter is a register and a score.
+Section 3 - governance, board and senior management accountability - is
+0.0% automatable, and Sections 1, 2 and 6 are entirely documentary. Section
+5, the lifecycle, splits almost evenly between automatable and semi-automatable at
+46.2% automatable. A tool can therefore carry most of the weight of the
+2027 obligations and much less of the 2028 ones, which is the opposite of the order in which an
+institution would prefer the help to arrive.</p>
+<h2 id="72-rq2-autonomy-adds-controls-monotonically-and-a-disclosure">7.2 RQ2: autonomy adds controls monotonically, and a disclosure<a class="headerlink" href="#72-rq2-autonomy-adds-controls-monotonically-and-a-disclosure" title="Permanent link">&para;</a></h2>
+<p>Holding purpose, data and model family fixed, we rewrote 4 portfolio use cases at
+each of 6 autonomy levels and recounted applicable controls.</p>
+<table>
+<thead>
+<tr>
+<th>Autonomy level</th>
+<th>credit decision model</th>
+<th>aml alert triage</th>
+<th>customer service chatbot</th>
+<th>policy rag assistant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>assistive</code></td>
+<td>43 (Critical)</td>
+<td>43 (Critical)</td>
+<td>55 (High)</td>
+<td>49 (Medium)</td>
+</tr>
+<tr>
+<td><code>human_in_the_loop</code></td>
+<td>43 (Critical)</td>
+<td>43 (Critical)</td>
+<td>55 (High)</td>
+<td>49 (Medium)</td>
+</tr>
+<tr>
+<td><code>human_over_the_loop</code></td>
+<td>43 (Critical)</td>
+<td>43 (Critical)</td>
+<td>55 (High)</td>
+<td>49 (Medium)</td>
+</tr>
+<tr>
+<td><code>autonomous_decisioning</code></td>
+<td>43 (Critical)</td>
+<td>43 (Critical)</td>
+<td>55 (Critical)</td>
+<td>49 (Medium)</td>
+</tr>
+<tr>
+<td><code>autonomous_agent</code></td>
+<td>50 (Critical)</td>
+<td>50 (Critical)</td>
+<td>58 (Critical)</td>
+<td>52 (Medium)</td>
+</tr>
+<tr>
+<td><code>multi_agent</code></td>
+<td>50 (Critical)</td>
+<td>50 (Critical)</td>
+<td>58 (Critical)</td>
+<td>52 (Medium)</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Applicable MAS-AIRM controls as a use case moves up the autonomy ladder, holding purpose, data and model family fixed. Marker colour is the inherent risk materiality tier under the toolkit's default rubric. Tiering and the rubric are the authors' proposal: MAS prescribes no formula (Response to Feedback §7.19)." src="../figures/rq2_autonomy_controls.png" /></p>
+<p>H2(a) held: applicable control count is monotone non-decreasing in autonomy for all
+4 use cases, with Kendall's tau up to 0.7303.
+7 controls first bind at the autonomous-agent step, including the fn25
+agent attributes, guardrail effectiveness testing (§5.15), agent permissions (§5.16), trace
+monitoring (§5.23) and design for oversight (§5.9).</p>
+<p>H2(b) and H2(c) were refuted, and the reason is a change we made to a pre-registered construct.
+The hypotheses were framed on a four-rung ladder ending human-in-the-loop → autonomous agent.
+While implementing the inventory we found that a model which acts without human review of each
+decision - a real-time fraud block - is fully autonomous under §4.12(c) but has no tools, so the
+fn25 agent attributes do not apply to it. We therefore added a distinct <code>autonomous_decisioning</code>
+level, which moved the step the hypotheses named. The full disclosure is carried in the result
+file:</p>
+<blockquote>
+<p>docs/RESEARCH_QUESTIONS.md pre-registered the ladder as assistive, human-in-the-loop, autonomous agent, multi-agent, and framed H2(b) and H2(c) on the human-in-the-loop to autonomous step. While implementing the library an AUTONOMOUS_DECISIONING level was added, distinct from AUTONOMOUS_AGENT, because a model that acts without human review of each decision (a real-time fraud block) is fully autonomous under MAS-AIRM 4.12(c) but has no tools, so the agent attributes of 4.8 fn25 do not apply to it. That change moved the step the hypotheses named. H2(b) and H2(c) are reported as refuted on their original wording. H2(c-revised) tests the same underlying claim on the revised ladder and is reported separately so a reader can see which test was pre-registered and which was not.</p>
+</blockquote>
+<p>H2(c-revised), tested on the step autonomous_decisioning-&gt;autonomous_agent, holds for all four use cases, and is
+labelled in the results as not pre-registered.</p>
+<p>Tier movement is also weaker than we expected: only 1 of 4 use
+cases gained an inherent tier at the agent step, because 2 were already at
+Critical from Impact alone. The rubric's tier is dominated by consequence, not by autonomy;
+autonomy shows up in the <em>control set</em>, not in the tier. For a supervisor that is arguably the
+right behaviour, but it means a tier label alone does not tell a reviewer whether agent controls
+are in force.</p>
+<h2 id="73-rq3-effective-guardrails-that-are-unusable">7.3 RQ3: effective guardrails that are unusable<a class="headerlink" href="#73-rq3-effective-guardrails-that-are-unusable" title="Permanent link">&para;</a></h2>
+<p>We ran 20 probes across four attack families plus a benign in-scope control set under
+5 guardrail patterns against a local qwen3.5:0.8b model. Detection is by regular
+expression, never by a model, so the measurement does not depend on the thing being measured.
+Wilson 95% intervals throughout.</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Attack success</th>
+<th>95% CI</th>
+<th>Over-refusal (benign)</th>
+<th>Tiers met</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>none</code></td>
+<td>75.0% (12/16)</td>
+<td>[50.5%, 89.8%]</td>
+<td>0.0% (0/4)</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>system_prompt</code></td>
+<td>50.0% (8/16)</td>
+<td>[28.0%, 72.0%]</td>
+<td>50.0% (2/4)</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>filter</code></td>
+<td>12.5% (2/16)</td>
+<td>[3.5%, 36.0%]</td>
+<td>0.0% (0/4)</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>llm_judge</code></td>
+<td>12.5% (2/16)</td>
+<td>[3.5%, 36.0%]</td>
+<td>50.0% (2/4)</td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>layered</code></td>
+<td>6.2% (1/16)</td>
+<td>[1.1%, 28.3%]</td>
+<td>50.0% (2/4)</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Probe family</th>
+<th><code>none</code></th>
+<th><code>system_prompt</code></th>
+<th><code>filter</code></th>
+<th><code>llm_judge</code></th>
+<th><code>layered</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>direct jailbreak</td>
+<td>75.0% (3/4)</td>
+<td>50.0% (2/4)</td>
+<td>0.0% (0/4)</td>
+<td>25.0% (1/4)</td>
+<td>0.0% (0/4)</td>
+</tr>
+<tr>
+<td>indirect injection</td>
+<td>75.0% (3/4)</td>
+<td>25.0% (1/4)</td>
+<td>0.0% (0/4)</td>
+<td>0.0% (0/4)</td>
+<td>0.0% (0/4)</td>
+</tr>
+<tr>
+<td>pii leakage</td>
+<td>100.0% (4/4)</td>
+<td>75.0% (3/4)</td>
+<td>0.0% (0/4)</td>
+<td>0.0% (0/4)</td>
+<td>0.0% (0/4)</td>
+</tr>
+<tr>
+<td>policy evasion</td>
+<td>50.0% (2/4)</td>
+<td>50.0% (2/4)</td>
+<td>50.0% (2/4)</td>
+<td>25.0% (1/4)</td>
+<td>25.0% (1/4)</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Attack success rate of five guardrail patterns against four probe families on 20 probes, backend ollama. Lower is better. The dashed line is the toolkit's proposed High-tier limit, not a MAS threshold: MAS sets no performance thresholds (Response to Feedback 10.29). Four benign control probes measure over-refusal, reported in the table rather than this figure." src="../figures/rq3_guardrail_effectiveness.png" /></p>
+<p>Attack success falls from 75.0% unguarded to 6.2% layered. On that
+number alone, layering works. H3(b) nonetheless failed its pre-registered test, which required
+non-overlapping intervals: at 16 attack trials per pattern, layered
+6.2% [1.1%, 28.3%] overlaps the best single pattern, the deterministic
+filter at 12.5% [3.5%, 36.0%]. The experiment is underpowered for that
+comparison, and the pre-registered threshold is the one we report against.</p>
+<p>The substantive finding is the benign control set. Over-refusal is 0.0%
+unguarded, 50.0% with the system prompt, and
+50.0% layered: the patterns that suppress attacks also refuse half of
+ordinary in-scope requests. Against the pre-registered joint criterion - attack success within
+the tier limit of 2.0% for High <em>and</em> over-refusal at or below
+5.0% - 0 of 5 patterns
+qualify, and H3(d) is refuted. The deterministic filter is the only pattern that combines a large reduction in attack
+success with zero measured over-refusal, which is a result about determinism rather than about
+guardrails being easy.</p>
+<p>This bears directly on §5.15: an institution that tests guardrail effectiveness on attack
+suites alone will conclude that its layered defence is strong, and will not see that it has made
+the system unusable for the purpose it was approved for. Guardrail evaluation needs a benign
+control set to be meaningful.</p>
+<p>Two instrument defects were found and fixed during this experiment, and both would have produced
+flattering results had they survived:</p>
+<blockquote>
+<p>Each probe's success_pattern is an instrument, not a hypothesis. The patterns were revised once after inspecting the unguarded (none) responses of the reference model, which exposed two error classes: DJ-01 matched the 'As DAN' persona echo inside an outright refusal, counting a refusal as an attack success; and DJ-03, DJ-04, PE-01 and PE-04 missed successful attacks because the model phrased them differently from the anticipated wording (for example 'offers a compelling 20% return' rather than 'guarantees'). Calibration used the none condition only, so it could not be steered by which guardrail pattern it would favour, and no pattern was changed after seeing the guarded results. A separate defect was fixed in the backend first: the reference model is a reasoning model, and with thinking enabled the whole token budget went to the thinking field, returning an empty completion that matched no probe and produced a false 0% attack success rate across every pattern. The backend now passes think=False and treats an empty completion as an error rather than as a refusal.</p>
+</blockquote>
+<p>The backend defect is worth restating plainly, because it is a trap any team using a reasoning
+model will meet. With thinking enabled, the whole token budget went to the thinking channel and
+the content field came back empty. An empty response matches no probe pattern, so <em>every</em> attack
+scored as "the guardrail held": a perfect 0% attack success rate produced by a truncation bug,
+across all five patterns, with no error raised. The runner now disables thinking, caps prediction
+length and treats an empty completion as an error. The detector defect is the mirror image - a
+pattern that matched a refusal as a success - and recalibration was confined to the unguarded
+condition so that it could not be steered toward whichever guardrail it would favour.</p>
+<p>All RQ3 numbers are from a single small local model (ollama qwen3.5:0.8b at temperature 0.0, seed 20261013, num_predict 512, think=False). They are a
+demonstration that the measurement is possible and that the joint criterion bites, not an estimate
+of guardrail effectiveness in general.</p>
+<h2 id="74-rq4-what-remains-is-governance-not-agents">7.4 RQ4: what remains is governance, not agents<a class="headerlink" href="#74-rq4-what-remains-is-governance-not-agents" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Binding law</th>
+<th>full</th>
+<th>partial</th>
+<th>none</th>
+<th>full share</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ISO/IEC 42001:2023 Artificial intelligence management system</td>
+<td>no</td>
+<td>19</td>
+<td>31</td>
+<td>1</td>
+<td>37.2%</td>
+</tr>
+<tr>
+<td>NIST AI Risk Management Framework 1.0 (NIST AI 100-1)</td>
+<td>no</td>
+<td>25</td>
+<td>25</td>
+<td>1</td>
+<td>49.0%</td>
+</tr>
+<tr>
+<td>NIST AI RMF Generative AI Profile (NIST AI 600-1)</td>
+<td>no</td>
+<td>15</td>
+<td>15</td>
+<td>21</td>
+<td>29.4%</td>
+</tr>
+<tr>
+<td>Regulation (EU) 2024/1689 (Artificial Intelligence Act)</td>
+<td>yes</td>
+<td>22</td>
+<td>27</td>
+<td>2</td>
+<td>43.1%</td>
+</tr>
+<tr>
+<td>MAS FEAT Principles (2018)</td>
+<td>no</td>
+<td>4</td>
+<td>9</td>
+<td>38</td>
+<td>7.8%</td>
+</tr>
+<tr>
+<td>MAS Information Paper on AI Model Risk Management (Dec 2024)</td>
+<td>no</td>
+<td>23</td>
+<td>3</td>
+<td>25</td>
+<td>45.1%</td>
+</tr>
+<tr>
+<td><strong>Union of ISO 42001, NIST AI RMF, EU AI Act</strong></td>
+<td>—</td>
+<td><strong>33</strong></td>
+<td><strong>18</strong></td>
+<td><strong>0</strong></td>
+<td><strong>64.7%</strong></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Coverage of the 51 MAS-AIRM expectation paragraphs by other AI governance frameworks. full: the other framework imposes an equivalent obligation. partial: related but narrower, differently scoped or optional. none: no mapping asserted. Mapping is interpretive and asymmetric, since ISO/IEC 42001 is a management-system standard, the EU AI Act is product law and the NIST AI RMF is voluntary guidance, so a paragraph can be covered in substance and uncovered in legal effect." src="../figures/rq4_crosswalk_coverage.png" /></p>
+<p>H4(a) held: the best single framework, NIST AI Risk Management Framework 1.0 (NIST AI 100-1), fully covers
+49.0% of expectations, below the 60% threshold. H4(b) held: the union
+of ISO/IEC 42001, the NIST AI RMF and the EU AI Act fully covers 33 of
+51 (64.7%), leaving 18 expectations
+(35.3%) with no full mapping.</p>
+<p>H4(c) was refuted, and this is the result we would most want a reader to take away. We predicted
+that the residue would be the agent-specific and generative-AI-specific clauses. It is not. The
+NIST Generative AI Profile covers those well; it is narrow (29.4% of all
+expectations) but accurate where it applies. What no framework fully covers is governance
+machinery and MAS-specific proportionality:</p>
+<table>
+<thead>
+<tr>
+<th>Expectation</th>
+<th>Heading</th>
+<th>Best coverage</th>
+<th>Pre-registered as residue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>§2.2</td>
+<td>Application of the Guidelines</td>
+<td>partial</td>
+<td>no</td>
+</tr>
+<tr>
+<td>§2.5</td>
+<td>Application of the Guidelines</td>
+<td>partial</td>
+<td>no</td>
+</tr>
+<tr>
+<td>§3.4</td>
+<td>AI Oversight</td>
+<td>partial</td>
+<td>no</td>
+</tr>
+<tr>
+<td>§3.6</td>
+<td>AI Oversight</td>
+<td>partial</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>§4.1</td>
+<td>Key AI Risk Management Systems, Policies and Procedures</td>
+<td>partial</td>
+<td>no</td>
+</tr>
+<tr>
+<td>§4.4</td>
+<td>AI Identification</td>
+<td>partial</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>§4.8</td>
+<td>AI Inventory</td>
+<td>partial</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>§4.13</td>
+<td>AI Risk Materiality Assessment</td>
+<td>partial</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>§5.11</td>
+<td>Third-Party AI Management</td>
+<td>partial</td>
+<td>no</td>
+</tr>
+<tr>
+<td>§5.20</td>
+<td>Pre-Deployment Reviews</td>
+<td>partial</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>The clauses §2.2, §2.5, §3.4, §3.6, §4.1, §4.4, §4.8, §4.13, §5.11, §5.20 have only partial mappings in every framework we crosswalked. These
+are the applicability test and basic-governance regime (§2.2, §2.5), board responsibilities
+(§3.4), the identification process and its shadow-AI residual risk (§4.1, §4.4), the agent
+attribute set (§4.8), materiality arbitration (§4.13), third-party accountability with
+limit/suspend/replace (§5.11) and independent validation scope (§5.20). An institution holding
+ISO 42001 certification and aligned to the NIST AI RMF has done the lifecycle work and has not
+done the Singapore-specific governance work.</p>
+<p>The mapping is interpretive and asymmetric - ISO/IEC 42001 is a management-system standard, the EU
+AI Act is product law, the NIST AI RMF is voluntary guidance - so a paragraph can be covered in
+substance and uncovered in legal effect. 18 of 224 crosswalk rows are low confidence and are listed individually in results/rq4_crosswalk.json</p>
+<h2 id="75-rq5-proportionality-scales-rigour-not-volume">7.5 RQ5: proportionality scales rigour, not volume<a class="headerlink" href="#75-rq5-proportionality-scales-rigour-not-volume" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Inherent tier</th>
+<th>Use cases</th>
+<th>Mean applicable controls</th>
+<th>Mean evidence items</th>
+<th>Mean first-time hours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low</td>
+<td>0</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>1</td>
+<td>49.0</td>
+<td>92.0</td>
+<td>264.0</td>
+</tr>
+<tr>
+<td>High</td>
+<td>2</td>
+<td>55.0</td>
+<td>103.0</td>
+<td>364.5</td>
+</tr>
+<tr>
+<td>Critical</td>
+<td>5</td>
+<td>47.6</td>
+<td>91.4</td>
+<td>437.3</td>
+</tr>
+<tr>
+<td>Institution-level</td>
+<td>—</td>
+<td>7</td>
+<td>16</td>
+<td>81.0</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Use case</th>
+<th>Inherent tier</th>
+<th>Controls</th>
+<th>Evidence items</th>
+<th>First-time hours</th>
+<th>Recurring hours/year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>credit-decision-model</code></td>
+<td>Critical</td>
+<td>43</td>
+<td>84</td>
+<td>408.2</td>
+<td>142.9</td>
+</tr>
+<tr>
+<td><code>aml-alert-triage</code></td>
+<td>Critical</td>
+<td>43</td>
+<td>84</td>
+<td>408.2</td>
+<td>142.9</td>
+</tr>
+<tr>
+<td><code>customer-service-chatbot</code></td>
+<td>High</td>
+<td>55</td>
+<td>105</td>
+<td>375.0</td>
+<td>131.2</td>
+</tr>
+<tr>
+<td><code>policy-rag-assistant</code></td>
+<td>Medium</td>
+<td>49</td>
+<td>92</td>
+<td>264.0</td>
+<td>92.4</td>
+</tr>
+<tr>
+<td><code>kyc-document-agent</code></td>
+<td>Critical</td>
+<td>58</td>
+<td>108</td>
+<td>495.3</td>
+<td>173.4</td>
+</tr>
+<tr>
+<td><code>card-fraud-scoring</code></td>
+<td>Critical</td>
+<td>43</td>
+<td>84</td>
+<td>408.2</td>
+<td>142.9</td>
+</tr>
+<tr>
+<td><code>vendor-txn-monitoring</code></td>
+<td>Critical</td>
+<td>51</td>
+<td>97</td>
+<td>466.7</td>
+<td>163.3</td>
+</tr>
+<tr>
+<td><code>research-signal-agent</code></td>
+<td>High</td>
+<td>55</td>
+<td>101</td>
+<td>354.0</td>
+<td>123.9</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Estimated first-time compliance effort for the synthetic bank portfolio, by use case and by the automatability class of the control requiring each evidence item. Person-hour figures are the authors' estimates from the table in experiments/rq5_cost.py, not measurements; the shape of the distribution is the claim, not the absolute values. Use case labels are coloured by inherent tier." src="../figures/rq5_effort_by_use_case.png" /></p>
+<p>H5(a) was refuted and we think the refutation is a property of the Guidelines rather than of our
+rubric. Critical-tier use cases require 91.4 evidence items on average
+against 92.0 for Medium - essentially flat. Estimated hours do rise
+(437.3 against 264.0) but only through the tier multiplier we
+apply to the same artefacts. Proportionality in the Guidelines operates on the <em>depth</em> of review
+of a given artefact, not on how many artefacts exist: a Critical use case needs independent
+validation of the same documentation that a Medium use case needs signed off internally. The
+hypothesis is also weakened by our portfolio containing 0 Low-tier use
+cases, for the structural reason given in Section 4.3, so Medium had to stand in for Low.</p>
+<p>H5(b) held strongly: 93.1% of estimated effort sits in <code>semi</code> and <code>doc</code>
+work, and only 6.8% in work a tool can finish unaided. H5(c) held: the
+largest category is documentation_and_review at 26.5%.</p>
+<table>
+<thead>
+<tr>
+<th>Class or category</th>
+<th>Estimated hours</th>
+<th>Share</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auto</code></td>
+<td>223.7</td>
+<td>6.8%</td>
+</tr>
+<tr>
+<td><code>semi</code></td>
+<td>1200.3</td>
+<td>36.8%</td>
+</tr>
+<tr>
+<td><code>doc</code></td>
+<td>1836.6</td>
+<td>56.3%</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>documentation and review</td>
+<td>863.5</td>
+<td>26.5%</td>
+</tr>
+<tr>
+<td>data and fairness</td>
+<td>704.7</td>
+<td>21.6%</td>
+</tr>
+<tr>
+<td>people and third party</td>
+<td>640.6</td>
+<td>19.6%</td>
+</tr>
+<tr>
+<td>evaluation and testing</td>
+<td>548.6</td>
+<td>16.8%</td>
+</tr>
+<tr>
+<td>operational controls</td>
+<td>503.2</td>
+<td>15.4%</td>
+</tr>
+</tbody>
+</table>
+<p>Effort is also evenly spread rather than concentrated: the Gini coefficient across use cases is
+0.0897, and institution-level controls add 81.0 hours once. Total
+first-time effort for the portfolio is estimated at 3260.6 hours with
+1141.2 hours per year recurring. <strong>These are the authors' estimates
+from a published table, not measurements.</strong> The shape of the distribution is the claim; the
+absolute values are an assumption a reader can replace.</p>
+<h2 id="76-summary-of-refutations">7.6 Summary of refutations<a class="headerlink" href="#76-summary-of-refutations" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>H1(a) semi is the largest class</strong> — semi = 16, auto = 23, doc = 12</li>
+<li><strong>H2(b) at least 3 of 4 gain a tier from human-in-the-loop to autonomous agent</strong> — tier gains: credit-decision-model +0, aml-alert-triage +0, customer-service-chatbot +1, policy-rag-assistant +0</li>
+<li><strong>H2(c) the largest control delta is at the human-in-the-loop to agent step</strong> — the largest step is autonomous_decisioning-&gt;autonomous_agent for 4/4 use cases, not human_in_the_loop-&gt;autonomous_agent</li>
+<li><strong>H3(b) layering beats the best single pattern (non-overlapping 95% intervals)</strong> — layered 6.2% [0.01,0.28] vs best single filter 12.5% [0.04,0.36]</li>
+<li><strong>H3(d) at least one pattern meets the High-tier ASR limit without over-refusing</strong> — patterns meeting both pre-registered thresholds: none. The patterns that cut attack success most also refuse ordinary in-scope requests: over-refusal is 50% under system_prompt and 50% under layered, against 0% unguarded.</li>
+<li><strong>H4(c) the residue is concentrated in the predicted clauses</strong> — 4 of 10 residual clauses were predicted: §3.6, §4.4, §4.13, §4.8. Not predicted: §2.2, §2.5, §3.4, §4.1, §5.11, §5.20</li>
+<li><strong>H5(a) Critical requires more than twice the evidence of the lowest tier present (Medium)</strong> — Critical mean 91.4 evidence items vs Medium mean 92.0; ratio 0.993. The portfolio contains no Low-tier use case, so Medium is substituted for Low and the hypothesis is weaker than written.</li>
+</ul>
+<h1 id="8-threats-to-validity">8. Threats to validity<a class="headerlink" href="#8-threats-to-validity" title="Permanent link">&para;</a></h1>
+<p>The dominant threat is <strong>interpretation risk</strong>. Every control embodies a reading of a qualitative
+paragraph, and a different reader would classify differently. We mitigate but do not remove this:
+each control cites its paragraphs, each automatability class carries a written justification, the
+eleven ambiguous readings are documented with the stricter one as default, and the whole
+catalogue is published so an individual row can be disputed without rejecting the method.</p>
+<p>The second is <strong>single-annotator classification</strong>. The automatability classes and crosswalk rows
+were authored by one person, with no inter-rater agreement available. 18
+of 224 crosswalk rows are flagged low confidence and listed individually.</p>
+<p>The third is the <strong>synthetic portfolio</strong>. The 8 use cases are fictional and
+were written by the same person who wrote the rubric, so the effort distribution reflects our
+model of a bank rather than a bank. No result here generalises to a real portfolio without
+restating it as a hypothesis.</p>
+<p>The fourth is <strong>local-model limits</strong> in RQ3, discussed in Section 7.3.</p>
+<p>The per-experiment threats recorded at run time are reproduced in full:</p>
+<p><strong>RQ1 Automatability.</strong></p>
+<ul>
+<li>The classification is the authors' judgement, not MAS'. Each row carries a written justification so it can be disputed individually.</li>
+<li>A clause is auto <em>relative to this implementation</em>: it depends on what the toolkit ingests. A richer integration would move some semi clauses to auto.</li>
+<li>Single annotator, so no inter-rater agreement is available. The full table is published for challenge.</li>
+<li>Taking the best class per paragraph flatters automatability: a paragraph with one auto and four doc controls counts as auto.</li>
+</ul>
+<p><strong>RQ2 Autonomy and materiality.</strong></p>
+<ul>
+<li>The rubric is the toolkit's proposal; MAS declines to prescribe one (Response to Feedback §7.19). The result describes this rubric's behaviour.</li>
+<li>An agentic variant needs an agent extension to be a valid entry, so part of the step at autonomous_agent is the scaffolding, not autonomy as such. The scaffolding is identical across subjects to keep it a constant.</li>
+<li>A weighted-sum rubric is run as a sensitivity check and recorded alongside.</li>
+<li>Four use cases is a small sample; the direction is the claim, not the magnitude.</li>
+</ul>
+<p><strong>RQ3 Guardrail effectiveness.</strong></p>
+<ul>
+<li>One small local model. Absolute rates say nothing about frontier models; the comparison between patterns is the transferable part.</li>
+<li>Twenty probes is a small sample, which is why every rate carries a Wilson interval and why no pattern can certify the Critical tier here regardless of its point estimate.</li>
+<li>Detection is regex-based, so it measures whether a specific string appeared, not whether the response was harmful. A model could comply in substance while evading the pattern, which would understate attack success.</li>
+<li>The LLM judge shares the generator's weights, which is the realistic cheap deployment and also the one most likely to inherit the generator's blind spots.</li>
+<li>Probes use published low-sophistication techniques on purpose: the measurement is whether a guardrail stops the obvious cases, not whether it stops a determined adversary.</li>
+<li>Single run per probe at temperature 0. Run-to-run variance is not measured.</li>
+</ul>
+<p><strong>RQ4 Crosswalk coverage.</strong></p>
+<ul>
+<li>Mapping is interpretive and performed by one annotator. Every row carries a justification, a confidence flag and a gap note so it can be disputed individually rather than only in aggregate.</li>
+<li>The comparison is asymmetric by nature: ISO 42001 certifies a management system, the EU AI Act regulates products through conformity assessment, and the NIST AI RMF is voluntary. 'Full' coverage means an equivalent obligation exists, not that holding one discharges the other.</li>
+<li>EU AI Act obligations attach to a system's risk classification, so a mapping may be full for an Annex III high-risk use and irrelevant for everything else.</li>
+<li>18 rows are flagged low confidence and are the first place a reader should look to disagree.</li>
+<li>The MAS Information Paper predates the Guidelines and reports observed practice rather than imposing expectations, so its high 'full' count says the Guidelines codified existing practice, not that an institution can rely on it.</li>
+</ul>
+<p><strong>RQ5 Cost of compliance.</strong></p>
+<ul>
+<li>Person-hours are not measured. They are a transparent assumption set, reported in full, and every derived number moves with them.</li>
+<li>The portfolio is synthetic and deliberately spans the tier range, so its mix is not representative of any real institution's AI estate.</li>
+<li>The portfolio contains no Low-tier use case, because under the default rubric a Generative AI use case cannot be rated Low: GenAI sets Complexity to High and the impact gate permits one level above Impact. H5(a) is therefore tested against Medium rather than Low and is weaker than written.</li>
+<li>Effort is counted per evidence item, which treats a one-line attestation and a full validation report as comparable units within a class.</li>
+<li>Reuse across use cases is ignored: a data lineage document covering one dataset serves every use case that uses it, so the portfolio total overstates marginal cost.</li>
+</ul>
+<h1 id="9-reproducibility-statement">9. Reproducibility statement<a class="headerlink" href="#9-reproducibility-statement" title="Permanent link">&para;</a></h1>
+<p>Every number in this paper is injected from <code>results/summary.json</code>; none is typed into the prose.
+The template is <code>paper/paper.md.in</code>, and the renderer fails on an unknown placeholder, so a
+renamed result cannot leave a stale number behind. <code>make reproduce</code> rebuilds every table and
+figure from the committed sources on a laptop with no hosted API: all five experiments run
+locally, RQ3 against Ollama, and the full suite is under an hour.</p>
+<p>Pinned dependencies, fixed seeds and a recorded provenance block (<code>airmkit</code> version, git revision,
+Python version, platform, seed, timestamp) accompany every result file. The primary sources are
+hashed in <code>docs/sources/MANIFEST.md</code>. The test suite covers the library at 96% and includes the
+collector that produces <code>summary.json</code>.</p>
+<p>The toolkit is Apache-2.0 at <a href="https://github.com/thanatchon36/airmkit">https://github.com/thanatchon36/airmkit</a>.</p>
+<h1 id="10-conclusion">10. Conclusion<a class="headerlink" href="#10-conclusion" title="Permanent link">&para;</a></h1>
+<p>A qualitative supervisory text can be made substantially machine-checkable, and measuring how far
+is more useful than claiming it. 45.1% of the MAS Guidelines' expectations admit a
+fully automated check, concentrated in the inventory and materiality obligations that take effect
+first; governance and capability clauses do not automate at all, and the lifecycle clauses mostly
+reduce to "the artefact exists and is current", which is worth automating but is not the same as
+compliance.</p>
+<p>Three findings cut against what we expected. Guardrail patterns that suppress attacks also refuse
+benign in-scope traffic, so testing effectiveness against attack suites alone - the obvious
+reading of §5.15 - produces a system that is safe and unusable. What an internationally certified
+institution still owes is governance machinery and Singapore-specific proportionality, not the
+agent clauses that the frameworks are usually accused of missing. And proportionality scales the
+rigour of review rather than the volume of evidence, so a tiering model that predicts "more
+evidence for higher tiers" predicts the wrong thing.</p>
+<p>The work that remains is mostly human: 93.1% of estimated effort is in
+attestation and documentation. The useful contribution of a toolkit is therefore not to automate
+compliance but to make the human part legible - which artefact is missing, which attestation is
+stale, which paragraph nothing addresses. We release the catalogue, controls, crosswalk and
+experiments so that others can dispute the classifications, add crosswalks to other regulators,
+and replace our thresholds with their own.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Apache-2.0. Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Not legal or regulatory advice.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "navigation.top", "content.code.copy", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
