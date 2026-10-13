@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 
 import pytest
+from tests.conftest import EXAMPLE_DIR
 from typer.testing import CliRunner
 
 from airm.catalog import load_catalogue
@@ -13,7 +14,6 @@ from airm.controls import load_controls
 from airm.inventory import Register
 from airm.report import AuditPack, build_pack, clause_index_markdown, to_docx
 from airm.thirdparty import VendorRegister
-from tests.conftest import EXAMPLE_DIR
 
 runner = CliRunner()
 

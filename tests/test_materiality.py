@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import ClassVar
+
 import pytest
 from pydantic import ValidationError
 
-from airm.inventory import AgentExtension, AutonomyLevel, Register, ReviewStatus, UseCase
+from airm.inventory import AutonomyLevel, ReviewStatus, UseCase
 from airm.materiality import (
     Dimension,
     Level,
@@ -143,7 +145,7 @@ class TestScoring:
 
 
 class TestCombination:
-    LEVELS = {
+    LEVELS: ClassVar[dict[Dimension, Level]] = {
         Dimension.IMPACT: Level.LOW,
         Dimension.COMPLEXITY: Level.CRITICAL,
         Dimension.RELIANCE: Level.CRITICAL,

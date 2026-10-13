@@ -30,7 +30,6 @@ from airm.evals.probes import (
     run_suite,
     wilson_interval,
 )
-from airm.inventory import AgentExtension, AutonomyLevel, UseCase
 from airm.materiality import Tier
 
 
