@@ -1,11 +1,11 @@
 {
   "provenance": {
     "airmkit_version": "0.1.0",
-    "git_revision": "6b8cbaf",
+    "git_revision": "0fbc770",
     "python": "3.11.17",
     "platform": "Darwin arm64",
     "seed": 20261013,
-    "generated_at": "2026-10-13T10:51:07+00:00"
+    "generated_at": "2026-10-13T12:48:16+00:00"
   },
   "question": "How many controls, evidence items and estimated person-hours does each materiality tier require, and where is the long tail?",
   "method": "Applicable controls and their evidence items are counted per use case from the control catalogue, then multiplied by a per-item effort estimate that varies with the control's automatability class and a tier multiplier. Institution-level controls are counted once.",
@@ -37,6 +37,11 @@
         "doc": 13
       },
       "first_time_hours": 408.2,
+      "hours_by_class": {
+        "auto": 22.1,
+        "semi": 159.9,
+        "doc": 226.2
+      },
       "recurring_hours_per_year": 142.9
     },
     "aml-alert-triage": {
@@ -51,6 +56,11 @@
         "doc": 13
       },
       "first_time_hours": 408.2,
+      "hours_by_class": {
+        "auto": 22.1,
+        "semi": 159.9,
+        "doc": 226.2
+      },
       "recurring_hours_per_year": 142.9
     },
     "customer-service-chatbot": {
@@ -65,6 +75,11 @@
         "doc": 16
       },
       "first_time_hours": 375.0,
+      "hours_by_class": {
+        "auto": 27.0,
+        "semi": 144.0,
+        "doc": 204.0
+      },
       "recurring_hours_per_year": 131.2
     },
     "policy-rag-assistant": {
@@ -79,6 +94,11 @@
         "doc": 15
       },
       "first_time_hours": 264.0,
+      "hours_by_class": {
+        "auto": 21.6,
+        "semi": 88.8,
+        "doc": 153.6
+      },
       "recurring_hours_per_year": 92.4
     },
     "kyc-document-agent": {
@@ -93,6 +113,11 @@
         "doc": 16
       },
       "first_time_hours": 495.3,
+      "hours_by_class": {
+        "auto": 42.9,
+        "semi": 187.2,
+        "doc": 265.2
+      },
       "recurring_hours_per_year": 173.4
     },
     "card-fraud-scoring": {
@@ -107,6 +132,11 @@
         "doc": 13
       },
       "first_time_hours": 408.2,
+      "hours_by_class": {
+        "auto": 22.1,
+        "semi": 159.9,
+        "doc": 226.2
+      },
       "recurring_hours_per_year": 142.9
     },
     "vendor-txn-monitoring": {
@@ -121,6 +151,11 @@
         "doc": 16
       },
       "first_time_hours": 466.7,
+      "hours_by_class": {
+        "auto": 29.9,
+        "semi": 171.6,
+        "doc": 265.2
+      },
       "recurring_hours_per_year": 163.3
     },
     "research-signal-agent": {
@@ -135,6 +170,11 @@
         "doc": 15
       },
       "first_time_hours": 354.0,
+      "hours_by_class": {
+        "auto": 33.0,
+        "semi": 129.0,
+        "doc": 192.0
+      },
       "recurring_hours_per_year": 123.9
     }
   },

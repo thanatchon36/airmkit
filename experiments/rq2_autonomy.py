@@ -18,10 +18,13 @@ from __future__ import annotations
 from itertools import pairwise
 from typing import Any
 
-from _common import TIER_COLOURS, banner, new_figure, save_figure, verdict, write_result
+from _common import banner, verdict, write_result
 from airm.controls import filter_by_use_case, load_controls
 from airm.inventory import AgentExtension, AutonomyLevel, Guardrail, Register, UseCase
 from airm.materiality import Dimension, Rubric, Tier, load_rubric
+from figures import render
+
+FIGURE = "rq2_autonomy_controls"
 
 LADDER = [
     AutonomyLevel.ASSISTIVE,
@@ -246,56 +249,6 @@ def main() -> None:
     for uc_id, reason in diagnosis.items():
         print(f"    {uc_id:26} {reason}")
 
-    # Figure: control count against autonomy, one line per use case, tier shown by marker colour.
-    fig, ax = new_figure(7.4, 4.2)
-    for uc_id, rows in ladders.items():
-        xs = [int(r["rank"]) for r in rows]
-        ys = [int(r["applicable"]) for r in rows]
-        ax.plot(xs, ys, color="#BFBFBF", linewidth=1.4, zorder=1)
-        ax.scatter(
-            xs,
-            ys,
-            c=[TIER_COLOURS[str(r["inherent"])] for r in rows],
-            s=58,
-            zorder=2,
-            edgecolor="white",
-            linewidth=1.0,
-        )
-        ax.annotate(
-            uc_id,
-            (xs[-1], ys[-1]),
-            textcoords="offset points",
-            xytext=(8, -3),
-            fontsize=8,
-            color="#4C4C4C",
-        )
-    ax.set_xticks([level.rank for level in LADDER])
-    ax.set_xticklabels([level.value.replace("_", "\n") for level in LADDER], fontsize=8)
-    ax.set_ylabel("applicable controls", fontsize=9)
-    ax.set_xlim(-0.4, len(LADDER) - 0.2 + 1.6)
-    ax.set_title(
-        "Autonomy raises the number of binding controls; colour shows the inherent tier",
-        fontsize=11,
-        loc="left",
-        pad=12,
-    )
-    handles = [
-        ax.scatter([], [], c=colour, s=58, label=tier, edgecolor="white", linewidth=1.0)
-        for tier, colour in TIER_COLOURS.items()
-    ]
-    ax.legend(handles=handles, frameon=False, fontsize=8, ncols=4, loc="upper left")
-    figure = save_figure(
-        fig,
-        "rq2_autonomy_controls",
-        caption=(
-            "Applicable MAS-AIRM controls as a use case moves up the autonomy ladder, holding "
-            "purpose, data and model family fixed. Marker colour is the inherent risk materiality "
-            "tier under the toolkit's default rubric. Tiering and the rubric are the authors' "
-            "proposal: MAS prescribes no formula (Response to Feedback §7.19)."
-        ),
-    )
-    print(f"\n  figure: {figure.name}")
-
     path = write_result(
         "rq2_autonomy",
         {
@@ -345,10 +298,11 @@ def main() -> None:
                 "A weighted-sum rubric is run as a sensitivity check and recorded alongside.",
                 "Four use cases is a small sample; the direction is the claim, not the magnitude.",
             ],
-            "figures": [figure.name],
+            "figures": [f"{FIGURE}.png"],
         },
     )
     print(f"  result: {path.name}")
+    print(f"  figure: {render(FIGURE).name}")
 
 
 if __name__ == "__main__":

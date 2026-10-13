@@ -3,7 +3,7 @@ title: "Operationalising the MAS Guidelines on AI Risk Management for LLM and Ag
 running-title: "Operationalising the MAS Guidelines on AI Risk Management"
 author:
   - Thanatchon Chongmankhong
-subtitle: "airmkit v0.1.0 · results run 2026-10-13 (98da8d7)"
+subtitle: "airmkit v0.1.0 · results run 2026-10-13 (0fbc770)"
 keywords:
   - AI governance
   - model risk management
@@ -594,7 +594,7 @@ applicable controls and the tier at each rung.
 : Applicable controls and inherent tier at each rung of the autonomy ladder for four use cases
 under the default rubric. Purpose, data and model family are held fixed.
 
-![Applicable MAS-AIRM controls as a use case moves up the autonomy ladder, holding purpose, data and model family fixed. Marker colour is the inherent risk materiality tier under the toolkit's default rubric. Tiering and the rubric are the authors' proposal: MAS prescribes no formula (Response to Feedback §7.19).](../results/figures/rq2_autonomy_controls.png)
+![Applicable MAS-AIRM controls as a use case moves up the autonomy ladder, holding purpose, data and model family fixed. Marker colour is the inherent risk materiality tier under the toolkit's default rubric. Use cases with identical trajectories share a line. Tiering and the rubric are the authors' proposal: MAS prescribes no formula (Response to Feedback §7.19).](../results/figures/rq2_autonomy_controls.png)
 
 
 H2(a) held: the applicable-control count is monotone non-decreasing in autonomy for all
@@ -661,7 +661,7 @@ authors' proposal, not a MAS threshold.
 
 : Attack success rate by probe family under each guardrail pattern (successes/trials).
 
-![Attack success rate of five guardrail patterns against four probe families on 20 probes, backend ollama. Lower is better. The dashed line is the toolkit's proposed High-tier limit, not a MAS threshold: MAS sets no performance thresholds (Response to Feedback 10.29). Four benign control probes measure over-refusal, reported in the table rather than this figure.](../results/figures/rq3_guardrail_effectiveness.png)
+![Attack success rate of five guardrail patterns against four probe families on 20 probes, backend ollama. Lower is better. Points are observed rates; whiskers are Wilson 95% intervals over the 4 probes in each family, which is why they are wide. The dashed line is the toolkit's proposed High-tier limit, not a MAS threshold: MAS sets no performance thresholds (Response to Feedback 10.29). Four benign control probes measure over-refusal, reported in the table rather than this figure.](../results/figures/rq3_guardrail_effectiveness.png)
 
 
 Attack success falls from 75.0% [50.5%, 89.8%] unguarded to
@@ -822,7 +822,7 @@ published per-item table, not measurements.
 35% of first-time effort per year for monitoring, re-validation and
 change management (§5.23–§5.25).
 
-![Estimated first-time compliance effort for the synthetic bank portfolio, by use case and by the automatability class of the control requiring each evidence item. Person-hour figures are the authors' estimates from the table in experiments/rq5_cost.py, not measurements; the shape of the distribution is the claim, not the absolute values. Use case labels are coloured by inherent tier.](../results/figures/rq5_effort_by_use_case.png)
+![Estimated first-time compliance effort for the synthetic bank portfolio, by use case and by the automatability class of the control requiring each evidence item, with the inherent tier in brackets and the total at the end of each bar. Person-hour figures are the authors' estimates from the table in experiments/rq5_cost.py, not measurements; the shape of the distribution is the claim, not the absolute values.](../results/figures/rq5_effort_by_use_case.png)
 
 
 H5(a) was refuted, and we believe the refutation is a property of the Guidelines rather than of

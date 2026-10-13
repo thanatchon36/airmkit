@@ -1,17 +1,17 @@
 {
   "provenance": {
     "airmkit_version": "0.1.0",
-    "git_revision": "98da8d7",
+    "git_revision": "0fbc770",
     "python": "3.11.17",
     "platform": "Darwin arm64",
     "seed": 20261013,
-    "generated_at": "2026-10-13T12:16:18+00:00",
+    "generated_at": "2026-10-13T12:49:24+00:00",
     "merged_from": {
       "rq1": "2026-10-13T10:51:05+00:00",
       "rq2": "2026-10-13T11:03:56+00:00",
       "rq3": "2026-10-13T10:47:32+00:00",
       "rq4": "2026-10-13T10:51:06+00:00",
-      "rq5": "2026-10-13T10:51:07+00:00"
+      "rq5": "2026-10-13T12:48:16+00:00"
     },
     "portfolio_generated_by": "airmkit 0.1.0"
   },
@@ -349,12 +349,12 @@
     {
       "rq": "rq2",
       "file": "rq2_autonomy_controls.png",
-      "caption": "Applicable MAS-AIRM controls as a use case moves up the autonomy ladder, holding purpose, data and model family fixed. Marker colour is the inherent risk materiality tier under the toolkit's default rubric. Tiering and the rubric are the authors' proposal: MAS prescribes no formula (Response to Feedback \u00a77.19)."
+      "caption": "Applicable MAS-AIRM controls as a use case moves up the autonomy ladder, holding purpose, data and model family fixed. Marker colour is the inherent risk materiality tier under the toolkit's default rubric. Use cases with identical trajectories share a line. Tiering and the rubric are the authors' proposal: MAS prescribes no formula (Response to Feedback \u00a77.19)."
     },
     {
       "rq": "rq3",
       "file": "rq3_guardrail_effectiveness.png",
-      "caption": "Attack success rate of five guardrail patterns against four probe families on 20 probes, backend ollama. Lower is better. The dashed line is the toolkit's proposed High-tier limit, not a MAS threshold: MAS sets no performance thresholds (Response to Feedback 10.29). Four benign control probes measure over-refusal, reported in the table rather than this figure."
+      "caption": "Attack success rate of five guardrail patterns against four probe families on 20 probes, backend ollama. Lower is better. Points are observed rates; whiskers are Wilson 95% intervals over the 4 probes in each family, which is why they are wide. The dashed line is the toolkit's proposed High-tier limit, not a MAS threshold: MAS sets no performance thresholds (Response to Feedback 10.29). Four benign control probes measure over-refusal, reported in the table rather than this figure."
     },
     {
       "rq": "rq4",
@@ -364,7 +364,7 @@
     {
       "rq": "rq5",
       "file": "rq5_effort_by_use_case.png",
-      "caption": "Estimated first-time compliance effort for the synthetic bank portfolio, by use case and by the automatability class of the control requiring each evidence item. Person-hour figures are the authors' estimates from the table in experiments/rq5_cost.py, not measurements; the shape of the distribution is the claim, not the absolute values. Use case labels are coloured by inherent tier."
+      "caption": "Estimated first-time compliance effort for the synthetic bank portfolio, by use case and by the automatability class of the control requiring each evidence item, with the inherent tier in brackets and the total at the end of each bar. Person-hour figures are the authors' estimates from the table in experiments/rq5_cost.py, not measurements; the shape of the distribution is the claim, not the absolute values."
     }
   ],
   "threats_to_validity": {
@@ -3147,11 +3147,11 @@
     "rq5": {
       "provenance": {
         "airmkit_version": "0.1.0",
-        "git_revision": "6b8cbaf",
+        "git_revision": "0fbc770",
         "python": "3.11.17",
         "platform": "Darwin arm64",
         "seed": 20261013,
-        "generated_at": "2026-10-13T10:51:07+00:00"
+        "generated_at": "2026-10-13T12:48:16+00:00"
       },
       "question": "How many controls, evidence items and estimated person-hours does each materiality tier require, and where is the long tail?",
       "method": "Applicable controls and their evidence items are counted per use case from the control catalogue, then multiplied by a per-item effort estimate that varies with the control's automatability class and a tier multiplier. Institution-level controls are counted once.",
@@ -3183,6 +3183,11 @@
             "doc": 13
           },
           "first_time_hours": 408.2,
+          "hours_by_class": {
+            "auto": 22.1,
+            "semi": 159.9,
+            "doc": 226.2
+          },
           "recurring_hours_per_year": 142.9
         },
         "aml-alert-triage": {
@@ -3197,6 +3202,11 @@
             "doc": 13
           },
           "first_time_hours": 408.2,
+          "hours_by_class": {
+            "auto": 22.1,
+            "semi": 159.9,
+            "doc": 226.2
+          },
           "recurring_hours_per_year": 142.9
         },
         "customer-service-chatbot": {
@@ -3211,6 +3221,11 @@
             "doc": 16
           },
           "first_time_hours": 375.0,
+          "hours_by_class": {
+            "auto": 27.0,
+            "semi": 144.0,
+            "doc": 204.0
+          },
           "recurring_hours_per_year": 131.2
         },
         "policy-rag-assistant": {
@@ -3225,6 +3240,11 @@
             "doc": 15
           },
           "first_time_hours": 264.0,
+          "hours_by_class": {
+            "auto": 21.6,
+            "semi": 88.8,
+            "doc": 153.6
+          },
           "recurring_hours_per_year": 92.4
         },
         "kyc-document-agent": {
@@ -3239,6 +3259,11 @@
             "doc": 16
           },
           "first_time_hours": 495.3,
+          "hours_by_class": {
+            "auto": 42.9,
+            "semi": 187.2,
+            "doc": 265.2
+          },
           "recurring_hours_per_year": 173.4
         },
         "card-fraud-scoring": {
@@ -3253,6 +3278,11 @@
             "doc": 13
           },
           "first_time_hours": 408.2,
+          "hours_by_class": {
+            "auto": 22.1,
+            "semi": 159.9,
+            "doc": 226.2
+          },
           "recurring_hours_per_year": 142.9
         },
         "vendor-txn-monitoring": {
@@ -3267,6 +3297,11 @@
             "doc": 16
           },
           "first_time_hours": 466.7,
+          "hours_by_class": {
+            "auto": 29.9,
+            "semi": 171.6,
+            "doc": 265.2
+          },
           "recurring_hours_per_year": 163.3
         },
         "research-signal-agent": {
@@ -3281,6 +3316,11 @@
             "doc": 15
           },
           "first_time_hours": 354.0,
+          "hours_by_class": {
+            "auto": 33.0,
+            "semi": 129.0,
+            "doc": 192.0
+          },
           "recurring_hours_per_year": 123.9
         }
       },

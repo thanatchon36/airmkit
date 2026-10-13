@@ -20,6 +20,17 @@ All notable changes to this project are documented here. The format follows
   pre-registered verdicts, two-column contents, embedded figures, references and a colophon.
 - README, executive summary, docs landing page and the LinkedIn drafts rewritten.
 - Removed the WeasyPrint route and the duplicated `docs/paper.md` copy of the prose.
+- All five figures redrawn in a print house style by a new `experiments/figures.py`, which draws
+  each one from its committed `results/*.json` (`make figures`), so a figure can be redrawn
+  without rerunning an experiment. Figures are exactly the PDF text width and set in Libertinus
+  Serif (vendored under the SIL OFL in `experiments/fonts/`); no in-image titles; legends above
+  the plot, never on the data; plain-language axis and framework names; ordered categories on
+  one-hue ramps that survive greyscale and colour-vision deficiency. The PDF embeds vector SVG
+  copies; the web reader keeps 300 dpi PNGs. RQ3 is now a dot-and-whisker plot with Wilson 95%
+  intervals, so zero rates are visible; RQ5 is a sorted horizontal bar chart with totals. RQ5's
+  result gained `hours_by_class` per use case. No reported number changed. Tests check that no two
+  labels overlap, the legend clears the data, the typeface and width are right and the committed
+  captions are current.
 
 ## [0.1.0] — 2026-10-13
 

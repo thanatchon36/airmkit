@@ -1,8 +1,8 @@
 """Shared helpers for the research-question experiments.
 
-Every experiment writes its results to ``results/`` as JSON plus, where there is a figure, a PNG
-and the data behind it. Nothing in the paper is hand-typed: ``experiments/collect.py`` merges the
-per-RQ files into ``results/summary.json`` and ``paper/paper.md`` reads its numbers from there.
+Every experiment writes its results to ``results/`` as JSON, and ``experiments/figures.py`` draws
+each figure from that JSON. Nothing in the paper is hand-typed: ``experiments/collect.py`` merges
+the per-RQ files into ``results/summary.json`` and ``paper/paper.md`` reads its numbers from there.
 
 Determinism is a MISSION requirement. These scripts take no arguments that change the result, use
 fixed seeds, and read only the committed synthetic portfolio.
@@ -23,22 +23,6 @@ RESULTS = REPO / "results"
 FIGURES = RESULTS / "figures"
 EXAMPLE = REPO / "examples" / "synthetic_bank"
 SEED = 20261013
-
-# Brand-neutral, colour-blind-safe palette. Tiers run cool to warm so the ordering is visible
-# without relying on hue discrimination alone.
-TIER_COLOURS = {
-    "Low": "#4C78A8",
-    "Medium": "#54A24B",
-    "High": "#E4A03A",
-    "Critical": "#C4453C",
-}
-CLASS_COLOURS = {
-    "auto": "#4C78A8",
-    "semi": "#E4A03A",
-    "doc": "#8D8D8D",
-}
-NEUTRAL = "#4C4C4C"
-GRID = "#D9D9D9"
 
 
 def git_revision() -> str:
@@ -102,50 +86,6 @@ def read_result(name: str) -> dict[str, Any]:
             f"{target} not found; run `python experiments/{name}.py` first (or `make experiments`)"
         )
     return json.loads(target.read_text(encoding="utf-8"))
-
-
-def new_figure(width: float = 7.0, height: float = 4.0) -> Any:
-    """Return a matplotlib figure and axes with the project's plot style applied.
-
-    Raises:
-        RuntimeError: If matplotlib is not installed.
-    """
-    try:
-        import matplotlib
-
-        matplotlib.use("Agg")
-        import matplotlib.pyplot as plt
-    except ImportError as exc:
-        raise RuntimeError("figures need matplotlib: install airmkit[experiments]") from exc
-
-    fig, ax = plt.subplots(figsize=(width, height))
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.spines["left"].set_color(GRID)
-    ax.spines["bottom"].set_color(GRID)
-    ax.tick_params(colors=NEUTRAL, labelsize=9, length=0)
-    ax.set_axisbelow(True)
-    ax.grid(axis="y", color=GRID, linewidth=0.8)
-    for label in (*ax.get_xticklabels(), *ax.get_yticklabels()):
-        label.set_color(NEUTRAL)
-    return fig, ax
-
-
-def save_figure(fig: Any, name: str, *, caption: str) -> Path:
-    """Save a figure as PNG and write its caption alongside.
-
-    The caption is written to a sibling ``.txt`` so that the paper can include it without the
-    text being duplicated in two places and drifting.
-    """
-    FIGURES.mkdir(parents=True, exist_ok=True)
-    target = FIGURES / f"{name}.png"
-    fig.tight_layout()
-    fig.savefig(target, dpi=200, bbox_inches="tight", facecolor="white")
-    (FIGURES / f"{name}.txt").write_text(caption.strip() + "\n", encoding="utf-8")
-    import matplotlib.pyplot as plt
-
-    plt.close(fig)
-    return target
 
 
 def share(numerator: int, denominator: int) -> float:

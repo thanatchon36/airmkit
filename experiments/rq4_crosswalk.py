@@ -17,11 +17,13 @@ from __future__ import annotations
 
 from collections import Counter
 
-from _common import NEUTRAL, banner, new_figure, save_figure, share, verdict, write_result
+from _common import banner, share, verdict, write_result
 from airm.catalog import load_catalogue
 from airm.crosswalk import Coverage, Framework, load_crosswalk, residual_work
+from figures import render
 
-COVERAGE_COLOURS = {"full": "#54A24B", "partial": "#E4A03A", "none": "#C4453C"}
+FIGURE = "rq4_crosswalk_coverage"
+
 # The three frameworks an internationally active institution is most likely to already hold or
 # follow. FEAT and the MAS Information Paper are MAS' own material and are reported separately.
 INTERNATIONAL = [Framework.ISO_42001, Framework.NIST_AI_RMF, Framework.EU_AI_ACT]
@@ -137,61 +139,6 @@ def main() -> None:
         ),
     ]
 
-    # Figure: horizontal stacked bars, one per framework plus the union.
-    fig, ax = new_figure(7.6, 4.4)
-    labels = [*[f.value for f in Framework], "UNION"]
-    data = [*[per_framework[f.value] for f in Framework], union]
-    y = range(len(labels))
-    lefts = [0.0] * len(labels)
-    for level in ("full", "partial", "none"):
-        values = [row[level] for row in data]
-        ax.barh(
-            list(y),
-            values,
-            left=lefts,
-            color=COVERAGE_COLOURS[level],
-            label=level,
-            height=0.62,
-            edgecolor="white",
-            linewidth=0.8,
-        )
-        lefts = [a + b for a, b in zip(lefts, values, strict=True)]
-    ax.set_yticks(list(y))
-    ax.set_yticklabels(labels, fontsize=8.5)
-    ax.invert_yaxis()
-    ax.set_xlabel(f"MAS-AIRM expectation paragraphs (of {n})", fontsize=9)
-    ax.set_xlim(0, n)
-    ax.grid(axis="y", visible=False)
-    ax.grid(axis="x", color="#D9D9D9", linewidth=0.8)
-    ax.set_title(
-        "How much of the MAS Guidelines other frameworks already require",
-        fontsize=11,
-        loc="left",
-        pad=12,
-    )
-    ax.legend(frameon=False, fontsize=8.5, ncols=3, loc="lower right")
-    ax.text(
-        n,
-        len(labels) - 0.2,
-        "mapping is interpretive; every row carries its justification",
-        fontsize=7.5,
-        color=NEUTRAL,
-        ha="right",
-    )
-    figure = save_figure(
-        fig,
-        "rq4_crosswalk_coverage",
-        caption=(
-            f"Coverage of the {n} MAS-AIRM expectation paragraphs by other AI governance "
-            "frameworks. full: the other framework imposes an equivalent obligation. partial: "
-            "related but narrower, differently scoped or optional. none: no mapping asserted. "
-            "Mapping is interpretive and asymmetric, since ISO/IEC 42001 is a management-system "
-            "standard, the EU AI Act is product law and the NIST AI RMF is voluntary guidance, so "
-            "a paragraph can be covered in substance and uncovered in legal effect."
-        ),
-    )
-    print(f"\n  figure: {figure.name}")
-
     path = write_result(
         "rq4_crosswalk",
         {
@@ -246,10 +193,11 @@ def main() -> None:
                 "rather than imposing expectations, so its high 'full' count says the Guidelines "
                 "codified existing practice, not that an institution can rely on it.",
             ],
-            "figures": [figure.name],
+            "figures": [f"{FIGURE}.png"],
         },
     )
     print(f"  result: {path.name}")
+    print(f"  figure: {render(FIGURE).name}")
 
 
 if __name__ == "__main__":

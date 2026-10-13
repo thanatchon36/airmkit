@@ -5,7 +5,8 @@ Two outputs from one source. ``paper/paper.md`` (itself rendered from ``paper/pa
 pandoc twice:
 
 * to Typst with ``paper/airmkit.typ`` and compiled to PDF by the ``typst`` package (single
-  column, Libertinus Serif, numbered sections, IEEE references via ``paper/ieee.csl``);
+  column, Libertinus Serif, numbered sections, IEEE references via ``paper/ieee.csl``), with
+  each figure's SVG swapped in for its PNG so the PDF figures are vector;
 * to HTML with ``paper/reader.html``, a single reading column with a masthead, the abstract, the
   strip of pre-registered verdicts, a two-column contents list, the article and the references,
   with the figures embedded so the page is one self-contained file.
@@ -48,6 +49,7 @@ WRITER_NOTE = (
 )
 
 _HYPOTHESIS = re.compile(r"^(H\d\([^)]*\))\s*(.*)$")
+_FIGURE_PNG = re.compile(r'image\("\.\./(results/figures/[\w-]+)\.png"')
 
 
 def _pandoc() -> str:
@@ -70,6 +72,18 @@ def _common_args() -> list[str]:
         "--metadata=link-citations:true",
         "--metadata=reference-section-title:References",
     ]
+
+
+def vector_figures(typst_source: str) -> str:
+    """Point each figure at its SVG copy, where one exists, so the PDF figures are vector."""
+
+    def swap(match: re.Match[str]) -> str:
+        stem = match.group(1)
+        if (REPO / f"{stem}.svg").is_file():
+            return f'image("../{stem}.svg"'
+        return match.group(0)
+
+    return _FIGURE_PNG.sub(swap, typst_source)
 
 
 def build_pdf() -> Path:
@@ -96,6 +110,9 @@ def build_pdf() -> Path:
         ],
         cwd=PAPER_DIR,
         check=True,
+    )
+    TYPST_SOURCE.write_text(
+        vector_figures(TYPST_SOURCE.read_text(encoding="utf-8")), encoding="utf-8"
     )
     import typst
 

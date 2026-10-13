@@ -16,9 +16,12 @@ from __future__ import annotations
 
 from collections import Counter
 
-from _common import CLASS_COLOURS, banner, new_figure, save_figure, share, verdict, write_result
+from _common import banner, share, verdict, write_result
 from airm.catalog import load_catalogue
 from airm.controls import Scope, load_controls
+from figures import render
+
+FIGURE = "rq1_automatability_by_section"
 
 CLASS_ORDER = ["auto", "semi", "doc"]
 RANK = {"auto": 2, "semi": 1, "doc": 0}
@@ -123,55 +126,6 @@ def main() -> None:
         ),
     ]
 
-    # Figure: stacked bars per section.
-    fig, ax = new_figure(7.2, 3.8)
-    sections = list(section_shares)
-    bottoms = [0.0] * len(sections)
-    for klass in CLASS_ORDER:
-        values = [section_shares[s][klass] * 100 for s in sections]
-        ax.bar(
-            [f"§{s}" for s in sections],
-            values,
-            bottom=bottoms,
-            color=CLASS_COLOURS[klass],
-            label=klass,
-            width=0.62,
-            edgecolor="white",
-            linewidth=0.8,
-        )
-        bottoms = [b + v for b, v in zip(bottoms, values, strict=True)]
-    ax.set_ylabel("share of expectation paragraphs (%)", fontsize=9)
-    ax.set_ylim(0, 100)
-    ax.set_title(
-        "How far each section of the Guidelines can be machine-checked",
-        fontsize=11,
-        loc="left",
-        pad=12,
-    )
-    ax.legend(frameon=False, fontsize=9, ncols=3, loc="upper center", bbox_to_anchor=(0.5, -0.08))
-    for index, section in enumerate(sections):
-        ax.text(
-            index,
-            101,
-            f"n={section_shares[section]['total']}",
-            ha="center",
-            fontsize=8,
-            color="#4C4C4C",
-        )
-    figure = save_figure(
-        fig,
-        "rq1_automatability_by_section",
-        caption=(
-            "Automatability of MAS-AIRM expectation paragraphs by section, as implemented by this "
-            "toolkit. auto: a deterministic function of the inventory entry and its evidence "
-            "decides pass/fail. semi: presence and currency of the artefact is machine-checkable "
-            "but adequacy needs human attestation. doc: organisational or judgemental, with no "
-            "artefact the toolkit inspects. Classification is the authors' judgement relative to "
-            "this implementation, not a MAS classification."
-        ),
-    )
-    print(f"\n  figure: {figure.relative_to(figure.parents[2])}")
-
     path = write_result(
         "rq1_automatability",
         {
@@ -209,10 +163,11 @@ def main() -> None:
                 "Taking the best class per paragraph flatters automatability: a paragraph with "
                 "one auto and four doc controls counts as auto.",
             ],
-            "figures": [figure.name],
+            "figures": [f"{FIGURE}.png"],
         },
     )
     print(f"  result: {path.relative_to(path.parents[1])}")
+    print(f"  figure: {render(FIGURE).name}")
 
 
 if __name__ == "__main__":

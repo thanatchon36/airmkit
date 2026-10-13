@@ -2,7 +2,7 @@
 
 **For Chief Risk Officers and Heads of Model Risk.** Every figure below is generated from
 `results/summary.json`; nothing is typed by hand. Generated 2026-10-13 from airmkit
-0.1.0 (98da8d7). Written by Claude Fable 5.1 from the author's results.
+0.1.0 (0fbc770). Written by Claude Fable 5.1 from the author's results.
 
 > airmkit is an independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. It is not legal, regulatory or compliance advice and is not a substitute for reading the Guidelines on Artificial Intelligence Risk Management (7 October 2026). Interpretations and all thresholds are the authors'.
 

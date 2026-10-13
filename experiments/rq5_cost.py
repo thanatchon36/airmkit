@@ -19,13 +19,8 @@ from collections import Counter, defaultdict
 from typing import Any
 
 from _common import (
-    CLASS_COLOURS,
     EXAMPLE,
-    NEUTRAL,
-    TIER_COLOURS,
     banner,
-    new_figure,
-    save_figure,
     share,
     verdict,
     write_result,
@@ -33,6 +28,9 @@ from _common import (
 from airm.controls import Scope, check_institution, load_controls
 from airm.inventory import Register
 from airm.materiality import Tier, assess_register
+from figures import render
+
+FIGURE = "rq5_effort_by_use_case"
 
 # Authors' estimates of first-time effort to produce one evidence item, in person-hours, by the
 # automatability class of the control requiring it. A semi item costs more than an auto item
@@ -114,10 +112,12 @@ def main() -> None:
         class_counts = Counter(c.automatability.value for c in applicable)
 
         hours = 0.0
+        hours_by_class: dict[str, float] = {"auto": 0.0, "semi": 0.0, "doc": 0.0}
         for control in applicable:
             per_item = EFFORT_PER_ITEM[control.automatability.value]
             control_hours = per_item * len(control.evidence) * multiplier
             hours += control_hours
+            hours_by_class[control.automatability.value] += control_hours
             group_effort[group_of(control.family)] += control_hours
             class_effort[control.automatability.value] += control_hours
 
@@ -129,6 +129,7 @@ def main() -> None:
             "evidence_item_instances": sum(len(c.evidence) for c in applicable),
             "by_class": dict(class_counts),
             "first_time_hours": round(hours, 1),
+            "hours_by_class": {k: round(v, 1) for k, v in hours_by_class.items()},
             "recurring_hours_per_year": round(hours * RECURRING_FRACTION, 1),
         }
 
@@ -239,72 +240,6 @@ def main() -> None:
         ),
     ]
 
-    # Figure: effort by use case, stacked by automatability class, tier shown on the label.
-    fig, ax = new_figure(7.8, 4.4)
-    ids = list(per_use_case)
-    bottoms = [0.0] * len(ids)
-    for klass in ("auto", "semi", "doc"):
-        values = []
-        for use_case_id in ids:
-            row = per_use_case[use_case_id]
-            multiplier = TIER_MULTIPLIER[row["tier"]]
-            use_case = register.get(use_case_id)
-            assessment = portfolio.assessments[use_case_id]
-            hours = sum(
-                EFFORT_PER_ITEM[klass] * len(c.evidence) * multiplier
-                for c in controls.controls
-                if c.scope is Scope.USE_CASE
-                and c.automatability.value == klass
-                and c.applies_to(use_case, assessment)[0]
-            )
-            values.append(hours)
-        ax.bar(
-            ids,
-            values,
-            bottom=bottoms,
-            color=CLASS_COLOURS[klass],
-            label=klass,
-            width=0.62,
-            edgecolor="white",
-            linewidth=0.8,
-        )
-        bottoms = [a + b for a, b in zip(bottoms, values, strict=True)]
-    ax.set_ylabel("estimated first-time person-hours", fontsize=9)
-    ax.set_xticks(range(len(ids)))
-    ax.set_xticklabels(
-        [f"{i}\n{per_use_case[i]['tier']}" for i in ids], fontsize=7.5, rotation=30, ha="right"
-    )
-    for index, use_case_id in enumerate(ids):
-        tier = per_use_case[use_case_id]["tier"]
-        ax.get_xticklabels()[index].set_color(TIER_COLOURS[tier])
-    ax.set_title(
-        "Estimated compliance effort by use case and automatability class",
-        fontsize=11,
-        loc="left",
-        pad=12,
-    )
-    ax.legend(frameon=False, fontsize=8.5, ncols=3, loc="upper right")
-    ax.text(
-        len(ids) - 0.5,
-        -max(bottoms) * 0.33,
-        "person-hours are the authors' estimates, not measurements",
-        fontsize=7.5,
-        color=NEUTRAL,
-        ha="right",
-    )
-    figure = save_figure(
-        fig,
-        "rq5_effort_by_use_case",
-        caption=(
-            "Estimated first-time compliance effort for the synthetic bank portfolio, by use case "
-            "and by the automatability class of the control requiring each evidence item. "
-            "Person-hour figures are the authors' estimates from the table in "
-            "experiments/rq5_cost.py, not measurements; the shape of the distribution is the "
-            "claim, not the absolute values. Use case labels are coloured by inherent tier."
-        ),
-    )
-    print(f"\n  figure: {figure.name}")
-
     path = write_result(
         "rq5_cost",
         {
@@ -361,10 +296,11 @@ def main() -> None:
                 "serves every use case that uses it, so the portfolio total overstates marginal "
                 "cost.",
             ],
-            "figures": [figure.name],
+            "figures": [f"{FIGURE}.png"],
         },
     )
     print(f"  result: {path.name}")
+    print(f"  figure: {render(FIGURE).name}")
 
 
 if __name__ == "__main__":

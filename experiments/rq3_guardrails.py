@@ -22,7 +22,7 @@ from __future__ import annotations
 import argparse
 from typing import Any
 
-from _common import NEUTRAL, banner, new_figure, save_figure, verdict, write_result
+from _common import banner, verdict, write_result
 from airm.evals.probes import (
     MAX_OVER_REFUSAL,
     TIER_ASR_THRESHOLDS,
@@ -36,15 +36,11 @@ from airm.evals.probes import (
     wilson_interval,
 )
 from airm.materiality import Tier
+from figures import render
+
+FIGURE = "rq3_guardrail_effectiveness"
 
 ATTACK_FAMILIES = [f for f in ProbeFamily if not f.is_control]
-PATTERN_COLOURS = {
-    GuardrailPattern.NONE: "#C4453C",
-    GuardrailPattern.SYSTEM_PROMPT: "#E4A03A",
-    GuardrailPattern.FILTER: "#4C78A8",
-    GuardrailPattern.LLM_JUDGE: "#54A24B",
-    GuardrailPattern.LAYERED: "#3E3E3E",
-}
 
 
 def choose_backend(*, mock: bool, model: str) -> tuple[Backend, bool]:
@@ -224,61 +220,6 @@ def main() -> None:
         ),
     ]
 
-    # Figure: grouped bars, ASR by family and pattern, with the proposed High-tier line.
-    fig, ax = new_figure(7.8, 4.4)
-    width = 0.16
-    positions = range(len(ATTACK_FAMILIES))
-    for index, pattern in enumerate(GuardrailPattern):
-        offsets = [p + (index - 2) * width for p in positions]
-        values = [rows[pattern.value]["by_family"][f.value]["asr"] * 100 for f in ATTACK_FAMILIES]
-        ax.bar(
-            offsets,
-            values,
-            width=width,
-            label=pattern.value,
-            color=PATTERN_COLOURS[pattern],
-            edgecolor="white",
-            linewidth=0.6,
-        )
-    ax.axhline(
-        TIER_ASR_THRESHOLDS[Tier.HIGH] * 100,
-        color=NEUTRAL,
-        linestyle="--",
-        linewidth=1.0,
-        zorder=0,
-    )
-    ax.text(
-        len(ATTACK_FAMILIES) - 0.5,
-        TIER_ASR_THRESHOLDS[Tier.HIGH] * 100 + 1.5,
-        f"proposed High-tier limit ({TIER_ASR_THRESHOLDS[Tier.HIGH]:.0%})",
-        fontsize=7.5,
-        color=NEUTRAL,
-        ha="right",
-    )
-    ax.set_xticks(list(positions))
-    ax.set_xticklabels([f.value.replace("_", "\n") for f in ATTACK_FAMILIES], fontsize=8)
-    ax.set_ylabel("attack success rate (%)", fontsize=9)
-    ax.set_title(
-        f"Guardrail effectiveness by probe family ({backend.name}{', MOCK' if is_mock else ''})",
-        fontsize=11,
-        loc="left",
-        pad=12,
-    )
-    ax.legend(frameon=False, fontsize=8, ncols=5, loc="upper center", bbox_to_anchor=(0.5, -0.12))
-    figure = save_figure(
-        fig,
-        "rq3_guardrail_effectiveness",
-        caption=(
-            "Attack success rate of five guardrail patterns against four probe families on "
-            f"{len(probes)} probes, backend {backend.name}"
-            f"{' (deterministic stub, not a measurement)' if is_mock else ''}. Lower is better. "
-            "The dashed line is the toolkit's proposed High-tier limit, not a MAS threshold: MAS "
-            "sets no performance thresholds (Response to Feedback 10.29). Four benign control "
-            "probes measure over-refusal, reported in the table rather than this figure."
-        ),
-    )
-    print(f"\n  figure: {figure.name}")
-
     path = write_result(
         "rq3_guardrails",
         {
@@ -364,10 +305,11 @@ def main() -> None:
                 "determined adversary.",
                 "Single run per probe at temperature 0. Run-to-run variance is not measured.",
             ],
-            "figures": [figure.name],
+            "figures": [f"{FIGURE}.png"],
         },
     )
     print(f"  result: {path.name}")
+    print(f"  figure: {render(FIGURE).name}")
 
 
 if __name__ == "__main__":

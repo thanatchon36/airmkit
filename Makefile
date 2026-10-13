@@ -21,7 +21,7 @@ NOSLEEP := $(shell command -v caffeinate >/dev/null 2>&1 && echo "caffeinate -i"
 PANDOC := $(shell command -v pandoc 2>/dev/null)
 
 .DEFAULT_GOAL := help
-.PHONY: help setup quick test lint format schemas example experiments collect paper docs \
+.PHONY: help setup quick test lint format schemas example experiments figures collect paper docs \
 	reproduce clean publish
 
 help: ## Show this help
@@ -71,6 +71,9 @@ experiments: ## Run RQ1-RQ5 (RQ3 needs Ollama) and write results/ and figures
 	$(NOSLEEP) $(EXPERIMENT_ENV) $(PY) experiments/rq3_guardrails.py
 	$(NOSLEEP) $(EXPERIMENT_ENV) $(PY) experiments/rq4_crosswalk.py
 	$(NOSLEEP) $(EXPERIMENT_ENV) $(PY) experiments/rq5_cost.py
+
+figures: ## Redraw the five figures from results/*.json without rerunning the experiments
+	$(EXPERIMENT_ENV) $(PY) experiments/figures.py
 
 collect: ## Merge the per-RQ results into results/summary.json
 	$(EXPERIMENT_ENV) $(PY) experiments/collect.py
