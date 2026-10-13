@@ -144,6 +144,8 @@ Status of each MISSION phase. Update before compacting context so work can resum
   <https://thanatchon36.github.io/airmkit/paper/>.
 - **Paper PDF:** committed at `paper/paper.pdf` and linked from the README.
 
-Still manual, and worth doing before the next tag: a Zenodo DOI (connect the repository at
-<https://zenodo.org/account/settings/github/>, then cut v0.1.1 or release v0.1.0 again from the
-Zenodo side) and branch protection on `main`.
+- **Zenodo:** GitHub integration enabled; the v0.1.0 release was re-published (same tag, notes
+  and byte-identical assets) to trigger archiving. Concept DOI 10.5281/zenodo.23341671 (all versions), version DOI
+  10.5281/zenodo.23341672 — <https://zenodo.org/records/23341672>. Future releases archive automatically.
+
+Still manual: branch protection on `main`.

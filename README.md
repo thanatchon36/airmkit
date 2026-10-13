@@ -7,6 +7,7 @@ measure how far that is possible.**
 [![PyPI](https://img.shields.io/pypi/v/airmkit.svg)](https://pypi.org/project/airmkit/)
 [![Python](https://img.shields.io/pypi/pyversions/airmkit.svg)](https://pypi.org/project/airmkit/)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23341671.svg)](https://doi.org/10.5281/zenodo.23341671)
 
 📄 **[Read the paper on the web](https://thanatchon36.github.io/airmkit/paper/)** ·
 ⬇️ **[Download the PDF](https://github.com/thanatchon36/airmkit/raw/main/paper/paper.pdf)** ·
@@ -208,11 +209,12 @@ an issue and say which paragraph. See [CONTRIBUTING.md](CONTRIBUTING.md).
              for LLM and Agentic Systems},
   year    = {2026},
   url     = {https://github.com/thanatchon36/airmkit},
+  doi     = {10.5281/zenodo.23341671},
   version = {0.1.0}
 }
 ```
 
-See [CITATION.cff](CITATION.cff). Release notes are in [CHANGELOG.md](CHANGELOG.md).
+The DOI above is the concept DOI (always resolves to the latest version); v0.1.0 is [10.5281/zenodo.23341672](https://doi.org/10.5281/zenodo.23341672). See [CITATION.cff](CITATION.cff). Release notes are in [CHANGELOG.md](CHANGELOG.md).
 
 ## Licence
 

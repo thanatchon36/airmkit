@@ -818,7 +818,7 @@ example. Re-running the five experiments on the reference machine reproduced eve
 figure and table byte-for-byte; only the provenance timestamps differed.
 
 The toolkit, catalogue, crosswalk, experiments and this paper are Apache-2.0 at
-<https://github.com/thanatchon36/airmkit>, and the package is on PyPI as `airmkit`.
+<https://github.com/thanatchon36/airmkit>, archived on Zenodo as doi:[10.5281/zenodo.23341671](https://doi.org/10.5281/zenodo.23341671), and the package is on PyPI as `airmkit`.
 
 # Conclusion
 
