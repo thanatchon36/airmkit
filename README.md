@@ -100,7 +100,10 @@ $ airm check --register examples/synthetic_bank/ai-inventory.yaml --use-case kyc
 | `airm.report` | — | Markdown → DOCX/PDF audit pack |
 
 JSON Schemas for every model live in [`schemas/`](schemas/), so a GRC platform or a spreadsheet can
-adopt the formats without Python.
+adopt the formats without Python — regenerate them with `airm schemas`.
+
+Full documentation, including a concepts guide, the CLI reference and a cookbook, is at
+**<https://thanatchon36.github.io/airmkit/>** (`make docs` builds it locally).
 
 ## Research
 
@@ -127,6 +130,19 @@ The table is generated from the catalogue, never hand-maintained:
 airm clauses --format markdown        # or: make docs
 ```
 
+## Development
+
+```bash
+make setup      # uv venv -p 3.11 and an editable install with every extra
+make quick      # lint, fast tests and the worked example — under 5 minutes
+make test lint  # full suite with coverage; ruff + mypy --strict
+make help       # every target
+```
+
+Generated files (`schemas/`, `results/summary.json`, `paper/paper.md`, `docs/EXEC_SUMMARY.md`,
+`docs/posts/*.md`, `docs/clause-index.md`) have staleness tests: edit the source, then run
+`make schemas paper docs`.
+
 ## Contributing
 
 The most useful contributions are new crosswalks (HKMA, BNM, Bank of Thailand, APRA), new eval
@@ -147,7 +163,7 @@ issue and say which paragraph. See [CONTRIBUTING.md](CONTRIBUTING.md).
 }
 ```
 
-See [CITATION.cff](CITATION.cff).
+See [CITATION.cff](CITATION.cff). Release notes are in [CHANGELOG.md](CHANGELOG.md).
 
 ## Licence
 
