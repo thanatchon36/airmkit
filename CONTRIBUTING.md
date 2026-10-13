@@ -83,6 +83,8 @@ every signal.
 - Enum care: `Coverage`, `Level` and `Tier` are `StrEnum`s — never `max()` them directly
   (alphabetically `"full" < "partial"`, which silently understates coverage). Use
   `max(..., key=lambda c: c.rank)`. And a `StrEnum` member must not shadow a `str` method.
+- `.zenodo.json` is the metadata Zenodo reads when it archives a release. Bump `version` there in
+  the same commit as `airm.__version__`, `CITATION.cff` and `CHANGELOG.md`.
 - Generated files are generated: `schemas/`, `results/summary.json`, `paper/paper.md`,
   `docs/EXEC_SUMMARY.md`, `docs/posts/*.md` and `docs/clause-index.md` are build artefacts with
   staleness tests. Edit the source (`*.md.in`, the models, the experiments), then run

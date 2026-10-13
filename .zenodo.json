@@ -1,0 +1,48 @@
+{
+  "upload_type": "software",
+  "title": "airmkit: Operationalising the MAS Guidelines on AI Risk Management for LLM and Agentic Systems",
+  "version": "0.1.0",
+  "language": "eng",
+  "license": "apache-2.0",
+  "access_right": "open",
+  "creators": [
+    {
+      "name": "Chongmankhong, Thanatchon"
+    }
+  ],
+  "description": "<p>An open-source Python toolkit and reproducible study that operationalise the Monetary Authority of Singapore's <em>Guidelines on Artificial Intelligence Risk Management</em> (issued 7 October 2026) for LLM and agentic AI systems.</p><p>The toolkit ships a machine-readable catalogue of all 65 paragraphs (51 of them expectations, with 29 normative footnotes), 65 controls each citing the paragraph it serves and labelled by how far it can be automated, an AI inventory schema with first-class agent attributes (tools, permissions, components, guardrails), a transparent Impact/Complexity/Reliance materiality rubric whose every signal cites a paragraph, hash-chained evidence records, adapters mapping existing evaluation harnesses (inspect-ai, promptfoo, garak, ragas, deepeval) to controls, a 224-row crosswalk to ISO/IEC 42001, the NIST AI RMF and its Generative AI Profile, the EU AI Act, MAS FEAT and the MAS Information Paper on AI Model Risk Management (2024), an audit-pack generator, and 20 JSON Schemas for non-Python adopters.</p><p>Alongside it, five pre-registered experiments measure how far the Guidelines can be machine-checked. Of 17 hypotheses fixed before the experiments ran, 10 held and 7 were refuted; all are reported. Headline findings: 45.1% of expectations admit a fully automated check, concentrated in Section 4 (84.6%) against Section 3 (0%); the guardrail patterns that most suppress attacks also refuse 50% of benign in-scope requests, so no pattern met both pre-registered thresholds; the union of ISO/IEC 42001, the NIST AI RMF and the EU AI Act leaves 35.3% of expectations with no full mapping, and that residue is governance machinery and MAS-specific proportionality rather than the agent-specific clauses; and evidence volume is flat across materiality tiers, so proportionality scales the rigour of review rather than the number of artefacts, with 93.1% of estimated effort in work automation cannot finish.</p><p><strong>Disclaimer.</strong> Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Not legal, regulatory or compliance advice, and not a substitute for reading the Guidelines. Every interpretation and every threshold is the authors'; MAS prescribes no materiality formula, metric or testing threshold (Response to Feedback paragraphs 7.19, 10.28-10.29, 10.66). All worked examples use a fictional bank and synthetic data.</p>",
+  "keywords": [
+    "AI governance",
+    "model risk management",
+    "MAS",
+    "Singapore",
+    "LLM evaluation",
+    "agentic AI",
+    "guardrails",
+    "compliance",
+    "ISO/IEC 42001",
+    "NIST AI RMF",
+    "EU AI Act"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/thanatchon36/airmkit",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://pypi.org/project/airmkit/",
+      "relation": "isIdenticalTo",
+      "resource_type": "software",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://thanatchon36.github.io/airmkit/",
+      "relation": "isDocumentedBy",
+      "resource_type": "publication-softwaredocumentation",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Every number in the accompanying paper is injected from results/summary.json; nothing is typed by hand. `make reproduce` rebuilds every table and figure from the committed sources on a laptop with no hosted API."
+}
