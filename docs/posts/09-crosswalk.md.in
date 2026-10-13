@@ -5,11 +5,11 @@ We hand-authored {{rq4.mapping_rows}} mapping rows over {{rq4.expectations}} exp
 - ISO/IEC 42001: {{rq4.iso_share}} fully covered
 - NIST AI RMF: {{rq4.nist_share}}
 - EU AI Act: {{rq4.eu_share}}
-- NIST GenAI Profile: {{rq4.genai_profile_share}} (narrow, but accurate where it applies)
-- Union of ISO + NIST + EU AI Act: {{rq4.union_full_share}}, leaving **{{rq4.union_residue_share}} with no full mapping**
+- NIST GenAI Profile: {{rq4.genai_profile_share}} (narrow, accurate where it applies)
+- Union of ISO + NIST + EU AI Act: {{rq4.union_full_share}}, leaving {{rq4.union_residue_share}} with no full mapping
 
-We pre-registered a prediction that the residue would be the agent and generative-AI clauses. **It was refuted.** Those are covered. What no framework fully covers is governance machinery and MAS-specific proportionality: the applicability test and basic regime (§2.2, §2.5), board responsibilities (§3.4), identification and shadow AI (§4.1, §4.4), materiality arbitration (§4.13), third-party accountability (§5.11), independent validation scope (§5.20).
+We pre-registered the prediction that the residue would be the agent and generative-AI clauses. It was refuted. Those are covered. What no framework fully covers is governance machinery and Singapore-specific proportionality: the applicability test and basic regime (§2.2, §2.5), board responsibilities (§3.4), identification and shadow AI (§4.1, §4.4), materiality arbitration (§4.13), third-party accountability (§5.11), independent validation scope (§5.20).
 
-Mapping is interpretive and asymmetric - a management-system standard, product law and voluntary guidance are not commensurable - so {{rq4.low_confidence_rows}} rows are flagged low confidence and listed individually.
+Mapping is interpretive and asymmetric - a management-system standard, product law and voluntary guidance are not commensurable - so {{rq4.low_confidence_rows}} rows are flagged low confidence and listed one by one.
 
 https://github.com/thanatchon36/airmkit

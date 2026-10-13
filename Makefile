@@ -19,8 +19,6 @@ EXAMPLE := examples/synthetic_bank
 EXAMPLE_OUT := $(EXAMPLE)/output
 NOSLEEP := $(shell command -v caffeinate >/dev/null 2>&1 && echo "caffeinate -i")
 PANDOC := $(shell command -v pandoc 2>/dev/null)
-PDF_ENGINE := $(firstword $(foreach e,tectonic xelatex pdflatex typst weasyprint, \
-	$(if $(shell command -v $(e) 2>/dev/null),$(e),)))
 
 .DEFAULT_GOAL := help
 .PHONY: help setup quick test lint format schemas example experiments collect paper docs \
@@ -33,6 +31,7 @@ help: ## Show this help
 setup: ## Create .venv with uv and install the package with every extra
 	uv venv -p 3.11
 	uv pip install -e ".[dev,report,experiments,ollama,paper]"
+	@echo "pandoc 3.x is needed for make paper (brew install pandoc)."
 	@echo "Ollama is optional: RQ3 needs `ollama serve` and a model ≤4B (qwen3.5:0.8b by default)."
 
 lint: ## ruff check + ruff format --check + mypy --strict
@@ -76,17 +75,14 @@ experiments: ## Run RQ1-RQ5 (RQ3 needs Ollama) and write results/ and figures
 collect: ## Merge the per-RQ results into results/summary.json
 	$(EXPERIMENT_ENV) $(PY) experiments/collect.py
 
-paper: collect ## Render the paper, exec summary and posts, then build paper/paper.pdf
+paper: collect ## Render the paper, exec summary and posts; typeset the PDF and the web reader
 	$(EXPERIMENT_ENV) $(PY) experiments/render_paper.py
 ifeq ($(PANDOC),)
-	@echo "pandoc not found: paper/paper.md is rendered; install pandoc for PDF/DOCX."
+	@echo "pandoc not found: paper/paper.md is rendered; install pandoc 3.x for the PDF and web reader."
 else
-	cd paper && $(PANDOC) paper.md -o paper.docx --toc
-ifeq ($(PDF_ENGINE),)
-	$(EXPERIMENT_ENV) $(PY) experiments/make_pdf.py
-else
-	cd paper && $(PANDOC) paper.md -o paper.pdf --toc --pdf-engine=$(PDF_ENGINE)
-endif
+	$(EXPERIMENT_ENV) $(PY) experiments/build_paper.py
+	cd paper && $(PANDOC) paper.md -o paper.docx --toc --citeproc \
+		--bibliography=../docs/literature/refs.bib --csl=ieee.csl --number-sections
 endif
 
 docs: ## Build the mkdocs site, regenerating the clause index first
@@ -105,7 +101,7 @@ reproduce: ## Rebuild every artefact in the paper from the committed sources
 
 clean: ## Remove build, cache and generated example output
 	rm -rf build dist *.egg-info .pytest_cache .mypy_cache .ruff_cache htmlcov .coverage
-	rm -rf $(EXAMPLE_OUT) site paper/paper.html paper/paper.docx
+	rm -rf $(EXAMPLE_OUT) site paper/paper.typ paper/paper.docx
 	find . -name __pycache__ -type d -prune -exec rm -rf {} +
 
 publish: ## Build the sdist and wheel, check them, and print the release steps

@@ -318,6 +318,64 @@ def headline_numbers(
         "rq5.medium_hours": by_tier["Medium"]["mean_first_time_hours"],
         "rq5.institution_hours": rq5["institution_level"]["first_time_hours"],
         "rq5.low_tier_use_cases": by_tier["Low"]["use_cases"],
+        # additional figures the manuscript quotes
+        "rq1.section5_semi_share": pct(sections["5"]["semi"]),
+        "rq1.section5_doc_share": pct(sections["5"]["doc"]),
+        "rq1.section3_semi_share": pct(sections["3"]["semi"]),
+        "rq1.section4_expectations": sections["4"]["total"],
+        "rq1.section5_expectations": sections["5"]["total"],
+        "rq1.section3_expectations": sections["3"]["total"],
+        "rq2.kendall_tau_min": min(rq2["kendall_tau"].values()),
+        "rq3.families": len(results3["none"]["by_family"]),
+        "rq3.asr_none_ci": (
+            f"[{pct(results3['none']['ci_lower'])}, {pct(results3['none']['ci_upper'])}]"
+        ),
+        "rq3.asr_system_prompt_ci": (
+            f"[{pct(results3['system_prompt']['ci_lower'])}, "
+            f"{pct(results3['system_prompt']['ci_upper'])}]"
+        ),
+        "rq3.asr_llm_judge_ci": (
+            f"[{pct(results3['llm_judge']['ci_lower'])}, {pct(results3['llm_judge']['ci_upper'])}]"
+        ),
+        "rq3.pii_asr_none": pct(results3["none"]["by_family"]["pii_leakage"]["asr"]),
+        "rq3.pii_asr_filter": pct(results3["filter"]["by_family"]["pii_leakage"]["asr"]),
+        "rq3.policy_asr_filter": pct(results3["filter"]["by_family"]["policy_evasion"]["asr"]),
+        "rq3.policy_asr_layered": pct(results3["layered"]["by_family"]["policy_evasion"]["asr"]),
+        "rq3.indirect_asr_none": pct(results3["none"]["by_family"]["indirect_injection"]["asr"]),
+        "rq3.threshold_low": pct(rq3["proposed_thresholds"]["asr_by_tier"]["Low"]),
+        "rq3.threshold_medium": pct(rq3["proposed_thresholds"]["asr_by_tier"]["Medium"]),
+        "rq3.threshold_critical": pct(rq3["proposed_thresholds"]["asr_by_tier"]["Critical"]),
+        "rq4.union_partial": rq4["expectations"] - union_intl["full"],
+        "rq4.union_all_full": rq4["union_all"]["full"],
+        "rq4.union_all_full_share": pct(
+            rq4["union_all"]["full"] / rq4["expectations"] if rq4["expectations"] else 0.0
+        ),
+        "rq4.residue_all_count": len(rq4["residue_all_frameworks"]),
+        "rq4.iso_nist_partial": len(rq4["residual_work"]["iso_nist"]["partial"]),
+        "rq4.iso_only_partial": len(rq4["residual_work"]["iso_only"]["partial"]),
+        "rq4.feat_share": pct(rq4["per_framework"]["mas_feat"]["full_share"]),
+        "rq4.info_paper_share": pct(rq4["per_framework"]["mas_info_paper_2024"]["full_share"]),
+        "rq4.high_confidence_rows": rq4["mapping_confidence"].get("high", 0),
+        "rq4.medium_confidence_rows": rq4["mapping_confidence"].get("medium", 0),
+        "rq5.effort_auto_hours": totals5["effort_by_class"]["auto"],
+        "rq5.effort_semi_hours": totals5["effort_by_class"]["semi"],
+        "rq5.effort_doc_hours": totals5["effort_by_class"]["doc"],
+        "rq5.semi_effort_share": pct(totals5["effort_share_by_class"]["semi"]),
+        "rq5.doc_effort_share": pct(totals5["effort_share_by_class"]["doc"]),
+        "rq5.evaluation_share": pct(totals5["effort_share_by_category"]["evaluation_and_testing"]),
+        "rq5.recurring_fraction": pct(rq5["estimates"]["recurring_fraction"], 0),
+        "rq5.effort_auto_per_item": rq5["estimates"]["effort_per_item_hours"]["auto"],
+        "rq5.effort_semi_per_item": rq5["estimates"]["effort_per_item_hours"]["semi"],
+        "rq5.effort_doc_per_item": rq5["estimates"]["effort_per_item_hours"]["doc"],
+        "rq5.high_hours": by_tier["High"]["mean_first_time_hours"],
+        "rq5.high_evidence_items": by_tier["High"]["mean_evidence_items"],
+        "rq5.critical_use_cases": by_tier["Critical"]["use_cases"],
+        "rq5.high_use_cases": by_tier["High"]["use_cases"],
+        "rq5.medium_use_cases": by_tier["Medium"]["use_cases"],
+        "rq5.critical_medium_ratio": round(
+            by_tier["Critical"]["mean_evidence_items"] / by_tier["Medium"]["mean_evidence_items"],
+            3,
+        ),
         # verdicts
         "verdicts.total": len(verdicts),
         "verdicts.held": sum(1 for row in verdicts if row["holds"]),

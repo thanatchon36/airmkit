@@ -27,21 +27,15 @@ from __future__ import annotations
 import datetime as dt
 import json
 import re
-import shutil
 from difflib import get_close_matches
 from pathlib import Path
 from typing import Any
 
-import yaml
-
-from _common import FIGURES, REPO, RESULTS, banner
+from _common import REPO, RESULTS, banner
 
 PAPER_DIR = REPO / "paper"
 DOCS_DIR = REPO / "docs"
-DOCS_PAPER = DOCS_DIR / "paper.md"
-DOCS_FIGURES = DOCS_DIR / "figures"
-REPO_URL = "https://github.com/thanatchon36/airmkit"
-PDF_URL = f"{REPO_URL}/raw/main/paper/paper.pdf"
+
 TEMPLATE = PAPER_DIR / "paper.md.in"
 OUTPUT = PAPER_DIR / "paper.md"
 SUMMARY = RESULTS / "summary.json"
@@ -80,8 +74,20 @@ FRAMEWORK_ORDER = (
 
 
 def _md_table(header: list[str], rows: list[list[str]]) -> str:
-    """Return a GitHub-flavoured Markdown table."""
-    out = ["| " + " | ".join(header) + " |", "|" + "|".join(["---"] * len(header)) + "|"]
+    """Return a pipe table whose separator dashes are sized to the content.
+
+    Pandoc derives relative column widths from the dash counts when a table is wider than the
+    text column, so equal dashes would wrap every cell at the same width. Sizing them to the
+    longest cell keeps identifiers and numbers on one line and gives prose columns the space.
+    """
+    widths = [
+        max(3, min(60, max(len(str(cell)) for cell in column)))
+        for column in zip(header, *rows, strict=True)
+    ]
+    out = [
+        "| " + " | ".join(header) + " |",
+        "|" + "|".join("-" * width for width in widths) + "|",
+    ]
     out.extend("| " + " | ".join(row) + " |" for row in rows)
     return "\n".join(out)
 
@@ -528,47 +534,6 @@ def render_file(path: Path, summary: dict[str, Any]) -> tuple[Path, str, set[str
     return target, rendered, used
 
 
-def write_docs_paper(rendered: str) -> Path:
-    """Write the web-readable copy of the paper for the documentation site.
-
-    ``paper/paper.md`` carries pandoc front matter and figure paths relative to ``paper/``, neither
-    of which works in mkdocs: the front matter would swallow the title and abstract, and the
-    figures sit outside ``docs/``. This writes ``docs/paper.md`` with the front matter turned into
-    ordinary Markdown and the figures copied into ``docs/figures/``, so the site shows the same
-    paper without a second source of prose.
-
-    Returns:
-        The path written.
-    """
-    front_matter, _, body = rendered.partition("\n---\n")
-    meta = yaml.safe_load(front_matter.lstrip("-\n")) or {}
-    authors = meta.get("author") or []
-    byline = ", ".join(authors) if isinstance(authors, list) else str(authors)
-
-    DOCS_FIGURES.mkdir(parents=True, exist_ok=True)
-    for figure_path in sorted(FIGURES.glob("*.png")):
-        shutil.copyfile(figure_path, DOCS_FIGURES / figure_path.name)
-
-    head = [
-        f"# {meta.get('title', 'Paper')}",
-        "",
-        f"{byline} · {meta.get('date', '')}".strip(" ·"),
-        "",
-        f"[Download the PDF]({PDF_URL}) · "
-        f"[Markdown source]({REPO_URL}/blob/main/paper/paper.md) · "
-        f"[results/summary.json]({REPO_URL}/blob/main/results/summary.json), from which "
-        "every number here is injected",
-        "",
-        "## Abstract",
-        "",
-        str(meta.get("abstract", "")).strip(),
-        "",
-    ]
-    text = "\n".join(head) + body.replace("](../results/figures/", "](figures/")
-    DOCS_PAPER.write_text(text, encoding="utf-8")
-    return DOCS_PAPER
-
-
 def main() -> None:
     """Render every template from results/summary.json and report any unused numbers."""
     banner("render_paper: injecting results/summary.json into the paper and communications")
@@ -581,9 +546,6 @@ def main() -> None:
         target, rendered, consumed = render_file(path, summary)
         used |= consumed
         print(f"  {target.relative_to(REPO)}: {len(rendered.split())} words")
-        if target == OUTPUT:
-            docs_copy = write_docs_paper(rendered)
-            print(f"  {docs_copy.relative_to(REPO)}: web copy for the docs site")
 
     unused = sorted(set(summary["numbers"]) - used)
     print(f"  {len(used)} of {len(summary['numbers'])} numbers used")

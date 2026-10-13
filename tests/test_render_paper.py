@@ -111,15 +111,15 @@ def test_template_uses_only_known_placeholders(template: str, summary: dict) -> 
 def test_paper_has_every_section_mission_requires(paper: str) -> None:
     for heading in (
         "abstract:",
-        "# 1. Introduction",
-        "# 2. Background",
-        "# 3. Related frameworks",
-        "# 4. Method",
-        "# 5. The toolkit",
-        "# 7. Results",
-        "# 8. Threats to validity",
-        "# 9. Reproducibility statement",
-        "# 10. Conclusion",
+        "# Introduction",
+        "# Background",
+        "# Related work",
+        "# Method",
+        "# The toolkit",
+        "# Results",
+        "# Threats to validity",
+        "# Reproducibility statement",
+        "# Conclusion",
     ):
         assert heading in paper, heading
     for rq in ("RQ1", "RQ2", "RQ3", "RQ4", "RQ5"):
@@ -157,11 +157,11 @@ def test_paper_embeds_all_five_figures(paper: str) -> None:
         assert f"../results/figures/{name}.png" in paper, name
 
 
-def test_committed_paper_matches_the_template_and_results(paper: str) -> None:
+def test_committed_paper_matches_the_template_and_results(paper: str, summary: dict) -> None:
     """The committed paper is a build artefact; a stale one would mislead a reader."""
-    date_line = re.compile(r'^date: ".*"$', re.MULTILINE)
-    committed = date_line.sub('date: ""', PAPER_PATH.read_text(encoding="utf-8"))
-    assert committed == date_line.sub('date: ""', paper)
+    committed = PAPER_PATH.read_text(encoding="utf-8")
+    expected = paper.replace("{{DATE}}", render_paper.summary_date(summary))
+    assert committed == expected
 
 
 POSTS = sorted((REPO / "docs" / "posts").glob("*.md.in"))
@@ -198,38 +198,39 @@ def test_exec_summary_is_committed_as_rendered(summary: dict) -> None:
     )
 
 
-def test_docs_copy_of_the_paper_is_web_readable(paper: str) -> None:
-    """docs/paper.md is what the site serves, so it must not keep pandoc-only constructs."""
-    docs_paper = (REPO / "docs" / "paper.md").read_text(encoding="utf-8")
-    assert docs_paper.startswith("# Operationalising the MAS Guidelines")
-    assert "## Abstract" in docs_paper
-    assert not docs_paper.startswith("---"), "pandoc front matter would hide the title"
-    assert "](../results/figures/" not in docs_paper, "figures must resolve inside docs/"
-    assert "](figures/rq1_automatability_by_section.png)" in docs_paper
-    assert "paper/paper.pdf" in docs_paper, "the web copy should offer the PDF"
+READER_PATH = REPO / "docs" / "paper" / "index.html"
 
 
-def test_docs_figures_are_copies_of_the_committed_figures() -> None:
-    committed = sorted((REPO / "results" / "figures").glob("*.png"))
-    assert committed
-    for figure in committed:
-        copy = REPO / "docs" / "figures" / figure.name
-        assert copy.is_file(), f"{figure.name} is missing from docs/figures; run `make paper`"
-        assert copy.read_bytes() == figure.read_bytes(), f"{figure.name} is stale"
+def test_reader_page_is_committed_and_self_contained(summary: dict) -> None:
+    """docs/paper/index.html is what the site serves at /paper/; it must stand alone."""
+    page = READER_PATH.read_text(encoding="utf-8")
+    assert page.startswith("<!doctype html>")
+    assert "<title>Operationalising the MAS Guidelines" in page
+    assert page.count("data:image/png;base64") == len(summary["figures"]), "figures embedded"
+    assert not render_paper.PLACEHOLDER.search(page)
+    assert "{{" not in page
 
 
-def test_docs_copy_is_the_render_of_the_committed_paper(paper: str) -> None:
-    expected = render_paper.write_docs_paper(
-        paper.replace(
-            "{{DATE}}",
-            render_paper.summary_date(
-                json.loads((REPO / "results" / "summary.json").read_text(encoding="utf-8"))
-            ),
-        )
-    )
-    assert expected.read_text(encoding="utf-8") == (REPO / "docs" / "paper.md").read_text(
-        encoding="utf-8"
-    )
+def test_reader_page_carries_every_verdict(summary: dict) -> None:
+    page = READER_PATH.read_text(encoding="utf-8")
+    assert page.count('class="v v-') == summary["verdict_counts"]["total"]
+    assert page.count('class="v v-refuted"') == summary["verdict_counts"]["refuted"]
+
+
+def test_reader_page_discloses_the_writer_and_the_disclaimer(summary: dict) -> None:
+    page = READER_PATH.read_text(encoding="utf-8")
+    assert "Claude Fable 5.1" in page
+    assert "not affiliated with or endorsed by the Monetary Authority of Singapore" in page
+    assert summary["disclaimer"][:60] in page
+
+
+def test_reader_page_matches_the_committed_paper(paper: str, summary: dict) -> None:
+    """The reader is built from paper.md, so its abstract must be the paper's abstract."""
+    page = READER_PATH.read_text(encoding="utf-8")
+    abstract = re.search(r"^abstract: \|\n((?:  .*\n)+)", paper, re.MULTILINE).group(1)
+    first_sentence = " ".join(line.strip() for line in abstract.splitlines())[:80]
+    assert first_sentence.split(".")[0][:60] in page.replace("\n", " ")
+    assert "## RQ1" not in page
 
 
 def test_the_pdf_is_committed_and_plausible() -> None:
@@ -238,6 +239,17 @@ def test_the_pdf_is_committed_and_plausible() -> None:
     assert pdf.is_file(), "paper/paper.pdf is missing; run `make paper`"
     assert pdf.stat().st_size > 100_000, "paper/paper.pdf looks truncated"
     assert pdf.read_bytes()[:5] == b"%PDF-"
+
+
+def test_every_citation_key_exists_in_the_bibliography(template: str) -> None:
+    """A citation to a missing key renders as literal text in both the PDF and the page."""
+    bib = (REPO / "docs" / "literature" / "refs.bib").read_text(encoding="utf-8")
+    keys = set(re.findall(r"^@\w+\{([^,]+),", bib, re.MULTILINE))
+    cited = set(re.findall(r"@([A-Za-z0-9_]+)", template))
+    cited -= {"key"}  # the renderer's docstring example, not a citation
+    missing = sorted(cited - keys)
+    assert not missing, f"cited but not in refs.bib: {missing}"
+    assert len(cited) >= 30, "the manuscript should engage the literature review"
 
 
 def test_committed_summary_matches_the_committed_results(summary: dict) -> None:

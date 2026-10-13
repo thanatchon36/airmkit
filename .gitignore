@@ -18,3 +18,4 @@ examples/synthetic_bank/output/
 results/cache/
 experiments/__pycache__/
 paper/paper.html
+paper/paper.typ

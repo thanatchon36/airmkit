@@ -1,9 +1,9 @@
-We classified every expectation in the MAS AI Risk Management Guidelines by how far it can be machine-checked. Section 3 - governance and oversight - scored **0.0% automatable**.
+We classified every expectation in the MAS AI Risk Management Guidelines by how far a machine can check it. Section 3 - governance and oversight - scored 0.0% automatable.
 
-That is not a gap in the tooling. §3.4 asks the board to approve and regularly review the governance approach and the strategic direction for AI use. §3.6 asks local senior management to be able to demonstrate oversight to MAS even where a group framework applies. There is no artefact a tool can inspect that settles either.
+That is not a tooling gap; it is what the section is. §3.4 asks the board to approve and regularly review the strategic direction for AI use. §3.6 asks local senior management to be able to demonstrate oversight to MAS even under a group framework. No artefact a program can inspect settles either without reducing it to a signature.
 
-What a tool can do is narrower and still useful: hold the named control functions for identification, inventory and materiality (§3.3-§3.5) as structured fields, check they are named and distinct, and show the board a one-pager that is generated from the register rather than retyped from it.
+What a tool can do is narrower and still worth having: hold the named control functions for identification, inventory and materiality (§3.3-§3.5) as structured fields, check they are named and distinct, and generate the board one-pager from the register rather than retyping it.
 
-Compare Section 4 at 84.6% automatable. Governance does not automate; the register does. Plan the effort accordingly - and treat any vendor claiming to automate Section 3 with suspicion.
+Section 4, by contrast, is 84.6% automatable. Governance does not automate; the register does. Plan the effort accordingly, and treat any vendor claiming to automate Section 3 with suspicion.
 
 https://github.com/thanatchon36/airmkit

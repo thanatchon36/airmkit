@@ -86,9 +86,10 @@ every signal.
 - `.zenodo.json` is the metadata Zenodo reads when it archives a release. Bump `version` there in
   the same commit as `airm.__version__`, `CITATION.cff` and `CHANGELOG.md`.
 - Generated files are generated: `schemas/`, `results/summary.json`, `paper/paper.md`,
-  `docs/EXEC_SUMMARY.md`, `docs/posts/*.md` and `docs/clause-index.md` are build artefacts with
-  staleness tests. Edit the source (`*.md.in`, the models, the experiments), then run
-  `make schemas paper docs`.
+  `paper/paper.pdf`, `docs/paper/index.html`, `docs/EXEC_SUMMARY.md`, `docs/posts/*.md` and
+  `docs/clause-index.md` are build artefacts with staleness tests. Edit the source (`*.md.in`,
+  the models, the experiments), then run `make schemas paper docs`. The PDF and the web reader
+  need pandoc 3.x on the system; the `typst` wheel in the `paper` extra bundles the compiler.
 
 ## Changing an experiment
 
