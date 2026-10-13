@@ -1,0 +1,1511 @@
+# Machine-readable index of the MAS Guidelines on Artificial Intelligence Risk Management
+# (issued 7 October 2026). Hand-built from the primary PDF; see docs/sources/MANIFEST.md.
+#
+# Summaries are the toolkit authors' paraphrase (<= 40 words) and are NOT the regulatory text.
+# Always read the cited paragraph in the primary document before relying on it.
+#
+# kind:        expectation | guidance | definition | scope | context
+# applies_to:  fi | board | senior_management | local_senior_management | control_function |
+#              business_units | high_materiality | genai | agent | third_party_ai | all_fi_basic
+# effective:   date by which an FI should meet the paragraph (MAS-AIRM 1.8; Response 13.5-13.6)
+
+meta:
+  title: Guidelines on Artificial Intelligence Risk Management
+  short_title: MAS-AIRM
+  issuer: Monetary Authority of Singapore
+  issued: 2026-10-07
+  consultation: P017-2025 (13 Nov 2025 - 31 Jan 2026)
+  source_file: docs/sources/mas_airm_guidelines_2026-10-07.pdf
+  source_sha256: d9a4095569da34078e2cd597cc992910e63cf88471c59cb654c0413dbaed5c6d
+  citation_prefix: MAS-AIRM
+  effective:
+    in_force: 2027-10-07
+    by_section:
+      "1": 2027-10-07
+      "2": 2027-10-07
+      "3": 2027-10-07
+      "4": 2027-10-07
+      "5": 2028-10-07
+      "6": 2028-10-07
+    note: >-
+      MAS-AIRM 1.8: the Guidelines take effect on 7 Oct 2027; Sections 3-4 from 7 Oct 2027 and
+      Sections 5-6 by 7 Oct 2028. Response to Feedback 13.5 adds that lifecycle controls for high
+      risk use cases should be applied as soon as possible. Response 13.6: FIs under the basic
+      regime (2.3) should complete implementation within 12 months.
+  tag_vocabulary:
+    - scope
+    - definition
+    - risks
+    - genai
+    - agent
+    - third-party
+    - proportionality
+    - basic-policies
+    - governance
+    - board
+    - senior-management
+    - risk-appetite
+    - group
+    - identification
+    - shadow-ai
+    - inventory
+    - materiality
+    - control-function
+    - lifecycle
+    - contingency
+    - kill-switch
+    - data
+    - privacy
+    - transparency
+    - explainability
+    - fairness
+    - human-oversight
+    - selection
+    - evaluation
+    - testing
+    - guardrails
+    - security
+    - access-control
+    - reproducibility
+    - documentation
+    - pre-deployment-review
+    - validation
+    - monitoring
+    - incident
+    - change-management
+    - retirement
+    - capability
+    - training
+    - infrastructure
+    - effective-date
+
+sections:
+  - id: "1"
+    title: Introduction
+    pages: [3, 7]
+    effective: 2027-10-07
+  - id: "2"
+    title: Application of the Guidelines
+    pages: [8, 9]
+    effective: 2027-10-07
+  - id: "3"
+    title: AI Oversight
+    pages: [10, 12]
+    effective: 2027-10-07
+  - id: "4"
+    title: Key AI Risk Management Systems, Policies and Procedures
+    pages: [13, 16]
+    effective: 2027-10-07
+  - id: "5"
+    title: AI Life Cycle Controls
+    pages: [17, 29]
+    effective: 2028-10-07
+  - id: "6"
+    title: AI Capability & Capacity
+    pages: [30, 30]
+    effective: 2028-10-07
+
+paragraphs:
+  # ---------------------------------------------------------------- Section 1
+  - id: "1.1"
+    section: "1"
+    heading: Introduction
+    page: 3
+    kind: context
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      States the purpose: MAS supervisory expectations on AI risk management covering oversight,
+      key systems/policies/procedures, lifecycle controls and capability/capacity, to support
+      responsible AI adoption by financial institutions.
+    tags: [scope]
+    footnotes: [1]
+
+  - id: "1.2"
+    section: "1"
+    heading: Introduction
+    page: 3
+    kind: scope
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Guidelines complement existing MAS legislation and guidelines (FEAT still applies; read with
+      other guidelines, circulars and industry standards). They apply on a group basis for locally
+      incorporated FIs under consolidated supervision or owning critical information infrastructure.
+    tags: [scope, group]
+    footnotes: [2, 3, 4, 5]
+
+  - id: "1.3"
+    section: "1"
+    heading: Introduction
+    page: 4
+    kind: definition
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Defines AI as machine-based systems or models deriving outputs through learned premises from
+      data or inputs; outputs include estimates, predictions, content, summaries, recommendations,
+      decisions. Rule-based calculators and fixed-logic tools are excluded.
+    tags: [definition, scope]
+    footnotes: [6]
+
+  - id: "1.4"
+    section: "1"
+    heading: Introduction
+    page: 4
+    kind: definition
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Defines model (method converting assumptions and inputs to outputs), system (one or more
+      models plus other machine-based components) and use case (the real-world context a model or
+      system is applied to).
+    tags: [definition]
+    footnotes: [7]
+    items:
+      - id: a
+        summary: Model definition.
+      - id: b
+        summary: System definition.
+      - id: c
+        summary: Use case definition.
+
+  - id: "1.5"
+    section: "1"
+    heading: Introduction
+    page: 4
+    kind: scope
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      High-level expectations apply to all FIs deploying AI, including Generative AI and AI agents.
+      An FI in a global group may rely on group AI risk frameworks if they meet these expectations.
+    tags: [scope, genai, agent, group]
+
+  - id: "1.6"
+    section: "1"
+    heading: Introduction
+    page: 4
+    kind: expectation
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Implement the Guidelines proportionately to the FI's size, nature of activities and the
+      extent to which its AI use could create material risks.
+    tags: [proportionality]
+
+  - id: "1.7"
+    section: "1"
+    heading: Introduction
+    page: 5
+    kind: expectation
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Regularly review the adequacy of AI risk management against AI developments and address new
+      or accentuated risks.
+    tags: [governance, lifecycle]
+
+  - id: "1.8"
+    section: "1"
+    heading: Introduction
+    page: 5
+    kind: scope
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Effective 7 October 2027. Sections 3-4 expectations from 7 October 2027; Sections 5-6 by
+      7 October 2028.
+    tags: [effective-date]
+
+  - id: "1.9"
+    section: "1"
+    heading: Risks
+    page: 5
+    kind: context
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      AI's complexity and probabilistic nature increase uncertainty and hidden bias. Risks extend
+      existing categories: financial, operational, conduct, financial crime and reputational.
+    tags: [risks]
+    footnotes: [8]
+    items:
+      - id: a
+        summary: Financial risk from poor AI-driven risk assessments.
+      - id: b
+        summary: Operational risk from unexpected behaviour in automated operations.
+      - id: c
+        summary: Conduct risk from biased outputs, unfair treatment or conflicts of interest.
+      - id: d
+        summary: Financial crime risk from undetected suspicious transactions.
+      - id: e
+        summary: Reputational risk from incorrect or offensive customer-facing outputs.
+
+  - id: "1.10"
+    section: "1"
+    heading: Risks
+    page: 5
+    kind: context
+    applies_to: [genai]
+    effective: 2027-10-07
+    summary: >-
+      Generative AI amplifies AI risks and is harder to evaluate, test and explain. Additional
+      risks: security (prompt injection, poisoning), privacy, legal/IP, third-party concentration,
+      operational outages, human factors including shadow AI and automation bias.
+    tags: [risks, genai, shadow-ai, third-party, security, privacy]
+    footnotes: [9, 10]
+    items:
+      - id: a
+        summary: Security risks such as prompt injection or data poisoning.
+      - id: b
+        summary: Privacy risks from leakage via third-party services or data use without consent.
+      - id: c
+        summary: Legal and intellectual property risks from training data.
+      - id: d
+        summary: Third-party AI risks including concentration and insecure open-source models.
+      - id: e
+        summary: Operational risks from outages and inadequate pre-deployment testing.
+      - id: f
+        summary: Human-factor risks including shadow AI, poor oversight, automation bias, skill loss.
+
+  - id: "1.11"
+    section: "1"
+    heading: Risks
+    page: 6
+    kind: context
+    applies_to: [agent]
+    effective: 2027-10-07
+    summary: >-
+      AI agents with autonomy and tool access can execute unauthorised or erroneous actions
+      misaligned with goals; compromised agents may exfiltrate data or run malicious commands at
+      scale.
+    tags: [risks, agent, security]
+    footnotes: [11]
+
+  - id: "1.12"
+    section: "1"
+    heading: Risks
+    page: 7
+    kind: context
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: MAS will update or augment the Guidelines as AI and its risks evolve.
+    tags: [scope]
+
+  # ---------------------------------------------------------------- Section 2
+  - id: "2.1"
+    section: "2"
+    heading: Application of the Guidelines
+    page: 8
+    kind: scope
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: Guidelines apply to all FIs proportionately to size and risk profile.
+    tags: [scope, proportionality]
+
+  - id: "2.2"
+    section: "2"
+    heading: Application of the Guidelines
+    page: 8
+    kind: expectation
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Unless 2.3 applies, an FI must establish oversight frameworks with AI identification,
+      materiality assessment and inventory (Sections 3-4) and apply lifecycle controls and
+      capabilities (Sections 5-6), calibrated by relevance and risk materiality.
+    tags: [scope, proportionality, governance, inventory, materiality, lifecycle]
+    footnotes: [12]
+    items:
+      - id: a
+        summary: Frameworks, policies and procedures for oversight, identification, materiality, inventory (Sections 3-4).
+      - id: b
+        summary: Lifecycle controls and capabilities/infrastructure (Sections 5-6), calibrated by relevance and materiality.
+
+  - id: "2.3"
+    section: "2"
+    heading: Application of the Guidelines
+    page: 8
+    kind: scope
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      An FI may apply only basic governance (2.5) if poor performance or unavailability of its AI
+      tools is unlikely to materially harm the FI, customers or stakeholders, considering
+      financial/operational/regulatory/legal/reputational impact and fairness, ethics, consumer
+      protection.
+    tags: [scope, proportionality, basic-policies]
+    items:
+      - id: a
+        summary: Potential financial, operational, regulatory, legal or reputational impact on the FI.
+      - id: b
+        summary: Potential impact on customers or stakeholders including fairness, ethics, consumer protection.
+
+  - id: "2.4"
+    section: "2"
+    heading: Application of the Guidelines
+    page: 8
+    kind: guidance
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Examples that generally meet the 2.3 basic-regime test: AI assisting with drafting emails,
+      summarising documents, initial document review, generating formulas or charts, image
+      generation for materials, and internal resource-finding chatbots, with human review.
+    tags: [proportionality, basic-policies]
+    footnotes: [13]
+    items:
+      - id: a
+        summary: Drafting, proofreading or rephrasing customer emails.
+      - id: b
+        summary: Summarising documents or meeting notes internally.
+      - id: c
+        summary: Initial review or analysis of documents internally.
+      - id: d
+        summary: Generating formulas, charts or visualisations internally.
+      - id: e
+        summary: Image generation for marketing or internal materials.
+      - id: f
+        summary: Chatbots helping staff locate internal policies or procedures.
+
+  - id: "2.5"
+    section: "2"
+    heading: Application of the Guidelines
+    page: 9
+    kind: expectation
+    applies_to: [all_fi_basic]
+    effective: 2027-10-07
+    summary: >-
+      Basic AI governance must minimally include accountable senior management, permitted and
+      prohibited uses with human oversight rules, an approved-tool list and approval process,
+      staff education, compliance checks, and periodic/trigger-based review of the 2.3 criteria.
+    tags: [basic-policies, governance, shadow-ai, human-oversight]
+    items:
+      - id: a
+        summary: Clear accountability for AI oversight, e.g. a designated senior manager.
+      - id: b
+        summary: Permitted and prohibited uses (e.g. no confidential data in public tools) plus human review rules.
+      - id: c
+        summary: Approved list of AI tools and a process to request new ones.
+      - id: d
+        summary: Staff education on AI policies.
+      - id: e
+        summary: Regular compliance checks.
+      - id: f
+        summary: Periodic and trigger-based review that 2.3 still holds.
+
+  # ---------------------------------------------------------------- Section 3
+  - id: "3.1"
+    section: "3"
+    heading: AI Oversight
+    page: 10
+    kind: context
+    applies_to: [board, senior_management]
+    effective: 2027-10-07
+    summary: Board and senior management are central to establishing and overseeing AI risk frameworks.
+    tags: [governance, board, senior-management]
+
+  - id: "3.2"
+    section: "3"
+    heading: AI Oversight
+    page: 10
+    kind: expectation
+    applies_to: [board, senior_management]
+    effective: 2027-10-07
+    summary: >-
+      Ensure existing risk frameworks identify, assess and address AI risks; maintain oversight,
+      foster risk culture, and ensure AI use does not conflict with regulatory requirements or
+      supervisory expectations.
+    tags: [governance, board, senior-management]
+    footnotes: [14, 15]
+
+  - id: "3.3"
+    section: "3"
+    heading: AI Oversight
+    page: 10
+    kind: expectation
+    applies_to: [board, senior_management]
+    effective: 2027-10-07
+    summary: >-
+      Ensure consistent standards, clear accountability and coordination across the FI; a
+      centralised AI risk function or existing functions are both acceptable if management is
+      consistent and coordinated.
+    tags: [governance, board, senior-management]
+    footnotes: [16]
+
+  - id: "3.4"
+    section: "3"
+    heading: AI Oversight
+    page: 10
+    kind: expectation
+    applies_to: [board]
+    effective: 2027-10-07
+    summary: >-
+      Board (or delegated committee) approves and reviews the AI governance approach and strategic
+      direction, embeds AI risks in the risk appetite framework, sets roles, maintains adequate AI
+      understanding, and reviews these regularly.
+    tags: [governance, board, risk-appetite]
+    footnotes: [17, 18]
+    items:
+      - id: a
+        summary: Approve and regularly review governance approach, strategic direction, key frameworks and policies.
+      - id: b
+        summary: Address AI risks in the risk appetite framework with qualitative statements and quantitative measures.
+      - id: c
+        summary: Set clear board and senior management roles for AI risk oversight.
+      - id: d
+        summary: Ensure adequate understanding of AI for effective oversight and challenge.
+      - id: e
+        summary: Regularly review approach, appetite, roles, capabilities and culture against AI developments.
+
+  - id: "3.5"
+    section: "3"
+    heading: AI Oversight
+    page: 11
+    kind: expectation
+    applies_to: [senior_management]
+    effective: 2027-10-07
+    summary: >-
+      Senior management implements and reviews AI risk frameworks, institutes lifecycle controls,
+      sets roles including control functions for identification/inventory/materiality, runs
+      escalation for incidents and breaches, updates the board, and resources competence.
+    tags: [governance, senior-management, control-function, incident, capability]
+    footnotes: [19, 20]
+    items:
+      - id: a
+        summary: Implement frameworks, structures, policies and procedures consistent with risk appetite.
+      - id: b
+        summary: Regularly review effectiveness and revise for AI developments and regulatory change.
+      - id: c
+        summary: Institute strategies and controls across the entire AI lifecycle.
+      - id: d
+        summary: Establish roles including control functions for AI identification, inventorisation and materiality.
+      - id: e
+        summary: Establish escalation for material risks and exceptions such as AI incidents or threshold breaches.
+      - id: f
+        summary: Update the board on material AI risk issues in a timely manner.
+      - id: g
+        summary: Ensure personnel competence and allocate human, technological and financial resources.
+
+  - id: "3.6"
+    section: "3"
+    heading: AI Oversight
+    page: 12
+    kind: expectation
+    applies_to: [local_senior_management]
+    effective: 2027-10-07
+    summary: >-
+      Local senior management remains accountable that group frameworks address Singapore-specific
+      requirements, has visibility and input, has escalation paths for local issues, and can
+      demonstrate oversight to MAS.
+    tags: [governance, group, senior-management]
+
+  # ---------------------------------------------------------------- Section 4
+  - id: "4.1"
+    section: "4"
+    heading: Key AI Risk Management Systems, Policies and Procedures
+    page: 13
+    kind: expectation
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      The AI risk framework must include systems, policies and procedures for identification,
+      inventorisation and risk materiality assessment, applied consistently, with controls
+      proportionate to assessed materiality.
+    tags: [identification, inventory, materiality, proportionality]
+
+  - id: "4.2"
+    section: "4"
+    heading: AI Identification
+    page: 13
+    kind: expectation
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Establish systems, policies and procedures for consistent AI identification across all
+      business and functional areas, with clear definitions, criteria and processes supported by
+      tools; minimally cover AI embedded in services from material third-party providers.
+    tags: [identification, third-party, shadow-ai]
+    footnotes: [21]
+
+  - id: "4.3"
+    section: "4"
+    heading: AI Identification
+    page: 13
+    kind: expectation
+    applies_to: [control_function, business_units]
+    effective: 2027-10-07
+    summary: >-
+      Assign roles for AI identification and designate a control function with independent
+      oversight; it is the final arbiter of what is AI, keeps documentation, and reviews the
+      process for new technologies and third-party AI introductions.
+    tags: [identification, control-function, documentation]
+
+  - id: "4.4"
+    section: "4"
+    heading: AI Identification
+    page: 13
+    kind: expectation
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Keep residual risk from unidentified AI (embedded AI, shadow AI) within risk appetite:
+      identify the risks from identification constraints and put mitigating measures in place.
+    tags: [identification, shadow-ai, risk-appetite, third-party]
+    footnotes: [22]
+
+  - id: "4.5"
+    section: "4"
+    heading: AI Inventory
+    page: 14
+    kind: expectation
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Establish and maintain an accurate inventory of AI use cases, systems or models to the extent
+      practicable, with policies on maintenance and an appropriate update frequency reflecting new,
+      updated or decommissioned AI.
+    tags: [inventory]
+
+  - id: "4.6"
+    section: "4"
+    heading: AI Inventory
+    page: 14
+    kind: expectation
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Enhance existing inventories or build a dedicated AI inventory; either way maintain clear
+      linkages to other inventories (data, third-party) for cross-referencing.
+    tags: [inventory, third-party, data]
+    footnotes: [23]
+
+  - id: "4.7"
+    section: "4"
+    heading: AI Inventory
+    page: 14
+    kind: expectation
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Inventory captures key attributes at appropriate granularity: purpose and description,
+      approved scope, model type, data used, dependencies, lifecycle status, materiality rating,
+      review status, roles (owners, developers), links to documentation.
+    tags: [inventory]
+    footnotes: [24]
+    attributes:
+      - purpose_and_description
+      - approved_scope_of_use
+      - model_type
+      - data_used
+      - dependencies
+      - lifecycle_status
+      - risk_materiality_rating
+      - model_review_status
+      - key_roles_and_responsibilities
+      - links_to_documentation
+
+  - id: "4.8"
+    section: "4"
+    heading: AI Inventory
+    page: 15
+    kind: expectation
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Regularly review inventory design so attributes cover newer AI technologies (e.g. agent
+      attributes, guardrails) and third-party AI information.
+    tags: [inventory, agent, third-party]
+    footnotes: [25]
+
+  - id: "4.9"
+    section: "4"
+    heading: AI Inventory
+    page: 15
+    kind: expectation
+    applies_to: [control_function, business_units]
+    effective: 2027-10-07
+    summary: >-
+      Assign roles for inventorisation and designate a control function to own inventory policies;
+      business units may maintain entries but the control function retains independent oversight
+      of accuracy and completeness.
+    tags: [inventory, control-function]
+
+  - id: "4.10"
+    section: "4"
+    heading: AI Risk Materiality Assessment
+    page: 15
+    kind: expectation
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Establish a materiality assessment methodology anchored on the AI use case, applied
+      consistently to every use case, so that controls scale with risk and higher-materiality use
+      cases receive more scrutiny.
+    tags: [materiality, proportionality]
+    footnotes: [26]
+
+  - id: "4.11"
+    section: "4"
+    heading: AI Risk Materiality Assessment
+    page: 15
+    kind: expectation
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Assess both inherent (pre-control) and residual (post-control) materiality; residual
+      materiality must meet risk appetite before deployment; review methodology and assessments
+      regularly.
+    tags: [materiality, risk-appetite]
+
+  - id: "4.12"
+    section: "4"
+    heading: AI Risk Materiality Assessment
+    page: 15
+    kind: expectation
+    applies_to: [fi]
+    effective: 2027-10-07
+    summary: >-
+      Materiality must minimally cover Impact (consequences of failure on FI and customers, data
+      sensitivity), Complexity (technology, novelty, data, explainability, third-party visibility)
+      and Reliance (dependence, autonomy, human involvement).
+    tags: [materiality, explainability, third-party, human-oversight, agent]
+    items:
+      - id: a
+        summary: Impact on the FI and on customers or stakeholders, including sensitivity of data processed.
+      - id: b
+        summary: Complexity from technology, novelty, data, explainability; third-party visibility.
+      - id: c
+        summary: Reliance including autonomy granted and degree of human involvement or oversight.
+
+  - id: "4.13"
+    section: "4"
+    heading: AI Risk Materiality Assessment
+    page: 16
+    kind: expectation
+    applies_to: [control_function, business_units]
+    effective: 2027-10-07
+    summary: >-
+      Designate a control function to own the materiality framework and arbitrate or approve
+      ratings, with independent oversight, clear documentation and regular review of assessments.
+    tags: [materiality, control-function, documentation]
+
+  # ---------------------------------------------------------------- Section 5
+  - id: "5.1"
+    section: "5"
+    heading: AI Life Cycle Controls
+    page: 17
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Plan and implement controls across the entire lifecycle of each use case, system or model;
+      assign roles across units; review controls regularly for newer AI technologies.
+    tags: [lifecycle]
+    footnotes: [27]
+
+  - id: "5.2"
+    section: "5"
+    heading: AI Life Cycle Controls
+    page: 17
+    kind: expectation
+    applies_to: [fi, third_party_ai]
+    effective: 2028-10-07
+    summary: >-
+      Apply lifecycle controls proportionately to materiality; where constraints exist (e.g.
+      limited third-party disclosure) identify the risks, mitigate (e.g. limit use) and keep
+      residual risk within appetite.
+    tags: [lifecycle, proportionality, third-party, risk-appetite]
+    footnotes: [28]
+
+  - id: "5.3"
+    section: "5"
+    heading: AI Life Cycle Controls
+    page: 17
+    kind: expectation
+    applies_to: [high_materiality]
+    effective: 2028-10-07
+    high_materiality_only: true
+    summary: >-
+      High-risk use cases need tested contingency plans with fallback options (alternative systems,
+      manual processes), reviewed regularly; kill-switch activation protocols must exist and be
+      tested.
+    tags: [contingency, kill-switch, lifecycle]
+    footnotes: [29]
+
+  - id: "5.4"
+    section: "5"
+    heading: Data Management
+    page: 17
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Data across the lifecycle must be fit for purpose, representative, high quality and governed;
+      cover fitness, representativeness, quality, classification, security, privacy, and
+      auditability/lineage.
+    tags: [data, privacy, security, documentation]
+    footnotes: [30]
+    items:
+      - id: a
+        summary: Fit for purpose, including fairness considerations.
+      - id: b
+        summary: Representativeness across a range of real-world and stressed conditions.
+      - id: c
+        summary: Data quality (relevance, accuracy, completeness, recency) with monitoring for anomalies, drift, bias.
+      - id: d
+        summary: Data classification by criticality and sensitivity.
+      - id: e
+        summary: Data security including destruction of artefacts, encryption, securing inputs and outputs.
+      - id: f
+        summary: Data privacy per regulatory requirements, including consent for sensitive personal data.
+      - id: g
+        summary: Auditability and lineage documentation, approvals and remedial actions.
+
+  - id: "5.5"
+    section: "5"
+    heading: Transparency and Explainability
+    page: 19
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Establish controls for an appropriate level of transparency and explainability so customers,
+      users and stakeholders can assess risks, reliability and limitations, and the FI can show AI
+      use aligns with stated objectives.
+    tags: [transparency, explainability]
+    footnotes: [31, 32]
+
+  - id: "5.6"
+    section: "5"
+    heading: Transparency and Explainability
+    page: 19
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Degree scales with context and materiality; high-impact uses (credit, underwriting, advisory,
+      fund management) need input-feature justification, key-driver identification, customer
+      notification, consequences and redress channels, tailored to the audience.
+    tags: [transparency, explainability, proportionality, fairness]
+    footnotes: [33, 34]
+
+  - id: "5.7"
+    section: "5"
+    heading: Fairness
+    page: 20
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Define "fair" outcomes and control for harmful bias and discrimination across the lifecycle,
+      calibrated to context and materiality; credit and underwriting warrant greater attention.
+    tags: [fairness]
+    footnotes: [35]
+
+  - id: "5.8"
+    section: "5"
+    heading: Fairness
+    page: 20
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Where fairness is relevant, conduct fairness assessments: define protected attributes (and
+      proxies), test for systematic disadvantage with fairness metrics, document results and
+      mitigations.
+    tags: [fairness, testing, documentation]
+    footnotes: [36]
+
+  - id: "5.9"
+    section: "5"
+    heading: Human Oversight
+    page: 20
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Put in place and review human oversight proportionate to materiality, mindful of automation
+      bias and decision fatigue; cover roles, capabilities and authority to intervene, design for
+      oversight with escalation triggers, and documentation/review of interventions.
+    tags: [human-oversight, documentation, agent]
+    footnotes: [37]
+    items:
+      - id: a
+        summary: Roles and responsibilities including escalation and decision processes.
+      - id: b
+        summary: Competent personnel with authority and ability to intervene.
+      - id: c
+        summary: Design AI to enable oversight, including escalation when predefined conditions are met.
+      - id: d
+        summary: Document logs and records across lifecycle; review oversight decisions, incidents and near misses.
+
+  - id: "5.10"
+    section: "5"
+    heading: Third-Party AI Management
+    page: 21
+    kind: expectation
+    applies_to: [third_party_ai]
+    effective: 2028-10-07
+    summary: >-
+      Onboarding, development and deployment controls for third-party AI must fit materiality;
+      contracts must give visibility of AI introduction and changes; test in the FI's context with
+      its own data, do compensatory testing, and document suitability.
+    tags: [third-party, testing, documentation, change-management]
+    footnotes: [38, 39]
+
+  - id: "5.11"
+    section: "5"
+    heading: Third-Party AI Management
+    page: 21
+    kind: expectation
+    applies_to: [third_party_ai]
+    effective: 2028-10-07
+    summary: >-
+      FI retains accountability for third-party AI; assess transparency, supply chain,
+      concentration, change notification, contingency, legal terms, capabilities and complexity;
+      if residual risk exceeds appetite, limit, suspend or replace the provider.
+    tags: [third-party, risk-appetite, contingency, change-management, security]
+    footnotes: [40]
+    items:
+      - id: a
+        summary: Provider transparency; independent certifications or assessments (not self-attestations); compensating controls.
+      - id: b
+        summary: Supply chain assessments of models, datasets, dependencies, provenance and vulnerabilities.
+      - id: c
+        summary: Concentration risk from over-reliance on key providers, direct or indirect.
+      - id: d
+        summary: Ability to receive and assess notifications of post-deployment updates or changes.
+      - id: e
+        summary: Contingency plans for failure, unexpected behaviour or vendor discontinuation.
+      - id: f
+        summary: Legal agreements covering performance, data protection, audit rights, AI-introduction notification.
+      - id: g
+        summary: Awareness and capability of staff procuring, developing, deploying and using third-party AI.
+      - id: h
+        summary: More detailed assessment for complex, unfamiliar third-party AI such as agents.
+
+  - id: "5.12"
+    section: "5"
+    heading: Selection
+    page: 22
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      When selecting systems, models or features consider objectives and risks; document the
+      rationale proportionately to materiality, especially for complex choices; weigh performance
+      against complexity, fairness, explainability; involve domain experts.
+    tags: [selection, documentation, explainability, fairness]
+    footnotes: [41, 42]
+
+  - id: "5.13"
+    section: "5"
+    heading: Selection
+    page: 23
+    kind: expectation
+    applies_to: [fi, genai]
+    effective: 2028-10-07
+    summary: >-
+      For newer, less-understood systems or models, weigh benefits against heightened risks such as
+      hallucination, opaqueness and security, and the FI's capability to mitigate them.
+    tags: [selection, genai, risks]
+
+  - id: "5.14"
+    section: "5"
+    heading: Evaluation and Testing
+    page: 23
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Evaluate and test each system or model to an appropriate reliability and safety level before
+      deployment; set measurable thresholds agreed by business, developers and reviewers; use
+      representative datasets, diverse testing approaches, and overfitting mitigation.
+    tags: [evaluation, testing]
+    footnotes: [43, 44]
+    items:
+      - id: a
+        summary: Evaluation measures aligned to objectives with documented, mutually agreed thresholds.
+      - id: b
+        summary: "Testing approaches: out-of-sample/time, sensitivity, stability, sub-population, stress, adversarial, error analysis, benchmarking."
+      - id: c
+        summary: "Overfitting mitigation: prefer simpler models, regularisation, feature selection, cross-validation."
+
+  - id: "5.15"
+    section: "5"
+    heading: Evaluation and Testing
+    page: 24
+    kind: expectation
+    applies_to: [fi, genai, agent]
+    effective: 2028-10-07
+    summary: >-
+      Mitigate identified risks and limitations with controls and guardrails before deployment;
+      testing of Generative AI and agents must cover key failure modes and the effectiveness of
+      guardrails.
+    tags: [guardrails, testing, genai, agent]
+    footnotes: [45, 46]
+
+  - id: "5.16"
+    section: "5"
+    heading: Technology and Cybersecurity Risks
+    page: 24
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Secure, well-governed AI systems with controls proportionate to materiality: hardened secure
+      environments, input validation, API authentication, encryption, DLP; RBAC, MFA, privileged
+      access, separation of duties; governance of third-party plugins and APIs.
+    tags: [security, access-control, third-party]
+    footnotes: [47]
+    items:
+      - id: a
+        summary: Secure deployment environments with hardening, segmentation, input validation, API auth, encryption, DLP.
+      - id: b
+        summary: "Tight access control: RBAC, MFA, privileged access management, separation of duties."
+      - id: c
+        summary: Controls over third-party components, plugins and APIs to restrict data exposure and monitor risk.
+
+  - id: "5.17"
+    section: "5"
+    heading: Reproducibility and Auditability
+    page: 25
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Document the development process so an independent party can understand and potentially
+      replicate the implementation and its evaluation; rigour scales with materiality; cover data,
+      selection, training, evaluation, explainability/fairness, assumptions and limitations.
+    tags: [reproducibility, documentation]
+    items:
+      - id: a
+        summary: Data sources, processing and quality checks.
+      - id: b
+        summary: Selection rationale.
+      - id: c
+        summary: Training procedures including code versions, environments and hyperparameters.
+      - id: d
+        summary: Evaluation measures, thresholds, testing approaches and results.
+      - id: e
+        summary: Explainability analysis and fairness assessments.
+      - id: f
+        summary: Key assumptions, limitations and mitigants.
+
+  - id: "5.18"
+    section: "5"
+    heading: Pre-Deployment Reviews
+    page: 25
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Before deployment, parties not involved in development review that controls were followed and
+      assess suitability, robustness and performance within defined boundaries; scope and
+      independence proportionate to materiality.
+    tags: [pre-deployment-review, validation]
+
+  - id: "5.19"
+    section: "5"
+    heading: Pre-Deployment Reviews
+    page: 25
+    kind: expectation
+    applies_to: [high_materiality]
+    effective: 2028-10-07
+    high_materiality_only: true
+    summary: >-
+      High-materiality use cases need formal independent validation by competent, objective
+      personnel independent of development and deployment, covering conceptual soundness, data,
+      implementation integrity, evaluation results, explainability/fairness, assumptions.
+    tags: [validation, pre-deployment-review]
+    items:
+      - id: a
+        summary: Conceptual soundness of the design.
+      - id: b
+        summary: Suitability and quality of data inputs.
+      - id: c
+        summary: Integrity of the implementation.
+      - id: d
+        summary: Evaluation measures, thresholds, testing approaches and results.
+      - id: e
+        summary: Explainability analysis and fairness assessments.
+      - id: f
+        summary: Assumptions, limitations and mitigants.
+
+  - id: "5.20"
+    section: "5"
+    heading: Pre-Deployment Reviews
+    page: 26
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Non-high-materiality use cases may use other documented reviews, such as peer review by
+      qualified individuals not involved in development or deployment.
+    tags: [pre-deployment-review]
+    footnotes: [48]
+
+  - id: "5.21"
+    section: "5"
+    heading: Pre-Deployment Reviews
+    page: 26
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Reviewers report findings, limitations, remediation and conditions of use to the approval
+      body, which ensures recommendations are actioned.
+    tags: [pre-deployment-review, governance, documentation]
+
+  - id: "5.22"
+    section: "5"
+    heading: Pre-Deployment Reviews
+    page: 26
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Technology and cybersecurity reviews before production: secure design, least privilege,
+      deployment checklists confirming encryption, DLP, firewalls, access, logging; vulnerability
+      assessment, penetration testing, red teaming and adversarial testing with safeguards.
+    tags: [security, access-control, testing, pre-deployment-review]
+    items:
+      - id: a
+        summary: Secure design and access control review; go-live checklist for critical controls.
+      - id: b
+        summary: Vulnerability assessment, penetration testing, red teaming; adversarial threat tests and safeguards.
+
+  - id: "5.23"
+    section: "5"
+    heading: Post-Deployment Monitoring and Review
+    page: 27
+    kind: expectation
+    applies_to: [fi, third_party_ai, genai, agent]
+    effective: 2028-10-07
+    summary: >-
+      Ongoing monitoring of all deployed AI proportionate to materiality: metrics and tiered
+      thresholds, drift checks, agent reasoning/action/tool monitoring, incident management with
+      kill switches for high risk, accountable roles, records and access logging, training.
+    tags: [monitoring, incident, kill-switch, agent, genai, documentation, training]
+    items:
+      - id: a
+        summary: Monitoring metrics and tiered thresholds; data, concept and model drift; agent reasoning, actions and tools.
+      - id: b
+        summary: Incident and issue management; kill switches for high-risk AI; user feedback channels.
+      - id: c
+        summary: Clear roles and an accountable person for monitoring and incidents.
+      - id: d
+        summary: Records of monitoring and remediation; controlled, logged access; prompt/response logging for GenAI and agents.
+      - id: e
+        summary: Training for monitoring staff and awareness for users to report unintended behaviour.
+
+  - id: "5.24"
+    section: "5"
+    heading: Post-Deployment Monitoring and Review
+    page: 28
+    kind: expectation
+    applies_to: [fi, high_materiality]
+    effective: 2028-10-07
+    summary: >-
+      Re-validate or review AI as needed, with frequency and rigour informed by materiality;
+      high-materiality use cases get regular independent re-validation; triggers include
+      interconnected findings, monitoring breaches, significant changes, new external risks.
+    tags: [validation, monitoring, change-management]
+
+  - id: "5.25"
+    section: "5"
+    heading: Change Management
+    page: 28
+    kind: expectation
+    applies_to: [fi, third_party_ai]
+    effective: 2028-10-07
+    summary: >-
+      Comprehensive change controls: a framework to grade change significance with review and
+      re-approval for significant changes (compensating monitoring where prior review is
+      impossible); change control with version tracking and rollback; enhanced controls for
+      automatic updates.
+    tags: [change-management, monitoring, documentation]
+    footnotes: [49]
+    items:
+      - id: a
+        summary: Framework to grade change significance; significant changes need review and re-approval; compensating controls.
+      - id: b
+        summary: Change control with human oversight; version control of code, data, parameters; traceability and rollback.
+      - id: c
+        summary: "Enhanced controls for dynamic/automatic updates: justification, allowed scope, data checks, stricter monitoring."
+
+  - id: "5.26"
+    section: "5"
+    heading: Change Management
+    page: 29
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Controls for retirement or decommissioning when AI is no longer needed or exceeds risk
+      tolerance: dependencies, data retention, secure removal from production, stakeholder
+      notification.
+    tags: [retirement, data, lifecycle]
+
+  # ---------------------------------------------------------------- Section 6
+  - id: "6.1"
+    section: "6"
+    heading: AI Risk Management Capabilities
+    page: 30
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Ensure competence and proper conduct of personnel developing, deploying and using AI: recruit
+      talent, train, build culture; allocate human, technological and financial resources
+      proportionate to risk.
+    tags: [capability, training]
+
+  - id: "6.2"
+    section: "6"
+    heading: AI Risk Management Capabilities
+    page: 30
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Regularly review that personnel have adequate capability and capacity, and that training
+      programmes stay current for newer AI technologies.
+    tags: [capability, training]
+
+  - id: "6.3"
+    section: "6"
+    heading: Technology Infrastructure for AI
+    page: 30
+    kind: expectation
+    applies_to: [fi]
+    effective: 2028-10-07
+    summary: >-
+      Technology infrastructure (compute, network, memory, secure data pipelines) must meet
+      performance, scalability and resilience needs, considering technology risk management
+      guidelines and industry frameworks.
+    tags: [infrastructure, security]
+    footnotes: [50, 51]
+
+# Footnotes that carry requirements, definitions or scoping decisions. Purely bibliographic
+# footnotes (URLs only) are listed with kind: reference.
+footnotes:
+  - id: 1
+    anchored_to: "1.1"
+    page: 3
+    kind: definition
+    summary: FI as defined in Section 2 of the Financial Services and Markets Act 2022.
+  - id: 2
+    anchored_to: "1.2"
+    page: 3
+    kind: reference
+    summary: Link to the FEAT principles (2018).
+  - id: 3
+    anchored_to: "1.2"
+    page: 3
+    kind: guidance
+    summary: FIs may refer to CSA Guidelines and Companion Guide on Securing AI Systems, IMDA Model AI Governance Framework, AI Verify Foundation.
+    tags: [security]
+  - id: 4
+    anchored_to: "1.2"
+    page: 4
+    kind: scope
+    summary: Consolidated supervision covers locally incorporated banking and insurance FIs.
+  - id: 5
+    anchored_to: "1.2"
+    page: 4
+    kind: definition
+    summary: Critical information infrastructure as defined in the Cybersecurity Act 2018.
+  - id: 6
+    anchored_to: "1.3"
+    page: 4
+    kind: scope
+    summary: >-
+      In-scope examples: machine learning, deep learning, NLP, computer vision, generative AI/LLMs,
+      AI agents and multi-agent systems. Out of scope: rule-based systems, manually specified
+      formulae, fixed RPA.
+    tags: [scope, genai, agent]
+  - id: 7
+    anchored_to: "1.4"
+    page: 4
+    kind: definition
+    summary: Use case / system / model are used explicitly where a point is specific to one.
+  - id: 8
+    anchored_to: "1.9"
+    page: 5
+    kind: context
+    summary: Uncertainty arises from noisy or unrepresentative training data, unseen scenarios, and data or model drift.
+  - id: 9
+    anchored_to: "1.10"
+    page: 6
+    kind: reference
+    summary: MAS Information Paper on Cyber Risks Associated with Generative AI.
+  - id: 10
+    anchored_to: "1.10"
+    page: 6
+    kind: definition
+    summary: >-
+      Third-party AI: AI systems or models, and services or tools incorporating AI, developed,
+      owned, operated or provided externally that an FI procures, subscribes to, accesses or relies on.
+    tags: [third-party, definition]
+  - id: 11
+    anchored_to: "1.11"
+    page: 6
+    kind: reference
+    summary: IMDA Model AI Governance Framework for Agentic AI as a reference for agent risk.
+    tags: [agent]
+  - id: 12
+    anchored_to: "2.2"
+    page: 8
+    kind: guidance
+    summary: >-
+      Transparency, explainability and fairness controls matter most for credit scoring,
+      underwriting, advisory, fund management; for low-risk assistive copilots, selection and stress
+      testing may be less relevant, but data, safety and cybersecurity controls still apply.
+    tags: [proportionality, fairness, explainability, data, security]
+  - id: 13
+    anchored_to: "2.4"
+    page: 8
+    kind: expectation
+    summary: Humans in the 2.4 example use cases should review and check outputs before use.
+    tags: [human-oversight, basic-policies]
+  - id: 14
+    anchored_to: "3.2"
+    page: 10
+    kind: guidance
+    summary: Existing risk areas touched by AI include model, operational, reputational, data, technology/cyber, third-party, legal/compliance, financial, conduct, environmental.
+  - id: 15
+    anchored_to: "3.2"
+    page: 10
+    kind: guidance
+    summary: "Example: Fair Dealing Guidelines continue to apply when AI delivers products and services."
+  - id: 16
+    anchored_to: "3.3"
+    page: 10
+    kind: guidance
+    summary: Cross-functional committees or inter-function communication lines are example coordination structures.
+  - id: 17
+    anchored_to: "3.4"
+    page: 10
+    kind: guidance
+    summary: For group FIs the delegated committee may be a regional or global committee overseeing Singapore AI risk; otherwise a board or board-level committee.
+    tags: [group, board]
+  - id: 18
+    anchored_to: "3.4"
+    page: 10
+    kind: guidance
+    summary: >-
+      Example risk appetite content: qualitative statements of accepted risk types and prohibited
+      uses; quantitative measures such as incident counts/impact, material use cases on a single
+      provider, material use cases breaching performance thresholds.
+    tags: [risk-appetite]
+  - id: 19
+    anchored_to: "3.5"
+    page: 11
+    kind: guidance
+    summary: "Three lines of defence illustration: first line develops/uses and assesses; second line independently challenges and validates; internal audit assures framework effectiveness."
+    tags: [governance]
+  - id: 20
+    anchored_to: "3.5"
+    page: 11
+    kind: definition
+    summary: AI incident means an incident involving failure, malfunction or poor performance of the underlying AI system(s) or model(s).
+    tags: [incident, definition]
+  - id: 21
+    anchored_to: "4.2"
+    page: 13
+    kind: scope
+    summary: "Embedded AI example: SaaS not sold as AI but containing AI features the FI uses."
+    tags: [third-party, identification]
+  - id: 22
+    anchored_to: "4.4"
+    page: 14
+    kind: guidance
+    summary: >-
+      Shadow-AI mitigations: staff guidance on allowed/disallowed uses including embedded features
+      and public tools, and technical controls such as network monitoring and data loss prevention
+      to detect unauthorised AI use.
+    tags: [shadow-ai, security]
+  - id: 23
+    anchored_to: "4.6"
+    page: 14
+    kind: guidance
+    summary: Linkages via consistent data asset identifiers to data inventories and vendor/service identifiers to third-party registers.
+    tags: [inventory, third-party, data]
+  - id: 24
+    anchored_to: "4.7"
+    page: 14
+    kind: expectation
+    summary: Differences in attributes captured across use cases must be delineated in policy; omissions must not compromise oversight.
+    tags: [inventory]
+  - id: 25
+    anchored_to: "4.8"
+    page: 15
+    kind: guidance
+    summary: "Agent inventory attributes: agent-specific identifiers, tools and systems the agent can access, its components, and the guardrails imposed."
+    tags: [agent, inventory, guardrails]
+    attributes:
+      - agent_identifier
+      - tools_and_systems_accessible
+      - components
+      - guardrails
+  - id: 26
+    anchored_to: "4.10"
+    page: 15
+    kind: expectation
+    summary: Dependencies between AI systems or models supporting a use case should be considered where they affect its risk profile.
+    tags: [materiality, inventory]
+  - id: 27
+    anchored_to: "5.1"
+    page: 17
+    kind: definition
+    summary: AI life cycle spans inception to retirement (adapted from ISO/IEC 22989).
+  - id: 28
+    anchored_to: "5.2"
+    page: 17
+    kind: expectation
+    summary: >-
+      Partial deployments (pilots, phased rollouts) need policies governing deviations from standard
+      controls: time and user limits, success criteria, terms of use, close monitoring, scope compliance.
+    tags: [lifecycle, guardrails, monitoring]
+  - id: 29
+    anchored_to: "5.3"
+    page: 17
+    kind: definition
+    summary: Kill switches are mechanisms to deactivate AI expeditiously if it exceeds risk tolerances.
+    tags: [kill-switch]
+  - id: 30
+    anchored_to: "5.4"
+    page: 18
+    kind: reference
+    summary: PDPC advisory guidelines on personal data in AI recommendation/decision systems and in generative AI.
+    tags: [privacy]
+  - id: 31
+    anchored_to: "5.5"
+    page: 19
+    kind: reference
+    summary: NIST AI RMF transparency and explainability areas as a reference.
+  - id: 32
+    anchored_to: "5.5"
+    page: 19
+    kind: definition
+    summary: Transparency is disclosure to affected individuals plus explanations on request; explainability is methods (built-in or post-hoc) for understanding outputs.
+    tags: [transparency, explainability, definition]
+  - id: 33
+    anchored_to: "5.6"
+    page: 19
+    kind: guidance
+    summary: Context includes how far AI decisions require explanation for end-users or customers.
+  - id: 34
+    anchored_to: "5.6"
+    page: 19
+    kind: guidance
+    summary: Customer disclosures need not be technical (effects, basis for decisions, redress); technical detail suits internal evaluators; IMDA chatbot transparency guidelines referenced.
+    tags: [transparency, genai]
+  - id: 35
+    anchored_to: "5.7"
+    page: 20
+    kind: reference
+    summary: FEAT principles as a reference for defining fair outcomes.
+    tags: [fairness]
+  - id: 36
+    anchored_to: "5.8"
+    page: 20
+    kind: expectation
+    summary: Proxies for, or attributes highly correlated with, protected attributes must also be considered.
+    tags: [fairness]
+  - id: 37
+    anchored_to: "5.9"
+    page: 20
+    kind: scope
+    summary: Human oversight expectations cover every case where the FI judged human involvement necessary, whether in-the-loop or over-the-loop.
+    tags: [human-oversight]
+  - id: 38
+    anchored_to: "5.10"
+    page: 21
+    kind: scope
+    summary: Development controls apply where the FI modifies or fine-tunes third-party AI before deployment.
+    tags: [third-party]
+  - id: 39
+    anchored_to: "5.10"
+    page: 21
+    kind: scope
+    summary: MAS outsourcing and third-party service expectations apply to third-party AI.
+    tags: [third-party]
+  - id: 40
+    anchored_to: "5.11"
+    page: 22
+    kind: guidance
+    summary: "Example: deeper evaluation, testing and cyber checks when first deploying vendor-provided AI agents."
+    tags: [third-party, agent]
+  - id: 41
+    anchored_to: "5.12"
+    page: 22
+    kind: definition
+    summary: Models include specific ML/DL models or techniques such as optimisation or fine-tuning.
+  - id: 42
+    anchored_to: "5.12"
+    page: 22
+    kind: definition
+    summary: Features are dataset attributes; feature engineering creates or transforms them.
+  - id: 43
+    anchored_to: "5.14"
+    page: 23
+    kind: reference
+    summary: IMDA Starter Kit for Testing LLM-Based Applications for Safety and Reliability as a reference for GenAI assessment.
+    tags: [genai, testing]
+  - id: 44
+    anchored_to: "5.14"
+    page: 24
+    kind: guidance
+    summary: Regularisation limits parameters to reduce complexity.
+  - id: 45
+    anchored_to: "5.15"
+    page: 24
+    kind: guidance
+    summary: Pilots or phased rollouts with guardrails can be used to obtain representative data when testing data is limited.
+    tags: [guardrails, testing]
+  - id: 46
+    anchored_to: "5.15"
+    page: 24
+    kind: expectation
+    summary: >-
+      GenAI testing must pay particular attention to hallucination, toxic/harmful/biased content,
+      bias, data leakage or disclosure, and vulnerability to adversarial attack.
+    tags: [genai, testing, guardrails, security]
+    failure_modes:
+      - hallucination
+      - undesirable_content
+      - bias
+      - data_leakage
+      - adversarial_vulnerability
+  - id: 47
+    anchored_to: "5.16"
+    page: 24
+    kind: reference
+    summary: MAS Technology Risk Management Guidelines apply.
+    tags: [security]
+  - id: 48
+    anchored_to: "5.20"
+    page: 26
+    kind: scope
+    summary: Reviewers must be independent of both initial and ongoing deployment (operation) of the AI.
+    tags: [pre-deployment-review]
+  - id: 49
+    anchored_to: "5.25"
+    page: 28
+    kind: guidance
+    summary: "Change examples: training data, model/system architecture, key assumptions, scope of use, downstream impact."
+    tags: [change-management]
+  - id: 50
+    anchored_to: "6.3"
+    page: 30
+    kind: reference
+    summary: MAS Technology Risk Management Guidelines.
+  - id: 51
+    anchored_to: "6.3"
+    page: 30
+    kind: reference
+    summary: NIST AI RMF technology infrastructure areas.

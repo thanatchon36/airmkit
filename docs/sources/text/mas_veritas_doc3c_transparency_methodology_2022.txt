@@ -1,0 +1,1969 @@
+
+
+===== PAGE 1 =====
+Veritas Document 3C  
+ 
+FEAT Transparency 
+Principles Assessment 
+Methodology
+3
+3A
+3B
+3C
+4
+
+
+===== PAGE 2 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+2
+Table of Contents
+Executive Summary
+4
+1.1    Scope, Purpose and Intended Audience of the Document
+6
+1.2   Transparency in AIDA: Regulatory Context
+7
+1.3   Illustrative Examples of AIDA Transparency
+8
+1.4   (Why) Do AIDA Driven Decisions Require Enhanced Transparency?
+8
+1.5   Benefits of Transparency: Beyond Regulatory Compliance
+10
+1    Introduction
+6
+2.1     External Transparency: Overview
+11
+2.2   External Transparency: Content of Explanations
+11
+2.3   Internal Transparency: Overview and Taxonomy
+13
+2.4   Internal Transparency: Current State of ML Explanation Methods
+14
+2.5   ML Explanation Method at Work: Illustrative Example
+18
+2    Key Transparency Concepts
+11
+3.2   Step 1: Define System Context and Design
+30
+3.3   Step 2: Prepare Input Data
+31
+3.4   Step 3: Build and Validate the AIDA System
+31
+3.5   Step 4: Monitor AIDA System
+32
+3.1    Step 0: Set (Transparency) Standards Internally Within the FSI
+22
+3    Methodology
+21
+
+
+===== PAGE 3 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+3
+Table of Contents
+4.1     Make the Best Use of Existing Risk Management Frameworks
+34
+4.2   Set Out Your Stall
+34
+4.3   Overinvest in Training
+34
+4.5   Don’t View Transparency or Explainability in Isolation
+36
+4.4   Create Standards and Tools for AIDA Transparency that  
+        Extend Across Use Cases
+35
+4    Beyond Individual Use Cases:  
+      Achieving AIDA Transparency at Scale
+33
+5    Topics for Future Consideration
+37
+7    Bibliography
+40
+6    Acknowledgements
+39
+
+
+===== PAGE 4 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+4
+Executive 
+Summary
+With many decisions in the Financial 
+Services Institutions (FSIs) now being 
+shaped or even made by algorithms, there 
+is a greater demand for transparency 
+around crucial questions (e.g., where are 
+algorithms in use? what data do they use? 
+how are they making decisions? what 
+impact do they have? 
+Regulators 
+around 
+the 
+world 
+are 
+encouraging FSIs to increase transparency 
+around Artificial Intelligence and Data 
+Analytics (AIDA) decisions for people 
+who are impacted by such decisions. This 
+includes three of the 14 Principles (see 
+section 1.2 for the list of Principles) under the 
+Monetary Authority of Singapore’s Fairness, 
+Ethics, Accountability and Transparency 
+(FEAT) guidelines released in 2018.
+FSIs can choose to see this demand solely 
+from the perspective of potential future 
+regulatory 
+compliance 
+requirements. 
+However, it should arguably be a core 
+business priority in its own right. In an 
+increasingly digital world, transparency is 
+an unmet customer need, and providing 
+greater transparency could help FSIs 
+build stronger customer relationships and 
+create competitive advantage. In addition, 
+creating greater internal transparency into 
+such algorithms can help overcome the 
+trust deficit that AIDA systems may suffer 
+within the FSI and/or with regulators. 
+Fundamentally, algorithms such as those 
+built using advanced Machine Learning 
+(ML) techniques learn from the data used 
+to train them. As a result, they are more 
+susceptible to failing when the real world 
+data changes significantly or when they 
+inadvertently accentuate existing biases in 
+society. 
+FSIs’ approach to AIDA transparency need 
+to address two aspects: 
+•	
+External. What level and form of 
+transparency 
+should 
+FSIs 
+provide 
+to their customers/ prospects and 
+other external stakeholders in various 
+situations? 
+•	
+Internal. How should FSIs go about 
+building reliable explanations to feed 
+into (and provide verifiable backup for) 
+the information shared externally and 
+to be compliant with relevant internal 
+policies and procedures and regulatory 
+requirements? 
+With respect to external transparency, a 
+variety of regulatory considerations apply, 
+such as existing ones around treating 
+customers and staff fairly and respecting 
+an individual’s personal data rights and 
+new ones specific to AIDA systems. As a 
+result, it is difficult to prescribe the level of 
+transparency needed for different AIDA use 
+cases. 
+However, it is possible to provide a checklist 
+of the key considerations for an FSI in 
+arriving at such a decision. The materiality 
+of the AIDA-driven decision to the impacted 
+data subject (e.g., whether it results in 
+denial of access to financial service) need 
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+4
+
+
+===== PAGE 5 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+5
+Executive 
+Summary
+to be weighed against considerations 
+such as the prevention of fraud or gaming 
+by unscrupulous applicants or the FSI’s 
+legal obligations such as financial crime 
+prevention/ detection. 
+There are also practical considerations to 
+be kept in mind in the operationalisation of 
+transparency. For example, human beings 
+are limited in their ability to interpret 
+complex 
+explanations 
+for 
+algorithmic 
+decisions. The reasons behind a decision 
+may be helpful in educating them, but 
+sometimes it may be more valuable to 
+highlight the actions they can take to 
+change the outcome.
+With regard to internal transparency, the 
+past few years have seen significant activity 
+around designing explanation methods for 
+AIDA systems, particularly with respect to 
+complex ML models. FSIs should review 
+the existing landscape of methods and 
+consider implementing internal standards 
+for approved explanation methods. 
+More broadly, FSIs should take steps to 
+implement 
+transparency 
+requirements 
+in a scalable way, rather than on a case-
+by-case basis. Section 4 of this paper 
+makes 
+five 
+recommendations 
+in 
+this 
+regard: embedding AIDA transparency 
+considerations 
+into 
+existing 
+risk 
+frameworks; 
+investing 
+in 
+proactive 
+communication; training customers, staff, 
+management and risk/ control functions; 
+investing in tools for AIDA transparency; and 
+integrating transparency considerations 
+throughout the AIDA lifecycle.
+Finally, it should be recognised that the field 
+of algorithmic transparency is a relatively 
+immature one. There are multiple areas in 
+which there is room for future work around 
+regulatory guidance, industry practices 
+and even academic research (e.g., the 
+alignment of transparency considerations 
+between AIDA and non-AIDA systems, 
+or the treatment of third-party data and 
+models with respect to transparency 
+requirements).
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+5
+
+
+===== PAGE 6 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+6
+ Introduction
+01
+1.1    Scope, Purpose and Intended Audience  
+         of the Document
+This document* is intended for Artificial Intelligence and Data Analytics (AIDA) practitioners, business 
+users of AIDA systems and their risk/control counterparts in Financial Services Institutions (FSIs). 
+The document acknowledges that an FSI’s specific obligations around AIDA transparency will depend 
+on the regulatory requirements and societal norms of the jurisdictions in which they operate, and the 
+materiality of individual use cases. The former set of expectations are also expected to change over 
+time. As a result, the document does not attempt to prescribe what level of transparency should be 
+provided to data subjects in specific AIDA use cases. Instead, it focuses on:
+•	
+Providing a methodology to evaluate the need for external transparency (i.e., facing the data 
+subject impacted by AIDA decisions) and to operationalise it in a pragmatic way.
+•	
+Recommending a set of internal capabilities needed to underpin such transparency with data 
+subjects and build AIDA trustworthiness within the FSI organisation.
+The document also recognises the need to embed transparency considerations into an FSI’s processes 
+and systems in a scalable way, and records specific areas in which the industry will benefit from 
+greater regulatory clarity and/or customer research.
+This document is one of a suite published as a deliverable of the Monetary Authority of Singapore 
+(MAS) Veritas Phase 2 project, and it fits alongside published documents as highlighted in the diagram 
+below.
+Figure 1.1 Transparency Principles Assessment Methodology document in the suite of Veritas outcomes
+*Audience of this document is aligned with the audience listed out in section 1.3 of Veritas Document 3 FEAT Principles Assessment Methodology 
+document
+Methodology
+Use Case
+3A
+Fairness  
+Principles 
+Assessment 
+Methodology
+3C
+Transparency 
+Principles 
+Assessment 
+Methodology
+3B
+Ethics and 
+Accountability 
+Principles 
+Assessment 
+Methodology
+FEAT Principles Assessment 
+Methodology
+3
+Illustrative Code for FEAT Principles 
+Assessment Case Studies
+5
+FEAT Principles Assessment  
+Case Studies
+4
+
+
+===== PAGE 7 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+7
+As AIDA systems are increasingly used to shape decisions or engage customers in the FSI, regulators 
+worldwide are encouraging FSIs to ensure sufficient transparency around their use. In the United 
+States, reasons for denial must be provided to rejected (individual) customers in lending scenarios. 
+Under the European Union’s General Data Protection Regulation (GDPR), organisations that deploy 
+automated decision making must provide the individuals affected with meaningful information about 
+the logic behind decisions. 
+Empirical evidence confirms the importance of explanations to end users, and that explanations can 
+significantly increase a users’ confidence and trust1,2,3 while also enhancing their ability to assess the 
+correctness of a prediction.4,5
+In Singapore, three of the Principles outlined in the MAS Fairness, Ethics, Accountability and 
+Transparency (FEAT) guidelines (2018)6 on the use of AIDA explicitly relate to transparency:
+In addition, transparency is essential for an FSI to adhere to other FEAT principles such as fairness 
+and accountability. The Singapore Personal Data Protection Commission (PDPC) guidelines7 highlight 
+expectations around algorithmic explainability and how it can be meaningfully brought to life for 
+consumers. Similar guidelines have been, or are being, issued by regulators elsewhere in the world. 
+1.2    Background - Regulatory context  
+         of Transparency in AIDA
+•	
+Principle 12: To increase public confidence, use of AIDA is proactively disclosed to data 
+subjects as part of general communication.
+•	
+Principle 13: Data subjects are provided, upon request, clear explanations on what data 
+is used to make AIDA driven decisions about the data subject and how the data affects 
+the decision.
+•	
+Principle 14: Data subjects are provided, upon request, clear explanations on the 
+consequences that AIDA driven decisions may have on them.
+
+
+===== PAGE 8 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+8
+1.3    Illustrative Examples of AIDA Transparency
+FEAT Principle 12 suggests that FSIs proactively disclose to data subjects when AIDA systems are 
+being used to engage with them (e.g., when interacting with an automated voice agent rather than 
+a human) or make a decision affecting them (e.g., underwriting decisions being made by humans in 
+tandem with an AIDA system).
+FEAT Principle 13 suggests that where a data subject requests it, an FSI should provide:
+1.4    (Why) Do AIDA Driven Decisions  
+         Require Enhanced Transparency? 
+Transparency requirements are not unique to AIDA driven decisions. Existing requirements around 
+treating customers and staff fairly, ensuring equal opportunities for different groups in society and 
+respecting the rights of individuals around their personal data already cover similar ground. 
+FEAT Principle 14 suggests that upon request, an FSI should explain to a data subject how AIDA 
+driven decisions could affect them. For example, an FSI could let prospects and customers know 
+that if the AIDA system being used to assess their insurance or loan application does not approve it, 
+the application is not automatically rejected, but is instead forwarded to a human assessor. A further 
+example would be to disclose to prospects and customers that the result of their current insurance 
+or loan application will be used as an input when deciding on any future applications to the FSI within 
+the next “X” months.
+•	
+A description of the data being used by an AIDA system. And the associated human 
+oversight involved in making decisions that affect them. In insurance, this could involve 
+disclosing during the application process that the applicant’s age and the results of 
+their initial health assessment will be used in determining their life insurance premium. 
+In banking, an example would be to disclose during a credit card application that the 
+applicant’s annual income, historical current account balance and bureau credit rating 
+will be used to determine their credit card spending limit.
+•	
+An explanation of the way in which the data affects the decision. An insurance example 
+would be to explain that pre-existing health conditions will drive up the premium, or 
+that positive health indicators from the customer’s personal health device, if shared 
+with the insurer, will activate subsequent rebates. A banking example would be to share 
+that the lack of adequate credit history has a negative impact on the customer’s credit 
+worthiness.
+
+
+===== PAGE 9 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+9
+Three factors have led to the increased attention on transparency in the specific context of AIDA 
+driven decisions: 
+However, it is difficult to isolate the transparency standards and processes for AIDA driven decisions 
+from those used for other types of decisions. In many cases, AIDA systems are used to complement 
+traditional decision making processes, rendering such distinctions impractical. For example, could an 
+FSI explain to a prospect or customer why an AI algorithm recommended giving them a loan, but then 
+not explain why a human approver overseeing the decision overruled it? Additionally, the perception 
+of what constitutes an AIDA system might vary between, and even within, FSIs. Therefore, creating 
+separate operating procedures for explaining AIDA and non-AIDA decisions may be impractical. One 
+way of addressing this issue would be to focus transparency efforts on the end-to-end process used 
+to arrive at a decision, rather than just the AIDA subcomponent.
+1.	 Some types of AIDA systems use “black box” algorithms.
+2.	 Many of today’s AIDA systems use more data about data subjects and from more sources 
+than their historical counterparts.
+3.	 The impact of poor AIDA driven decisions can be more widespread and perpetuated 
+at greater speed than historical manual or automated alternatives, creating a risk of 
+systematic misuse.
+
+
+===== PAGE 10 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+10
+FSIs could see the demand for greater transparency around AI purely from the perspective of potential 
+future regulatory compliance requirements. However, this would represent a missed opportunity. 
+FSIs should adopt greater transparency and ensure fair, ethical and accountable use of AIDA systems 
+because it meets an unmet customer need and makes sense from a business perspective.
+In most societies, the use of data and algorithms (whether AI enabled or otherwise) has moved 
+significantly ahead of the ability of the general public to comprehend it. There have been well 
+publicised examples – of varying levels of accuracy – of malfunctioning algorithms and their adverse 
+impact on individuals. FSIs could potentially use greater transparency around the use of AIDA systems 
+to increase customer trust, strengthen customer relationships and create a source of competitive 
+advantage. 
+Another important benefit to FSIs from greater transparency is the contribution it can make toward 
+overcoming internal barriers to the more widespread adoption of AIDA. Particularly when it comes 
+to algorithms created using advanced Machine Learning (ML) techniques, trustworthiness concerns 
+have held back adoption at scale. Concerns include worries that ML:
+•	
+May not always be explainable. 
+•	
+Could be affected by a drop off in predictive accuracy in the face of rapid changes, 
+such as those seen during the COVID-19 pandemic.
+•	
+Run the risk of accentuating biases based on the data used to train them.
+•	
+“Learn by memorisation” and draw false patterns from limited past data, a concept known  
+as “overfitting”.
+In addition, by establishing the processes and systems that enable external transparency, FSIs will be 
+able to create a robust internal basis to win over AIDA sceptics inside their organisations and capture 
+its full value. Individuals within the FSI will also be able to build a better understanding of the AIDA 
+system, as a prerequisite to taking accountability for its outcomes.
+1.5   Benefits of Transparency:  
+        Beyond Regulatory Compliance
+
+
+===== PAGE 11 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+11
+ Key Transparency
+ Concepts
+02
+2.1    External Transparency: Overview
+2.2    External Transparency: Content of Explanations
+In the information FSIs provide to data subjects on AIDA use, they can be proactive or reactive; 
+generic or instance specific; and informational or action oriented:
+•	
+Proactive vs. Reactive: proactive transparency involves an FSI informing the general 
+public, including current and prospective customers, that it uses their data and 
+AIDA systems to engage them and/or make decisions that affect them. This type of 
+transparency corresponds to FEAT Principle 12. Reactive (or responsive) transparency 
+involves the FSI responding to requests from data subjects to find out more about a 
+specific decision that has affected them (e.g., why did my loan application not get 
+approved? Why am I being charged a higher insurance premium than my husband? 
+How will this decision impact me? etc). This type of transparency corresponds to 
+FEAT Principles 13 and 14.
+•	
+Generic vs. Specific: proactive transparency can be both generic and instance 
+specific. Information provided on websites and on product marketing collateral 
+(such as that for a new credit card) about the FSI’s use of data and algorithms would 
+be examples of the former. Information provided during the application process 
+or in formal customer documentation would be examples of the latter. Reactive 
+transparency is by definition instance specific (e.g., related to a particular loan or 
+insurance application). 
+•	
+Informational vs. Action Oriented: the purpose of providing transparency to data 
+subjects can be informational (i.e., helping them understand how the FSI uses data 
+and algorithms to engage them and make decisions impacting them). Alternatively, 
+providing information can be action oriented ( i.e., helping the data subject seek an 
+alternative decision by taking specific steps, such as changing specific aspects of 
+their application).
+Early studies from cognitive psychology suggest how humans might view interpretations of AIDA 
+systems. A suitable explanation for AIDA driven decisions is expected to meet three conditions: 
+1.	 It must be consistent with human intuition.
+2.	 Its level of complexity must match the expertise level of the humans affected.
+3.	 It must use domain specific (i.e., specific to the use case) vocabulary.
+
+
+===== PAGE 12 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+12
+1.	 How was the decision made? A short overview of the overall decision making process, 
+including the role of the AIDA system as well as any associated human oversight, and 
+an overview of the data used to make the decision. The overview will be specific to 
+this particular use case, but not to the data subject.
+2.	 What were the top reasons behind your specific decision? The top few reasons that 
+drove the decision for this particular data subject. Ideally, this includes not just the 
+factors that acted against the data subject but also the ones that acted in their favour. 
+3.	 What actions could have enabled a more favourable outcome for yourself? Sharing 
+actions that might help the data subject get a more favourable outcome can appear 
+intuitively more attractive than just sharing the top reasons, since the latter may not 
+always be actionable (e.g., annual income cannot be changed overnight, and age 
+cannot be reduced at all!). However, it should be limited to instances in which the 
+FSI can guarantee a (favourable) change in outcome if the data subject takes those 
+actions. It should also be accompanied by appropriate time limitations (e.g., only 
+valid for a month or three months after the original decision), since the underlying 
+algorithm and/or manual processes may change over time. Finally, the FSI needs 
+to take care to not recommend actions in instances where such recommendations 
+would constitute an inappropriate influencing of the data subject’s behaviour.  
+4.	 How does the AIDA decision impact you? Starting with the obvious (i.e., that you 
+were denied the loan, or your insurance claim was rejected, as a result of the AIDA 
+decision and/or associated human oversight). This summary could also relate to 
+broader impact (e.g., that the result of this assessment will be used to determine the 
+outcomes of your future applications in the next X months).
+5.	 What redress options are available to you? Linked to FEAT Principles 10 and 11, to 
+enable data subjects to enquire about, submit appeals for and request reviews of 
+AIDA driven decisions, and to provide relevant supplementary data during review.
+Research suggests that human interpretable explanations cannot be too lengthy, but that humans 
+still require understanding of the core factors that underpin decision making.9 Humans generally 
+prefer such explanations to be simple and highly probable,10 and to appeal to causal structure rather 
+than correlations.11,12 A natural progression – from broad explanations of how the system works to 
+justifying decisions in a particular instance – may be appropriate in many instances.13
+In addition, data subjects ideally require a mix of reasoning (general explanations for their decision) 
+and action (an understanding of how they can change a model’s behaviour). Adding counterfactuals 
+(see details in section 2.4.4) that demonstrate how a decision could be improved or changed can help 
+data subjects grasp model behaviour (e.g., “had I done X, would my outcome Y have changed?”). 
+Counterfactuals have played a role in the philosophy of explanations dating back to 1973,14,15 and 
+psychological studies have confirmed that counterfactuals can elicit causal reasoning in humans.16
+A thorough explanation would not only allow a data subject to understand the causes of a model’s 
+decision, but also help the user mentally simulate some aspects of the model itself.17
+In applying these considerations, FSIs should ensure that they have answers to the following 
+questions as part of their reactive explanations: 
+
+
+===== PAGE 13 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+13
+1.	 Does the model use specific or agnostic methods? Model specific explanation 
+methods (e.g., those used for looking at branching structures within trees or the 
+weights learned by a layer of a neural network) are useful for a defined class of model 
+and may require access to the internal structure of a model. On the other hand, 
+model agnostic methods do not expect any access to the internal workings of the 
+model. Agnostic methods might then create explanations only by examining model 
+input and output pairs.
+2.	 What is the scope of the explanation? Explanation methods are fundamentally 
+characterised by the quantity it is attempting to explain. Is it an individual model 
+prediction (a local explanation) or the overall aggregate drivers of model behaviour 
+(global explanations)? Is it an internal component of the model? Is it a segment of the 
+overall population?
+3.	 What is the output of the method? Explanation methods must summarise their results 
+with respect to a component of the model. 
+a.	 In traditional explanation frameworks, it is usually features, where a method will 
+attempt to explain the local or global properties of the model by explaining how 
+each feature affected the overall model decision(s). 
+b.	 For more complex models, explanations might instead target model internals 
+such as learned weights or layers, such as the branching structure of a decision 
+tree or visualisation of intermediate layers in a neural network. 
+c.	 Still other explanation methods might explain model outputs with respect to the 
+underlying training or test data points (i.e., the points that most contributed to 
+a certain aspect of learned model behaviour, or the ways in which one might 
+modify a data point to change a model’s predictions). 
+4.	 Is the explanation intrinsic to the model (i.e., is the model inherently interpretable)? 
+Explanation methods can follow naturally from the structure of the model (such as in 
+the case of a decision tree), or be retroactively applied to understand a more opaque 
+model (such as a neural network). Examples of inherently interpretable architectures 
+include GLMs,18 GAMs,19 and simple trees. 
+While FSIs can decide on the appropriate level of transparency to be provided externally to data 
+subjects impacted by an AIDA driven decision, they have less flexibility when it comes to internal 
+transparency. Being able to understand and explain how the AIDA system is making its decision or 
+recommendation, as well as the human oversight rules being used on top, is essential for two reasons:
+1.	 To ensure the accuracy of explanations to data subjects.
+2.	 To win the trust of internal stakeholders as a precondition for AIDA use in production. 
+Some of the latter have to take personal accountability for AIDA driven decisions, and 
+a robust explanation of the AIDA system’s inner workings is critical for them.
+Existing techniques already provide adequate explanations for some types of AIDA systems, such 
+as rule based and traditional statistical models. This section focuses on the mechanisms to enable 
+such explanations for ML AIDA systems, where the challenge around lack of transparency is at its 
+most acute. ML explainability is a broad and often nebulous concept. A taxonomy of ML explanation 
+methods can be built by answering four core questions:
+2.3    Internal Transparency: Overview and Taxonomy
+
+
+===== PAGE 14 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+14
+This section focuses on explanation methods that specifically attribute model behaviour to 
+constituent features or internal layers. It provides an overview of the explanation methods available 
+today, organising them first by whether they are “baked” into the model architecture (inherently 
+interpretable) or are post hoc in nature. Explanation methods are then characterised by their access 
+to the underlying model (model specific vs. model agnostic) and their scope (local vs. global). 
+The final part of this section outlines other explanation techniques that attempt to interpret a model with 
+respect to specific data points (via either attribution to training data20 or by providing counterfactual 
+points that would have changed a model outcome).21 Due to their technical nature, some parts of 
+this section may be more suited to AIDA practitioners than their generalist counterparts.
+Post hoc interpretability consists of explanations that are generated from a model outcome once it has 
+already been trained. This approach differs from inherently interpretable models that are architected 
+with some interpretability constraint in mind. This subsection deals with model agnostic explanation 
+methods, while the next covers model specific methods.
+Model agnostic interpretability methods offer increased flexibility in that they can be used with any 
+ML technique as a post processing step. In general, a good model agnostic technique will work 
+across a wide range of model classes and allow for interpretation of results in a different feature 
+space than the potentially complex input space of the model. 
+2.4   Internal Transparency:  
+        Current State of ML Explanation Methods
+2.4.1   Post Hoc Interpretability: Model Agnostic Methods
+•	
+Global Explanation Methods. Early model agnostic methods such as Partial 
+Dependence Plots (PDPs)22 and Accumulated Local Effects plots (ALE plots)23  
+focused on a global interpretation of a model’s behaviour. PDPs and ALEs both capture 
+the marginal effect of an individual feature or a small set of features on the average 
+output of a model. PDPs in particular examine how a model’s output changes if the 
+value of a feature of influence is varied and calculates the expected model output 
+over the marginal distribution of the unfixed features. Yet another similar technique 
+is Permutation Importance,24 which estimates a feature’s importance by seeing how 
+much the model’s error increases if that feature’s value is randomly permuted amongst 
+all data points.25 In this way, the permuted feature becomes (on average) uncorrelated 
+with outcomes and therefore will not help in prediction.
+	
+Other model agnostic global interpretation techniques include training global 
+surrogate models to mimic the outputs of a black box model. Any conclusions one 
+wishes to draw about the inner workings of the model are instead drawn for the 
+interpretable surrogate. The idea of a global surrogate is quite intuitive, but global 
+surrogates can also fit the model extremely well in certain regimes but poorly in 
+others. In this way, for many explanation methods that only provide a global view of 
+the model, the accuracy of the interpretations may vary unexpectedly across different 
+subsets of the dataset and lose valuable nuance about the underlying model. 
+
+
+===== PAGE 15 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+15
+•	
+Local Explanation Techniques. The four methods discussed above address the 
+challenge of global interpretability. However, these tools cannot be used to characterise 
+why a specific output was produced for a specific data point. Local surrogate models 
+attempt to provide such explanations by building an interpretable model that mimics 
+a black boxed model only in the neighbourhood of a point of interest. 
+•	
+Local Interpretable Model Agnostic Explanations (LIME) approaches this problem 
+by building a linear model in the neighbourhood of a point of interest.26 To define 
+this neighbourhood, points can either be perturbed in a domain appropriate way 
+(changing individual values by a small amount in tabular data, or changing pixel 
+values in connected components of pictures for image data), or by reweighting other 
+available data points based on a kernel function, which determines how “close” two 
+data points are. LIME and other local surrogate models are intrinsically myopic – they 
+may capture model behaviour well, but only in the region of one specific instance. 
+In addition, while LIME may be able to replicate the output of a model in this region, 
+it does not distinguish between features that cause this behaviour and those that 
+are correlated with the outcome. Other similar, but less popular, local surrogate 
+techniques include BreakDown27 and High Precision Anchors,28 which also create 
+simpler models to approximate local behaviour.
+•	
+Shapley values, on the other hand, use game theory to approach model 
+interpretability.29 In the framework of Shapley values, each feature is assumed to be a 
+player who makes some contribution towards the ultimate model output value. Each 
+player participates in a game by providing a true feature value, and a player who does 
+not participate instead provides some default prior feature value.
+To quantify the importance of a single player, all possible coalitions, or subsets of 
+other features, are created. The method then measures how much (averaged over 
+all coalitions) the prediction made by the model changes when the entire coalition 
+plus the player plays, versus when the entire coalition (not including the player) plays. 
+Interpreting each feature of a model as a player, the method effectively computes 
+how much the prediction changes if that feature is added into the model, averaged 
+over what other features have already been added into the model.
+The core benefit of this setup is that Shapley values adopt an axiomatic view of 
+explanations, where they must assign zero attribution to unimportant features, give 
+equal weight to equally important features, and enforce that features that drive model 
+predictions are always assigned a higher attribution. Shapley values also ensure that 
+the difference between the prediction explained and the average prediction across a 
+set of coalitions is fairly distributed among features, and are the only formulation that 
+satisfies these principles. However, they are also expensive to compute as there are 
+exponentially many coalitions to enumerate over. Popular approximation techniques 
+include Quantitative Input Influence (QII)30 and Shapley Additive Explanations 
+(SHAP),31 which use different sampling techniques to efficiently estimate Shapley 
+values. 
+While Shapley values are ultimately calculating the local influence of a set of features 
+to a model score or other desired output, another advantage of these methods is 
+that they can be aggregated from local to global in an intuitive way. Returning to 
+the initial game theory formulation, aggregated “games’’ can be created, in which 
+the total “payout” is the average of the model outputs over the entire class. As the 
+assignment of Shapley values is linear, the feature importances for each instance in 
+the class can be averaged to obtain aggregate Shapley values. The latter describes 
+
+
+===== PAGE 16 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+16
+how each feature affects the prediction on average for a certain class. Extending this 
+class to include the entire dataset thus provides a global interpretation of feature 
+importances. 
+Finally, Shapley values also allow for contrastive explanations in a way that local and 
+global surrogate models cannot; instead of comparing a prediction to the average 
+prediction across a dataset, one might instead compare it to a subset of predictions 
+or to a single datapoint. This allows for a broader framework of explanation queries 
+(e.g., “why was Jane denied a loan compared to all approved candidates?” vs. “why 
+was Jane denied a loan compared to all men?” or even “why was Jane denied a loan 
+compared to her husband?” should and can yield vastly different explanations). 
+Model specific explanation methods are particular to specific model classes. Early examples of such 
+techniques are examining coefficients in linear models or generating global feature importances in 
+decision trees by examining Gini impurities of feature splits within a tree.32
+Nowadays, the vast majority of model specific explanations are concentrated on deep neural networks 
+(DNNs) in tabular, text, and particularly image domains. These methods are typically gradient based. 
+DNN explanation methods that construct purely local views of model behaviour include SmoothGrad 
+saliency maps,33 guided backpropagation,34 layerwise relevance propagation,35 and Grad-CAM.36 
+Yet another popular technique is Integrated Gradients,37 which provides a Shapley value-esque 
+attribution that is both locally and globally faithful by calculating average feature importances with 
+respect to a baseline instance. 
+Still other DNN explanation techniques focus not only on attributing a model’s predictions to input 
+features (e.g., pixels) but also to internal neurons or layers of the network, as is the case with TCAV,38 or 
+Influence Directed Explanations,39 which provides a generalisation of many gradient based attributions 
+for arbitrary layers of a DNN. New techniques are arising every day for particular applications; many 
+practitioners conceptualise the inner workings of NLP transformer models by visualising self-attention 
+weights,40 but there is strong debate in the literature about whether attention maps are reasonable 
+or reliable explanations.41,42
+Models that are “inherently interpretable” limit their architecture in order to be more explainable. 
+These explanations are often argued to be the “most faithful” explanation method as they are 
+“baked” into the model itself.43 The prototypical inherently interpretable model is the simple linear or 
+logistic regression; with these, feature importances can be intuited from the coefficients of the linear 
+model and the exact way a model reaches its conclusions is clear because a linear model creates its 
+predictions as a weighted sum of input features. 
+This simplicity can be both a strength and a weakness. Linear models implicitly enforce monotonicity 
+constraints on the model and limit how features can interact with each other. To combat this, 
+generalisations of a linear model that allow for more complex feature interactions exist. Examples 
+include the generalised linear model (GLM), which generalises how an output depends on a feature 
+value to non-Gaussian distributions;44 the generalised additive model (GAM),45 which relaxes the 
+2.4.2   Post Hoc Interpretability: Model Specific Methods
+2.4.3   Explanations for Inherently Interpretable Models
+
+
+===== PAGE 17 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+17
+•	
+Validity. The counterfactual must be assigned the desired class by the model (e.g., 
+“reducing the loan amount requested by $10,000 will certainly cause the loan to be 
+approved”).
+•	
+Actionability. Any proposed changes must be feasible for an individual (e.g., individuals 
+cannot suggest “reducing your age will improve the chances of you getting a loan”). 
+•	
+Sparsity. Proposing a change to a large number of features can result in actionable 
+guidance which is hard for a human to interpret.56 Counterfactual explanations should 
+therefore mutate as few features as possible in order to be more understandable and 
+actionable.
+•	
+Closeness to the data distribution. Even if a proposed change is actionable, the new 
+data point that would result from making this change may lie outside the training 
+data’s distribution. As a result, the model’s predictions on the new data point would 
+be unreliable (e.g., if a model is trained on people with incomes between $50,000 
+and $100,000, we should not suggest that a user increase their income to $150,000).
+•	
+Causality. Counterfactual suggestions should account for correlations between 
+features that would have to change in tandem (a proposal that an individual should 
+change their desired loan repayment period to five years from 10 years should lead to 
+doubling their desired monthly repayment or halving the loan amount).
+condition that only linear relationships between inputs and outputs can exist; and methods like 
+GA2M46 and RuleFit,47  which allow models to capture low-dimensional feature interactions. 
+Decision trees, decision sets,48 rule based classifiers49,50,51 and scorecards are also considered 
+inherently interpretable models in that they force models to create predictions via clearly defined 
+rules. More recently, there has also been some research to add flavours of interpretability constraints 
+directly into model training itself (e.g., Bayesian rule based reasoning models,52 sparsifying neural 
+networks through gradient penalties,53 or even by adding human feedback into an optimisation 
+procedure54).
+So far, this section has focused on various explanation methods that attempt to understand model 
+behaviour with respect to a model’s constituent features. These techniques also have provided 
+reasoning: an explanation of why a model behaved a certain way, and not necessarily how to change 
+this behaviour. As described in Section 2, data subjects often want actionable guidance on redress 
+opportunities. They seek explanations via a set of example actions they could take to improve their 
+outcome – for instance, by finding data points in the vicinity of a given instance that have different 
+outcomes. 
+These types of explanations are called counterfactuals. Counterfactual explanations essentially 
+“interrogate” a model to probe for required changes to input features that would result in different 
+model decisions. These explanations can be used by model developers to sanity-check the 
+trustworthiness and fairness of a model, or even presented to end-users/customers in order to 
+justify model behaviour. Each counterfactual explanation consists of a sequence of changes the data 
+subject might make to improve their outcome, e.g., by closing a credit card or reducing the amount 
+requested in order to secure a loan. Desirable attributes55 of a good counterfactual explanation are 
+as follows:
+2.4.4   Counterfactual Explanations
+
+
+===== PAGE 18 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+18
+•	
+Privacy. Giving a user a set of proposed changes should not reveal other people’s 
+underlying data (we cannot suggest that a user simply change themselves to look 
+like someone else with a different outcome) or violate privacy laws. Privacy is often 
+overlooked in the counterfactual explanations literature because it poses technical 
+challenges57 by inhibiting how much information can be “given away” to the user.
+•	
+User preference solicitation. A good counterfactual explanation would incorporate 
+user preference in some way (e.g., suggesting “close three credit cards” might be 
+much easier for a customer than “increase your income by $200”). These preferences 
+are difficult both to capture and express, but are critical to users taking advantage of 
+redress mechanisms.
+Numerous techniques exist to generate counterfactual explanations,58,59,60,61 but few meets all of the 
+desirable attributes. Open source frameworks like DICE62 and FACE63 exist, but fail to satisfy privacy, 
+for example. There is ongoing research in the field to create counterfactual explanations that are of 
+suitable quality. 
+Many FSIs have started experimenting with one or more of the methods outlined above in building 
+internal transparency. This subsection illustrates how one popular technique – using Shapley values 
+to calculate feature importance – can be used in the context of a banking credit example.
+2.5   ML Explanation Method at Work:  
+         Illustrative Example
+Figure 2.1: Feature importance (Global)
+Global Explainability
+On average, which features (inputs) are the biggest influencers of the model’s predictions?
+Feature
+Importance
+grade
+19.89%
+annual_inc
+14.45%
+term
+12.65%
+instalment
+8.85%
+acc_ratio
+8.05%
+dti
+6.29%
+initial_list_status
+5.68%
+verification_status
+5.33%
+purpose
+4.59%
+loan_amnt
+4.26%
+open_acc
+3.29%
+emp_length
+2.48%
+For the 
+overall 
+credit  
+model
+
+
+===== PAGE 19 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+19
+Figure 2.2: Feature importance (Local)
+Local Explainability
+For a particular prediction, which features (inputs) are the most important?
+Feature
+term
+grade
+instalment
+initial_list_status
+dti
+pub_rec
+pub_rec_cat
+annual_inc
+purpose
+acc_ratio
+amp_length
+vertification_status
+open_acc
+loan_amnt
+deling_2yrs_cat
+ing_last_6mths_cat
+Value
+60
+0
+719.43
+1
+15.07
+1
+yes
+136000
+credit_card
+0.477
+2
+Source Verified
+21
+28000
+no
+no
+Influence
+For a 
+particular 
+loan 
+application
+Beyond a simple assessment of the relative importance of different features, Shapley value importances 
+can also be plotted against the value of a feature to provide additional insights into the conceptual 
+soundness of the model. In the example below, a credit expert is able to review how changes in the 
+value of the input variable ‘dti’ (debt to income ratio) results in changes to its marginal influence 
+on the model outcome. The area highlighted in the bottom righthand side of the graph represents 
+unexpected behaviour suitable for further investigation: a high dti ratio causing an improvement in 
+the applicant’s perceived risk.
+
+
+===== PAGE 20 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+20
+Figure 2.3: Conceptual soundness (1/2)
+Figure 2.4 Conceptual soundness (2/2)
+Conceptual Soundness
+Influence Sensitivity Plots
+0.75
+0.5
+0.25
+Influence
+Feature Value
+0
+-0.25
+-0.5
+-0.75
+0
+20
+Importance
+6.29%
+•	
+Influence sensitivity plots show how the 
+model uses a feature as a function of its value. 
+•	
+Can be used to verify intuition regarding 
+influence monotonicity, smoothness, islands 
+of atypical influences and more. 
+•	
+Goes beyond traditional analysis for linear 
+models to capture non-linear relationships and 
+feature interactions within sensitivity plots.
+Features such as income and savings 
+account balance are expected to show a 
+monotonic behaviour.
+Jumps in the trend indicate that models are 
+internally bucketing a feature.
+Most features exhibit a plateau at extreme 
+values due to diminishing returns of risk 
+beyond a certain point.
+If behaviour is unexpected, there may be a 
+data or model problem.
+1
+2
+3
+Is the feature influence  
+behaviour monotonic?
+Are there unexpected jumps  
+in the feature influence plot?
+Are there plateaus or  
+is there step behaviour?
+4
+Is the behaviour of this feature 
+reasonable to a subject matter 
+expert or is it unexpected?
+
+
+===== PAGE 21 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+21
+The previous section outlined the key concepts around external and internal transparency. 
+This section aims to provide a “how to” guide to FSIs on operationalising those concepts.
+The proposed methodology takes the form of a series of “checklist” questions mapped to the steps 
+in a typical AIDA lifecycle, outlined below in Figure 3.1. 
+•	
+The original FEAT document outlines the Principles to be used to guide FSIs’ work on 
+Transparency (Principles 12, 13, 14).
+•	
+FSIs should first translate these Principles into appropriate internal standards – not 
+specific to individual use cases but applicable to the FSI as a whole.
+•	
+Teams accountable and responsible for individual AIDA systems should then adopt and 
+operationalise the appropriate standards during development, validation, deployment 
+and ongoing monitoring of their AIDA systems.
+Note that for both external and internal transparency, explanations should cover the final outcome 
+of the AIDA system after any planned human interventions have been made. In addition, for internal 
+transparency, stakeholders may also be interested in explanations of individual ML models that form 
+part of the AIDA system, prior to planned human interventions.
+ Methodology
+03
+Figure 3.1 AIDA system development lifecycle
+Not specific to  
+individual AIDA  
+use cases
+At the level of individual AIDA use case/system
+Typical AIDA System Development Lifecycle
+Feedback Loop
+Principles 
+to Practice
+Define System 
+Context & 
+Design
+Prepare  
+Input data
+Build & 
+Validate
+Deploy & 
+Monitor
+0
+1
+2
+3
+4
+Specify 
+Business 
+Objectives
+Gather and 
+understand 
+data
+Pre- 
+process  
+data
+Engineer 
+features
+Translate to 
+Specifications  
+& Design
+Train 
+Model
+Test & 
+deploy in 
+operations
+Apply 
+decision 
+rules
+Monitor  
+regularly
+Validate  
+& Iterate
+Feedback 
+loop for 
+action
+
+
+===== PAGE 22 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+22
+Step 0 is not specific to an individual AIDA use case or system. While the appropriate level of 
+transparency may vary by use case, an FSI would ideally have in place a common set of internal 
+standards upfront to help guide such decisions on the appropriate levels of transparency (and 
+associated accountability) in Steps 1-4. Otherwise, each team embarking on an AIDA project will 
+need to come up with its own decision framework. Defining such standards can provide a level of 
+consistency across all use cases in the FSI (including the potential for common tools if appropriate), 
+while still allowing for tailoring based on materiality. Such standards should be guided by prevailing 
+legal and regulatory requirements and by the FSI’s own data/AIDA ethics principles.
+The five transparency ‘standard’ questions to be answered in this step are as follows:
+These questions should be answered once when setting up the initial standards for the FSI’s overall 
+use of AIDA systems (i.e., they not specific to a use case), and then reviewed periodically (e.g., once a 
+year) to ensure ongoing alignment with evolving technology (e.g., changes in “state of the art” when 
+it comes to explanation methods), regulatory thinking (e.g., new standards on minimum information 
+to be shared with customers) and internal/customer feedback (e.g., results of Net Promoter Score 
+surveys or other forms of primary feedback from customers on the explanations provided to 
+customers). 
+With regard to T1-T2, it is unlikely that an FSI will choose to apply different standards for AIDA driven 
+decisions compared to other traditional decision making processes. For example, whether a credit 
+decision is based on a traditional scorecard or a new ML model, the FSI will probably have similar 
+approaches to determining the level, timing and form of the customer facing explanation.
+•	
+(T1) Has the FSI defined the factors it will use to determine whether external 
+transparency is essential for a particular AIDA use case?
+•	
+(T2) (Where an FSI has chosen to provide external transparency) At each stage of 
+the FSI’s customer lifecycle, has the FSI determined what proactive or reactive 
+communication may be needed, and the standard templates/interfaces for the same?
+•	
+(T3) Has the FSI defined the factors it will use to determine the extent of, and audience 
+for, internal transparency for individual AIDA use cases? 
+•	
+(T4) Has the FSI defined an acceptable set of AIDA ML explanation method(s) for use 
+within the firm?*
+•	
+(T5) Has the FSI set minimum accuracy standards for such explanation methods?*
+3.1   Step 0: Set (Transparency) Standards  
+        Internally Within the FSI
+*May vary by use case type and/or materiality. At the time of writing this report, industry thinking around explainability standards is still evolving, 
+so it is likely that many FSIs will not be in a position to meet this requirement straight away. Additional work is likely to be needed in this space in 
+the coming months.
+
+
+===== PAGE 23 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+23
+3.1.1   Factors to Determine the Need for  
+           Explanations to Data Subjects
+This section sets out considerations to help FSIs assess the need for reactive explanations to data 
+subjects in the context of FEAT Principles 13 and 14 (i.e., in response to a request for information on 
+a specific AIDA driven decision). The starting premise of this methodology is that – all other things 
+being equal – such requests should be fulfilled by the FSI. 
+In practice, one set of factors makes such “full transparency” inappropriate and/or impractical, while 
+others increase the importance of such transparency. An FSI will need to arrive at a final decision on 
+whether to share information with data subjects in a particular use case by balancing these two sets 
+of considerations. This section provides FSIs with a checklist of such considerations, so that they:
+A. Arguments for Transparency in AIDA Driven Decisions
+Prospects or customers impacted by the use of AIDA should be provided information about the data 
+and logic used to make such decisions if it has the potential to:
+Wherever there is an explicit regulatory requirement in a jurisdiction to ensure transparency to data 
+subjects for a particular use case, that will take precedence over such considerations.
+1.	 Can make the right decision in each AIDA use case.
+2.	 Are able to justify that decision to internal stakeholders (e.g., risk, compliance, etc.) 
+and to regulators if needed.
+Like with other aspects of the Veritas methodology, these considerations are not meant 
+to replace regulatory requirements around customer or regulatory disclosure.
+1.	 Prevent the data subject from accessing a financial product or service altogether 
+(e.g., their ability to get credit or insurance cover, their ability to access certain 
+investment products or even their ability to enter into a relationship with the FSI). 
+However, transparency requirements may not apply when such denial is due to 
+concerns about the financial crime or fraud risk posed by the data subject.
+2.	 Prevent the data subject from enjoying one or more benefits that they can reasonably 
+expect from an existing product or relationship (e.g., their claims against an insurance 
+policy, their ability to make payments or other transactions). It is worth noting that 
+transparency requirements may not apply when a denial is due to concerns about 
+financial crime or the fraud risk posed by a data subject, but should continue to apply 
+when the denial is due to fraud or security concerns not originating from the data 
+subject (e.g., “we stopped you from making this payment because we believe you 
+were going to be subject to an online scam”).
+3.	 Risk breaching the FSI’s duty of care to them (e.g., their right to be not sold a product 
+or service that is unsuitable for them, their right to appropriate treatment in case of 
+specific vulnerabilities such as when being pursued for collections or repossession, 
+and their right to have complaints reviewed and addressed as per agreed terms). 
+
+
+===== PAGE 24 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+24
+4.	 Risk breaching the data subject’s personal data rights (e.g., incremental disclosure of 
+protected data or inappropriate engagement with customer that go against previously 
+agreed terms and conditions , such as when a data subject’s video call with the FSI 
+is being used by an algorithm to detect emotions, and explicit consent has not been 
+sought for the same).
+5.	 Expose the data subject to unfavourable commercial outcomes compared to others 
+when applying for or using a product or service (e.g., pricing, penalties, product 
+conditions such as tenure or level of collateral). 
+An adverse impact of the type outlined above can come about directly (due to the use of AIDA in 
+the context of a specific use case) or indirectly (where the outcome from an AIDA system is used 
+beyond its original context). An example of the latter would be the use of an AIDA driven credit score 
+calculated during a loan application in a subsequent insurance underwriting application.
+Note that conditions one through to four apply even in absolute terms, but become particularly 
+important in situations where the data subject is disadvantaged compared to other data subjects, or 
+groups thereof. On the other hand, condition five only applies in the context of potential discrimination 
+suffered by the data subject rather than as an absolute right.
+While the FEAT transparency requirements are typically understood to relate to an FSI’s relationship 
+with its customers, FSIs also apply similar considerations in situations in which their use of AIDA 
+systems can impact other people, such as staff and contractors. For example, impacted staff (or 
+prospective staff) could seek transparency when AIDA driven decisions impact their ability to be 
+hired, evaluated, promoted or rewarded at work, or have their employment terminated (except where 
+the confidentiality of such decisions is protected, even for human decision making, due to other legal 
+or regulatory requirements such as employment or “whistle blower” protection laws).
+The arguments highlighted above are defensive – i.e., as a means of avoiding harm to prospects, 
+customers or other data subjects. However, FSIs should also consider instances in which transparency 
+might be used to improve the customer experience. For example, instead of just explaining why a 
+prospective customer cannot get a particular level of insurance cover, a well-designed communication 
+of the reasons for the decision, combined with an alternative preapproved offer, may end up increasing 
+trust and customer satisfaction. 
+
+
+===== PAGE 25 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+25
+FSIs will need to meet a high bar in making arguments two and three. A one-off request by a single 
+impacted data subject on the reason for denial of credit is unlikely to qualify as an attempt to game 
+the system, although multiple requests by the same individual or a group of individuals at the same 
+time might qualify. 
+B. Arguments Against Transparency to Data Subjects in AIDA Driven Decisions
+Ranged against the positive indicators for greater transparency in AIDA decision making is a series of 
+contraindicators that could constitute valid arguments for not sharing information with data subjects. 
+These include:
+1.	 Legal restrictions: where providing information as requested by the data subject 
+would require the FSI to share its suspicions on the data subject of fraud, sanctions 
+breach or money laundering; or require it to disclose the personal data rights of 
+another data subject who may have received a more favourable outcome. However, 
+the latter will not apply if the relevant information on the other data subject is already 
+in the public domain, or has been voluntarily disclosed by them.
+2.	 Concerns over “gaming”: where there is a risk of unscrupulous individuals being 
+able to use one or more transparency requests to work out how to bypass the FSI’s 
+mechanisms to manage customer or transaction specific risk (e.g., detecting/
+preventing fraud, cybersecurity, credit/underwriting or reputational risks). 
+3.	 Competitive concerns: where there is a risk of the information being disclosed 
+through such transparency requests adversely affecting the company’s intellectual 
+property (e.g., a proprietary insurance underwriting algorithm that allows a firm to 
+underwrite risks other insurers cannot) or financial stability (e.g., an internal freeze 
+on approving new loans due to broader credit, liquidity or other risks unrelated to the 
+data subject’s specific application).
+
+
+===== PAGE 26 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+26
+3.1.2   Recommended Proactive and Reactive  
+           Communication at Each Stage of the  
+           Customer Lifecycle
+Each FSI is likely to have its own definition of the customer lifecycle; here is an illustrative example:
+As part of the transparency standard setting exercise, the FSI should determine the appropriate level 
+of customer facing explanations at each stage of the customer lifecycle. 
+Prospect engagement: 
+engaging a potential customer as part of a marketing or sales campaign.
+1
+Cross-sell/up-sell/retention:  
+engaging an existing customer to retain them or to sell them a new product  
+or solution.
+2
+Application process for product/solution:  
+engaging a prospect or customer when they want to buy a particular product or 
+solution, or to change terms for an existing one.
+3
+Approval or rejection of application:  
+engaging a prospect or customer to convey the FSI’s decision with respect to 
+their application, and to address any complaints/redress requests from them.
+4
+Ongoing customer service in existing relationships:  
+addressing customer queries/requests related to their existing relationships/
+products, and handling complaints where needed.
+6
+“Hardships”:  
+managing aspects such as collection/recovery and asset repossession when a 
+customer is unable to meet their obligations to the FSI.
+7
+Exit:  
+termination of customer relationship or individual product/solution.
+8
+Fulfilment of existing product/solution:  
+providing the solutions expected as part of an existing relationship could  
+involve explicit decisions such as those around acceptance (or rejection)  
+of insurance claims.
+5
+
+
+===== PAGE 27 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+27
+Table 3.1: Proactive and reactive transparency across the customer lifecycle
+* Traditionally through customer/product level Terms & Conditions, but increasingly through more intuitive disclosures during customer journeys.
+** Could be in real time (e.g., in an app or online portal) or in response to complaints through email/contact centre/branch.
+Section 2.2 highlighted the need to ensure that communication content aimed at data subjects is 
+meaningful for the receiver. Relevant stakeholders within an FSI (e.g., customer experience, risk, 
+compliance, legal, etc.) may want to set internal standards around how much of it should be shared 
+with the data subject in one go (vs. provided incrementally), and in what exact form. For example, 
+one FSI prefers starting with a visual summary of reasons and an interactive user interface which 
+allows data subjects to visualise the impact of changes on the final outcome. Another shuns “actions” 
+altogether and instead offers an alternative product or service that is preapproved for the data subject. 
+Stage
+Reactive transparency  
+if AIDA is used**
+•	
+Reasons and/or actions in case of 
+adverse AIDA driven decisions.
+•	
+Data used by the AIDA system.
+•	
+Impact of AIDA driven decision 
+on data subject.
+•	
+Reasons for a specific AIDA 
+driven communication or action 
+about which the data subject is 
+unhappy. 
+•	
+Data used by the AIDA system.
+-
+-
+Proactive transparency  
+if AIDA is used*
+•	
+The fact that AIDA is used in  
+the decision to reach out to  
+data subject.
+•	
+Data subject’s right to 
+be excluded from such 
+communication.
+•	
+The fact that AIDA is used 
+in fulfilment (e.g., insurance 
+claim).
+•	
+Data subject’s rights around 
+transparency/ redress.
+•	
+The fact that AIDA is used in 
+decision making.
+•	
+Human oversight on AIDA use
+•	
+Types of data used.
+•	
+The fact that AIDA is used 
+in providing services (e.g., 
+chatbots, image based 
+authentication).
+-
+-
+-
+Prospect  
+engagement
+1
+Cross-sell/ 
+up-sell/  
+retention
+2
+Application for 
+product/solution
+3
+Approval/
+rejection of 
+application
+4
+Fulfilment of 
+existing product/ 
+solution
+5
+Ongoing  
+customer service
+6
+“Hardships”
+7
+Exit
+8
+
+
+===== PAGE 28 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+28
+Here is an example, shared by Microsoft and HSBC at a US Consumer Financial Protection Bureau 
+tech sprint event, of a single dashboard that incorporates both reasons and actions.64
+Figure 3.2: Sample format: customer facing explanations (1/2)
+Figure 3.3: Sample format: customer facing explanations (2/2)
+FSI Logo
+Before you apply again, you should
+•	
+Maintain the positive reasons
+•	
+See what can be done to reduce the 
+impact of the negatives
+To help with this we have created some 
+personalised guidance for you
+We’d still love to have you  
+as a customer in the future.
+Our risk partners gave you a low score
+You have a lot of credit accounts
+You do have some missed payments
+You’ve held credit for a long time
+You’ve not made many credit applications 
+in the last 6 months
+It’s a long time since your last missed payment
+You have usually paid on time
+Top reasons
+Actionable counterfactuals
+Text descriptions
+Explanation of denial
+Length of time credit established
+Near term ways to improve your credit
+Reduce revolving balance utilisation
+Long term ways to improve your credit
+Wait for longer credit history build-up
+Number of instalment accounts
+Number of credit enquiries in last 6 months
+Other reasons
+You
+Acceptance  
+Threshold
+REJECT
+ACCEPT
+Model-agnostic credit attribution
+
+
+===== PAGE 29 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+29
+3.1.3   Factors to Determine  
+           Internal Transparency Requirements
+Even where an FSI uses the above methodology and decides to provide partial or no information 
+in response to a data subject request, it needs to still make sure that the necessary information is 
+available to internal stakeholders within the FSI. This availability will enable reviews by internal risk, 
+compliance and audit teams if required to provide assurance on the justifiability, fairness and ethics 
+of the AIDA driven decisions. It will also provide the necessary auditability for subsequent regulatory 
+or legal investigations, if any.
+The extent to which such transparency is needed, and the audience for the same, will be determined 
+by the materiality of the AIDA use case. Different audiences – e.g., data science team managers, 
+business stakeholders, risk and compliance teams – will require different levels of technical detail 
+from the explanations.
+3.1.4   Acceptable ML Explanation Method(s)  
+           for Use Within the FSI
+Section 2 highlighted the various explanation methods available today for ML AIDA systems. To ensure 
+consistency, an FSI might choose to define internal standards listing our acceptable explanation 
+methods for ML AIDA systems, perhaps allowing for differences by materiality. In doing so, it should 
+keep in mind the following desirable attributes of a “good” explanation methodology:65
+•	
+Fidelity. Measures how well the explanation approximates the prediction of the model, 
+or its “accuracy” in a sense. Some techniques like local surrogate models only offer 
+local fidelity, as they can only elucidate a model’s behaviour in a narrowly defined 
+region. High fidelity explanations, on the other hand, are able to extrapolate further 
+and separate correlation from causation. 
+•	
+Consistency. Measures the similarity of explanations across models trained on the 
+same task, or even a single model explaining two different scopes (i.e., local vs. global). 
+Explanations cannot be compared against one another if inconsistent, which is why 
+explanation techniques that establish consistency in their local and global views (e.g., 
+Shapley value based attributions) can be more broadly applied. 
+•	
+Comprehensibility. Explanations are useless unless they are meaningful to the humans 
+who are using them. Unless humans can work with and reason about an explanation, 
+it is not aiding in understanding a model’s behaviour. 
+•	
+Accuracy and certainty. Many explanation strategies are approximations of 
+fundamental quantities, or may not capture a model’s confidence in making the 
+decision. Explanation methods in practice should be as accurate as possible. One 
+way of measuring accuracy could be to require guarantees of the form “X% of exact 
+explanations Y% of the time”.
+•	
+Flexibility. Explanation strategies should be generalisable enough to provide 
+comparative insights across a variety of population groups. For example, we should 
+be able to explain why a decision was made for a certain person, but also why that 
+decision may have been different for other similar individuals.
+
+
+===== PAGE 30 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+30
+Explanation methods that are derived from these principles of a “good” explanation can provide 
+more consistent, accurate, and flexible explanations than lower fidelity methods that focus on local 
+regions. Inherently interpretable architectures satisfy many of these attributes, but come with the 
+consequence of intrinsically limiting a model’s architecture and ability to learn complex feature 
+interactions. Among post hoc explanation methods, a model agnostic one may allow for an easier 
+comparison of explanations between different model classes (i.e., when comparing an incumbent ML 
+model to a traditional one that has been in use). However, model specific methods may be attractive 
+in the context of certain types of deep neural networks.
+3.1.5   Minimum Acceptable Accuracy Standards  
+           for ML Explanation Method(s) Within the FSI
+3.2   Step 1: Define System Context and Design
+Explanation outputs can dramatically and meaningfully differ based on the comparison group and the 
+output type that is being explained. FSIs – particularly those with extensive adoption of AI/ML – may 
+want to consider introducing internal standards around the accuracy and consistency of explanation 
+methods. 
+This is the first step in the lifecycle of an individual AIDA use case, represents an opportunity for the 
+AIDA system owner to apply the FSI’s internal standards, and determines the appropriate level of 
+transparency needed for the specific AIDA use case. 
+At this stage, the team leading the design of the AIDA use case should have adequate information on 
+its purpose, target operating model, and relevant external/internal audiences to answer the following 
+questions for the specific use case:
+In each case, the team leading the use case should record not just their decision, but also the 
+justification for the same. Note that the answers and justifications may get refined in Step 3 once 
+more information on the actual implementation becomes available.
+•	
+(T6) Has the AIDA use case team determined whether there is a need for external 
+(customer facing) transparency? Apply standards from T1 to help answer the question.
+•	
+(T7) If yes, has the team identified the proactive and reactive communication needed 
+at each stage of the customer lifecycle, and the form of such customer facing 
+communication? Apply standards from T2 to help answer the question.
+•	
+(T8) Has the team determined the level of internal transparency needed, and the 
+audiences for the same? Apply standards from T3 to help answer the question.
+•	
+(T9) Has the team selected a suitable explanation method for this specific use case 
+from the approved list in T4? 
+•	
+(T10) Has the team ascertained that the chosen explanation method/implementation 
+meets the minimum accuracy requirement for this specific use case (based on T5)?
+
+
+===== PAGE 31 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+31
+3.3   Step 2: Prepare Input Data
+This is the second step in the lifecycle of an individual AIDA use case. No transparency related 
+questions are proposed for this step. 
+However, the team leading the specific AIDA use case should make sure that relevant information 
+about the training data is recorded (e.g., source, vintage, consent from data subjects, dictionary and 
+known limitations of the data such as those arising from data quality and representativeness tests). 
+This information will be relevant across the various FEAT Principles.
+3.4   Step 3: Build and Validate the AIDA System
+This is the third step in the lifecycle of an individual AIDA use case. By this stage, details of the actual 
+implementation of the AIDA system will be clear. The team leading the use case should take this 
+opportunity to revisit its original answers to T6-T10. For example, it may choose to modify the choice 
+of ML explanation method if a more complex ML algorithm (compared to the original design) is being 
+used. Similarly, if a decision has been taken to increase the level of “human in the loop” involvement, 
+it may be possible to relax the levels of minimum accuracy for explanations originally agreed. 
+Once this is done, the focus should move to the operationalisation of the transparency requirements. 
+The following questions can act as a checklist:
+Internal Transparency
+•	
+(T11) Have internal transparency dashboards/reports been implemented in line with 
+the requirements agreed in T8-T10? 
+•	
+(T12) Have relevant first and second line control teams – including model validation 
+where relevant – reviewed and approved these outputs (e.g., local and global 
+explanations, conceptual soundness, etc.)?
+•	
+(T13) Where the explanations have not met first/second line expectations, have 
+appropriate mitigation actions been taken? (e.g., switching to a simpler model despite 
+a reduction in predictive accuracy, dropping difficult to explain features, introducing 
+more human oversight, etc.)
+External Transparency
+•	
+(T14) In line with the external transparency requirements agreed in T6-T7, has 
+appropriate system functionality been developed and tested as part of the AIDA 
+system’s implementation plan?
+•	
+(T15) Have operational processes such as customer service and complaint handling 
+been modified appropriately to incorporate AIDA customer transparency? Have 
+relevant staff been provided with appropriate training to address customer queries?
+•	
+(T16) Have customer/website Terms & Conditions been appropriately updated (i.e., to 
+explain how data is used, how benefits and risks to individuals are associated with the 
+processing, and how individuals may participate and object where appropriate)?
+
+
+===== PAGE 32 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+32
+Common to Both
+•	
+(T17) Does the AIDA system implementation support the agreed internal and external 
+explanations even after “go live” (i.e., not just as a one-off before approval but 
+throughout the lifetime of the AIDA system)
+3.5   Step 4: Monitor AIDA System
+The actual assessment of AIDA system monitoring requirements should have been completed in Step 
+3. In this step, the focus should be on ongoing monitoring.
+
+
+===== PAGE 33 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+33
+ Beyond Individual  
+ Use Cases: Achieving  
+ AIDA Transparency  
+ at Scale
+04
+The last two sections contain a rich conceptual basis as well as extensive practical illustrations to 
+enable FSIs to ensure appropriate levels of transparency in an AIDA use case. However, AIDA usage 
+can only be scaled up if such methods become part of day-to-day processes and systems at FSIs. 
+This section makes five recommendations in this regard:
+The recommendations included above are aligned with section 3.2.1 of the Veritas Document 3 
+FEAT Principles Assessment Methodology document and detailed explanations are provided from 
+transparency perspective.  
+1.	 Embed AIDA transparency considerations into existing risk frameworks. Such as 
+those around model risk (or its equivalent outside banking), data privacy and the fair 
+treatment of customers.
+2.	 Set out your stall. FSIs should provide a proactive, consistent message on its approach 
+to the use of data and algorithms, and its impact on customers and staff. This could 
+be through websites and other electronic and physical channels.
+3.	 Overinvest in training. Of customers, staff, management and risk/control functions. 
+The more AIDA can be demystified, the easier it is to make it trustworthy.
+4.	 Supplement use case level investments in tools for AIDA transparency with more 
+systematic support across use cases. For example, a single customer level data 
+dashboard that provides an overview of all data held by the FSI about a data subject, 
+and where it is used across the FSI; standardised tools for AIDA explanations that can 
+be used across use cases; a common AIDA model repository that that includes basic 
+information about each AIDA system in one place.
+5.	 Don’t view transparency as a standalone topic. While important in its own right, 
+transparency can have a much broader impact on the trustworthiness of AIDA. Done 
+right, it can underpin other aspects of AIDA quality, such as fairness and stability. It 
+should be embedded throughout the model lifecycle, and not be seen as a “one-off” 
+task towards the end of the model development, testing and/or validation steps.
+
+
+===== PAGE 34 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+34
+4.1   Make the Best Use of Existing  
+        Risk Management Frameworks
+While the use of AIDA may be growing, FSIs already have the basic frameworks to meet their 
+obligations around AIDA driven decision making. 
+Creating a new, dedicated framework for AIDA transparency (or for FEAT more broadly) in isolation 
+from these existing policies and standards is not advisable. Wherever possible, FSIs should focus on 
+enhancing the policies, standards and processes underpinning existing risk frameworks to meet the 
+requirements around AIDA transparency.
+•	
+Model risk policies and standards, or their equivalents in insurance and asset 
+management, provide a useful vehicle to embed internal transparency standards.
+•	
+Policies and standards around fair treatment of customers, and associated concepts 
+such as the FSI’s duty of care to customers, provide the necessary vehicle to embed 
+considerations around customer facing transparency.
+•	
+Data Privacy policies and standards in most FSIs already require a level of transparency 
+for data subjects around the use of data and algorithms, and the availability of recourse 
+options.
+4.2   Set Out Your Stall
+Some FSIs have begun publishing “charters” around data ethics, which proactively articulate key 
+principles and guarantees around their use of data and algorithms with customers (and other 
+stakeholders). Industry associations such as the Institute of International Finance (IIF) have also 
+proposed similar charters at a sectoral level. Such initiatives can help FSIs improve the efficiency and 
+effectiveness of the proactive component of their AIDA transparency obligations. They are also being 
+used by some firms, particularly in the technology sector, to attract talent. Additionally, such charters 
+can also help provide internal guidelines to teams across the FSI as they scale AIDA usage.
+4.3   Overinvest in Training
+FSIs should train frontline staff or representatives around the use of AIDA in engaging with and 
+making decisions relating to customers. Often, it is branch/contact centre staff, (insurance) agents 
+or financial advisors who will be at the receiving end of AIDA related queries from prospects and 
+customers. They should also have access to systems that provide them with the information they 
+require in a manner that both they and the prospects/customers can understand. Such training, and 
+tooling, should also be provided to the next level of staff (e.g., underwriters, claims assessors, credit 
+approvers) who may be called upon by frontline staff to address such queries.
+Training and education should also be extended to business executives who are not AIDA specialists 
+but must take accountability for the outcome of AIDA systems. Ensuring that senior leaders understand 
+how the AIDA system works, and where it may have deficiencies, is essential for them to demonstrate 
+accountability.
+
+
+===== PAGE 35 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+35
+4.4   Create Standards and Tools for AIDA  
+         Transparency that Extend Across Use Cases
+Instead of leaving each AIDA use case owner to come up with their own approach, some FSIs have 
+started investing in standards, and supporting technology capabilities, that allow teams across the 
+organisation to meet their AIDA transparency obligations. Examples include:
+A. Customer Level Personal Data Dashboard
+Building on a concept implemented by some technology firms, some FSIs have attempted to create 
+a single dashboard that allows all customers to see what types of data the FSI holds about them (e.g., 
+demographic information from initial onboarding, information gleaned from day-to-day transactions 
+or engagement with the FSI, information purchased from third parties, etc.). This dashboard can be 
+linked to major categories of AIDA use cases, so that the customer is able to see an overview of the 
+kinds of data being used to make the different types of decisions that affect them. 
+Creating a dashboard like this remains difficult for most FSIs, due to the fragmented nature of their 
+technology landscape, and the fact that customer data and consent is rarely centralised in a single 
+system. However, even by making initial moves towards an ambitious goal like this, FSIs may be able 
+to dramatically streamline their proactive communication with customers on data and algorithm use.
+B. Central AIDA Model Repository
+Many FSIs are already attempting to centralise their AIDA models into a single repository. While this 
+approach has numerous efficiency and risk management benefits for the broader model lifecycle, it 
+has a particular application for AIDA transparency. In addition to keeping an up-to-date inventory of 
+all AIDA models in use, such a repository can provide a place where model owners can document 
+basic metadata about each model. Such metadata could include:
+•	
+(Information on) Training data 
+◦    Data used: source, vintage, consent. 
+◦    Data not used (considered or available but ultimately not used).
+•	
+Variables 
+◦    Transformations & dimensionality reductions. 
+◦    Inferences/proxies.
+•	
+Method (e.g., Support vector machine, decision tree, etc.) 
+◦    Used 
+◦    Not used (tested but not used due to accuracy, reliability, etc.)
+•	
+Scope (decisions made)
+•	
+Scale (number of decisions: one per customer or employee, multiple per customer 
+or employee, sometimes on some customers).
+
+
+===== PAGE 36 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+36
+C. Standards and Tools for Model Explanations
+As articulated in Section 3, the field of AIDA model explainability, particularly for ML models, continues 
+to evolve rapidly. FSIs should seek to centrally specify one or more approved explanation methods, 
+so that there is a minimum level of consistency in the way in which individual data science teams 
+generate internal and external transparency. Many explanation methods can already be designed 
+and implemented to provide accuracy guarantees of the form “X% of exact values Y% of the time”. 
+When combined with more detailed feature influence plots, they should provide FSIs the necessary 
+level of confidence in their AI/ ML models. 
+4.5   Don’t View Transparency or Explainability  
+         in Isolation
+Viewing transparency or explainability in isolation misses the bigger picture. 
+Transparency is rarely an end in itself. Instead, it can serve as a greater mechanism to test, debug, 
+validate, and monitor models. Transparency into an AIDA model’s ways of making predictions is 
+useful, but the broader end goal must be to achieve high model quality and trustworthiness. Model 
+quality in this case is much more than the accuracy of the results. Validating a model’s conceptual 
+soundness, probing it for signs of unfair bias, and inspecting its stability on new data are some of the 
+model quality analyses that can be enabled by robust and accurate explanations. These are necessary 
+inputs to engender trust in the AIDA models and the FSI itself. 
+In addition, the effort to build transparency should be thought of as something that impacts and is 
+involved with every step throughout the model lifecycle. A key driver of the surprisingly long time it 
+takes to deploy AIDA models in production is the disconnect between model development and the 
+subsequent steps of model review/validation and buy in from businesses. Embedding explainability 
+early into the lifecycle of the model can help data scientists continuously debug and improve their 
+models well before formal review or validation. Also, many problems with AIDA models start only 
+after they have been deployed, when shifting data or data relationships start affecting results. To 
+maintain ongoing trust in AIDA models, it is critical to also have the ability to explain and debug AIDA 
+models after they go live.
+Figure 4.1 Embedding transparency into AIDA system development lifecycle 
+Ongoing Model 
+Operations and 
+Monitoring
+Model Evaluation  
+and Validation
+Model
+Development
+Transparency
+Unjust Bias
+Conceptual Soundness
+Robustness and Stability
+Complexity
+Current use of Explainability
+Other areas in which explainability can be valuable
+
+
+===== PAGE 37 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+37
+Topics for  
+Future Consideration
+05
+In creating this document, the Veritas Transparency Workstream has identified several areas in which 
+greater clarity, through regulatory mandate or industry level initiatives, will be useful.
+•	
+Alignment between AIDA and ‘pre-AIDA’ transparency requirements. Many FSIs have 
+pointed out that some aspects of the FEAT guidelines on transparency go significantly 
+beyond the existing (pre AIDA) requirements for customer communications.  
+As highlighted in section 1, it is difficult to isolate the standards and processes for 
+customer facing transparency for AIDA driven decisions from those used for other 
+types of decisions. Therefore, it may be impractical to enhance requirements around 
+customer transparency for AIDA driven decisions without similar enhancements for 
+non-AIDA decisions.
+•	
+Second order impact of AIDA driven decisions. FEAT Principle 14 requires FSIs to 
+inform data subjects, on request, about the impact of AIDA driven decisions on them. 
+Obviously, FSIs will inform data subjects wherever the AIDA driven decision results in 
+an immediate adverse outcome for them, such as denial of loan or insurance claim. 
+However:
+◦   Does the FSI have the right to use the results of that AIDA driven assessment in 
+any other use cases (e.g., a future loan application or insurance claim), and/or 
+to share such results with their partners (e.g., with an external credit bureau)? 
+◦   Even if that is the case, should they allow data subjects to know about such 
+“second order” impacts of the AIDA driven decision on them?
+Current thinking is that such calculated results be treated as “derived” data and would 
+be subject to prevailing consent rules around such data.
+•	
+Treatment of AIDA usage via third parties. AIDA developed or provided by third 
+parties can typically be used by FSIs in three ways:
+◦   As part of a broader system (e.g., financial crime investigation, fraud detection, 
+etc.) that is implemented inside the FSI.
+◦   As a service consumed by the FSI (e.g., contract review conducted by a 
+professional services firm on behalf of the FSI, etc.) but using an AI model for at 
+least part of the task.
+◦   As a piece of insight (e.g., an alternative credit score, a ‘sentiment marker’ 
+for individual securities, etc.) that is made available to the FSI (without the 
+underlying systems or models that helped come up with the insight)
+
+
+===== PAGE 38 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+38
+FEAT guidelines, as well as those from other regulators, are clear in holding FSIs 
+accountable for AIDA transparency (and fairness/ethics) in all three cases. However, 
+in the third category, the FSI buying such a score or insight may not always have full 
+visibility into the vendor’s use of AIDA, particularly because of the vendor’s concerns 
+around sharing their IP. It may be useful to consult FSIs and providers of such third 
+party insights (e.g., alternative credit scores) on the optimal way of addressing this 
+challenge.
+•	
+Definition of minimum standards around transparency. As discussed, individual FSIs 
+may wish to consider setting internal standards around the accuracy and consistency 
+of transparency requirements for AIDA decision making. 
+Discussions within the consortium during Phase II have exposed a natural tension 
+between (a) FSIs’ desire to retain discretion and flexibility in deciding the approach 
+to transparency; and (ii) the benefits that FSIs see from some form of standardisation. 
+This makes it a valuable topic for any future discussions in the consortium around 
+transparency, particularly if/ when there is more alignment among industry forums, 
+regulators and/or standards organisations on “acceptable” standards.”
+
+
+===== PAGE 39 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+39
+Acknowledgements
+06
+Name
+Organisation
+Professor Anupam Datta
+TruEra
+Divya Gopinath
+TruEra
+Shameek Kundu
+TruEra
+Gunjan Bhatt
+HSBC
+Oxana Samko
+HSBC
+Amos Ong Seng Keong
+HSBC
+Mohammed Rahim
+Standard Chartered
+Wea Meng Chang
+Standard Chartered
+We would also like to express our appreciation to Wong Kee Joo (HSBC), Anurag Mathur (HSBC), 
+Yusuf Demiral (HSBC), Manohar Chadalavada (Standard Chartered), Vishu Ramachandran (Standard 
+Chartered) and Manoj Piplani (Standard Chartered) who have supported and contributed to this 
+project. 
+Role
+Subject Matter Advisor
+Research Engineer
+Lead Subject Matter Expert
+Lead Subject Matter Expert
+Subject Matter Advisor
+Subject Matter Advisor
+Sumanta Bhattacharya
+Standard Chartered
+Subject Matter Advisor
+Adhinarayan Nammalvar
+Standard Chartered
+Lead Subject Matter Expert
+Vijay Jairaj
+Standard Chartered
+Lead Subject Matter Expert
+Ashim Sett
+Standard Chartered
+Data Scientist
+Niladri Sekhar Samanta
+Standard Chartered
+Data Scientist
+Data Scientist
+Project Manager
+
+
+===== PAGE 40 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+40
+1 Denis Selimi, Krenare Pireva Nuci, (2009), “The use of Recommender Systems in web technology 
+and an in-depth analysis of Cold State problem”, https://arxiv.org/abs/2009.04780 
+2 Rashmi Sinha Kirsten, Kirsten Swearingen, (2002), “The Role of Transparency in Recommender 
+Systems”, http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.8.8787
+3 Mustafa Bilgic, Raymond J. Mooney, “Explaining Recommendations: Satisfaction vs. Promotion.” 
+https://www.cs.utexas.edu/~ml/papers/submit.pdf 
+4 Dimitra Gkatzia, Oliver Lemon, Verena Rieser, (2016), “Natural Language Generation enhances 
+human decision-making with uncertain information”, https://arxiv.org/abs/1606.03254
+5 Arjun R Akula, Sinisa Todorovic, Joyce Y Chai3, Song-Chun Zhu, (2019), “Natural Language 
+Interaction with Explainable AI Models”, https://arxiv.org/pdf/1903.05720
+6 Monetary Authority of Singapore (2018). Principles to Promote Fairness, Ethics, Accountability and 
+Transparency (FEAT) in the Use of AI and Data Analytics in Singapore’s Financial Sector. Retrieved 
+from https://www.mas.gov.sg/publications/monographs-or-information-paper/2018/FEAT
+7 IMDA, PDPC, (2020), ”Model Artificial Intelligence Governance Framework – second edition”, 
+https://www.pdpc.gov.sg/-/media/files/pdpc/pdf-files/resource-for-organisation/ai/%20
+sgmodelaigovframework2.pdf
+8 Michael Hind, Dennis Wei, Murray Campbell, Noel C. F. Codella, Amit Dhurandhar, Aleksandra 
+Mojsilović, Karthikeyan Natesan Ramamurthy, Kush R. Varshney, (2019), “TED: Teaching AI to Explain 
+its Decisions”, https://arxiv.org/pdf/1811.04896
+9 Jim Holt, (2011), “Thinking, Fast and Slow — By Daniel Kahneman — Book Review”,  
+https://www.nytimes.com/2011/11/27/books/review/thinking-fast-and-slow-by-daniel-kahneman-
+book-review.html
+10 TaniaLombrozo, (2007), “Simplicity and probability in causal explanation - ScienceDirect”,  
+https://www.sciencedirect.com/ science/article/pii/S0010028506000739
+11 Tania Lombrozo, (2006), “The structure and function of explanations”, https://www.sciencedirect.
+com/science/article/abs/pii/S0010028506000739
+12 Annu Rev Psychol, (2011), “Explanation and Understanding”, https://pubmed.ncbi.nlm.nih.
+gov/16942895
+13 “M.R. Wick, W.B. Thompson, (1992), “Reconstructive Expert System Explanation”,  
+https://www.cs.utah.edu/~thompson/publications/Wick:1992:RES.pdf 
+Bibliography
+07
+
+
+===== PAGE 41 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+41
+14 David Lewis, (1973), “Counterfactuals”, https://philpapers.org/rec/LEWC-2
+15 Menzies, Peter, Helen Beebee, (2019), “Counterfactual Theories of Causation”, https://plato.
+stanford.edu/entries/causation-counterfactual/
+16 Ruth M. J. Byrne, (2005), “The Rational Imagination | How People Create Alternatives to Reality”, 
+https://mitpress.mit.edu/books/rational-imagination
+17 Ruth M. J. Byrne, (2019), “Counterfactuals in Explainable Artificial Intelligence (XAI): Evidence from 
+Human Reasoning”, https://www.ijcai.org/Proceedings/2019/876
+18 Matthew Dowling, Yuan Zhao, Il Memming Park, (2020), “Non-parametric generalized linear 
+model.”, https://arxiv.org/abs/2009.01362
+19 J. Kenneth Tay, Robert Tibshirani, (2020), “Reluctant generalized additive modeling.”,  
+https://arxiv.org/abs/1912.01808
+20 Amirata Ghorbani, James Zou, (2019), “Data Shapley: Equitable Valuation of Data for Machine 
+Learning.” https://arxiv.org/abs/1904.02868
+21 Sahil Verma, Sahil Verma, Keegan Hines, (2020), “Counterfactual Explanations for Machine 
+Learning: A Review”, https://arxiv.org/pdf/2010.10596.pdf 
+22 Jerome H. Friedman, (2001), “Greedy Function Approximation: A Gradient Boosting Machine”, 
+https://statweb.stanford.edu/~jhf/ftp/trebst.pdf
+23 Daniel W. Apley, Jingyu Zhu, (2019), “Visualizing the Effects of Predictor Variables in Black Box 
+Supervised Learning Models”, https://arxiv.org/abs/1612.08468
+24 Erik Strumbelj , Igor Kononenko, (2010), “An Efficient Explanation of Individual Classifications 
+using Game Theory”, https://www.jmlr.org/papers/volume11/strumbelj10a/strumbelj10a.pdf
+25 Leo Breiman , (2001), “Random Forests | SpringerLink.”,  
+https://link.springer.com/article/10.1023/A:1010933404324
+26 Marco Tulio Ribeiro, Sameer Singh, Carlos Guestrin, (2016), “Why Should I Trust You?”: Explaining 
+the Predictions of Any Classifier”, https://arxiv.org/abs/1602.04938
+27 Mateusz Staniak, Przemyslaw Biecek, (2018), “Explanations of model predictions with live and 
+breakDown packages.”, https://arxiv.org/abs/1804.01955
+28 Marco Tulio Ribeiro, Sameer Singh, Carlos Guestrin, (2018), “Anchors: High Precision Model-
+Agnostic Explanations”, https://homes.cs.washington.edu/~marcotcr/aaai18.pdf
+29 Professor at University of California Los Angeles, (2016), “Lloyd S. Shapley - Google Scholar.” 
+http://scholar.google.no/citations?user=dbF9HlQAAAAJ&hl=en
+30 “Anupam Datta, Shayak Sen, Yair Zick, (2016), “Algorithmic Transparency via Quantitative Input 
+Influence: Theory and Experiments with Learning Systems.”, https://www.andrew.cmu.edu/user/
+danupam/datta-sen-zick-oakland16.pdf
+
+
+===== PAGE 42 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+42
+31 Scott Lundberg, Su-In Lee, (2017), “A Unified Approach to Interpreting Model Predictions.”,  
+https://arxiv.org/abs/1705.07874
+32 “Trevor Hastie, Robert Tibshirani, Jerome Friedman, (2009), “Elements of Statistical Learning: 
+Data Mining, Inference, and Prediction”, https://web.stanford.edu/~hastie/ElemStatLearn/
+33 Daniel Smilkov, Nikhil Thorat, Been Kim, Fernanda Viégas, Martin Wattenberg, (2017), 
+“SmoothGrad: removing noise by adding noise,  https://arxiv.org/abs/1706.03825
+34 Jost Tobias Springenberg, Alexey Dosovitskiy, Thomas Brox, Martin Riedmiller, (2015), “Striving for 
+Simplicity: The All Convolutional Net.” https://arxiv.org/abs/1412.6806
+35 Alexander Binder, Grégoire Montavon, Sebastian Bach, Klaus-Robert Müller, Wojciech Samek, 
+(2016), “Layer-wise Relevance Propagation for Neural Networks with Local Renormalization Layers”, 
+https://arxiv.org/abs/1604.00825
+36 Ramprasaath R. Selvaraju, Michael Cogswell, Abhishek Das, Ramakrishna Vedantam, Devi Parikh, 
+Dhruv Batra, (2019), “Grad-CAM: Visual Explanations from Deep Networks via Gradient”,  
+https://arxiv.org/abs/1610.02391
+37 Mukund Sundararajan, Ankur Taly, Qiqi Yan, (2017), “Axiomatic Attribution for Deep Networks.”, 
+https://arxiv.org/abs/1703.01365
+38 Been Kim, Martin Wattenberg, Justin Gilmer, Carrie Cai, James Wexler, Fernanda Viegas, Rory 
+Sayres, (2018), “Interpretability Beyond Feature Attribution: Quantitative Testing with Concept 
+Activation Vectors (TCAV)”, https://arxiv.org/abs/1711.11279
+39 Klas Leino, Shayak Sen, Anupam Datta, Matt Fredrikson, Linyi Li, (2018), “Influence-Directed 
+Explanations for Deep Convolutional Networks.”, https://arxiv.org/abs/1802.03788
+40 Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N. Gomez, Lukasz 
+Kaiser, Illia Polosukhin, (2017), “Attention Is All You Need”, https://arxiv.org/abs/1706.03762
+41 Sarthak Jain, Byron C. Wallace, (2019), “Attention is not Explanation.”,  
+https://arxiv.org/abs/1902.10186?source=post_page---------------------------
+42 Sarah Wiegreffe, Yuval Pinter, (2019), “Attention is not not Explanation.”,  
+https://arxiv.org/abs/1908.04626
+43 Cynthia Rudin, (2019), ”Stop Explaining Black Box Machine Learning Models for High”,  
+https://arxiv.org/abs/1811.10154
+44 Matthew Dowling, Yuan Zhao, Il Memming Park, (2020), “Non-parametric generalized linear 
+model.”, https://arxiv.org/abs/2009.01362
+45 Honglei Zhuang, Xuanhui Wang, Michael Bendersky, Alexander Grushetsky, Yonghui Wu, Petr 
+Mitrichev, Ethan Sterling, Nathan Bell, Walker Ravina, Hai Qian, (2020), “Interpretable Learning-to-
+Rank with Generalized Additive Models.”, https://arxiv.org/abs/2005.02553
+46 Yin Lou, Yin Lou, Johannes Gehrke, Giles Hooker, (2013), “Accurate Intelligible Models with 
+Pairwise Interactions - Cornell CS.”, https://www.cs.cornell.edu/~yinlou/papers/lou-kdd13.pdf
+
+
+===== PAGE 43 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+43
+47 Jerome H. Friedman, Bogdan E. Popescu, (2008), “Predictive learning via rule ensembles.”, 
+https://arxiv.org/abs/0811.1679
+48 Himabindu Lakkaraju, Stephen H. Bach, Jure Leskovec, (2016), “Interpretable Decision Sets:  
+A Joint Framework for Description and Prediction”, https://www-cs-faculty.stanford.edu/people/
+jure/pubs/interpretable-kdd16.pdf
+49 Elaine Angelino, Nicholas Larus-Stone, Daniel Alabi, Margo Seltzer, Cynthia Rudin, Editor, (2018), 
+“Learning Certifiably Optimal Rule Lists for Categorical Data.” https://www.jmlr.org/papers/
+volume18/17-716/17-716.pdf
+50 Sanjeeb Dash, Oktay Günlük, Dennis Wei, (2020), “Boolean Decision Rules via Column 
+Generation.”, https://arxiv.org/abs/1805.09901
+51 Hongyu Yang, Cynthia Rudin, Margo Seltzer, (2017), “Scalable Bayesian Rule Lists.”,  
+https://arxiv.org/abs/1602.08610
+52 Tong Wang, Cynthia Rudin, Finale Doshi-Velez, Yimin Liu, Erica Klampfl, Perry MacNeille, (2017),  
+“A Bayesian Framework for Learning Rule Sets for Interpretable”,  
+https://jmlr.org/papers/v18/16-003.html
+53 Ross AS, Lage I, Doshi-Velez F., (2017), “The Neural LASSO: Local Linear Sparsity for Interpretable 
+Explanations”, https://finale.seas.harvard.edu/publications/neural-lasso-local-linear-sparsity-
+interpretable-explanations
+54 Isaac Lage, Andrew Slavin Ross, Been Kim, Samuel J. Gershman, Finale Doshi-Velez, (2018), 
+“Human-in-the-Loop Interpretability Prior.”, https://arxiv.org/abs/1805.11571
+55 Sahil Verma, John Dickerson, Keegan Hines, (2020), “Counterfactual Explanations for Machine 
+Learning: A Review.”, https://arxiv.org/abs/2010.10596
+56 Tim Miller, (2019), “Explanation in artificial intelligence: Insights from the social sciences”,  
+https://www.sciencedirect.com/science/article/abs/pii/S0004370218305988
+57 “Solon Barocas, Andrew D. Selbst, Manish Raghavan, (2019), The Hidden Assumptions Behind 
+Counterfactual Explanations and Principal Reasons”, https://arxiv.org/abs/1912.04930
+58 Ramaravind Kommiya Mothilal, Amit Sharma, Chenhao Tan, (2019), “Explaining Machine Learning 
+Classifiers through Diverse Counterfactual Explanations”, https://arxiv.org/abs/1905.07697
+59 Rafael Poyiadzi, Kacper Sokol, Raul Santos-Rodriguez, Tijl De Bie, Peter Flach, (2020) “FACE: 
+Feasible and Actionable Counterfactual Explanations.”, https://arxiv.org/abs/1909.09369
+60 Amir-Hossein Karimi, Gilles Barthe, Borja Balle, Isabel Valera, (2020), “Model-Agnostic 
+Counterfactual Explanations for Consequential Decisions”, https://arxiv.org/abs/1905.11190
+61 Sandra Wachter, Brent Mittelstadt, Chris Russell, (2017), “COUNTERFACTUAL EXPLANATIONS 
+WITHOUT OPENING THE BLACK BOX: AUTOMATED DECISIONS AND THE GDPR”,  
+https://arxiv.org/ftp/arxiv/papers/1711/1711.00399.pdf 
+
+
+===== PAGE 44 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+44
+62 Amit Sharma, (2018), “DiCE: Diverse Counterfactual Explanations for Machine Learning	”https://
+www.microsoft.com/en-us/research/project/dice/
+63 Rafael Poyiadzi, Kacper Sokol, Raul Santos-Rodriguez, Tijl De Bie, Peter Flach, (2020) “FACE: 
+Feasible and Actionable Counterfactual Explanations.”, https://arxiv.org/abs/1909.09369
+64 cfpbvideo, (2021), Adverse Action Notice Tech Sprint: The Explanators — consumerfinance.gov, 
+https://www.youtube.com/watch?v=dzUQsIqpA_k
+65 David Alvarez-Melis, Tommi S. Jaakkola, (2018), ”On the Robustness of Interpretability Methods - 
+arXiv.org.”, https://arxiv.org/pdf/1806.08049.pdf%5D.
+
+
+===== PAGE 45 =====
+Veritas Document 3C FEAT Transparency Principles Assessment Methodology
+45
+This report is prepared and issued by the MAS, HSBC, Standard Chartered, TruEra and Accenture.
+All intellectual property rights in or associated with this report remain vested in the MAS, HSBC, 
+Standard Chartered, TruEra and Accenture and/or their licensors. This report and its contents are 
+not intended as legal, regulatory, financial, investment, business, or tax advice, and should not be 
+acted on as such.
+Whilst care and attention has been exercised in the preparation of this report MAS, HSBC, Standard 
+Chartered, TruEra and Accenture do not accept responsibility for any inaccuracy or error in, or any 
+inaction or action taken in reliance on, the information contained or referenced in this report.
+This report is provided as is without representation or warranty of any kind. All representations or 
+warranties whether express or implied by statute, law or otherwise are hereby disclaimed.
+LEGAL NOTICE

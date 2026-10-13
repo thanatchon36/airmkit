@@ -1,0 +1,4142 @@
+
+
+===== PAGE 1 =====
+Veritas Document 3A   
+ 
+FEAT Fairness 
+Principles Assessment 
+Methodology
+3
+3A
+3B
+3C
+4
+
+
+===== PAGE 2 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+2
+Table of Contents
+Executive Summary
+4
+2.1     Justifiability Principles (P1 and P2)
+13
+2.2   Accuracy and Bias Principles (P3 and P4)
+19
+1.2   The Importance of Fairness in AIDA Driven Decision Making
+8
+1    Introduction
+5
+1.1     Purpose and Intended Audience of the Document
+5
+2    Key Fairness Concepts
+13
+3     FEAT Fairness Principles Assessment Methodology  
+       (“Fairness Methodology”)
+23
+3.1     Embedding the Fairness Methodology into the  
+        AIDA System Development Lifecycle
+23
+3.2   Step 0: Foundational Practices and Standards (Fairness Specific)
+25
+3.3   Step 1: Define System Objectives and Context
+26
+3.4   Step 2: Prepare Input Data
+31
+3.5   Step 3: Build and Validate
+36
+3.6   Deploy and Monitor 
+42
+4.1     Customising Depth of Fairness Assessment  
+         in line with AIDA System Risk
+45
+4     Guidance on Scaling and Embedding the  
+       Fairness Methodology across the FSI Organisation 
+45
+4.2    Beyond Individual Use Cases: Achieving AIDA Fairness at Scale
+47
+
+
+===== PAGE 3 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+3
+5    Topics for Future Consideration
+49
+6    Acknowledgements
+51
+7    Bibliography
+52
+8    Appendix
+55
+Table of Contents
+
+
+===== PAGE 4 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+4
+Executive 
+Summary
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+As a concept, fairness is not novel to decision 
+making, and certainly not unique to Artificial 
+Intelligence & Data Analytics driven decision 
+making (“AIDA”, which is defined by the Monetary 
+Authority of Singapore as “technologies that 
+assist or replace human decision-making”). In a 
+general sense, fairness involves seeking what is 
+right, impartial and equal without favouritism or 
+discrimination. 
+AIDA systems powered by high quality data, 
+sophisticated algorithms and ever-increasing 
+processing capabilities, bring scale and value to 
+data driven decision making processes. However, 
+without careful design and control, these 
+systems can bring new risks and unintended 
+harms, perpetuating or reinforcing existing 
+disadvantages in society or even introducing new 
+ones. With so many decisions in financial services 
+aided by AIDA systems, the fairness of these 
+systems is becoming increasingly important.
+More and more, regulators worldwide are 
+playing a critical role in guiding Financial Service 
+Institutions (FSIs) to prevent harms and deliver 
+benefits. In Singapore, within the Fairness, 
+Ethics, Accountability and Transparency (FEAT) 
+Principles, the Principles that explicitly relate 
+to fairness (see figure P1-4 in section 1.1.1) aim 
+to ensure that AIDA driven decisions do not 
+systematically disadvantage individuals or groups 
+of individuals, without appropriate justification.
+To help organisations apply the Principles, Veritas 
+Phase 1 (published in January 2021) formulated 
+the initial FEAT Fairness Principles Assessment 
+Methodology 
+(“Fairness 
+Methodology”). 
+In 
+Phase 1, use case examples of the “Fairness 
+Methodology” focused on the banking sector. 
+This document is the output of Veritas Phase 2 
+and it extends the Phase 1 Fairness Methodology 
+with 
+frameworks, 
+practical 
+guidance 
+and 
+examples, covering both banking and insurance. 
+The Fairness Methodology provides a guide for 
+FSIs to work towards assessing alignment of 
+their AIDA systems’ operations with the Fairness 
+Principles.
+The main extensions to the Fairness Methodology 
+in Phase 2 are: 
+•	
+Key concepts such as personal attributes, 
+types of bias and mitigation methods, and 
+fairness objectives and metrics are defined in 
+more detail, along with illustrative frameworks 
+and guidance on how to identify and apply 
+them to a use case.
+•	
+Parts A-E of the Fairness Methodology defined 
+in Phase 1 are aligned to a typical AIDA system 
+development lifecycle, enabling FSIs to 
+develop fair AIDA applications by design.
+•	
+Detailed 
+considerations 
+and 
+guidance 
+are included for each of the 18 Fairness 
+Methodology 
+assessment 
+questions 
+from Phase 1 to help FSIs think through 
+the important aspects to consider when 
+answering the questions.
+•	
+The 18 Fairness Methodology assessment 
+questions from Phase 1 are integrated into the 
+overall FEAT checklist to enable a full FEAT 
+assessment of the end-to-end AIDA system. 
+•	
+Guidance is provided on scaling and 
+embedding the Fairness Methodology across 
+an FSI, through
+•	
+Defining the internal foundational set of 
+practices and standards for AIDA fairness, 
+•	
+Including guidance on how to customise 
+the depth of the fairness assessment 
+appropriate for a given AIDA system, and 
+•	
+Including guidance on how FSIs can 
+integrate AIDA fairness into the fabric of 
+their organisation. 
+The use case example in Phase 2 is predictive 
+underwriting for life insurance. A simplified 
+underwriting journey for existing customers of 
+an insurer in Singapore and a detailed illustration 
+of the use case can be found in the Phase 2 
+Illustrative Case Studies document.
+4
+
+
+===== PAGE 5 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+5
+ Introduction
+01
+1.1    Purpose and Intended Audience of the Document
+Accelerating digitalisation is affecting Financial Services Institutions (FSIs) through two overlapping 
+waves – a behavioural shift and technological shift. Behaviourally, consumers are increasingly looking 
+for FSIs to provide them with digital services, and for these services to be personalised to their needs. 
+Technologically, a broad range of innovations are impacting on the digital transformation of FSIs, 
+including digital platforms and marketplaces and advanced sensor and analytics capabilities. These 
+technological developments are being powered by the rise of agile, digitally native entrants as well 
+as a substantial increase in computational power. 
+The adoption of Artificial Intelligence and Data Analytics (AIDA) systems is helping FSIs take advantage 
+of this evolving environment to better support decision making through superior insights from new 
+and existing data. Additionally, FSIs are leveraging AIDA systems to increase productivity, both 
+through the data driven automation of existing processes and by helping them to develop wholly 
+new ways of doing business. By supporting growth, delivering better customer experiences and 
+reducing the risk and cost of doing business, FSIs are looking to scale through use of AIDA systems 
+and stay future ready and relevant.
+In turn, strong data driven approaches bring benefits to society through the creation of innovative 
+products and services that support affordability, ease of access and the quality of the end service, 
+while also helping to bridge financial inclusion and protection gaps. Additionally, with better access 
+to data and the availability of digital touchpoints across the service value chain, FSIs can increase the 
+accuracy of their decision making to drive better outcomes for customers. By adopting AIDA systems 
+at scale, FSIs hope to improve insights, predictive analytics and service personalisation to accelerate 
+differentiation, while also creating more efficient processes and increasing the value of the tasks 
+undertaken by employees. 
+As FSIs deliver against their data strategies by upgrading their decision making process and associated 
+customer services, it is vital to ensure that AIDA enabled decisions, which potentially touch millions 
+of lives, do not reflect unintentional discriminatory behaviour.
+AIDA systems could also introduce new risks for businesses and customers that need to be properly 
+managed and mitigated. Poorly designed AIDA systems can cause unintended harms, breach 
+applicable laws, rules and regulations and perpetuate or reinforce existing disadvantages in society. 
+These harms can arise due to the fact AIDA systems operate according only to the data and objectives 
+explicitly provided by their designers, without taking into consideration the broader context or moral 
+constraints that humans often take for granted. For example, when an AIDA system is designed to 
+be accurate for the overall population this can be achieved unintentionally in a way that leads to a 
+disproportionate number of erroneous decisions being made on disadvantaged minority populations 
+because they are poorly represented in the data. Systematic erroneous decision making by AIDA 
+systems can also damage the reputation of an FSI and affect its business.2 
+
+
+===== PAGE 6 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+6
+Figure 1.1 Fairness Principles Assessment Methodology document in the suite of Veritas Phase 2 outcomes
+1.1.1    Background
+The Principles of Fairness (“Principles”), under the Monetary Authority of Singapore’s FEAT Principles4, 
+published in 2018, focus on two key aspects - “justifiability” and “accuracy and bias”:
+There is therefore a clear need for fairness to be integrated throughout the AIDA delivery cycle phases 
+while bringing AIDA systems to scale.3
+This document is one of a suite published as a ¬deliverable of the Monetary Authority of Singapore 
+(MAS) Veritas Phase 2 project. Its purpose is to define a Fairness Methodology for FSIs bringing AIDA 
+systems to scale, and it fits alongside published documents as highlighted in Figure 1.1.
+FSIs should continue to comply with all applicable laws and requirements. The Fairness Methodology 
+is aspirational, promoting fairness of AIDA systems and not intended to replace existing relevant 
+internal governance frameworks. FSIs are encouraged to calibrate their internal governance 
+frameworks for the FEAT fairness assessment based on their own discretion taking into consideration 
+their existing frameworks, materiality of AIDA systems and cost of FEAT fairness assessments and 
+potential mitigation.
+The illustrations used in this whitepaper are only applicable in the context of the jurisdiction of 
+Singapore, and only for the specific attributes assessed – they are not generalisable.
+The Fairness Methodology described in this whitepaper is only applicable if “personal attributes”, 
+including personal and sensitive personal data, are collected and processed in accordance with all 
+applicable regulatory requirements. Personal attributes are defined in section 2.1.4.
+“Personal data” is defined as data, whether true or not, about an individual who can be identified 
+either from that data or from that data and other information to which the organisation has or is likely 
+to have access.
+Methodology
+Use Case
+3A
+Fairness  
+Principles 
+Assessment 
+Methodology
+3C
+Transparency 
+Principles 
+Assessment 
+Methodology
+3B
+Ethics and 
+Accountability 
+Principles 
+Assessment 
+Methodology
+FEAT Principles Assessment 
+Methodology
+3
+Illustrative Code for FEAT Principles 
+Assessment Case Studies
+5
+FEAT Principles Assessment  
+Case Studies
+4
+Please refer to section 1.3 of Veritas Document 3 FEAT Principles Assessment Methodology document 
+to review the intended audiences for this document.
+
+
+===== PAGE 7 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+7
+1.1.2    Scope
+This document is the output of Veritas Phase 2, which commenced in March 2021. It extends the Phase 
+1 Fairness Methodology with illustrative frameworks, practical guidance and examples covering 
+both banking and insurance in the context of individual data subjects. The Fairness Methodology 
+provides a guide for FSIs to assess alignment of their AIDA systems’ operations with the Principles. 
+The Principles ask FSIs to consider both whether the AIDA driven decision making process and the 
+outcomes from these decisions are justified. Moving Principles to practical application requires FSIs 
+to determine and define fairness objectives for various applications of AIDA, outline specifications 
+to measure fairness and account for these in the AIDA systems, as well as in existing governance 
+processes. 
+The document acknowledges that an FSI’s specific obligations around AIDA fairness will depend on 
+the regulatory requirements, societal and legislative norms or case law of the jurisdiction in which it 
+operates, as well as the organisation’s values and existing governance standards, which are also likely 
+to change over time. Therefore, the Fairness Methodology is not prescriptive, but instead provides 
+guidance and recommendations for relevant audiences. It Is important that the level of FEAT fairness 
+assessment is proportional to the fairness risk of any use case as these assessments will need to be 
+implemented with additional costs, which ultimately get passed on to consumers.
+Also, it should be recognised that the area of algorithmic fairness is still developing and for some 
+complex areas, there is ongoing active research to determine how to address current challenges. 
+To move the Principles to practical application, Veritas Phase 1 (published in January 2021) formulated 
+the initial FEAT Fairness Principles Assessment Methodology (“Fairness Methodology”). Use case 
+examples of the “Fairness Methodology” focused on the banking sector and applied to credit scoring 
+and customer marketing AIDA systems were provided in Phase 1.
+Figure 1.2 MAS FEAT Fairness Principles (2018)
+Justifiability
+Individuals or groups of individuals are not systematically disadvantaged through  
+AIDA driven decisions, unless these decisions can be justified.
+Use of personal attributes as input factors for AIDA driven decisions is justified.
+P1
+P2
+Accuracy and Bias
+Data and models used for AIDA driven decisions are regularly reviewed and validated for 
+accuracy and relevance, and to minimise unintentional bias.
+AIDA driven decisions are regularly reviewed so that models behave as  
+designed and intended.
+P3
+P4
+
+
+===== PAGE 8 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+8
+The document covers the following themes:
+The idea of fairness is used in various disciplines including philosophy, sociology, law and politics. 
+However, how fairness operates or what is considered fair remains highly contested.5 
+Fairness is closely related to human rights, non-discrimination, solidarity and justice.6 These 
+ideas revolve around things that are right, impartial, equal, and delivered without favouritism or 
+discrimination as assessed by evaluating the consequences of a decision, along with the process 
+followed to reach the decision.7
+There are many notions of fairness, including basing this on equality or need.8 Notions of fairness 
+continue to be debated in both moral philosophy and wider society. As one notion of fairness may 
+conflict with another, fairness is an “essentially contested” concept.9 Therefore, although the general 
+nature and importance of fairness are widely understood, its precise definition and what constitutes 
+fair or unfair outcomes, should be defined in a given context (i.e., fairness is use-case specific).
+•	
+Section 1 outlines what fairness is and why it is important.
+•	
+Section 2 introduces the reader to key concepts in the fairness principles
+•	
+Section 3 details the Fairness Methodology, which is designed to aid FSIs in making 
+their fairness objectives explicit and for providing evidence that their AIDA systems’ 
+operations meet those objectives.    
+•	
+Section 4 provides guidance on how to embed and scale the Fairness Methodology 
+across an FSI and on how to customise the application of the Fairness Methodology 
+for the fairness risk level of the AIDA system in question in a scalable way.
+•	
+Section 5 outlines fairness areas for future considerations by the industry and 
+regulators 
+1.2      The Importance of Fairness in 
+	
+   AIDA Driven Decision Making
+1.2.1    What is Fairness?
+
+
+===== PAGE 9 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+9
+According to the Guidelines published by the European Commission’s High-Level Expert Group 
+(HLEG) on Artificial Intelligence,10 fairness has two dimensions:
+As a concept, fairness is not novel to decision making and certainly not unique to AIDA driven 
+decision making. When humans act or decide, they are held responsible for the accuracy, reliability, 
+and soundness of their judgements. Moreover, it is often demanded of them that their actions and 
+decisions are supported by good reasons, and they are held accountable for the justness, equity, and 
+reasonableness of how they treat others. 
+However, as a technology, AIDA systems are not accountable agents. Accountability remains with the 
+people and organisations who choose to deploy them.11 It is important that there is clear responsibility 
+— defined by FSIs — for the ownership of AIDA driven decisions and the soundness of an AIDA 
+fairness assessment for reasonably foreseeable risks.
+The substantive dimension is within the scope of this whitepaper, while the procedural dimension is 
+covered in the Ethics and Accountability whitepaper.
+•	
+The substantive dimension. Ensuring the equal and just distribution of benefits and 
+costs and ensuring that individuals and groups are free from unfair bias, discrimination 
+and stigmatisation.
+•	
+The procedural dimension. This includes seeking effective redress against decisions 
+made by AIDA systems (and the humans managing/operating them), with an effective 
+governance framework and controls in place. 
+1.2.2    (Why) Do AIDA Driven Decisions Require 
+            Enhanced Fairness Controls?
+
+
+===== PAGE 10 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+10
+AIDA systems bring value to data driven decision making processes. However, without careful design 
+and control, these systems can bring new risks and unintended harms, perpetuating or reinforcing 
+existing disadvantages or even introducing new ones.12 In some cases, these harms are an outcome of 
+FSIs’ decisions on the design and development of their AIDA systems. For example, if an AIDA system 
+is simply designed to optimise overall accuracy, the distribution of erroneous decisions may not be 
+equitable across subpopulation groups. The following key factors have led to increased attention on 
+fairness (and ethics, in general) of AIDA driven decisions:
+While best practice, frameworks, laws and regulations in this area are evolving, it is nonetheless the 
+responsibility of FSIs to identify and address unfair outcomes from their AIDA systems to ensure that 
+AIDA driven decisions do not systematically disadvantage individual or groups of individuals without 
+justification. To do so, systems should be designed with explicit and quantifiable fairness objectives. 
+Since one notion of fairness may conflict with others and differ by application use case, it is not 
+feasible to attempt to build a system that is universally recognised as fair. Instead, FSIs will need to 
+make decisions on trade-offs between opposing fairness metrics, as well as potentially between their 
+fairness and and commercial objectives.
+•	
+Ability of automated AIDA decisions to scale and impact a wider group of customers. 
+AIDA driven decisions can impact more people and be perpetuated at greater speed 
+than manual or traditional automated alternatives. Erroneous decisions can therefore 
+harm a larger number of people. In cases of unintended outcomes or poor decisions, 
+the associated legal or reputational damage for the FSIs can therefore also be much 
+greater than in the past. 
+•	
+Ability of AIDA to differentiate to a finer degree than historical human led approaches 
+by seeing patterns in large datasets. AIDA may learn from latent relationships in the 
+data (even when personal factors are obscured) or from historic biases and may 
+differentiate outcomes in unknown (and unintended) ways. 
+•	
+Use of novel sources of data to predict outcomes. There is an increasing use of 
+novel sources of consented personal data by FSIs. In insurance, for example, the 
+use of electronic health records, lifestyle markers and telematics can drive value 
+(e.g., personalised engagement, better prediction, better prevention, better risk 
+management, etc.). However, the use of such data could lead to concerns around the 
+credibility, integrity and reliability of third party data sources and associated privacy 
+implications. Another challenge is around how to verify an identity across multiple, 
+independent datasets without breaching the privacy of the individual concerned (i.e., 
+the data subject). Knowledgeable customers now seek robust justifications when 
+their data is used to drive decisions.
+•	
+Involvement of third party developers. A lack of visibility into the delivery lifecycle 
+process and the fairness assessments conducted by third party organisations makes 
+it harder for FSIs to ensure fairness when using externally developed AIDA systems.
+
+
+===== PAGE 11 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+11
+As FSIs drive the development and adoption of AIDA to unlock efficiencies and business value, 
+regulators worldwide are stepping up to help guide FSIs to prevent unintended harms and deliver 
+benefits across society.
+There are various frameworks and policies concerning AIDA globally, and a shift from non-binding 
+principles, guidelines and policy papers to legally binding laws and regulations is to be expected. 
+Examples of non-binding AIDA principles is available in appendix 8.12.
+It is important to note that fairness is also a data protection and privacy principle. Where algorithmic 
+processing involves personal data, FSIs have a legal requirement to comply with Singapore’s Personal 
+Data Protection Act (PDPA), which focuses on the underlying reasons and legal basis that justifies the 
+collection, processing and use of customers’ personal data by an FSI.  
+FSIs’ data and model governance rules should ensure that protected factors are not used in the 
+decision making process and that there is a regular model review process which considers relevant 
+legislative changes. 
+The nature of personal data protected by law can vary between industries. For example, the US Equal 
+Credit Opportunity Act (ECOA) specifically targets industries that provide credit services and specifies 
+that gender must not to be used as a factor when deciding on the outcome of a credit application. 
+Accepted demographic attributes are specific to each respective use case, and it is important to 
+recognise that what is considered appropriate demographic attributes can vary by jurisdiction. 
+Moreover, some jurisdictions incorporate employee data protection and anti-discriminatory laws 
+in the field of employment and labour laws. Regulations around anti-discrimination standards are 
+constantly evolving as new trends emerge. 
+Concurrently, privacy concerns are arising as companies feed increasing volumes of consumer and 
+vendor data into advanced AI algorithms as part of their business operations. Consumers are paying 
+more attention to their private information and becoming increasingly interested in how their data is 
+used by the entities with which they interact.13 Giving individuals genuine choice in providing consent 
+for the gathering and use of their personal data, and securing and managing this consent, should be 
+the standard operating procedure for every FSI. 
+In the EU, the consent requirement for the processing of particularly sensitive personal data as 
+protected under Article 9 of the General Data Protection Regulation (GDPR) is intended to avoid 
+discrimination against individuals on the basis of personal characteristics. Article 9 sets in stone 
+Article 21 of the Charter of Fundamental Rights of the EU (non-discrimination). To ensure that consent 
+is obtained in a fair manner, it is important that data subjects can make an informed decision. FSIs 
+need to give customers control over how their data is used, and the onus lies with FSIs to ensure the 
+appropriateness of the data they collect and use, in line with customer consent and data privacy 
+requirements.
+1.2.3    Fairness in AIDA: Regulatory Context
+Fairness assessments should be carried out on AIDA systems rather than the models alone. The 
+assessment should not be confined to the mathematical properties of models. Rather, it should include 
+a holistic assessment of risks and factors contributing to the AIDA driven decisions (such as business 
+rules and human oversight) and the resulting outcomes for the individuals affected. The fairness 
+assessment and review should be performed throughout the AIDA system development lifecycle, 
+including monitoring on the live AIDA system. The depth of the assessment should be proportionate 
+to the fairness risk that the AIDA system in question poses (see section 4.1 for guidance on how to 
+assess the fairness risk of an AIDA system).
+
+
+===== PAGE 12 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+12
+According to data protection and privacy laws, to ensure the fair and transparent processing of data in 
+respect to the data subject, FSIs should consider the specific circumstances and context in which the 
+personal data is processed. For example, the EU’s GDPR requires FSIs to use appropriate mathematical 
+or statistical procedures for profiling. Significantly, GDPR only allows automated decision making and 
+profiling based on special categories of personal data under specific conditions.
+One of fairness considerations related to data protection and privacy in the regulatory context is how 
+FSIs adhere to applicable antitrust and competition laws, factors that affect pricing and consumer 
+welfare. The rise of data gathering at scale, and the ability to process data through AIDA systems 
+is very often discussed in light of competition law. The discussion often focuses on whether the 
+algorithms used by an AIDA system increase the potential risk of collusion between competitors, 
+in particular when it comes to pricing algorithms and providing access to AIDA system on a non- 
+discriminatory basis.14
+FSIs therefore need to monitor evolving regulatory standards around anti-discrimination, both locally 
+and globally, along with respecting consumer consent and data privacy rules. This is to ensure that 
+the attributes identified for use in decision making through AIDA systems and fairness assessments 
+are justified for use and prevent unintended harms resulting from the systems.
+
+
+===== PAGE 13 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+13
+This section expands on the key concepts referred to in the Principles. 
+Fairness can be broadly categorised into:
+Assessing fairness at too granular a level (e.g., for small groups of individuals, or at the multi features/
+micro segments level) may be too complex to execute and can be limited by the collected features, 
+privacy aspects or consent provided by individuals. As a result, assessing fairness at group level is a 
+more common practice. We have included assessing both group fairness and individual fairness in 
+the use case document ‘Fairness in Predictive Underwriting’.
+When assessing fairness at group level, FSIs need to be aware that compound effects may exist at 
+the intersection of the attributes of certain groups (e.g., gender, ethnicity, disabilities, etc.), and a 
+fairness assessment may need to be performed on selected combinations (say females who belong 
+to a minority ethnicity), to enable the financial inclusion of such groups which may be at greatest 
+risk. An assessment of every possible combination of groups may not be pragmatic, so a prioritised 
+selection of at risk groups is recommended in consultation with stakeholders.
+Fairness can be assessed quantitatively using a Fairness Metric - a mathematical definition of “fairness” 
+that is measurable. Examples include False Negative Rate Ratio and Disparate Impact. Guidance on 
+commonly used fairness metrics to quantify group and individual fairness is provided in appendix 
+section 8.1 and 8.2. In many cases, different fairness metrics cannot be satisfied simultaneously 
+and selecting the optimal metric for a use case is a non-trivial task. Different approaches exist in 
+the literature for identifying the best metric for a given use case. An example is shown below from 
+Aequitas (Figure 2.1), an open source bias audit toolkit. An application of this approach refined for the 
+insurance sector is in the Phase 2 Illustrative Case Studies Document.
+ Key Fairness Concepts
+02
+2.1    Justifiability Principles (P1 and P2)
+2.1.1    Group and Individual Fairness (P1)
+Justifiability
+Individuals or groups of individuals are not systematically disadvantaged through  
+AIDA driven decisions, unless these decisions can be justified.
+Use of personal attributes as input factors for AIDA driven decisions is justified.
+P1
+P2
+•	
+Group fairness. Population groups are defined, and the outcomes between groups 
+compared.
+•	
+Individual fairness. The notion of similarity in outcomes for similar individuals is 
+defined, and outcomes between similar pairs of individuals compared.
+
+
+===== PAGE 14 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+14
+Figure 2.1 An example approach for selecting the most appropriate fairness metric,  
+taken from Aequitas – an open-source bias audit toolkit.
+Systematic disadvantage refers to a negative impact from unevenly distributed harms or benefits 
+resulting from AIDA driven decisions across individuals or groups of customers. If the use of an AIDA 
+system for decision making leads to a particular group experiencing more harms or benefits than other 
+groups, this could be deemed unfair unless the outcome can be justified. FSIs should decide, with 
+sound justification, how to measure such potential systematic disadvantage (often using the relevant 
+fairness metric), and to what extent the distribution of harms and benefits should be adjusted, if at 
+all, to meet desired fairness objectives.
+Additionally, the impact of the harms and benefits of a system from the perspective of affected 
+individuals could also vary considerably from that of the FSI. For example, incorrectly auto declining 
+a homeowner insurance application can cause substantial harm to the customer, who will be unable 
+to protect their home. However, the harm for the insurer is only the loss of income from an individual 
+policy, which will likely be immaterial relative to the overall business portfolio. A similar imbalance of 
+harms would be experienced if a bank incorrectly declined a mortgage application on the basis of an 
+automated assessment. It is therefore vital for FSIs to consider harms and benefits through the lens 
+of their customers, as well as through their business lens, to understand the true impact of erroneous 
+outcomes.
+Another example framework is the Fairness Compass which can be found in ‘Towards the Right Kind 
+of Fairness in AI’. Some fairness concepts specific to insurance are provided in appendix section 8.11.
+2.1.2    Systematic Disadvantage (P1) 
+Fairness Tree
+Among which group are 
+you most concerned with 
+ensuring predictive equity?
+Are your interventions  
+punitive or assistive?
+Punitive 
+(could hurt individuals)
+Small Fraction
+Everyone 
+without regard 
+for actual 
+outcome
+Everyone 
+without regard 
+for actual need
+People NOT 
+receiving 
+assistance
+People 
+with 
+actual 
+need
+People 
+for whom 
+intervention  
+is taken
+Intervention 
+NOT 
+warranted
+Assistive 
+(will help individuals)
+Most People
+Can you intervene with  
+most people with need or 
+only a small fraction?
+# False Positives 
+Group Size
+FP/FS  
+PARITY
+False Discovery 
+Rate
+FDR  
+PARITY
+False Omission 
+Rate
+FOR  
+PARITY
+False Negative 
+Rate
+FNR 
+PARITY
+False Positive 
+Rate
+FPR  
+PARITY
+True Positive 
+Rate or 
+Sensitivity
+RECALL  
+PARITY*
+# False 
+Negatives 
+Group Size
+FN/FS 
+PARITY
+Among which group are 
+you most concerned with 
+ensuring predictive equity?
+
+
+===== PAGE 15 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+15
+•	
+Personal data is defined as data, whether true or not, about an individual who can be 
+identified either from that data or from that data and other information to which the 
+organisation has or is likely to have, access.
+•	
+Personal attributes are defined by FSIs in the context of each specific use case and 
+at a minimum covers any personal data that may be included in the AIDA system, as 
+defined in relevant data protection and anti-discrimination laws, and can also include 
+non-personal data. 
+Therefore, if the AIDA system includes personal or sensitive personal data, this data should be limited 
+to what is reasonably necessary to meet the legitimate purpose. 
+For the cases where systematically disadvantageous decisions emanate from AIDA systems, FSIs 
+should justify these decisions by demonstrating that they are reasonable. Otherwise, they should 
+make changes, consistent with the Principles and aligned with internal organisational values, laws 
+and regulatory requirements. Furthermore, in line with the Transparency FEAT Principles, FSIs are 
+encouraged to explain their decisions to affected individuals, as part of their duty towards fair and 
+transparent processes and outcomes (please refer to the Transparency Principles P13 and P14 in 
+Transparency Methodology document).
+2.1.3    Justifications for System Decisions (P1)
+One example of the latter is the hiring practices around the world, which often led to women being 
+paid less than men for equal work. These practices could be reinforced by a poorly designed AIDA 
+system.15
+The design of AIDA systems should be undertaken with the aim of minimising unjustified systematic 
+disadvantage, while also including considerations to avoid reinforcement of systemic disadvantage. 
+Avoiding reinforcement of systemic disadvantage should be considered when determining at risk 
+groups.
+It is important to distinguish between 
+•	
+Systematic disadvantage stemming from the operations of AIDA systems; and
+•	
+Systemic disadvantage stemming from macro level imbalances that could be 
+reinforced by the usage of an AIDA system  
+2.1.4    Personal Attributes (P2)
+Data attributes should be collected and processed in a lawful and fair manner.
+Personal attributes are features about individuals that should not be used as the basis for decisions 
+without reasonable justification. Personal attributes can be deemed high risk in fairness considerations, 
+especially when a group of people characterised by those attributes is being considered. The use 
+of personal attributes need to be justified and should not be used if there is no proven impact on 
+improving fairness or creating benefits. Personal attributes and personal data are not the same. 
+
+
+===== PAGE 16 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+16
+Once identified, personal attributes should be classified so that the appropriate action can be taken 
+in the context of the AIDA system. A proposal for achieving this is outlined below, and in figure 2.2.
+•	
+Law, case law or regulations. Relevant data governance or anti-discrimination 
+laws, at local, regional, and global levels. This includes general and sector-specific 
+regulations. Singapore examples include:
+◦   Constitution of Singapore, Part IV on Fundamental Liberties.16
+◦   Personal Data Protection Act, 2012, Singapore.17
+◦   Singapore Personal Data Protection Commission’s Guide to DPIAs 2017.18
+◦   MOH-LIA Moratorium on Genetic Testing and Insurance, 2021, Singapore.
+◦   United Nations Convention on the Rights of Persons with Disabilities (UN CRPD)19 
+which Singapore ratified in 201320, with an exception that was subsequently 
+withdrawn in 2021.21
+•	
+Emerging AIDA policies and frameworks. These considerations are constantly 
+evolving and would need to be re-evaluated by FSIs based on new developments 
+(please see the appendix 8.12).
+•	
+Socio-cultural acceptance. This could be based on a range of methods, such as 
+customer consultation, focus groups, expert advice, and a review of the appropriate 
+literature. Particular attention should be paid to the sentiments of minority groups, as 
+these might differ from those of the majority.
+•	
+Market practice. Reference can be made to existing practices by FSIs in the sector 
+and any ongoing discussions on related topics.
+•	
+Organisational values. Where the FSI has multinational operations, due consideration 
+should be given to both global principles and local contexts as well as an organisation’s 
+internal guidelines (e.g., information classification).
+In identifying personal attributes, FSIs may be guided by the following considerations:
+
+
+===== PAGE 17 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+17
+The personal attributes can be classified into two buckets, with associated recommended actions 
+as follows:
+The personal attributes which are justified for use in AIDA decision making are specific to the use 
+case in question. For example:
+•	
+Group 1: Personal attributes not to be used in decision making. These attributes 
+would be excluded from decision making and monitored for fairness across groups 
+segregated by these attributes. At the minimum, this would include attributes 
+mandated by law or regulation to be excluded for the use case under consideration.
+•	
+Group 2: Personal attributes justified for use in decision making. With a clear 
+justification for inclusion documented, these attributes may be included in the 
+decision process of the AIDA system. FSIs may decide to also monitor these attributes 
+for fairness, depending on the specific use case context.
+•	
+Financial transaction data such as debt/income ratio and days past due on existing 
+debt are accepted to be a determinant of credit risk, making it acceptable for use in 
+AIDA systems that assess credit risk.
+•	
+Declaration of medical history, despite it being highly personal, is accepted as part of 
+the underwriting process for life insurance given its strong links to future mortality risk.
+Figure 2.2 Identifying Personal Attributes
+*Currently there are no laws in Singapore that prohbit the  
+use of data attributes for decision making for FSIs.  
+Relevant legislations for identifying personal data is PDPA. 
+ 
+**Personal Attribute Proxies attributes with high association 
+with personal attributes, in collected attributes
+Multi-disciplinary 
+group required
+Collected  
+Attributes Personal Attribute 
+Proxies**
+Personal  
+Attributes
+(defined by FSI,  
+in context 
+of the use case)
+Considerations 
+(non-exhaustive)
+Laws/Regulations*
+Organisational Values
+Socio-Cultural 
+Acceptance/Market 
+Practice
+Group 1: Personal Attributes not 
+to be used in decision making
+Group 2: Personal Attributes 
+justified for use decision making
+Proxies to Group 1:  
+Treated as part of Group 1
+Proxies to Group 2:  
+Treated as part of Group 2
+
+
+===== PAGE 18 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+18
+It should be highlighted that proxies identified to Group 1, including Group 2 Personal Attributes, 
+should also be treated as personal attributes and not be used for decision making. Proxies identified 
+to Group 2 (other than existing Group 1 personal attributes)  may be justified for use in decision 
+making.  
+Justification for use of personal attributes in decision making could include:
+2.1.5    Justification for Use of Personal Attributes (P2)
+•	
+Need to comply with legal or regulatory requirements for the AIDA enabled product 
+or service. For example, if a product may only be offered to citizens of Singapore, 
+then citizenship information may be used according to local regulations. 
+•	
+Essential to the basic proposition of the product or service. For example, the year of 
+birth is needed when providing child protection insurance.
+•	
+Material for fairness objectives. Where including the attribute allows FSIs to explicitly 
+tune the models or calibrate outputs to enable a more equal distribution of benefits/
+harms.
+•	
+Knowledge of historical biases or prejudices. Where there is reason to suspect that 
+historical data used to train the models is biased from prior data or decision systems, 
+operational use allows FSIs to control for fairness metrics, avoiding unintended 
+reinforcement of such bias.
+•	
+Modifiable nature of attributes. Where modifiable attributes within the control of 
+individuals have material influence on the actual outcome.
+•	
+Material for commercial objectives. Where including the attribute allows FSIs to 
+conduct substantially more accurate predictions, such that the benefits of inclusion 
+outweigh the drawbacks. The impact on key fairness metrics of inclusion on commercial  
+grounds, along with justification for the trade-offs, should be documented.
+Non-personal attributes could potentially act as proxies for personal attributes where statistical 
+dependencies exist (meeting an association criterion as defined by the FSIs). The use of such data in 
+the AIDA system’s decision process could therefore pose a risk of indirect discrimination with respect 
+to the related personal attributes. 
+It is important to note that because of the dynamic nature of data driven approaches and the use of 
+AIDA systems, there remains a continued discussion on the definition and use of certain personal 
+attributes - with differences across regions and FSI needs to monitor latest regulatory developments in 
+this field. 
+
+
+===== PAGE 19 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+19
+2.2    Accuracy and Bias Principles (P3 and P4)
+Accuracy and Bias
+Data and models used for AIDA driven decisions are regularly reviewed and validated 
+for accuracy and relevance, and to minimise unintentional bias.
+AIDA driven decisions are regularly reviewed so that models behave as deisgned  
+and intended.
+P3
+P4
+The appropriate frequency for regular review post deployment is context specific, and should be 
+commensurate with the AIDA system’s risk level and with relevant laws and regulations. In addition 
+to specific timeframes during which the review needs to be completed, FSIs should set thresholds 
+for critical metrics, such as accuracy and error rates that, if breached, would trigger off cycle 
+reviews. Although relevant data checks are carried out during the development phase, there should 
+be ongoing, regular data checks following system deployment, such as model input distribution 
+(numerical features) or frequencies (categorical features), as well as missing value checks, to monitor 
+for data drift. It is also important that the review process is robust throughout the AIDA system 
+development cycle. 
+2.2.1    Regular Review (P3 and P4)
+Accuracy refers to how well a model’s predictions match the true state of the world. Under the 
+Principles, this term need not necessarily refer to the conventional data science definition of 
+accuracy (for instance, accuracy of classification models calculated as the ratio of correctly predicted 
+observations to the total observations). Rather, FSIs should decide on the most appropriate measure 
+for accuracy based on the context and purpose of the AIDA system.
+2.2.2    Accuracy (P3)
+Relevance refers to validation that the data used constitutes a material contribution towards achieving 
+the AIDA system’s legitimate commercial and fairness objectives. Relevance can stem from:
+2.2.3    Relevance (P3)
+•	
+Data fields being direct components of the AIDA system’s predicted outcome.
+•	
+The predicted outcome being statistically or causally associated with the data fields.
+•	
+The data fields providing important information about the population groups to which 
+individuals belong.
+
+
+===== PAGE 20 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+20
+2.2.4    Unintentional Bias (P3)
+Unintentional bias refers to systematic disadvantage that the FSI is not aware of, resulting from 
+undetected bias in the data or model algorithms or how they are used. Sources of bias include data, 
+model and deployment decisions made by humans that reflect cognitive biases such as implicit 
+biases against particular groups, confirmation biases and decision fatigue. These can manifest in 
+quantitatively measurable biases that can be observed during AIDA system development.  
+Bias can enter the AIDA system at different points in the development lifecycle as shown in Figure 2.3 
+(non-exhaustive), where common biases are mapped against the AIDA System lifecycle.
+Figure 2.3 Common biases appearing in an AIDA model development lifecycle
+At Step 2: Prepare Input Data, common types of measureable data bias that enter are:
+At Step 1: Define System Context & Design, a type of measureable bias that can enter the system is:
+•	
+Representation bias. Occurs when certain groups are underrepresented in a data 
+set which causes the effectiveness of model training to be hampered. Under-
+representation can be caused by selection bias during data collection, or simply by 
+the fact that the affected group is a small portion of the overall population.
+•	
+Exclusion Bias. Arises when certain groups are excluded from the development 
+dataset.
+Where Measurable Bias can enter during the AIDA System Development Lifecycle
+Aggregation 
+Bias
+Deployment 
+Bias
+Exclusion 
+Bias
+Evaluation 
+Bias
+Drift 
+Bias
+Historical 
+Bias
+Representation 
+Bias
+Pre-processing 
+Bias
+Measurement 
+Bias
+Proxy  
+Bias
+AIDA System 
+Development 
+Lifecycle
+Where 
+Measurable 
+Bias can 
+enter  
+Examples of 
+Measurable 
+Bias
+Example  
+Mitigation
+Define System 
+Context & 
+Design
+1
+Prepare  
+Input Data
+2
+Build & 
+Validate
+3
+Deploy & 
+Monitor
+4
+Exclusion Bias:  
+New product designed to 
+be delivered only online 
+could exclude customers 
+with less digital literacy
+Include alternative 
+channel to online 
+Upweight women in the 
+development dataset
+Build separate models 
+or post-processing 
+calibration mitigation
+Representation Bias:  
+Women under-represented in 
+the dataset of customers with 
+car loans to be used as model 
+development dataset
+Aggregation Bias:  
+New to bank customers 
+and long-time customers 
+included in same model 
+to predict fraud risk 
+
+
+===== PAGE 21 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+21
+•	
+Measurement bias. Arises when there is systematic or non-random error in the 
+collection of data, and can occur on input variables and target labels on which 
+the AIDA system operates. Measurement bias can originate from misreporting or 
+nondisclosure by customers or distributors, creating erroneous data and information 
+asymmetry.
+•	
+Proxy bias. Occurs in cases where input or target variable is estimated using a proxy 
+variable which is systematically different from the variable of interest. 
+•	
+Pre-processing bias. Arises during data pre-processing in model development, 
+when an operation (e.g., missing value treatment, data cleansing, outlier treatment, 
+encoding, scaling or data transformations for unstructured data, etc.) causes or 
+contributes to systematic disadvantage. Examples include:
+◦   Missing data. Depending on whether data is Missing Completely at Random 
+(MCAR), Missing at Random (MAR) or Missing Not at Random (MNAR), appropriate 
+techniques should be used to prevent the introduction of bias through data 
+imputation.
+◦   Labelling. A human assisted risk labelling process introduces subjectivity and 
+increases the risk of cognitive bias from human led decisions.
+•	
+Historical bias/negative legacy bias.20 Occurs when bias, human or otherwise, 
+present in prior decisions is reflected in the training data. Without adjustments, these 
+biases will be perpetuated in new decisions from the AIDA systems.
+•	
+Aggregation bias. Occurs when a one size fits all model is employed for groups with 
+different risk distributions.
+•	
+Evaluation bias. Arises when the testing or external benchmark populations do not 
+equally represent the various parts of the user population.
+•	
+Deployment bias. Occurs when there is a mismatch between the problem a model is 
+intended to solve and the way in which it is actually used.
+•	
+Drift bias. A type of bias that can occur over time post implementation. This can be 
+due to:
+◦     Data drift. The circumstances of individual or general population characteristics 
+change over time, whereas the system’s training data remains static.  
+◦   Concept drift. The statistical properties of the target variable to be predicted 
+change over time due to factors including population risk trends, technological 
+advancements, and evolving behaviour patterns. As a result, relationships 
+between factors and outcomes shift. For example, a risk assessment of an 
+uninsured population can be different to that of an insured population, because 
+the latter may change their behaviour in light of the fact they are insured.
+At Step 3: Build and Validate, types of measureable bias include:
+And at Step 4: Deploy and Monitor, examples of measureable biases that can enter are:
+
+
+===== PAGE 22 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+22
+The Principles require FSIs to minimise unintentional bias by incorporating reasonable steps in the 
+AIDA system development process to identify and address potential sources of bias throughout 
+AIDA system development and deployment, so as to avoid inadvertent systematic disadvantage. 
+While there is no one size fits all approach and no single change that can avoid unintentional bias, 
+steps can be introduced at each stage of AIDA development to identify and mitigate both data and 
+human biases.  
+Qualitative Steps to minimise unintentional bias by preventing cognitive biases from 
+occurring can include:
+Quantitative steps to minimize unintentional bias already in the data or model include 
+technical bias mitigation methods. These methods can be implemented during the AIDA 
+system development with outcomes quantitatively measured for effectiveness against the 
+fairness metrics. The methods can be applied at the preprocessing, in-processing and post 
+processing stage. More information on these methods can be found in Appendix 8.5.
+2.2.5    Minimise Unintentional Bias (P3)
+•	
+Process enhancements. Introducing behaviourally informed interventions that 
+avoid biases being introduced at source (e.g., data collection enhancements, 
+checklists and appropriate challenge and review techniques) throughout the 
+AIDA development lifecycle
+•	
+Environmental Change. Ensuring the working environment, culture and 
+incentives do not drive behaviours that do not align with fairness best practice 
+(e.g., reducing decision fatigue by ensuring appropriate working practices 
+and timelines during development)
+•	
+Diverse representation. Proactively including a variety of thought and 
+experience during development e.g., through diverse development teams 
+and where appropriate end user feedback  
+FSIs should continually monitor AIDA driven decisions against their models’ design and intent, from 
+both commercial and fairness perspectives. Specific to fairness, FSIs should regularly check that 
+their selected fairness metrics remain relevant to the context and purpose of their AIDA systems, and 
+that their defined fairness objectives continue to be met.
+2.2.6    Alignment of Decisions with Model Design  
+             and Intent (P4)
+
+
+===== PAGE 23 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+23
+FEAT Fairness Principles 
+Assessment Methodology 
+(“Fairness Methodology”)
+03
+Understanding an AIDA system’s alignment with the Principles is an ongoing process due to changing 
+data inputs, usage context, customer behaviour, business priorities and other factors. This section 
+presents a methodology for fairness assessments that aligns with the Principles, using a series of guiding 
+questions to be answered by FSIs and presented to AIDA system assessors for fairness evaluation.  
+The application of the Fairness Methodology is illustrated through case studies on customer marketing 
+and credit scoring in Veritas Phase 1,23 and in Phase 2 through the use case of predictive underwriting 
+for cross-selling life insurance. 
+In the following subsections we show how the Fairness Methodology can be embedded into a typical 
+AIDA system development lifecycle, before introducing the five parts of the Fairness Methodology, 
+the questions in each part, and considerations to assist in developing responses to the assessment 
+questions. Please note that the examples provided in this section are intended only as an aid to 
+comprehension and do not provide the full context of the relevant use case. For a more detailed 
+application of the Fairness Methodology to use cases, please refer to the Credit Score Fairness 
+Assessment Case Study document from Phase 1 (for Banking) and the Predictive Underwriting 
+Fairness Assessment case study document from Phase 2 (for Insurance). Appendix 1 contains a 
+technical reference for further detailed discussions on these considerations.24 Where appropriate, 
+FSIs should include additional questions or considerations specific to the context and objectives of 
+the AIDA system under consideration. 
+FSIs should adhere to all legal and regulatory requirements when undertaking activities relating 
+to the collection, use, processing or disclosure of personal attributes involving personal data by 
+conducting a Data Protection Impact Assessment (DPIA) before the FEAT Assessment takes place. 
+The practices suggested in this Fairness Methodology are for general information and not exhaustive.
+The depth of the fairness assessment should be customised to be commensurate with the risk level 
+of the AIDA system in question and balanced against the additional costs that eventually get passed 
+on to end customers. Customisation can include the questions and considerations answered, the 
+extent of analysis and level of documentation – see section 4 for more detail.
+The diagram below outlines the fairness questions and how they can be embedded into the AIDA 
+system lifecycle. The 18 questions from Veritas Phase 1 have been mapped to four generic FEAT 
+checklist questions (relevant to all of FEAT) and 12 FEAT Fairness-specific checklist questions – see 
+appendix 8.13 for the detailed mapping. These questions enable the FSI to translate their organisational 
+values on fair and responsible AIDA driven decision making into practical steps through quantifiable 
+metrics and thresholds. Embedding into the AIDA system lifecycle enables FSIs to proactively develop 
+fair AIDA systems by design.
+3.1    Embedding the Fairness Methodology into  
+         the AIDA System Development Lifecycle
+
+
+===== PAGE 24 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+24
+Figure 3.1 Mapping the Fairness Methodology to a typical AIDA system development lifecycle 
+(Adapted based on Veritas Phase I published by MAS)
+Embedding fairness checkpoints in a typical AIDA system development lifecycle
+Use Case or AIDA System Specific
+Typical AIDA System Development Lifecycle
+Feedback Loop
+Define System 
+Context & 
+Design
+1
+Foundational 
+Practices and 
+Standards
+0
+Prepare  
+Input Data
+2
+Build & 
+Validate
+3
+Deploy & 
+Monitor
+4
+Part B(ii): Examine 
+models
+Is the composition 
+of the AIDA System 
+defined? Is it clear  
+how each component 
+of the system AIDA 
+models, as well as 
+business rules and 
+human judgement if 
+relevant, are used to 
+achieve its commercial 
+objectives? Are the 
+performance estimates 
+and the uncertainties 
+of those estimates 
+documented?
+Part C: Measure 
+Disadvantage
+Have you assessed 
+and documented the 
+achievable trade-offs 
+between the system’s 
+fairness objectives 
+and its commercial 
+objectives?
+Have you justified (vs 
+alternative tradeoffs) 
+and documented the 
+final fairness outcome 
+for the AIDA System?
+Have you assessed 
+and documented the 
+quantitative estimates 
+of the system’s 
+performance against 
+its fairness objectives 
+and the uncertainties  
+in those estimates, 
+assessed over the 
+individuals and groups 
+in F1 and the potential 
+harms and benefits 
+in F2?
+G11
+B3
+B4
+B5
+F9
+C1
+F10
+C2
+F11
+C3
+Has the FSI defined 
+standard, robust 
+process  
+for (a) identifying 
+at risk groups?  
+(b)identifying 
+personal attributes 
+and potential 
+proxies? 
+(c) identifying 
+explicit fairness 
+objectives and 
+associated 
+measures and 
+thresholds? and 
+(d) algorithmic 
+methods to 
+identify and  
+reduce unfairness?
+F0
+Part B(i): Examine 
+data for Bias
+Have you documented 
+key errors, biases or 
+properties present in the 
+data used by the system 
+that may impact the 
+system’s fairness?
+Have you documented 
+how are these impacts 
+being mitigated?
+Part D: Justify the 
+use of personal 
+attributes
+Have you determined 
+and documented 
+personal attributes that 
+are used as part of the 
+operation or fairness 
+assessment of the 
+system?
+Does the process of 
+identifying personal 
+attributes take into 
+account ethical 
+objectives of the system, 
+and the people identified 
+as being at risk of 
+disadvantage?
+Have you assessed and 
+documented every 
+personal attribute and 
+potential proxy for 
+a personal attribute 
+and why its inclusion 
+justified given the 
+system objectives, the 
+data, and the quantified 
+performance and 
+fairness measures?
+F4
+F5
+F6
+F7
+F8
+B1
+D1
+B2
+D2
+D3
+(Un)Fairness Identification Through Assessment
+Part A: Describe 
+system objectives 
+and context
+Have you documented 
+the commercial 
+objectives of the system 
+and the quantitative 
+measures to meet those 
+commercial objectives?  
+Is it documented how is  
+AIDA used to achieve 
+them?
+Have you identified 
+and documented who 
+are the individuals 
+and groups that are 
+considered to be at-risk 
+of being systematically 
+disadvantaged by the 
+system?
+Have you identified and 
+documented the fairness 
+objectives of the system  
+and associated fairness 
+metrics, with respect to  
+the individuals and 
+groups in F1 and the 
+harms and benefits in F2?
+Have you identified 
+and documented the 
+potential harms and 
+benefits created by 
+the system’s operation 
+that are relevant to the 
+risk of systematically 
+disadvantaging the 
+individuals and groups 
+in F1?
+G5
+A1
+A2
+A3
+A4
+F1
+F3
+F2
+Part E: Examine 
+system monitoring 
+& review
+Is the system’s 
+monitoring and 
+review regime 
+designed to 
+detect abnormal 
+operation?
+Does the system’s 
+monitoring and 
+review regime ensure 
+that the system’s 
+impacts are aligned 
+with its commercial 
+and fairness 
+objectives 
+(G5 and F3)?
+Is there fallback 
+and/or mitigation 
+plans in place in 
+case of triggers 
+from the system’s 
+monitoring and 
+review regime?
+G12
+E1
+F12
+E2
+G13
+E3
+X
+Note: This question number corresponds to the  
+questions in the Phase 1 Fairness Methodology questions
+X
+Note: This question number corresponds to Phase 2 
+generic FEAT assessment checklist questions
+Note: This question number corresponds to Phase 2 
+Fairness specific checklist questions
+X
+
+
+===== PAGE 25 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+25
+Bullet 1 above is covered in more detail in section 4.2, and bullets 2-5 are covered in Fairness 
+assessment question F0 below. The guidelines should be framed once when setting up the standards, 
+and then reviewed periodically to enable ongoing alignment with evolving technology (e.g., alternate 
+fairness measures or algorithmic mitigation methods), regulatory thinking (e.g., new guidance on 
+anti-discrimination or personal information protection) and internal or customer feedback (e.g., 
+disproportionate overrides by users, redressal requests or complaints across target customer 
+population groups). In addition, academic conferences on AIDA that include fairness tracks and 
+academic literature on evolving best practices for evaluating AIDA fairness can help with improved 
+assessment approaches. One approach to F0 would be to define this for the key AIDA systems in 
+use by the FSI initially and then in periodic updates expand the scope for additional relevant AIDA 
+systems.
+As the definition, quantification and target levels of fairness can vary by use case, the absence of 
+guidance on this will result in high levels of subjectivity, as each AIDA project team could potentially 
+use a different decision framework. 
+Therefore, in addition to embedding the Fairness Methodology in the AIDA Development lifecycle, it 
+is recommended that FSIs have an internal foundational set of practices and standards approved 
+via the relevant governance structures in line with regulatory requirements. Defining a set of internal, 
+use case agnostic fairness standards upfront can provide a level of consistency across all use cases 
+in the FSI while still allowing room for tailoring based on materiality. Such standards should be guided 
+by prevailing legal and regulatory requirements, the FSI’s own data/ AIDA ethics principles, and 
+learnings from prior work on fairness in the organisation (if any) and should include the following:
+3.2    Step 0: Foundational Practices and Standards  
+         (Fairness Specific)
+1.	 Guidance to customise the depth of the fairness assessment. To be commensurate 
+with the fairness risk level of the AIDA system under consideration. Such customisation 
+could relate to the assessment process itself, the level of detail of the assessment 
+(including which methodology questions and/or considerations are answered), or the 
+parties involved.
+2.	 Internal framework for identifying at risk groups, personal attributes and their 
+proxies. With guidelines on associated actions in terms of exclusion or inclusion with 
+justifications, as well as what an acceptable justification looks like.  
+3.	 Standard process to explicitly define fairness objectives. By type of use case and 
+inventory of associated appropriate measurable fairness metrics.
+4.	 Guidance for determining acceptable deviation thresholds. For measures of fairness 
+and associated trade-offs with system performance or other fairness measures.
+5.	 Reference toolkit(s). To conduct unfairness identification checks and algorithmic 
+mitigation methods for use across the stages of system development.
+F0
+Has the FSI defined standard, robust process for (a) identifying at risk groups? 
+(b) identifying personal attributes and potential proxies? (c) identifying 
+explicit fairness objectives and associated measures and thresholds? and (d) 
+algorithmic methods to identify and reduce unfairness?
+
+
+===== PAGE 26 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+26
+Explicitly stating the commercial objectives of the AIDA system, along with clear documentation on 
+its structure and design, serves as the foundation for responses to the subsequent questions within 
+the Fairness Methodology. This process enables deployment of the system to be contained within the 
+specific context for which it was designed, thereby maintaining validity of the fairness assessment.
+3.3    Step 1: Define System Context & Design
+No.
+Key considerations
+1
+2
+What are the primary 
+and secondary 
+commercial 
+objectives of the 
+system?
+How is AIDA 
+used to achieve 
+these commercial 
+objectives?  
+Proposed general guidance (examples italicised)
+Commercial objectives refer to the outcomes to improve the business’s bottom 
+line that are intended to be driven by the given use case. They can be expressed 
+in terms of items like sales, revenue, profit, ROI, turnaround time, customer 
+satisfaction/NPS, straight-through processing (STP) rates, lower acquisition costs, 
+etc. These objectives may be classified as Primary or Secondary (ancillary) goals 
+based on the use case context. The primary commercial objective is used when 
+determining trade-offs with the fairness metric, where required.
+Establish a clear link to demonstrate how AIDA system outputs will help improve 
+the stated commercial objectives. For instance, to reduce the turnaround time 
+for granting access to a financial product, the AIDA system accelerates the 
+identification of eligible individuals through data driven techniques that are 
+applied to a wide range of attributes the FSI has collected with customer consent. 
+4
+What are the 
+potential benefits 
+(and downsides,  
+if any) of the system 
+for the FSI?
+Indicate benefits of using the AIDA system in place of the non-AIDA or historic 
+approach used by the FSI. Also note downsides (if any) of erroneous outcomes 
+from such a system. 
+For instance, the benefits of a banking or insurance system could include data 
+driven approaches for better inclusion, simplified customer experience, better 
+and quicker services with automation, etc. 
+Conversely, downsides could include financial losses due to the onboarding of 
+high risk customers if the actual level of error in the AIDA system is higher than 
+expected 
+5
+Are the structure 
+and design of the 
+AIDA system clearly 
+documented?
+Functional and technical details for the AIDA system should be documented 
+(also including FEAT adoption aspects across the development lifecycle).
+Even at a high level, this can provide important actionable insights to minimise, 
+mitigate or prevent potential causes of unfair operation. Examples include 
+human design choices encoding biases into the AIDA system, or deploying an 
+AIDA system outside the context for which it was designed and thereby creating 
+unintended harms.
+3
+Are there internal or 
+external constraints 
+that affect the 
+ability of the system 
+to achieve these 
+objectives?
+An example of an external constraint could be missing information when 
+customers do not disclose similar services/products with other FSIs
+(e.g., non-disclosure of a loan with another bank, or a condition managed or 
+disclosed with another insurer).
+Another example of an external constraint would be that FSIs must comply with 
+antitrust and competition laws (see section 1.2.3)
+[This question refers to question G5 in the overall checklist]
+G5
+Have you documented the commercial objectives of the system and the 
+quantitative measures to meet those commercial objectives?  
+Is it documented how is AIDA used to achieve them? 
+[This question refers to question A1 in the Phase 1 Fairness Methodology questions]
+3.3.1   Part A Describe System Objectives & Context
+
+
+===== PAGE 27 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+27
+Identification of the individuals and groups that will be affected by the AIDA system’s decisions is 
+the first step to analysing the potential harms and benefits they could experience. For identification 
+of at risk individuals and groups, it is important to refer to laws, rules, regulations and guidelines in 
+the jurisdiction or for the same industry in other regions, in addition to being informed by societal, 
+cultural, or historic prejudices/biases in similar decision making.
+A multidisciplinary team including the AIDA system owner, data scientists, business experts, legal, 
+compliance and risk experts, data ethics and responsible AI experts, will enable a holistic assessment 
+and minimise the risk of affected parties not being identified. This can be supplemented by reference 
+to existing AIDA systems in use, and to relevant AIDA driven financial services in other countries.
+Legal, regulatory, societal and organisational key considerations:
+F1
+Have you identified and documented who are the individuals and groups that are 
+considered to be at risk of being systematically disadvantaged by the system? 
+[This question refers to question A2 in the Phase 1 Fairness Methodology questions]
+No.
+Key considerations
+1
+Are there individuals or 
+groups that are already 
+disadvantaged, whose 
+interaction with the system 
+could perpetuate or 
+reinforce that disadvantage 
+(i.e., systemic risk)?
+For the identification of at risk individuals/groups, it is important to refer 
+to anti-discriminatory guidelines or protected classes, in addition to being 
+informed by societal, cultural, or historic prejudices/biases in similar 
+decision making. 
+2
+Do the potential harms 
+caused by the system 
+result in greater impact 
+for some individuals or 
+groups?
+It is important for FSIs to consider the impact on individuals or groups due 
+to adverse decision by the system and particularly if the adverse decisions 
+are erroneous. 
+For instance, the termination of a service - or revision of the service terms - 
+due to a wrong AIDA model decision could have a bigger impact on the less 
+resilient/lower income group of customers.
+3
+For individuals, are 
+there combinations of 
+group memberships that 
+may cause compound 
+disadvantage? 
+Very often the features to be tested for fairness are not mutually exclusive 
+- gender, marital status, ethnicity among others. Therefore, compound 
+disadvantage may exist, and the fairness assessment may need to be 
+performed on selected combinations (say females who belong to a 
+minority ethnicity), to ensure financial inclusion of such sub-groups which 
+may be at risk of disadvantage. Assessment of all combinations of groups 
+may not be pragmatic or possible, so a prioritised selection of at risk 
+groups by multi-disciplinary experts is recommended.
+4
+Are there individuals or 
+groups identified as at 
+risk in other countries 
+who might be relevant 
+for consideration in this 
+context?
+It is good practice to be aware of key individuals or groups that are 
+considered at risk in other jurisdictions for similar use cases, to evaluate 
+whether they also might be relevant to assess.
+Proposed general guidance (examples italicised)
+
+
+===== PAGE 28 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+28
+No.
+Key considerations
+1
+Does the product or 
+service offered through 
+the AIDA system have 
+eligibility criteria, 
+restrictions or design 
+factors that cause it to 
+exclude use by some 
+individuals or groups?
+For instance, automation of a distribution channel or digitisation of services 
+could exclude customers with less digital literacy or with poorer online, 
+digital data access.
+2
+Does post-deployment 
+data from AIDA systems 
+currently in production 
+indicate potential 
+individuals and groups 
+who may be subject to 
+greater risk of harm?
+Comparing stratified outcomes by population subgroups to analyse 
+variance from the current live environment data may uncover current 
+operational processes that could subject specific groups to greater risk of 
+harm (e.g., the impact of human manual adjustments if more prevalent for 
+specific groups).
+System considerations:
+To arrive at general guiding principles to detect specific harms and benefits that individuals and 
+groups identified to be at risk (F1) could be subjected to is to combine responses and assessments of:
+•	
+Commercial objectives of the system (G5). 
+•	
+Individuals and groups that are considered to be at risk of being systematically disadvantaged by 
+the system (F1).
+•	
+Layering in customer views (where feasible). 
+The impact of these harms and benefits will in turn inform decisions relating to fairness objectives.
+F2
+Have you identified and documented the potential harms and benefits  
+created by the system’s operation that are relevant to the risk of  
+systematically disadvantaging the individuals and groups in F1?
+[This question refers to question A3 in the Phase 1 Fairness Methodology questions]
+No.
+Key considerations
+1
+What are the customers’ 
+views about the benefits 
+or risks of the system? 
+One way to gain an understanding of customers’ views is to run focus 
+groups or customer surveys on the proposed offering that could include 
+their views on cost/benefits. The FSI can highlight if the views differ 
+between groups identified as at risk of disadvantage in F1 and the rest of 
+the population, and use this information as an input when identifying the 
+benefits and harms of the AIDA application.
+2
+What steps were taken to 
+ensure important harms 
+and benefits do not go 
+undetected? Are there 
+potential harms that may 
+have been missed by 
+customer consultation? 
+It is recommended to have a multidisciplinary team, comprising the AIDA 
+system owner, data scientists, business experts, legal, compliance and 
+risk experts, data ethics and responsible AI experts, to provide input on 
+potential harms. This can supplement customers’ views.
+Proposed general guidance (examples italicised)
+Proposed general guidance (examples italicised)
+
+
+===== PAGE 29 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+29
+No.
+Key considerations
+4
+Which are the most 
+important benefits to 
+consider for the groups 
+identified as at risk of 
+disadvantage in F1? Why?
+Checking that the distribution of benefits to at risk groups is comparable to the 
+target population is more relevant for assistive AIDA systems than for punitive 
+ones. Additionally, there may be wider gap in circumstances of at risk groups 
+from the preferred state of being, making it even more important for the 
+benefits of the financial products/services to reach these groups.
+3
+Which are the most 
+important harms to 
+consider for the groups 
+identified as at risk of 
+disadvantage in F1? Why?
+If the AIDA system outcome is assistive (such as assessing if an individual 
+should get automated access to a financial product) then the most 
+important harms to consider usually are whether at risk groups are 
+incorrectly denied assistance more often than others.
+Whereas if the AIDA system outcome is punitive (such as assessing if an 
+individual is fraudulent), then most important harms to consider usually are 
+whether at risk groups incorrectly receive the punitive outcome more often 
+than others. 
+5
+Do the potential harms 
+or benefits impact the 
+groups identified as at 
+risk of disadvantage in F1 
+in other indirect, longer-
+term ways?
+For example, banks and insurers should assess the ability of groups to afford 
+the payment of services over the long term, once selected by the AIDA 
+system.
+6
+What are the opportunity 
+costs to the groups 
+identified as at risk 
+of disadvantage in 
+F1 associated with 
+particular outcomes?
+An example of this would be the opportunity cost of allocating the financial 
+resources to finance the banking or insurance services against other 
+services that may be particularly important for the long-term resilience of 
+groups identified as at risk in F1, (e.g., investment or savings).
+Proposed general guidance (examples italicised)
+
+
+===== PAGE 30 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+30
+F3
+Have you identified and documented the fairness objectives of the system and 
+associated fairness metrics, with respect to the individuals and groups in F1 
+and the harms and benefits in F2?
+[This question refers to question A4 in the Phase 1 Fairness Methodology questions]
+With an understanding of the individuals and groups affected by the system, and the harms and 
+benefits they might experience, FSIs can determine fairness objectives which are appropriate to the 
+context and aligned with internal organisational values. 
+No.
+Key considerations
+Proposed general guidance (examples italicised)
+What are the identified 
+fairness objectives for 
+the system?  
+The fairness objective of AIDA system is use case specific and should be 
+defined by the AIDA system Owner (usually the FSI process business owner). 
+One way fairness objectives can be defined is using a fairness decision 
+tree, focused on specific at risk groups, where each decision point question 
+answered helps to narrow down to the relevant fairness objective, and relevant 
+fairness metric. 
+2
+What are the 
+organisational principles, 
+values, standards (local 
+and global) or guidelines 
+relevant to fairness 
+considerations?
+Refer to the company vision/ mission/ purpose and internal guidelines. 
+Multinational FSIs should consider both global and local standards. A 
+process to start from organisation specific values to principles, including 
+fairness, to measurable considerations is included in the Ethics and 
+Accountability Methodology document.
+1
+Are fairness objectives 
+consistent across similar 
+use cases/decision 
+types (or if not, are the 
+reasons understood and 
+documented)?
+A standard process to determine fairness objectives for each AIDA system 
+across an organisation enables consistency. Comparison of chosen fairness 
+objectives against other similar AIDA systems already deployed can also 
+help to achieve consistency.
+3
+4
+Are the fairness 
+objectives appropriate 
+for the commercial 
+objectives and decision 
+outcomes of the system?
+The fairness objectives of AIDA system are use case specific and can be 
+different for the same AIDA system when used for different purposes.   
+For example, if the same AIDA system used to fast track application 
+acceptance is then used for application rejection, this will change the 
+choice of fairness objective.
+What is the process 
+by which the fairness 
+measure(s) (or metric(s) 
+are selected for the 
+system?
+Adopting a standard, robust assessment process to identify the key important 
+fairness metrics for the use case and decision type the AIDA model is being 
+developed for helps to ensure the most relevant fairness metrics are chosen 
+consistently by the AIDA system owner/developer. An example of a “fairness 
+metrics decision tree” that can be used for this process is illustrated in the use 
+case document. In addition, calculating a consistent set of standard fairness 
+measures to check for any significant imbalances can mitigate the risk that a 
+harm or benefit was missed in an initial analysis. 
+The choice of fairness metrics and thresholds aligned with system’s commercial 
+objectives should be done through upfront selection of metrics (before the 
+model is developed) instead of selection post assessment, when there is a 
+danger that the choice of measures ex post is selected based on showing the 
+least unfairness. 
+5
+
+
+===== PAGE 31 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+31
+No.
+Key considerations
+How is privacy, confidentiality 
+and compliance ensured 
+while using personal data to 
+determine membership to 
+groups identified as at risk of 
+disadvantage in F1?
+2
+For each group at risk 
+of being systematically 
+disadvantaged (F1), what 
+data are used to determine 
+membership to those groups?
+1
+Is there adequate representation 
+of relevant groups in the 
+target population group of the 
+service and product, especially 
+those identified as at risk of 
+disadvantage in F1?
+3
+As FSIs look to leverage and share their sensitive data assets for 
+maximum economic return, ensuring privacy, confidentiality and 
+compliance is a must. Emerging Privacy Enabling Technologies 
+that can be used include differential privacy, de-identification, data 
+anonymisation and data masking, homomorphic encryption, federated 
+learning, secure multiparty computation synthetic data, transfer 
+learning and others.
+If personal data is used, the FSI should conduct a Data Protection 
+Impact Assessment, and understand and manage the risk where 
+individuals and groups might be deprived of exercising control over 
+their personal data. Risks may vary in probability and severity. The 
+assessment should provide the measures envisaged to address the 
+risks, including safeguards, security measures and mechanisms to 
+ensure the protection of personal data and to demonstrate compliance 
+with applicable data protection laws and regulations.
+Check availability, permissibility and justifiability of data (features) to 
+identify groups at potential risk of disadvantage. Validate credibility 
+and the context of the source(s) of information used to identify 
+membership to these groups.
+Due to data/population characteristics or sampling procedures, it may 
+be observed that different groups may be under- or overrepresented 
+in a dataset. For certain population subgroups (within the target 
+group), inadequate representation in training data may cause higher 
+proportion of erroneous outcomes, as model may not learn their 
+characteristics adequately.
+Proposed general guidance (examples italicised)
+Data is an input to an AIDA model, and the context on how the data was collected and prepared 
+can have a significant impact on the level of bias in the data. This could cause systems to learn 
+and replicate or amplify such biases within the system, resulting in unfair outcomes. FSIs should 
+have a strategy or set of standard checks to avoid creating or reinforcing unfair bias in the AIDA 
+systems due to the use of input data. It is assumed FSIs are following standard data minimisation and 
+proportionality principles when collecting and processing the data to be used in AIDA systems in 
+order to protect the privacy of individuals.
+3.4     Step 2: Prepare Input Data
+3.4.1     Part B(i): Examine Data for Bias
+F4
+Have you documented key errors, biases or properties present in the data used 
+by the system that may impact the system’s fairness?
+[This question refers to question B1 in the Phase 1 Fairness Methodology questions]
+What are the reasons for 
+the choice of metrics, 
+with respect to the 
+overall commercial and 
+fairness objectives?
+Ensure that the fairness metrics chosen align with the overall commercial and 
+fairness objectives by having a clear understanding of what “fairness” means 
+with respect to the use case. Mathematical formulation of a fairness metric is 
+guided by the choice of fairness objectives in A4. (Refer to appendix 8.1 for 
+commonly used fairness metrics to measure identified fairness objectives)
+6
+
+
+===== PAGE 32 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+32
+7
+Are there potential sources 
+of historic decision bias 
+reflected in the data?
+Historic bias can be identified by analysing personal attributes in 
+collected data, which may correspond to groups of individuals at risk of 
+disadvantage for known historic prejudices. 
+For instance, women have historically received lower salaries than men in 
+the same jobs and accounted for a greater share of part time jobs. This 
+can adversely affect FSI’s views on the future earnings trajectory of this 
+group and impact the eligibility of women for certain financial products in 
+both banking and insurance.
+6
+Could data pre-processing 
+techniques introduce 
+additional bias into the input 
+data?
+Pre-processing of input data (such as missing value treatment, data 
+cleansing, outlier treatment, encoding, scaling, and data transformation 
+for unstructured data, etc.) may involve decisions that impact system 
+outcomes. 
+For example, if an at risk group has more missing data than other 
+groups, then imputation of that data may lead the system to 
+disadvantage that group. 
+5
+Are there measurable proxies 
+for unavailable or unmeasurable 
+information being used in the 
+data? If so, is the effectiveness 
+of proxy estimation similar 
+across different groups of the 
+population?
+The measurable proxies used in place of non-measurable properties 
+are imperfect and may introduce fairness risks when they are less 
+suitable for some groups compared to others.  
+4
+Are there potential sources 
+of systematic measurement 
+errors in the data?  
+In general, these errors are consistent and are predictable with 
+regard to the true value, due to inherent systematic inaccuracies in 
+measurement of an attribute.
+
+
+===== PAGE 33 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+33
+When identified, potential data biases should be considered and addressed where relevant prior to 
+inputting the data into AIDA system decisions. This should minimise their effects and mitigate the 
+resultant disadvantageous impacts to affected individuals and groups.
+F5
+Have you documented how are these impacts being mitigated?
+[This question refers to question B2 in the Phase 1 Fairness Methodology questions]
+No.
+Key considerations
+How is measurement 
+bias mitigated?
+Potential methods for reducing measurement bias are to:
+•	
+Obtain another, more reliable source of data. 
+•	
+Improve quality of instruments/sources of data collection in light of 
+related best-practices.
+•	
+Train people who collect/support data collection or generate labels/
+annotations. This can be done by 1) Introducing interventions at the 
+moment of interaction between humans and AIDA systems (i.e., when 
+creating a model, as opposed to documenting ex-post) and 2) creating 
+decision hygiene checklists that create new ways of preventing AIDAs 
+from being affected from human led biases.
+2
+How is representation bias 
+mitigated?
+Methods to improve representation include collecting more data, 
+particularly that of underrepresented groups, and statistical techniques 
+to balance representation, such as data reweighing, up-sampling or 
+down-sampling. Refer appendix 8.5 for more information on mitigating 
+representation bias
+1
+How is proxy bias 
+mitigated?
+The most common approach to mitigate proxy bias is to change to a more 
+relevant proxy, where the new proxy feature comes with an evidence based 
+justification of causality, rather than potentially blunt substitution where 
+features have a mere association with intended property to be measured.
+3
+4
+How is pre-processing 
+bias mitigated?
+Bias due to pre-processing such as missing value imputations or outlier 
+treatment or sampling, may be mitigated through first understanding the 
+reason behind anomalies and fixing the root causes. Another potential 
+way to mitigate is augmentation or guidance from external data to make 
+informed data treatments.
+5
+How is historic bias 
+mitigated?
+Some methods to mitigate historic bias are gathering more appropriate 
+(potentially recent) data and adjusting the selection criteria for the 
+disadvantaged groups, building synthetic datasets that remove existing 
+data bias, and testing AIDA model biases.
+Proposed general guidance (examples italicised)
+
+
+===== PAGE 34 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+34
+By first listing out the personal attributes used, either towards the AIDA system outcomes or in the 
+fairness assessment, FSIs can systematically demonstrate the related considerations and justify their 
+inclusion. Potential personal attributes that could be beneficial to include but are not present in 
+the data are also considered to guide potential future action. (refer section 2.1.4 for discussion on 
+identification of personal attributes)
+F6
+Have you determined and documented personal attributes that are used as 
+part of the operation or fairness assessment of the system?
+[This question refers to question D1 in the Phase 1 Fairness Methodology questions]
+3.4.2    Part D: Justify the Use of Personal Attributes
+Which personal attributes are 
+present in the data collected?
+1
+Which personal attributes are being used 
+by the AIDA system for decision making 
+(Group 2 in section 2.1.4)? Which of these 
+are being monitored?
+2
+Which personal attributes are excluded 
+from decision making (Group 1 in section 
+2.1.4)? Which of these are being used for 
+fairness assessment or monitored?
+3
+Which additional personal attributes 
+not available in the data are likely to 
+be beneficial for use, in either decision 
+making or fairness assessment?
+5
+What options are there to collect and use 
+these additional personal attributes within 
+the constraints of legislation, regulation, 
+societal acceptance, market practice and 
+organisational values?
+6
+Did you consider ways to develop the 
+AIDA system or train the model without or 
+with minimal use of potentially sensitive 
+or personal data?
+7
+Are there non-personal attributes in the 
+data, which can act as proxy to “personal 
+attributes excluded from decision-
+making”? Have those been addressed or 
+excluded from decision making?
+4
+Key considerations
+Following the list of considerations can help in 
+schematic identification of personal attributes,  
+as described in section 2.1.4.:
+Proposed general guidance (examples italicised)
+*Currently there are no laws in Singapore that prohbit the  
+use of data attributes for decision making for FSIs.  
+Relevant legislations for identifying personal data is PDPA. 
+ 
+**Personal Attribute Proxies attributes with high association 
+with personal attributes, in collected attributes
+Multi-disciplinary 
+group required
+Collected  
+Attributes Personal Attribute 
+Proxies**
+Personal  
+Attributes
+(defined by FSI,  
+in context 
+of the use case)
+Considerations 
+(non-exhaustive)
+Laws/Regulations*
+Organisational Values
+Socio-Cultural 
+Acceptance/Market 
+Practice
+Group 1: Personal Attributes 
+not to be used in decision making
+Group 2: Personal Attributes 
+justified for use decision making
+Proxies to Group 1:  
+Treated as part of Group 1
+Proxies to Group 2:  
+Treated as part of Group 2
+
+
+===== PAGE 35 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+35
+No.
+Key considerations
+Does the definition 
+of personal attributes 
+vary by use-cases and/
+or industry context 
+and/or region under 
+consideration etc.?
+The definition of personal attributes may change depending on the use case, 
+as an attribute considered personal in one use case may not be considered so 
+in other. Regulations, laws and societal opinions may change with the region 
+under consideration and so does the definition of personal attributes. 
+For example, credit scoring in the US is governed by the Equal Credit 
+Opportunity Act (ECOA), however in Singapore there has not been an  
+equivalent piece of legislation.
+2
+Who are the key 
+stakeholders involved 
+in determining personal 
+attributes?
+The process to determine personal attributes should involve multidisciplinary 
+stakeholders, to ensure fitness of design from diverse perspectives. These 
+should include AIDA system owner, data scientists, business experts, legal and 
+risk compliance professionals and data ethics and Responsible AI experts.
+3
+Is there a standard 
+process for identification 
+of personal/non-personal 
+attributes (e.g., in 
+accordance with all law, 
+case law and regulations)?
+Having a standard, robust process for identifying personal attributes 
+is important to ensure organisation-wide consistency, considering the 
+following in the process:
+•       Local and global laws and regulations
+•       Socio-cultural context
+•       Market practice
+•       Organisational values
+1
+Proposed general guidance (examples italicised)
+F7
+Does the process of identifying personal attributes take into account 
+ethical objectives of the system, and the people identified as being at risk of 
+disadvantage?
+[This question refers to question D2 in the Phase 1 Fairness Methodology questions]
+F8
+Have you assessed and documented for every personal attribute and potential 
+proxy for a personal attribute, why is its inclusion justified given the system 
+objectives, the data, and the quantified performance and fairness measures?
+[This question refers to question D3 in the Phase 1 Fairness Methodology questions]
+FSIs should have in place internal guidelines on the process of identifying personal attributes. The 
+guidelines should be applicable across AIDA systems, but customisable to suit the specific use case 
+context. Referencing these guidelines and demonstrating how they were customised will provide 
+sound justification for the listed personal attributes and assurance that a comprehensive identification 
+process was conducted. The “ethical objectives” referred to in the question relate to those beyond 
+regulatory requirements, such as social, cultural, and organisational values.
+Decisions around which personal attributes to include in the AIDA driven decision process, and 
+which to assess for fairness, should be justified with demonstration that the decisions are reasonable. 
+Explicit attention should be paid to proxy attributes to provide assurance that unintended proxy 
+discrimination effects are minimised.
+
+
+===== PAGE 36 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+36
+No.
+Key considerations
+What are the justifications 
+for the personal attributes 
+being used in decision 
+making, but NOT being 
+used for the fairness 
+assessment/monitoring?
+Clear rationale should be given when using personal attributes in decision 
+making, and where these attributes are not used in monitoring for fairness. 
+2
+For non-personal 
+attributes, are there 
+statistical dependencies 
+with personal attributes 
+that cause them to act 
+as material proxies for 
+personal attributes? 
+If so, how are they 
+managed?
+As data volumes and the number of potential proxies grows, FSIs should 
+put in place internal standards and guidelines around the identification of 
+material proxies. Non-personal attributes could potentially act as proxies for 
+personal attributes, including for personal data, where statistical dependencies 
+exist, meeting an association criterion as defined by the FSIs. Therefore, the 
+proxies could represent personal attributes, including personal data with all 
+risks, regulatory requirements and processing obligations. The association 
+criterion is an association measure and threshold over which the association is 
+strong enough for the non-personal attribute to be considered a proxy for the 
+associated personal attribute. This measure varies by use case and by FSI.
+3
+What are the justifications 
+for inclusion, for the 
+personal attributes being 
+used in decision-making?
+Questions to ask include:
+•       Is the inclusion of the data required to meet a specified objective or 
+basic operational aspects of the system?
+•       How does the inclusion impact commercial and fairness objectives? 
+•       Why is the trade-off between them acceptable?
+•       What specific facts about local context and history support the 
+inclusion?
+For example, most financial products are not allowed to be offered to 
+minors. Therefore, information on age is required as part of business rules to 
+determine the AIDA system’s decision.
+Inclusion of personal data, as defined by regulation, requires a higher 
+standard of justification to demonstrate the legitimate interest in including 
+it in the AIDA system compared to non-personal data.  
+1
+Proposed general guidance (examples italicised)
+3.5     Step 3: Build and Validate
+3.5.1    Part B(ii): Examine Models
+G11
+Is the composition of the AIDA System defined? Is it clear how each 
+component of the system-AIDA models, as well as business rules and human 
+judgement, if relevant - are used to achieve its commercial objectives? Are the 
+performance estimates and the uncertainties of those estimates documented? 
+[This question refers to questions B3, B4 and B5 in the Phase 1 Fairness Methodology questions]
+The AIDA system often includes more than mathematical models and data, typically incorporating 
+business rules and human judgement. The interactions between these components and their 
+influences on the final AIDA system decisions should be clearly understood and outlined to enable 
+effective performance and fairness checks for system evaluation.
+Assess Components
+
+
+===== PAGE 37 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+37
+No.
+Key considerations
+How do these 
+components interact?
+The different components of an AIDA system, when arranged in a specific 
+pattern/process flow, interact with each other to serve the business intent.  
+An example of the process flow of an AIDA system is Model 1 → human labelling  
+→ business rules #1 → Model 2 → business rules #2 → Model 3 → Decision
+2
+What are the separate 
+components of the end-
+to-end AIDA system?
+An AIDA system is composed of different components working together to 
+achieve a commercial objective. The components of an end-to-end AIDA 
+system may include models, upstream business rules (such as eligibility 
+criteria), downstream business rules, human labelling and  
+manual verification.
+1
+What is the impact of 
+each component on the 
+resulting AIDA system 
+decision?
+Each component of the AIDA system has a specific role to play and may 
+impact the decision in different ways. For example, the upstream business 
+rules may filter out inputs into the system, constraining the input according 
+to a defined criterion. The system output is a cumulative output of all the 
+components in the system and disproportionate distribution of errors in 
+any component can impact the end outcome.
+3
+Proposed general guidance (examples italicised)
+An AIDA system could consist of multiple models. Each model should be evaluated in its own right, 
+in terms of the performance metrics against target levels and the associated uncertainties. This 
+allows the FSI to assess each model’s relative contribution towards the achievement of commercial 
+objectives by the overall AIDA system.
+No.
+Key considerations
+How are uncertainties 
+in performance metric 
+estimates measured 
+and what the reasons 
+for the choice of this 
+uncertainty measure?
+AIDA models learn from historical data and generate predictions for unseen 
+data, with an associated confidence level for the prediction to hold true or 
+that the prediction may be different for other, similar customers. There are 
+methods such as Bootstrap CI and Bayesian CI that can be used to compute 
+uncertainties for performance as well as fairness metrics. Additionally, 
+acceptable methods should be documented in the standard AIDA system 
+development documentation by FSIs. The choice of these method depends 
+on use case (classification/regression), model type, and the data on which 
+the metrics is calculated, among other factors. Refer appendix 8.8 for 
+further details on uncertainty methods.
+2
+What performance metrics 
+are chosen to evaluate 
+each model in the AIDA 
+system and what are the 
+reasons for the choice of 
+metrics?
+Ascertaining how well a model is going to perform on unseen data is 
+often quantified through performance metrics. The choice of metrics 
+influences how the performance of a model is measured and contrasted. 
+Choosing the appropriate metric is based on the commercial objective 
+and the nature of data available for training. 
+1
+What are the performance 
+metric estimates, and 
+the uncertainty of these 
+estimates, for those at risk of 
+harm identified in F1 relative 
+to the target population 
+groups of the product?
+Models may have the same aggregate performance across a validation 
+set but have very different performance for at risk individuals or groups. 
+Calculate values of chosen metrics and associated uncertainties, 
+according to documented methodology, particularly for at risk groups 
+relative to other groups.
+3
+Proposed general guidance (examples italicised)
+Assess Models
+
+
+===== PAGE 38 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+38
+For a meaningful fairness assessment, it is vital to include all AIDA models as well as other non-AIDA 
+components (such as business rules, override conditions and others) which lead to the final decision 
+outcomes from the system. The considerations are similar to the table above, but with the focus now 
+on the overall AIDA system. The responses to this question provide insights into the ability of the 
+overall AIDA system to attain the commercial objectives stated in A1.
+No.
+Key considerations
+How are the 
+uncertainties in 
+performance metric 
+estimates measured?
+Acceptable methods should be documented in the standard AIDA System 
+development documentation by FSIs.
+2
+What performance metrics 
+are chosen to evaluate the 
+AIDA system and what are 
+the reasons for the choice 
+of metrics?
+In cases when the AIDA system comprises of only one model, the choice 
+of performance metrics will be that chosen for the model. However, when 
+there is more than one component model in the system, with different 
+performance objectives, then to measure the overall system performance 
+certain component model metrics may be prioritised over other ones used 
+by remaining component models. Clear justifications need to be provided 
+on why a certain performance metric was chosen compared to other ones 
+which other component models may be using. The chosen metric should 
+be carefully aligned with the defined commercial objective.
+1
+Proposed general guidance (examples italicised)
+How are uncertainties 
+in the AIDA system 
+arising from non-AIDA 
+components addressed 
+and minimised?
+The non-AIDA components of an AIDA system linked to business rules, 
+human judgement or overrides may have a level of uncertainty and should 
+be assessed. The process for applying business rules and human judgement 
+used in an AIDA system should be clearly documented (including guidance) 
+and understood by the users of the system to reduce user specific variation in 
+outcomes. 
+4
+Are there aspects of the 
+system’s commercial 
+objectives that these 
+performance measures fail 
+to capture, and could this 
+discrepancy hide fairness 
+risks?
+Due to various data or design limitations, there may be design decisions/
+assumptions made which may not fully translate to the intended 
+commercial objective for the use case. These discrepancies can lie in 
+functional or technical design of the system. 
+For instance, if the commercial objective is to maximise profits, but due to 
+insufficient information on cost to reach out to customers the system aims to 
+maximise sales instead. Maximising sales will not always mean maximising 
+profits, as the cost may be unevenly distributed across population groups 
+and may be significantly different for certain target groups. Such situation 
+may create systematic disadvantage for groups with low sales but high 
+potential profits.
+3
+3.5.2    Part C: Measure Disadvantage
+F9
+Have you assessed and documented the quantitative estimates of the system’s 
+performance against its fairness objectives and the uncertainties in those 
+estimates, assessed over the individuals and groups in F1 and the potential 
+harms and benefits in F2?
+[This question refers to question C1 in the Phase 1 Fairness Methodology questions]
+Assess Systems
+
+
+===== PAGE 39 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+39
+No.
+Key considerations
+The fairness objectives identified in A4 would be translated into quantifiable metrics to enable FSIs 
+to assess the level of fairness achieved by their AIDA systems, where fairness is defined according 
+to G5 (commercial objectives of a system), F1 (groups identified as at risk of disadvantage) and F2 
+(the harms and benefits experienced by groups at risk of disadvantage). These metrics should be 
+evaluated against target levels that are defined prior to the development of the AIDA system and 
+aligned with internal organisational principles and guidelines on fairness.
+Proposed general guidance (examples italicised)
+How is the system’s 
+fairness being 
+measured?      
+Common ways for a system’s fairness could be measured are in terms of:
+•	
+Number of unfair events (volume).
+•	
+Value (monetary value impact to customers) of unfair events.
+For instance, if the monetary impacts of benefits or harms differ across 
+different population groups, simply measuring incident rates may not be 
+sufficient and a measure of value for the harm/benefit may need to be 
+estimated for the different population groups to get to a measurement of 
+system fairness.
+Once it is determined how fairness should be measured, it is then possible 
+to define fairness measures by comparing these rates at which benefit- or 
+harm-causing circumstances occur in the system’s operation within cohorts 
+for individual fairness, and across cohorts for group fairness.
+How to determine an acceptable level (threshold) of difference in rates 
+between groups should be in an approved standard process for selecting 
+and assessing fairness metrics.
+1
+How are the 
+uncertainties in fairness 
+metric estimates 
+measured?  
+Computing uncertainty in the fairness measures will depend on the chosen 
+measure, and whether the measure is being evaluated on training data or 
+deployment cohort data. There are several widely applicable and commonly 
+used ways of quantifying uncertainty in estimates, such as bootstrap 
+confidence intervals and Bayesian credible intervals for estimating uncertainty 
+of the fairness measures when evaluating a model’s fairness. Refer appendix 
+8.8 for more information on measuring uncertainties.
+2
+Do the fairness metrics 
+chosen satisfy group 
+fairness or individual 
+fairness or both? 
+In addition to satisfying broader fairness objectives at group-level, it is also 
+important if possible to check for individual fairness – i.e., if similar customers 
+have the same decision outcome. Ways that this can be done include through 
+human-review and through local transparency techniques. Ideally FSIs should 
+look for ways to assess both (i.e., compare rates at which benefit or harm 
+causing circumstances occur in the system’s operation within cohorts for 
+individual fairness, and across cohorts for group fairness).
+3
+
+
+===== PAGE 40 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+40
+FSI should aim to fully achieve both commercial and fairness objectives and this is often feasible. 
+However, in some circumstances the objectives may not be fully achieved. The appropriate level 
+of trade-off between competing objectives will rest on a combination of commercial and fairness 
+objectives, internal organisational values, and external factors such as legislation or regulation, 
+societal expectations, and market practice, but also the legitimate interests of individuals and group 
+of individuals including their fundamental rights. Explicitly laying out the trade-off options will allow 
+FSIs to objectively and transparently arrive at an optimal position. A decision on achievable trade-
+off should be explained and recorded. The trade-offs should be based on a responsible, rational and 
+methodological approach within the state of the art. 
+F10
+Have you assessed and documented the achievable trade-offs between the 
+system’s fairness objectives and its commercial objectives? 
+[This question refers to question C2 in the Phase 1 Fairness Methodology questions]
+What mitigation/corrective 
+procedures are implemented 
+to improve a system’s 
+measures of fairness for 
+the identified potential 
+disadvantages?
+1
+To improve observed (un)fairness of the system, algorithmic in-
+processing fairness constraints may be implemented in training or 
+in post-hoc corrective procedures (such as calibration) to improve 
+fairness objectives. 
+How is the trade-off analysis 
+carried out and what are its 
+results?   
+2
+The impact of improving a fairness metric outcome, the quantitative 
+measure of the system’s fairness objective, should be assessed against 
+resulting change in the systems commercial metric outcomes, the 
+quantitative measure of the system’s commercial objectives. This can 
+be done by comparing the changes in these identified metrics as 
+selection assumptions or procdures of the AIDA system vary (such as 
+decision theshold, choise of models, bias treatments) to select and an 
+optimum balancing point.
+What aspects of the AIDA 
+design or operations could 
+expose potential trade-offs?
+4
+Identify aspects/design assumptions in the system which can allow 
+possible options for potential trade-offs between various system 
+objectives such as decision threshold selection, choice of model 
+algorithm, loss function, hyperparameters, filtering rules, etc.
+Which factors are considered 
+in deciding the acceptable 
+trade-off options?
+3
+Some of the factors that could be considered are: 
+•	
+Business value expectations from the use case.
+•	
+The organisation’s AIDA system performance standards.
+•	
+Fairness metric acceptable deviation thresholds from similar  
+use-cases or industry standards (if any).
+An internal standard process for determining trade-offs for consistency 
+across the organisation is recommended. Note that inescapable trade-
+offs may also exist and reducing one type of systematic disadvantage 
+may increase another type.
+No.
+Key considerations
+Proposed general guidance (examples italicised)
+
+
+===== PAGE 41 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+41
+What are the minimum 
+acceptable standards for 
+commercial and fairness 
+metrics that form the 
+boundaries of trade-off 
+options?
+6
+Internal standards/guidelines for trade-off decisions between fairness 
+and performance are recommended. These standards can include 
+selecting decision frontiers that enable simultaneous achievement 
+reasonable fairness and performance objectives.
+Are there ways to improve 
+trade-off positions for the 
+system?
+7
+Trade-offs can often be improved (in the sense of having to make fewer 
+compromises between objectives) with more accurate predictions, so 
+any approaches to improving predictive accuracy will be beneficial 
+(such as collecting more data, improving data quality, ensembled 
+classifiers and others). 
+What aspects of the AIDA 
+design or operations were not 
+analysed, and why?  
+Could these affect the 
+potential trade-offs?
+5
+In the various factors to take into consideration when determining a 
+trade-off, as identified above, FSIs should indicate operating parameters 
+and design choices which were not analysed as these may relate to partial 
+coverage of target population group, product eligibility criteria which 
+excludes some segments of target group, etc.; and which may cause a 
+differential proportion of benefit or harm across cohorts.
+No.
+Key considerations
+Proposed general guidance (examples italicised)
+F11
+Have you justified (vs alternative tradeoffs) and documented the final fairness 
+outcome for the AIDA System?
+[This question refers to question C3 in the Phase 1 Fairness Methodology questions]
+Following selection of the optimal, trade-off position on which to operate, the FSI should justify 
+this choice by demonstrating that it provides the most appropriate trade-off between competing 
+objectives for the use case under consideration.
+No.
+Key considerations
+What are the justifications 
+for choice of optimal,  
+trade-off position, 
+relative to other trade-off 
+alternatives?
+Justifying the choice of fairness metrics and thresholds against system 
+performance trade-offs depend on the relative importance of different 
+objectives and priorities, which the system is looking to address.
+One example method is choosing from a “Pareto Frontier”, a set of non-
+dominated solutions, forming an optimal “efficient frontier” for the trade-off 
+between accuracy and fairness (similar to the efficient frontier in portfolio 
+management which quantifies the trade-off between risks and returns). 
+FSIs should determine the optimal point on the frontier with respect to the 
+relative importance between accuracy and fairness. More detail about this 
+method can be found in the book ‘The Ethical Algorithm’ by Michael Kearns 
+and Aaron Roth, page 81.
+1
+Proposed general guidance (examples italicised)
+
+
+===== PAGE 42 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+42
+Even for an AIDA system that performs well at deployment, anomalies can arise during production 
+that can potentially cause unanticipated harms to individuals or groups. Additionally, for any system 
+to be fair, it first should be performant. Therefore, it is critical to define appropriate KPIs to monitor 
+general performance, as well as relevant measures of fairness and other potential information sources 
+that can help detect unintended harms early on. 
+G12
+Is the system’s monitoring and review regime designed to detect  
+abnormal operation?
+[This question refers to question E1 in the Phase 1 Fairness Methodology questions]
+3.6.1    Part E: Examine System Monitoring and Review
+3.6     Deploy and Monitor 
+No.
+Key considerations
+How, by whom, and how frequently 
+are the system’s overall design, 
+objectives, performance, impact 
+and fairness reviewed?
+Accountability for the monitoring and review process, including 
+fairness aspects, along with details on how this is to be carried out, 
+should be clearly stated prior to deployment.   
+1
+What KPIs or metrics are tracked 
+post system deployment, to 
+monitor the performance and 
+fairness of the system? 
+Examples of KPIs include: 
+•	
+System Performance KPI: precision at a population level.
+•	
+Fairness KPI: precision calculated for at risk population groups 
+and compared to precision at the population level
+2
+How does the FSI aim to detect 
+significant movements in key 
+performance and fairness metrics? 
+Are there guidelines that defined 
+what constitutes a significant 
+movement?
+It is recommended that breach thresholds to flag significant 
+movements in chosen KPIs (including fairness KPIs) are defined.
+3
+Are there mechanisms to track how 
+often manual decision override 
+feature is used by FSI decision 
+makers (e.g., a decision maker has 
+the final authority to use/override 
+decision predicted by the system)?  
+Is it being used more for certain 
+population groups that for others?
+Manual overrides could result in similar applicants being treated 
+differently. It is recommended that clear override guidelines 
+are defined, and diligent records are kept to help ensure the 
+objectiveness of such decisions. Post-analysis of overrides pooled 
+by at risk population groups can help detect unintended harms 
+due to human bias, with agreed thresholds over which action is 
+taken. A random selection of the decisions impacted by non-AIDA 
+components may be validated by an independent party (which can 
+be internal to FSI).
+4
+Does the FSI track and analyse 
+customer redressals/complaints 
+and satisfaction with resolution 
+across at risk groups?
+Information should be tracked on challenged decisions, where 
+redress was sought, customer complaints and satisfaction with 
+resolutions. This information can aid in conducting pooled reviews 
+of at risk population groups, to identify unintended consequences 
+of the AIDA system’s operations.
+5
+Proposed general guidance (examples italicised)
+
+
+===== PAGE 43 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+43
+Where a review indicates that unintended harms are being created, FSIs should take steps to rectify 
+the impact from these harms. Action plans should also be put in place to prevent repetition of these 
+harms. This could include amendments to the model, withdrawing the model altogether, better 
+enabling users to make informed decisions using the AIDA system or even exploring if customers 
+themselves can contribute towards improvement of the system.
+G13
+Is there fallback and/or mitigation plans in place in case of triggers from the 
+system’s monitoring and review regime?
+[This question refers to question E3 in the Phase 1 Fairness Methodology questions]
+No.
+Key considerations
+Do the guidelines or standards 
+issued by FSIs identify when 
+action is required on an AIDA 
+system, and what that action 
+should be, include fairness 
+considerations?
+Guidelines that exist on triggers for action on current AIDA system 
+(such as retrain or retire the AIDA model in operation) should 
+include specific fairness related triggers. For example, when 
+a fairness threshold is within x% of being breached, a detailed 
+assessment should be undertaken. Tighter thresholds may be 
+preferred for more high impact use cases (as defined by the FSI).
+1
+Is adequate training designed for, 
+and provided to, users of  
+the AIDA system for decision 
+support, including potential 
+unfairness scenarios concerning  
+at risk groups?
+Training should be delivered to AIDA system users, which 
+could cover topics including understanding of system process, 
+confidence level and uncertainties of outcomes, override provision 
+and potential likely unfairness scenarios.
+2
+What mechanisms are in place to 
+enable ongoing improvement of 
+the quality and coverage of data 
+inputs and AIDA models to reduce 
+identified or anticipated unfairness 
+scenarios?
+Examples of mechanisms to enable ongoing improvement of data 
+quality and coverage include incentives to brokers and distributors 
+for providing good quality data, sourcing supplementary data, and 
+mechanisms for customers to validate information being used to 
+make decisions and trigger updates if incorrect.
+3
+Are there mechanisms in place to 
+enable algorithmic interventions 
+for improving fairness of 
+outcomes?
+Depending on the source of bias, there are relevant algorithmic 
+interventions at the pre-processing, in-processing and post 
+processing stages to improve fairness of the AIDA system.  
+Please refer to appendix section 8.5 for more information.
+4
+Proposed general guidance (examples italicised)
+
+
+===== PAGE 44 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+44
+No.
+Key considerations
+Are development assumptions/
+design decisions validated over 
+time? Do the changes have any 
+implications for at risk groups?
+It is recommended AIDA system documentation detailing 
+components, design assumptions and decision process flow of 
+the system is referenced as part of monitoring review, to assess 
+process on the ground against the original intended flow and 
+highlight if changes pose impacts for at risk groups.
+1
+Are the system’s fitness-for-
+purpose, potential harm(s) and 
+fairness objectives reassessed 
+as new commercial objectives 
+or contexts of the applications 
+emerge?
+An example from the banking sector of a new commercial objective 
+that should trigger a reassessment of fairness objectives would be:
+A decision is made to start using an existing model that currently 
+only auto approves loans to auto decline loans.
+2
+Is the choice of personal attributes 
+and associated justifications for 
+use revalidated overtime? 
+It is recommended AIDA system documentation detailing personal 
+attributes used for decision making, along with justification, as well 
+as those excluded (as per part D of Phase 1 Fairness Methodology) 
+is referenced as part of monitoring review, when a defined trigger 
+for revalidation is met. 
+3
+How are potential changes to 
+data or characteristics of the 
+target population or relationship 
+between input factors and labels 
+to be predicted being monitored, 
+particularly for at risk groups 
+(drift bias)?
+To detect drift bias, usual monitoring of statistical properties of 
+data and the model’s predictions, should also be run specifically 
+on at risk groups to make sure significant changes for these 
+groups are not missed. In addition, other relevant macroeconomic 
+or regulatory trends should be monitored, for example, has anti-
+discrimination regulatory requirements, legislation norms or case 
+law surrounding a financial product powered by the AIDA system       
+changed since development?
+4
+Over time, business and fairness objectives of the FSI may shift, new model design concepts could 
+emerge, and the legislative, regulatory, social, market or organisational context could change. FSIs 
+should ensure that the monitoring and review process is designed to periodically reassess alignment 
+between an AIDA system’s impacts and its fairness objectives, in the face of this dynamic landscape. 
+F12
+Does the system’s monitoring and review regime ensure that the system’s 
+impacts are aligned with its commercial and fairness objectives (G5 and F3)?
+[This question refers to question E2 in the Phase 1 Fairness Methodology questions]
+In scenarios where the 
+performance /fairness measures 
+to be monitored cannot be 
+calculated in short term, are there 
+other measures available which 
+can be measured in the short term 
+to aid performance monitoring?  
+An example of this scenario in life insurance, as the measure of 
+claims cannot be calculated in the short term. As a result, the 
+health status of a policyholder, measured by a specific medical 
+condition diagnoses could be used as an indicator of mortality risk.   
+5
+Proposed general guidance (examples italicised)
+
+
+===== PAGE 45 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+45
+Guidance on Scaling and  
+Embedding the Fairness 
+Methodology across the  
+FSI Organisation 
+04
+To put the fairness assessment discussed above to practice, FSIs should look to integrate the 
+assessment into their existing risk management, model governance and model development lifecycle 
+processes. This section aims to provide guidance to FSIs for potential ways to incorporate fairness 
+within their existing AIDA system best practices.
+FSIs typically have digital and data governance frameworks, processes and guidelines already in 
+place. FSIs are encouraged to calibrate those for FEAT assessment based on their own discretion 
+taking into consideration their existing frameworks, materiality of AIDA systems and cost of FEAT 
+assessment and potential mitigation.
+FSIs may leverage those existing frameworks to “risk tier” the AIDA system for the FEAT fairness 
+assessment. If using an existing framework, factors specific to assessing fairness risk may need to 
+be added or upweighted. There is guidance in the Veritas Document 3 FEAT Principles Assessment 
+Methodology section 3.2.2. on key factors typically used by FSIs to risk tier AIDA systems, which 
+include:
+The extent of the fairness assessment described in this Fairness Methodology should be customized 
+to be commensurate to the fairness risk posed by the AIDA system in question. This can be done in 
+two steps. First, determining the risk level of the AIDA system with respect to fairness; and second, 
+using this risk level to determine whether a fairness assessment should be carried out and, if so, the 
+appropriate depth of the assessment.
+4.1    Customising Depth of Fairness Assessment  
+          in line with AIDA System Risk 
+4.1.1  Determining the Fairness Risk Level  of the AIDA System
+•	
+Extent of automation in the AIDA driven decision making process
+•	
+Complexity of the AIDA model
+•	
+Severity and probability of impact on different stakeholders, including affected 
+individuals
+•	
+Monetary and financial impact
+•	
+Regulatory impact
+•	
+Reputational risk
+•	
+Use of personal data
+
+
+===== PAGE 46 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+46
+Bullet point 3 above, and specifically the impact on affected individuals, should be the most 
+important factor when determining the fairness risk of an AIDA system. Determining the severity 
+and probability of impact on affected individuals. can be informed by the below (some of which are 
+outcomes of questions F1-F2): 
+•	
+The probability and severity of potential harms to these individuals (e.g., customers)
+•	
+Options for recourse 
+•	
+The number and type of individuals who could be affected by system outcomes
+◦ 	 This includes assessing the potential for the system to become an industry 
+standard and used by multiple players (in particular when co-developing the 
+AIDA system with third parties; for example, global tech or system providers, 
+regulators and industries association/consortium). Use by multiple players will 
+increase the number and type of individuals who could be impacted
+•	
+Extent of analysis and level of documentation:
+◦  	For higher risk systems, the assessment may require more extensive analysis and 
+more thorough responses to the questions in the Fairness Methodology, including 
+detailed justification for the choice of fairness metrics, methods of measurement, 
+and included attributes.
+◦  	For systems that may need to include material human intervention, documentation 
+should include training materials that support consistency in human decision 
+making.
+◦  	For lower risk systems, it may be sufficient to provide short summary answers to 
+some or all of the assessment questions.
+In line with a risk based approach, FSIs are encouraged to customise the depth of the Fairness 
+Methodology to be commensurate with the risk level of the AIDA system under consideration. Such 
+customisation could relate to the assessment process itself, the level of detail of the assessment, or 
+to the parties involved. FSIs should look to align customisation with their existing practices to work 
+towards firm-wide consistency. This section is similar to section 3.2.3 in the central document, but 
+focuses on customisations for fairness assessment specifically.  
+Dimensions for customisation of the Fairness Methodology include:
+4.1.2  Determining the Application of the Fairness Methodology,           
+          Based on the Risk Level of the AIDA System
+
+
+===== PAGE 47 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+47
+•	
+Balancing commercial and fairness objectives:
+◦   Higher risk systems may call for greater efforts towards upholding fairness, at the 
+expense of commercial objectives.
+◦   In such situations, other means of improving the business performance of 	
+systems, such as improving data collection volume or quality, may be explored to 
+achieve a more optimal trade-off.
+•	
+Frequency and extensiveness of monitoring regime:
+◦   Higher risk systems are likely to require frequent monitoring processes to be put 
+in place following deployment.
+◦   Risk-appropriate decisions should be made regarding the metrics and outcomes 
+to be monitored, as well as a wider review of the fairness assessment process to 
+ensure previous assessment results to maintain relevance.
+•	
+Review, approval and escalation process:
+◦  	Higher risk systems may necessitate more stringent review and approval 
+processes, which might be reflected in the number and levels of parties required 
+for sign-off.
+◦  	Breaches in pre-agreed model performance or fairness metric thresholds under 
+higher risk systems could call for greater levels of escalation and intervention to 
+address the matter.
+To scale fairness assessments to AIDA systems across the organisation in a consistent and robust 
+manner, the Fairness Methodology should become part of embedded processes, practices 
+and systems in FSIs. This section outlines recommended areas to consider integrating fairness 
+assessments into the fabric of the FSI and is similar to section 3.2.1 in the Veritas Document 3 FEAT 
+Principles Assessment Methodology document, but focuses in on fairness considerations.
+4.2    Beyond Individual Use Cases:  
+         Achieving AIDA Fairness at Scale
+Articulate a proactive, consistent message on the FSI’s approach to fairness in the use of data and 
+algorithms, and its impact on customers and employees. 
+4.2.1   Articulate Fairness Principles 
+Creating a new, dedicated framework for AIDA fairness (or for FEAT more broadly) will be unnecessary 
+in most cases. Instead, FSIs should focus on enhancing existing risk frameworks to meet the 
+requirements around fairness. For example, existing frameworks such as those around model risk (or 
+its equivalent outside banking), data privacy and the fair treatment of customers could be enhanced. 
+Additionally, FSI should update relevant transparent, cross domain governance structures to include 
+fairness, including identifying roles, expectations and accountability.
+4.2.2   Embed Fairness Considerations in Existing  
+            Risk Frameworks and Governance Structures
+
+
+===== PAGE 48 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+48
+To enable robust, consistent fairness assessments across the organisation, it is important to have 
+defined standards and processes within an internal fairness framework approved via the relevant 
+governance structures. These standards and processes should cover areas such as identifying at 
+risk groups; personal attributes; proxies; explicit fairness objectives and associated measures and 
+thresholds; and technical documents cover toolkits of algorithmic methods to identify and reduce 
+unfairness. This is covered in more detail in section 3.2.
+4.2.3   Define Standards and Processes for Fairness  
+            in Key Areas
+Appropriate training on AIDA Fairness of employees at all levels of the organisation including 
+management, business and risk/control functions, as well as partners and even customers should 
+be undertaken. The more fairness can be understood – in its complexities and necessary trade-offs 
+and in the organisation’s principles and implemented standards in the area – the more fairness 
+becomes second nature to employees. Training should also include best practices in understanding 
+the sources of bias and how to prevent them (e.g., data selection issues, common human cognitive 
+biases, decision fatigue when making large volumes of data or engineering decisions, etc.).
+4.2.4   Appropriate Training
+Actively encourage diversity on the teams designing, developing, approving, deploying and 
+monitoring AIDA Systems to ensure there is input from varied perspectives and backgrounds and to 
+avoid unconscious bias and group think.
+4.2.5   Diverse Teams
+
+
+===== PAGE 49 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+49
+Topics for  
+Future Consideration
+05
+As FSIs and fintech companies drive the development and adoption of AI with the intention of 
+improved financial inclusion, and with governments playing a critical role in ensuring benefits are 
+delivered and harms reduced across society, all need to share a common objective that AI becomes 
+a tool for societal good and does not exacerbate existing socio-economic challenges. In creating 
+this document, the Veritas Fairness workstream has identified areas where greater clarity would be 
+beneficial.
+•	
+Alignment between AIDA and non-AIDA fairness requirements. It will be important 
+to align AIDA fairness with existing compliance frameworks (e.g., Treating Customers 
+Fairly principles).
+•	
+The treatment of AIDA usage via third parties. FEAT guidelines, as well as those 
+from other regulators, are clear in holding FSIs accountable for AIDA fairness (and 
+transparency/ethics). However, when leveraging a third party for an AIDA score 
+or insight, the FSI may not always have full visibility into the vendor’s use of AIDA, 
+particularly because of vendors’ concerns around sharing intellectual property. 
+Guidance on how to achieve alignment on fairness objectives and validation of the 
+assessment between all parties involved in the AIDA system development throughout 
+the AIDA system development cycle would be beneficial. 
+•	
+Acceptable standards of fairness for high risk and low risk use cases in FSIs.  
+As fairness is context and application dependent, domain-specific educational 
+resources, processes, and procedures to guide FSIs would be beneficial. An area of 
+exploration could be to identify the main use cases used at scale by FSIs (or those with 
+good potential to be), along with associated risk tiers, and to develop an integrated 
+FEAT principles assessment methodology with guidance on how to scale and case 
+studies to provide practical guidance. 
+•	
+Set of procedures to check and correct for biases in data and algorithms. 
+Practitioners have highlighted concerns over the time and effort required to custom 
+fit assessments to use cases, and the limitations of existing methods in the literature 
+for surfacing fairness issues in complex, multicomponent AIDA systems, where 
+fairness can be heavily context dependent, and the space of potential contexts 
+is often very large. Similar concerns arise around determining whether specific 
+issues (e.g., complaints from customers) are “one-offs” or symptomatic of broader, 
+systemic problems that might require deeper investigation. Developing procedures 
+for automated auditing processes/tools and refined approaches tailored to various 
+types of AIDA systems would help to address these concerns.
+
+
+===== PAGE 50 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+50
+•	
+Fairness by unawareness of personal data. Fairness assessment methods often 
+assume access to demographics at the individual level, but many teams are only 
+able to collect such information at coarser levels, if at all, as personal data usage/
+access is restricted by law and regulation. Future research should explore ways 
+either to support fairness auditing with access to only coarse-grained demographic 
+information (e.g., neighbourhood level demographics) or with no access at all, when 
+they might use privacy preserving methods to conduct fairness assessments (e.g., 
+homomorphic encryption, differential privacy, synthetic data generation)
+•	
+Extending fairness beyond individual customers to SMEs/corporates. This approach 
+could be particularly relevant when promoters’, directors’, experts’ or investors’ 
+personal details are used in business-to-business (B2B) use case applications and 
+therefore also potentially in AIDA systems. 
+•	
+Alignment on what constitutes “consumer consent” on usage of personal attributes, 
+including personal data, for AIDA fairness assessment. The future regulatory 
+environment should provide adequate protection of data privacy for individuals while 
+allowing AIDA system owners to access lawfully the necessary data allowing them 
+to assess fairness for relevant population subgroups to limit discrimination of the 
+designed AIDA systems and at the same time safeguarding privacy of the individuals.
+•	
+Better quality datasets. Future work should also support practitioners in collecting 
+and curating high quality datasets, with an eye towards fairness in downstream 
+models.
+•	
+Cross-border fairness assessment: Despite AIDA system fairness assessment 
+usually being jurisdiction bounded, there is value for global FSIs to develop tools 
+and frameworks to adopt best practices, measure fairness and reduce discrimination 
+at a global scale. One of the challenges to adopt such global AIDA fairness practice 
+is linked to cross-border data transfer requirements applicable when sharing data 
+across jurisdictions. Transfer learning techniques and adoption of synthetic data 
+could support this objective. However future work should clarify and address this 
+challenge.
+
+
+===== PAGE 51 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+51
+Acknowledgements
+06
+Name
+Organisation
+Role
+Lead Subject Matter Expert
+Medb Corcoran
+Accenture
+Subject Matter Expert
+Anika Mahajan
+Accenture
+Data Scientist
+Visheshta Khanna
+Accenture
+Data Analytics
+Sneha Ramteke
+Accenture
+Lead Academic
+Adrian Weller
+Alan Turing Institute
+Project Coordinator & Data Scientist
+Charlene Lee
+Swiss Re
+Lead Data Scientist
+Luca Baldassarre
+Swiss Re
+L&H Underwriting Expert
+Farooque Ahmed
+Swiss Re
+L&H Underwriting Expert
+Jon Lambert
+Swiss Re
+Risk Management Expert
+Lutz Wilhelmy
+Swiss Re
+Legal & Compliance Expert
+Tomas Abelovsky
+Swiss Re
+Lead Subject Matter Expert
+Yannick Even 
+Swiss Re
+Project Coordinator & Risk Management
+Jasmine Ong
+Swiss Re
+We would also like to express our appreciation to Karen Tan (Swiss Re) and to Daisy Ning (Swiss Re) 
+for their support and lead to this project.
+
+
+===== PAGE 52 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+52
+Bibliography
+07
+1 ”Bagalini, A. (2020). 5 ways racism is bad for business – and what we can do about it. Retrieved 
+from https://www.weforum.org/agenda/2020/07/racism-bad-for-business-equality-diversity/
+2 Yeoman, R. & Mueller Santos, M. (2016). Mutuality in Business. Fairness and Organization 
+Performance: Insights for Supply Chain Management. Retrieved from https://www.researchgate.
+net/publication/315076014_Fairness_and_Organizational_Performance_Insights_for_Supply_Chain_
+Management
+3 Aditya, Agarwal. (2021). Fairness and Ethics in Artificial Intelligence. Retrieved from https://www.
+analyticsvidhya.com/blog/2021/06/fairness-and-ethics-in-artificial-intelligence
+4 Monetary Authority of Singapore (2018). Principles to Promote Fairness, Ethics, Accountability and 
+Transparency (FEAT) in the Use of AI and Data Analytics in Singapore’s Financial Sector. Retrieved 
+from https://www.mas.gov.sg/publications/monographs-or-information-paper/2018/FEAT
+5 EIOPA. (2021). Report on artificial intelligence governance principles. Retrieved from https://www.
+eiopa.europa.eu/content/eiopa-publishes-report-artificial-intelligence-governance-principles_en
+6 CHARTER OF FUNDAMENTAL RIGHTS OF THE EUROPEAN UNION. (2012). Reflected in Articles 21 
+and following of the EU Charter of Fundamental Rights
+7 Dr. Orville Boyd, Jenkins. (2003). The Meaning of “Fairness”. Retrieved from http://www.
+orvillejenkins.com/faithlife/fairnessfl.html
+8 Arthur, Dobrin D.S.W.(2012). It’s Not Fair! But What Is Fairness. Retrieved from https://www.
+psychologytoday.com/intl/blog/am-i-right/201205/its-not-fair-what-is-fairness; Rupert, Taylor. 
+(2020). The Philosophy of Fairness. Retrieved from https://owlcation.com/humanities/The-
+Philosophy-of-Fairness
+9 Jacobs, A. Z., & Wallach, H. (2019). Measurement and Fairness. Retrieved from http://arxiv.org/
+abs/1912.05511; 
+10 AI HLEG. (2018). ETHICS GUIDELINES FOR TRUSTWORTHY AI. Retrieved from https://data.europa.
+eu/doi/10.2759/177365
+11 Axel, Voss. (2020). Draft Report with recommendations to the Commission on a Civil liability 
+regime for artificial intelligence. Retrieved from https://www.europarl.europa.eu/doceo/document/
+JURI-PR-650556_EN.pdf
+12 O’Neil, C. (2016). Weapons of Math Destruction: How Big Data Increases Inequality and Threatens 
+Democracy. New York, NY: http://governance40.com/wp-content/uploads/2019/03/Weapons-of-
+Math-Destruction-Cathy-ONeil.pdf; Crown; Eubanks, V. (2018). Automating Inequality: how high-
+tech tools profile, police, and punish the poor. New York, NY: St. Martin’s Press.
+
+
+===== PAGE 53 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+53
+13 Sarah, Ovaska. (2020). Data privacy risks to consider when using AI. Retrieved from https://www.
+fm-magazine.com/issues/2020/feb/data-privacy-risks-when-using-artificial-intelligence.html
+14 Bundeskartellamt. (2019). Algorithms and Competition. Retrieved from https://www.
+autoritedelaconcurrence.fr/sites/default/files/algorithms-and-competition.pdf (p.24)
+15 UN Women. (2020). Equal pay for work of equal value. Retrieved from https://www.unwomen.org/
+en/news/in-focus/csw61/equal-pay
+16 CONSTITUTION OF THE REPUBLIC OF SINGAPORE (1965). Retrieved from https://sso.agc.gov.sg/
+Act/CONS1963
+17 REPUBLIC OF SINGAPORE. (2012). Retrieved from https://sso.agc.gov.sg/Act/PDPA2012
+18 PDPC (2017). GUIDE TO DATA PROTECTION IMPACT ASSESSMENTS. Retrieved from https://www.
+pdpc.gov.sg/help-and-resources/2017/11/guide-to-data-protection-impact-assessments
+19 MAS (2020). Joint Response on Disability Insurance Coverage. Retrieved from https://www.mas.
+gov.sg/news/letters-to-editor/2020/joint-response-on-disability-insurance-converage
+20 MSF (2012). UN Convention on The Rights Of Persons With Disabilities. Retrieved from https://
+www.msf.gov.sg/policies/International-Conventions/Pages/UN-Convention-on-the-rights-of-
+persons-with-disabilities-UNCRPD.aspx
+21 MAS (2020). Joint Response on Disability Insurance Coverage. Retrieved from https://www.mas.
+gov.sg/news/letters-to-editor/2020/joint-response-on-disability-insurance-converage
+22 Anupam, Datta(2021). 3 kinds of bias in AI models — and how we can address them. Retrieved 
+from https://www.infoworld.com/article/3607748/3-kinds-of-bias-in-ai-models-and-how-we-can-
+address-them.html
+23 Veritas Consortium (2020). FEAT Fairness Principles Assessment Case Studies. Retrieved from  
+https://www.mas.gov.sg/-/media/MAS/News/Media-Releases/2021/Veritas-Document-2-FEAT-
+Fairness-Principles-Assessment-Case-Studies.pdf
+24 Veritas Consortium (2020). FEAT Fairness Principles Assessment Methodology. Retrieved from  
+https://www.mas.gov.sg/-/media/MAS/News/Media-Releases/2021/Veritas-Document-1-FEAT-
+Fairness-Principles-Assessment-Methodology.pdf 
+25 Suraj, Acharya(2019). Tackling Bias in Machine Learning. Retrieved from https://blog.
+insightdatascience.com/tackling-discrimination-in-machine-learning-5c95fde95e95
+26 Juan De Dios Santos (2020). Understanding and Handling Data and Concept Drift. Retrieved from   
+https://www.explorium.ai/blog/understanding-and-handling-data-and-concept-drift/
+27 Sushrut, Shendre. (2020). Model Drift in Machine Learning. Retrieved from  
+https://towardsdatascience.com/model-drift-in-machine-learning-models-8f7e7413b563
+
+
+===== PAGE 54 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+54
+28 Josep Doming, Ferrer (2020). Privacy-Preserving Technologies. Retrieved from  
+https://link.springer.com/chapter/10.1007/978-3-030-29053-5_14
+29 AustralianSuper. (2017). Money when it matters most. Retrieved from https://www.australiansuper.
+com/-/media/australian-super/files/tools-and-advice/forms-and-fact-sheets/insurance/guides/
+insuranceguide-finsuper.pdf
+30 Duncan, Minty. (2020). Behavioural fairness is a serious risk to the future of insurance. Retrieved 
+from https://ethicsandinsurance.info/2020/04/29/behavioural-fairness
+31 EIOPA. (2021). EIOPA publishes report on artificial intelligence governance principles. Retrieved 
+from https://www.eiopa.europa.eu/media/news/eiopa-publishes-report-artificial-intelligence-
+governance-principles_en
+32 Colorado General Assembly.(2021). Restrict Insurers’ Use of External Consumer Data. Retrieved 
+from Restrict Insurers’ Use Of External Consumer Data | Colorado General Assembly
+
+
+===== PAGE 55 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+55
+Appendix
+08
+Below technical appendices 8.1 - 8.10 are included to provide additional background reading for 
+some of the key technical concepts found in the Fairness Methodology document. They are not 
+exhaustive and represent a sample at a point of time in an area where new developments are being 
+published regularly.  
+The list of metrics in this section measure group fairness and cover the main fairness metrics 
+mentioned in Phase I and Phase II Fairness Methodology and use case documents. It is important to 
+note that the metrics apply to a binary classification problem.
+In a non-binary or multi-classification situation where the number of classes to be predicted are 
+larger than two, the fairness metrics typical used in a binary setting can also be employed – see 
+the last paper in the references at the bottom of this subsection for details. Parity is achieved for a 
+fairness metric if the rates are the same across subgroups of the personal attribute. The metrics can 
+be applied in a fairness context as ratios that measure percentage differences between subgroups (a 
+common approach) in which case parity is 1, or as absolute differences between the subgroups – in 
+which case parity is 0. For example, for the fairness metric of Positive Predictive Rate (first in the table 
+below) applied to Gender Marital Status:
+Confusion Matrix (for formula):
+8.1    Measuring Fairness of Decision Outcomes  
+         (Group & Individual Fairness metrics)
+1.	 It could be looked at as a ratio: Disparate Impact:
+◦   % not married females with positive predictions/% married with positive predictions
+◦   In which case the closer the ratio is to 1 (parity), the more balanced it is 
+2.	 Or as a difference: Demographic Parity:
+◦   % not married with positive predictions - % married with positive predictions 
+◦   In which case the closer the difference is to 0 (parity), the more balanced it is
+Predicted Class
+Actual Class
+Positive
+TP
+FN
+FP
+TN
+Positive
+Negative
+Negative
+
+
+===== PAGE 56 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+56
+Metric
+Formula  
+(in terms of TP, TN, FP, FN)
+Definition
+(TP + FP) / (TP + FP + TN + FN) 
+Positive 
+Predictive 
+Rate 
+The fraction of positive predictions out of all predictions.  
+When the metric is applied in a fairness context as a ratio, it 
+is also called Disparate Impact. When applied in a fairness 
+context as absolute difference, it is called Demographic 
+Parity or Proportional Parity. 
+FN / (TP + FN)
+False 
+Negative  
+Rate 
+The fraction of positive cases which were incorrectly 
+predicted to be negative out of all the positive cases. It 
+represents the probability of the positive subjects to be 
+classified incorrectly as negative ones.
+TP / (TP + FN)
+TP / (TP + FP)
+True 
+Positive 
+Rate 
+Positive 
+Predictive 
+Value
+The fraction of positive cases which were correctly 
+predicted to be positive out of all the positive cases. It 
+represents the probability of the positive subjects to be 
+classified correctly as positive ones. It is also called recall.  
+When this metric is applied in a fairness context as a ratio 
+or difference, it is also called Equal Opportunity. 
+The fraction of positive cases which were correctly 
+predicted out of all the positive predictions. It is usually 
+referred to as precision and represents the probability of a 
+correct positive prediction. When this metric is applied in 
+a fairness context as a ratio or difference, it is also called 
+Predictive Value Parity. 
+FN / (TN + FN)
+False  
+Omission 
+Rate 
+The fraction of negative predictions which were actually 
+positive out of all the negative predictions. It represents 
+the probability of an erroneous negative prediction.
+FP / (TN + FP)
+False  
+Positive  
+Rate 
+The fraction of negative cases which were incorrectly 
+predicted to be positive out of all the negative cases. 
+It represents the probability of the negative subjects to 
+be classified incorrectly as positive ones.
+FP / (FP + TP)
+False  
+Discovery  
+Rate 
+The fraction of positive predictions which were actually 
+negative out of all the positive predictions. It represents 
+the probability of an erroneous positive prediction.
+(TP / (TP + FN) + FP /  
+(TN + FP))/2
+Average 
+Odds
+The average of true positive rate and false positive rate. 
+When this metric is applied in a fairness context as a 
+ratio or difference, it is also called Equalised Odds.
+(TP + FN) / (FP + TP + TN + FN)
+Prevalence 
+Rate
+The fraction of that population that are positive cases 
+(had the positive actual outcome) out of the whole 
+population. When this metric is applied as a ratio it is 
+called Prevalence Ratio. 
+This metric is applied in a fairness context to the 
+ground truth data rather than model outcomes to 
+determine if there is an inherent balance (or imbalance) 
+in terms of the target (positive) outcome in personal 
+attribute subgroups in the historic population.
+References
+•	
+https://fairware.cs.umass.edu/papers/Verma.pdf - Fairness Definition Explained
+•	
+https://en.wikipedia.org/wiki/Fairness_%20-%20machine_learning - Fairness definitions
+•	
+https://arxiv.org/abs/2003.00827
+•	
+https://www-axa-com.cdn.axa-contento-118412.eu/www-axa-com/d6324958-367e-4375-81c3-cfeb8e7ccc66_AXA_FairnessCompass-English.pdf - 
+Fairness Compass definitions explained
+
+
+===== PAGE 57 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+57
+8.2    Selecting the Most Appropriate Fairness Metric
+8.3    Deciding Deviation Threshold from  
+         Fairness Criteria
+Fairness is closely related to the concept of justice and standard of rightness. Various definitions 
+exist, some of them conflicting with each other. In the absence of a uniformly accepted notion 
+of fairness, choosing the right kind for a specific situation is a non-trivial task. When it comes to 
+assessing fairness in AIDA systems, this task becomes: How to select the most appropriate fairness 
+metric for a particular application. Several toolkits/frameworks exist, such as the fairness metrics tree 
+which is illustrated in the Veritas Phase 2 - Illustrative Case Studies document under question A4, for 
+selecting the most appropriate fairness metrics for a specific use case application. 
+The references below give details on some of these frameworks. It is up to each FSI to determine the 
+framework for their circumstances. 
+In the literature, individual fairness tends to mean that similar individuals are treated similarly. What 
+constitutes similarity between individuals is an open question and is usually left to the determination 
+of a domain expert for the use case. What it means to be treated similarly is also more subtle when 
+talking about individuals, since similar risk scores are more likely to lead to different outcomes when 
+making comparisons at an individual level. At this time there are no set of commonly used individual 
+fairness metrics. There is a paper in the next section that documents a potential approach.
+When any of the above fairness measures deviate from their fairness criteria, a choice needs to be 
+made as to what threshold(s) should be used to determine if further action should be taken. There is 
+currently little regulation around what these thresholds should be. The 4/5th rule, or 20% deviation 
+from ideal fairness metric value, a method sometimes used today, is based on an approach taken 
+in the US, which a number of US government agencies adopted from the Uniform Guidelines for 
+Employee Selection Procedures.
+Technical Code References
+•	
+https://biasfix.com/select-
+fairness-metrics/
+•	
+https://github.com/
+Trusted-AI/AIF360
+•	
+https://github.com/dssg/
+aequitas
+•	
+https://axa-rev-research.
+github.io/fairness-
+compass.html
+Conceptual References
+Group Fairness
+•	
+https://www-axa-com.cdn.axa-contento-118412.eu/www-axa-com/d6324958-
+367e-4375-81c3-cfeb8e7ccc66_AXA_FairnessCompass-English.pdf - A fairness 
+compass (decision tree) to select the most appropriate fairness metric
+•	
+https://arxiv.org/pdf/2001.07864.pdf - Study of the most widely used fairness 
+metrics using a common mathematical framework. The study also presents  
+new results on the relationships among the different fairness metrics.
+•	
+https://arxiv.org/pdf/1811.05577.pdf - Aequitas, an open source bias and fairness 
+audit toolkit
+•	
+https://arxiv.org/abs/1511.00148 - A survey to review and organise various 
+discrimination measures that have been used for measuring discrimination in 
+data, as well as in evaluating performance of discrimination aware predictive 
+models.
+•	
+https://doi.org/10.1145/3351095.3372864 - A comparative study for selecting 
+group and individual fairness metrics.
+•	
+https://arxiv.org/abs/1808.00023 - A paper which presents material on the 
+limitations of common formulations of fairness
+Individual Fairness:
+•	
+https://arxiv.org/pdf/1104.3913.pdf - This paper is a framework for fair 
+classification comprising (1) a (hypothetical) task-specific metric for determining 
+the degree to which individuals are similar with respect to the classification task 
+at hand; (2) an algorithm for maximising utility subject to the fairness constraint, 
+that similar individuals are treated similarly.
+
+
+===== PAGE 58 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+58
+The references in the table below explain more about this – but it is up to each FSI to determine the 
+threshold for their circumstances.  
+Technical Code References
+•	
+https://github.com/visionjo/facerec-bias-bfw
+Conceptual References
+•	
+https://fairmlbook.org/tutorial1.html -  
+A tutorial on disparate impact and the 4/5th rule.
+•	
+https://www.eeoc.gov/laws/guidance/questions-and-
+answers-clarify-and-provide-common-interpretation-
+uniform-guidelines - Background on where the 4/5 
+rule came from and has been interpreted over time
+•	
+https://www.wikiwand.com/en/Disparate_impact#/
+Adverse_impact - Introduction to adverse impact and 
+80% rule.
+•	
+https://www.hirevue.com/blog/hiring/what-is-
+adverse-impact-and-why-measuring-it-matters 
+- Introduction to adverse impact and methods to 
+measure it (four fifth rule)
+Technical Code References
+•	
+https://github.com/Trusted-AI/AIF360
+•	
+https://github.com/ropensci-archive/proxy-
+bias-vignette
+•	
+https://github.com/nikolaydubina/go-
+featureprocessing
+•	
+https://keras.io/keras_tuner/
+•	
+https://github.com/intuit/bias-detector
+•	
+https://github.com/Call-for-Code-for-Racial-
+Justice/bias-detection-engine
+•	
+https://github.com/ai-med/Dataset-Bias
+•	
+https://github.com/ModelOriented/fairmodels
+•	
+https://github.com/dssg/aequitas
+Conceptual References
+•	
+https://arxiv.org/abs/1901.10002 - A framework 
+that identifies seven distinct potential sources of 
+downstream harm in machine learning, spanning  
+data collection, development, and deployment.
+•	
+https://arxiv.org/pdf/1908.09635.pdf - A survey that 
+investigates different real world applications that have 
+shown biases in various ways and that lists different 
+sources of biases that can affect AI applications.
+•	
+http://conflict.lshtm.ac.uk/page_39.htm -  
+Critical concepts related to bias and errors. 
+•	
+https://quantifyinghealth.com/proxy-bias/ - 
+Introduction to proxy bias with examples
+•	
+http://proceedings.mlr.press/v108/fogliato20a.html- 
+When target variable bias is a concern, the sensitivity 
+analysis framework presented in this paper can be 
+used to quantify the level of bias sufficient to call into 
+question conclusions about the fairness of a model 
+obtained from biased observed data.
+•	
+https://humanrights.gov.au/about/news/media-
+releases/infographic-historical-bias-ai-systems 
+- Introduction to historical bias and mitigation 
+techniques with example.
+8.4    Types of Algorithmic Biases
+Algorithmic bias describes systematic and repeatable errors in a computer system that create unfair 
+outcomes, such as privileging one arbitrary group of users over others. Bias can emerge due to many 
+factors, including but not limited to the design of the algorithm (model bias) or the unintended or 
+unanticipated use or decisions relating to the way data is coded, collected, selected or used to train 
+the algorithm (data bias). 
+The references in the table below give more detail on different types of bias as well as potential impacts. 
+
+
+===== PAGE 59 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+59
+8.5    Technical Bias Mitigation Methods
+The potential mitigation actions for debiasing an AIDA system can be as diverse as the use cases for 
+AIDA systems and depend on the specific findings of a fairness assessment. Mitigation can include 
+interventions like bias avoidance at source (e.g., data collection enhancements). The mitigation 
+methods focused on here are those that can be implemented during the AIDA system development. 
+There are three main intervention points that FSI or their AIDA System Developers may consider: 
+•	
+Pre-processing. This occurs before the creation of the model. Using these techniques, 
+the dataset is transformed with the aim of removing the underlying bias from the data 
+before modelling.
+•	
+In-processing. In-processing techniques can be considered as modifications to the 
+traditional learning algorithms to address discrimination during the model training 
+phase. 
+•	
+Post-processing. In post-processing techniques, the processing of the dataset is 
+done after model training. For example, adversarial debiasing.25
+
+
+===== PAGE 60 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+60
+The references in the table below give more detail on some bias mitigation techniques.
+Technical Code References
+AIF360: Learning Fair 
+Representation
+•	
+https://github.com/Trusted-AI/
+AIF360
+Technique Type
+Conceptual References 
+•	
+https://www.cs.toronto.edu/~toni/Papers/
+icml-final.pdf - The paper describes a pre-
+processing approach to fairness that consists 
+in an optimisation problem of finding a good 
+representation of the data with two competing 
+goals: to encode the data as well as possible, 
+while simultaneously obfuscating any information 
+about membership in the protected group. 
+Fairlearn: Reductions GridSearch 
+•	
+https://fairlearn.org/main/api_
+reference/fairlearn.reductions.
+html#fairlearn.reductions.
+GridSearch 
+•	
+https://arxiv.org/pdf/1803.02453.pdf -  
+A systematic approach for achieving fairness 
+in a binary classification setting. The key idea 
+is to reduce fair classification to a sequence of 
+cost sensitive classification problems, whose 
+solutions yield a randomised classifier with the 
+lowest (empirical) error subject to the desired 
+constraints.
+AutoGluon: Constrained 
+Hyperparameter Optimization
+•	
+https://github.com/awslabs/
+autogluon/
+•	
+https://arxiv.org/pdf/2006.05109.pdf -  
+A general constrained Bayesian optimisation 
+(BO) framework to optimise the performance 
+of any ML model while enforcing one or 
+multiple fairness constraints. BO is a model- 
+agnostic optimisation method that has been 
+successfully applied to automatically tune the 
+hyperparameters of ML models. 
+Fair-regression 
+•	
+https://github.com/Azizimj/
+Fair-regression
+•	
+https://arxiv.org/pdf/1706.02409.pdf -  
+A flexible family of fairness regularisers for 
+(linear and logistic) regression problems. 
+GHOST
+•	
+https://github.com/rinikerlab/
+GHOST
+Constrained Balanced Accuracy
+•	
+https://github.com/veritas-
+project/phase1/tree/main/
+credit_scoring
+•	
+https://pubs.acs.org/doi/10.1021/acs.
+jcim.1c00160# - Introduction to GHOST: a 
+method for adjusting the decision threshold  
+to handle imbalanced data in machine learning 
+•	
+https://arxiv.org/abs/1610.02413v1 -  
+Hardt, M., Price, E., & Srebro, N. (2016).  
+Equality of opportunity in supervised learning. 
+Advances in Neural Information Processing
+Dataset REPresentAtion bIas 
+Removal (REPAIR) 
+•	
+https://github.com/JerryYLi/
+Dataset-REPAIR 
+•	
+https://arxiv.org/pdf/1904.07911.pdf - 
+Representation bias Removal (REPAIR) method 
+to reduce the representation  
+biases of a dataset.
+Pre-processing 
+Techniques
+AIF360: Adversarial Debiasing 
+•	
+https://aif360.readthedocs.io/
+en/latest/modules/generated/
+aif360.algorithms.inprocessing.
+AdversarialDebiasing.html#aif360.
+algorithms.inprocessing.
+AdversarialDebiasing 
+•	
+https://arxiv.org/pdf/1801.07593.pdf -  
+A framework for mitigating biases by 
+including a variable for the group of interest 
+and simultaneously learning a predictor and 
+an adversary. The input to the network X, 
+produces a prediction Y, while the adversary 
+tries to model a protected variable Z. 
+In-processing 
+Techniques
+Equalised Odds and Calibration  
+•	
+https://github.com/
+gpleiss/equalized_odds_
+and_calibration?utm_
+source=catalyzex.com
+•	
+https://arxiv.org/pdf/1709.02012.pdf -  
+This paper presents a post-processing technique 
+that optimises over calibrated score outputs to 
+find probabilities with which to change output 
+labels with an equalised odds objective.
+Post-processing 
+Techniques
+
+
+===== PAGE 61 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+61
+8.6    Drift bias
+Model drift26 is the degradation of a model’s prediction power due to changes in the environment, and 
+specifically changes in the relationship between the target variable and the independent variables 
+changes over time. Model drift can be classified into two broad categories. The first type is called 
+‘concept drift’. This happens when the statistical properties of the target variable itself change. The 
+second and the more common type is ‘data drift’. This happens when the statistical properties (e.g., 
+distribution) of the predictors change.27 These types of drift can also cause unintentional bias for 
+subgroups of the population that the model is applied to.  
+The references in the table below give more detail on detecting and addressing drift bias.
+Technical Code References
+•	
+https://github.com/alipsgh/tornado
+•	
+https://github.com/anodot/MLWatcher/blob/
+master/readme.md
+•	
+https://github.com/MicrosoftDocs/azure-
+docs/blob/master/articles/machine-learning/
+how-to-monitor-datasets.md
+•	
+https://github.com/evidentlyai/evidently
+•	
+https://github.com/ModelOriented/drifter
+•	
+https://github.com/SeldonIO/alibi-detect
+Conceptual References
+•	
+https://arxiv.org/pdf/2012.09258.pdf -  
+Detection of data drift and outliers affecting model 
+performance over time. Detecting drift indirectly by 
+nonparametrically testing the distribution of model 
+prediction confidence for changes.
+•	
+https://www.cs.upc.edu/~abifet/EDDM.pdf -  
+A method for detecting concept drift, even in the 
+case of slow gradual change. It is based on the 
+estimated distribution of the distances between 
+classification errors.
+•	
+https://www.mdpi.com/2306-5729/6/7/77/htm -  
+This work focuses on addressing data randomness 
+and concept drift by minimising modelling variations 
+and yielding consistent results across samples.
+8.7    Fairness-Performance Trade-offs 
+The fairness-performance trade-off is an important concept which states that when some notion 
+of fairness is enforced then often the performance of the AIDA system suffers. This depends on the 
+fairness metrics, performance metrics and the dataset used. There are number of processes available 
+for carrying out trade-off analysis. 
+
+
+===== PAGE 62 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+62
+Technical Code References
+•	
+https://github.com/google-research/
+tensorflow_constrained_optimization
+•	
+https://github.com/visionjo/facerec-bias-bfw
+•	
+https://github.com/sul217/MOO_Fairness
+•	
+https://github.com/dssg/peeps-chili
+•	
+https://github.com/Trusted-AI/AIF360
+Conceptual References
+•	
+http://proceedings.mlr.press/v81/menon18a/
+menon18a.pdf - A deep dive into the trade-offs 
+between accuracy for a given level of fairness in 
+terms of costs, as well as establishing an efficient set 
+(Pareto set) of classifier threshold settings.
+•	
+https://arxiv.org/pdf/1910.07870.pdf - This paper 
+examines fair classification through the lens 
+of mismatched hypothesis testing: trying to 
+find a classifier that distinguishes between two 
+ideal distributions when given two mismatched 
+distributions that are biased. Using Chernoff 
+information, a tool in information theory, it 
+theoretically demonstrates that, contrary to popular 
+belief, there always exist ideal distributions such that 
+optimal fairness and accuracy (with respect to the 
+ideal distributions) are achieved simultaneously: there 
+is no trade-off.
+•	
+https://arxiv.org/pdf/2004.034.pdf - This paper frames 
+several optimisation problems that directly optimise 
+both accuracy and fairness objectives, which yield a 
+general perspective for understanding multiple trade-
+offs including group fairness incompatibilities.
+•	
+https://arxiv.org/pdf/2008.10797.pdf -  
+The experiments in this paper reveal that for training 
+data already exhibiting disparities, a newly introduced 
+causal notion of fairness may be capable of 
+traversing a greater part of the fairness-performance 
+space, relative to more standard measures such 
+as demographic parity and conditional parity. 
+The experiments also reveal that tools from multi-
+objective optimisation  
+are crucial in efficiently estimating the Pareto front 
+(i.e., by finding more non-dominated points),  
+relative to other sensible but ad-hoc approaches.
+•	
+https://www.researchgate.net/
+publication/345555273_There_is_no_trade-off_
+enforcing_fairness_can_improve_accuracy - This 
+paper shows that trade-off may not be necessary. 
+If the algorithmic biases in an ML model are due to 
+sampling biases in the training data, then enforcing 
+algorithmic fairness may improve the performance of 
+the ML model on unbiased test data.
+•	
+https://arxiv.org/pdf/2106.02705.pdf - This presents  
+a multi-dimensional Pareto frontier on (1) the trade-off 
+between group fairness and accuracy with respect  
+to each task, as well as (2) the trade-offs across 
+multiple tasks.
+The references in the table below give more detail on fairness-performance trade-offs.
+
+
+===== PAGE 63 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+63
+8.8    Measuring Uncertainties in  
+          Fairness/Performance Estimates
+AIDA systems, particularly those using machine learning or statistical models, require performance 
+measures (including those relating to fairness) to be quantified mathematically so that they can be 
+optimised or constrained. However, these measures are necessarily computed from finite samples 
+of data, or may even be estimates from other models, and so have an inherent statistical sampling 
+and estimation uncertainty. Furthermore, some of the sample sizes may be very small, particularly 
+for measures of fairness where underrepresented demographic groups make up the sample. Since 
+consequential decisions will be made based upon the values of these measures, it is also important 
+to convey the uncertainty inherent in their values. Bootstrapping was used in the Phase 2 Fairness 
+Use Case to estimate uncertainties for performance and fairness.
+The references in the table below give more detail on measuring uncertainties.
+Technical Code References
+•	
+https://github.com/uzh-rpg/deep_uncertainty_
+estimation?utm_source=catalyzex.com
+•	
+https://github.com/uncertainty-toolbox/
+uncertainty-toolbox
+•	
+https://github.com/google/TrustScore
+•	
+https://github.com/IBM/UQ360?utm_
+source=catalyzex.com
+Conceptual References
+•	
+https://arxiv.org/pdf/1910.09457.pdf - This paper 
+provides an introduction to the topic of uncertainty  
+in machine learning as well as an overview of 
+attempts so far at handling uncertainty in general  
+and formalising this distinction in particular.
+•	
+https://arxiv.org/pdf/1907.06890.pdf - This literature 
+proposes a novel framework for uncertainty 
+estimation based on Bayesian belief networks and 
+Monte-Carlo sampling. It fully models the different 
+sources of prediction uncertainty and incorporates 
+prior data information
+•	
+https://link.springer.com/
+chapter/10.1007/978-3-030-44584-3_18 - This is one 
+of the first deep learning studies which quantifies 
+uncertainty and model interpretability in multilabel 
+classification
+•	
+https://arxiv.org/pdf/1809.07653.pdf - This presents 
+a scheme to obtain an inexpensive and reliable 
+estimate of the uncertainty associated with the 
+predictions of a machine learning. The scheme is 
+based on resampling, with multiple models being 
+generated based on subsampling of the same  
+training data.
+•	
+https://doi.org/10.1214/ss/1032280214 –  
+Introduction to bootstrapping to calculate 
+uncertainties in estimates.
+
+
+===== PAGE 64 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+64
+8.9    AIDA system documentation examples 
+AIDA Systems should have robust documentation detailing key steps and decisions taken in the 
+end-to-end lifecycle. In addition to having documentation for the end-to-end system, it is especially 
+important to have sufficient detail when documenting the data and model(s) – this is leveraged 
+when doing a fairness assessment. If a FEAT assessment is completed (including Fairness), it is 
+recommended for the assessment to be held with the existing standard AIDA system documentation 
+in order to manage version control. 
+The references in the table below give some example approaches to AIDA System documentation. 
+Technical Code References
+N/A
+Conceptual References
+•	
+https://arxiv.org/pdf/1810.03993.pdf - This paper 
+proposes a framework called model cards, to 
+encourage transparent model reporting. Model cards 
+are short documents accompanying trained machine 
+learning models that provide benchmarked evaluation 
+in a variety of conditions, such as across different 
+cultural, demographic, or phenotypic groups (e.g., 
+race, geographic location, sex, Fitzpatrick skin type) 
+and intersectional groups (e.g., age and race, or sex 
+and Fitzpatrick skin type) that are relevant to the 
+intended application domains.
+•	
+https://arxiv.org/pdf/2009.11190.pdf - The enterprise 
+AI canvas is designed to bring data scientist and 
+business expert together to discuss and define all 
+relevant aspects which need to be clarified in order to 
+integrate AI based systems into a digital enterprise.
+•	
+https://www.microsoft.com/en-us/research/uploads/
+prod/2019/01/1803.09010.pdf - Datasheets for dataset 
+recommends that every dataset be accompanied with 
+a datasheet documenting its creation, composition, 
+intended uses, maintenance, and other properties.
+
+
+===== PAGE 65 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+65
+Technical Code References
+•	
+https://github.com/LatticeX-Foundation/
+Rosetta
+•	
+https://github.com/innovation-cat/Awesome-
+Federated-Machine-Learning
+•	
+https://github.com/dilawarm/federated
+•	
+https://github.com/sdv-dev
+•	
+https://github.com/tirthajyoti/Synthetic-data-
+gen
+•	
+https://github.com/ydataai/ydata-synthetic
+•	
+https://github.com/capitalone/synthetic-data
+•	
+https://github.com/theodi/synthetic-data-
+tutorial
+Conceptual References
+•	
+https://www.ijstr.org/final-print/mar2017/A-Review-
+Of-Synthetic-Data-Generation-Methods-For-Privacy-
+Preserving-Data-Publishing.pdf - In this paper 
+different fully and partially synthetic data generation 
+techniques are reviewed, and key research gaps are 
+identified which needs to be focused in the future 
+research 
+•	
+https://arxiv.org/ftp/arxiv/papers/1804/1804.11238.
+pdf - This article aims to provide an introduction to 
+the intersection of machine learning and privacy 
+communities fields with special emphasis on the 
+techniques used to protect the data.
+•	
+https://www.cis.upenn.edu/~aaroth/Papers/
+privacybook.pdf - After motivating and discussing the 
+meaning of differential privacy, the preponderance 
+of this monograph is devoted to fundamental 
+techniques for achieving differential privacy, 
+and application of these techniques in creative 
+combinations, using the query release problem as an 
+ongoing example.
+•	
+https://www.researchgate.net/publication/328134142_
+Generation_of_Synthetic_Data_with_Generative_
+Adversarial_Networks - This thesis focuses on one of 
+the most interesting and promising innovations of 
+the last years in the machine learning community: 
+Generative Adversarial Networks. An approach for 
+generating discrete, continuous or text synthetic data 
+with Generative Adversarial Networks is proposed, 
+tested, evaluated and compared with a baseline 
+approach.
+•	
+https://arxiv.org/pdf/2104.11797.pdf - This work 
+investigates the use of synthetic images, created by 
+generative adversarial networks (GANs), as the only 
+source of training data.
+8.10    Privacy preserving techniques 
+AIDA systems could rely on data that is private and sensitive. Privacy enhancing technologies (PET) 
+are technologies that embody fundamental data protection principles by minimising personal data 
+use and maximising data security while enabling appropriate data processing. PETs use techniques 
+to minimise possession of personal data without losing the functionality of an information system. 
+Within PETs, Privacy preserving techniques (PPT) describes mechanisms to perform computations on 
+data while keeping the data private.28 Synthetic data generation was used in the Phase 2 Fairness Use 
+Case to keep the client data private.
+The references in the table below give detail on some PPTs.
+
+
+===== PAGE 66 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+66
+8.11    Fairness Concepts Specific to Insurance
+Fairness concepts specific to insurance include:
+•	
+Community and Individual Pricing
+Insurance companies set premium levels to cover risks assumed from a diverse group 
+of customers. The two ends of the pricing strategy continuum are:
+i.	
+Community pricing, where every customer is charged the same; or
+ii.	 Individual pricing, where each customer is charged according to their unique 
+characteristics relative to the pool.
+While often referred to as being at opposite ends of the spectrum, it is possible to 
+also explore combinations, such as where community pricing is applied for the base 
+cover and individual pricing applied on optional top-ups.29
+For instance, in markets such as Australia required life cover can be provided through 
+mandatory superannuation arrangements, by way of group insurance schemes. 
+However, consumers may also purchase more cover in a private insurance environment.
+•	
+Actuarial and behavioural fairness
+Actuarial fairness is based on the concept that individuals bearing similar levels of risk 
+are charged similar premiums and has been traditionally used in the private insurance 
+field. Behavioural fairness moves away from this conventional practice towards the 
+realm of personal responsibility, where rewards are offered, or penalties imposed 
+based on behavioural choices within the control of individuals. As to which is a “fairer” 
+concept, this is still a matter of debate.30
+Notwithstanding the differences, it is acknowledged that for both banking and 
+insurance, cross functional discussions among management, data scientists, and 
+experts in the fields of law, ethics and compliance are critical to determining the 
+optimal strategy for fairness in their AIDA systems.
+
+
+===== PAGE 67 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+67
+8.12    Examples of Non-Binding AIDA Principles 
+•	
+The Principles published by MAS that was released in 2018. The Principles that explicitly 
+relate to fairness (see section 1.2.1 above) aim to ensure that AIDA driven decisions 
+do not disadvantage any individual or groups of individuals, without appropriate 
+justification of inputs, processes and outcomes.  
+•	
+Additionally, principles outlined in the Fair Dealing Outcomes that were also published 
+by MAS put customers’ interest at the centre of the FSI’s corporate culture.  
+•	
+In June 2021, the European Insurance and Occupational Pensions Authority (EIOPA) 
+published a report from its consultative expert group on digital ethics, which set out 
+artificial intelligence governance principles for an ethical and trustworthy AI in the 
+European insurance sector.31
+•	
+In April 2021, the European Commission published a draft regulation laying down 
+harmonised rules on AI through the Artificial Intelligence Act with the aim of ensuring 
+a high-level protection of health, safety and fundamental rights in the EU, in addition to 
+increasing trust in the development and uptake of AI.  
+•	
+In July 2021, the US State of Colorado enacted legislation to tackle issues of unfair 
+discrimination and data and algorithmic bias – an act to restrict insurers’ use of external 
+consumer data.32
+•	
+At the international level, in May 2019, the Organisation for Economic Cooperation 
+and Development (OECD) adopted principles to promote artificial intelligence that is 
+innovative and trustworthy, which respects human rights and democratic values.  
+
+
+===== PAGE 68 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+68
+8.13    Mapping of Veritas Phase 1 Fairness Methodology 
+           Questions to Veritas Phase 2 FEAT  
+           Checklist Questions
+Veritas Phase 1 Fairness  
+Methodology Questions
+Veritas Phase 2 FEAT  
+Checklist Questions
+Question 
+Number
+FEAT 
+Checklist 
+Question 
+Number
+A1
+G5
+What are the business objectives of 
+the system and how is AIDA used to 
+achieve these objectives?
+Have you documented the commercial 
+objectives of the system and the 
+quantitative measures to meet those 
+commercial objectives? Is it documented 
+how is AIDA used to achieve them?
+A2
+F1
+Who are the individuals and groups 
+that are considered to be at risk of 
+being systematically disadvantaged 
+by the system?
+Have you identified and documented 
+who are the individuals and groups that 
+are considered to be at risk of being 
+systematically disadvantaged by the 
+system?
+A3
+F2
+What are potential harms and 
+benefits created by the system’s 
+operation that are relevant to the 
+risk of systematically disadvantaging 
+the individuals and groups in A2?
+Have you identified and documented 
+the potential harms and benefits created 
+by the system’s operation that are 
+relevant to the risk of systematically 
+disadvantaging the individuals and 
+groups in F1?
+A4
+F3
+What are the fairness objectives 
+of the system, with respect to the 
+individuals and groups in A2 and the 
+harms and benefits in A3?
+Have you identified and documented 
+the fairness objectives of the system and 
+associated fairness metrics, with respect 
+to the individuals and groups in F1 and 
+the harms and benefits in F2?
+B1
+F4
+What errors, biases or properties 
+are present in the data used by the 
+system that may impact the system’s 
+fairness?
+Have you documented key errors, biases 
+or properties present in the data used by 
+the system that may impact the system’s 
+fairness?
+B3
+G11
+How does the system use AIDA 
+models (with, or separately from, 
+business rules and human judgement) 
+to achieve its objectives?
+Is the composition of the AIDA 
+System defined? Is it clear how each 
+component of the system-AIDA models, 
+as well as business rules and human 
+judgement, if relevant - are used to 
+achieve its commercial objectives? 
+Are the performance estimates and 
+the uncertainties of those estimates 
+documented?
+B2
+F5
+How are these impacts being 
+mitigated?
+Have you documented how are these 
+impacts being mitigated?
+B4
+What are the performance estimates 
+of the AIDA models in the system and 
+the uncertainties in those estimates?
+B5
+What are the quantitative estimates 
+of the system’s performance against 
+its business objectives and the 
+uncertainties in those estimates?
+
+
+===== PAGE 69 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+69
+Veritas Phase 1 Fairness  
+Methodology Questions
+Veritas Phase 2 FEAT  
+Checklist Questions
+Question 
+Number
+FEAT 
+Checklist 
+Question
+Number
+C1
+F9
+What are the quantitative estimates 
+of the system’s performance against 
+its fairness objectives and the 
+uncertainties in those estimates, 
+assessed over the individuals and 
+groups in A2 and the potential harms 
+and benefits in A3?
+Have you assessed and documented the 
+quantitative estimates of the system’s 
+performance against its fairness 
+objectives and the uncertainties in those 
+estimates, assessed over the individuals 
+and groups in F1 and the potential harms 
+and benefits in F2?
+C2
+F10
+What are the achievable  
+trade-offs between the system’s 
+fairness objectives and its other 
+objectives?
+Have you assessed and documented 
+the achievable trade-offs between the 
+system’s fairness objectives and its 
+commercial objectives?
+C3
+F11
+Why are the fairness outcomes 
+observed in the system preferable to 
+these alternative trade-offs?
+Have you justified (vs alternative 
+tradeoffs) and documented the final 
+fairness outcome for the AIDA System?
+D1
+F6
+What personal attributes are 
+used as part of the operation or 
+assessment of the system?
+Have you determined and documented 
+personal attributes that are used as part 
+of the operation or fairness assessment 
+of the system?
+D3
+F8
+For every personal attribute and 
+potential proxy for a personal 
+attribute, why is its inclusion justified 
+given the system objectives, the data, 
+and the quantified performance and 
+fairness measures?
+Have you assessed and documented for 
+every personal attribute and potential 
+proxy for a personal attribute, why is 
+its inclusion justified given the system 
+objectives, the data, and the quantified 
+performance and fairness measures?
+E1
+G12
+How is the system’s monitoring and 
+review regime designed to detect 
+abnormal operation and unintended 
+harms to individuals or groups?
+Is the system’s monitoring and review 
+regime designed to detect abnormal 
+operation?
+E2
+F12
+How does the system’s monitoring 
+and review regime ensure that the 
+system’s impacts are aligned with its 
+fairness and other objectives  
+(A1 and A4)?
+Does the system’s monitoring and review 
+regime ensure that the system’s impacts 
+are aligned with its commercial and 
+fairness objectives (G5 and F3)?
+E3
+G13
+What are the mechanisms for 
+mitigating unintended harms to 
+individuals or groups arising from the 
+system’s operation?
+Is there fallback and/or mitigation plans 
+in place in case of triggers from the 
+system’s monitoring and review regime?
+D2
+F7
+How did the process of identifying 
+personal attributes take into 
+account ethical objectives of the 
+system, and the people identified 
+as being at risk of disadvantage?
+Does the process of identifying personal 
+attributes take into account ethical 
+objectives of the system, and the 
+people identified as being at risk of 
+disadvantage?
+
+
+===== PAGE 70 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+70
+8.14    Disclaimer
+While the information in this whitepaper is from reliable sources, the authors do not accept any 
+responsibility for the accuracy or comprehensiveness of the information given or forward looking 
+statements made. The information and forward looking statements provided in this document are 
+for informational purposes only and in no way constitute or should be taken to reflect the authors’ 
+position, particularly in relation to any ongoing or future dispute. In no event shall the authors be 
+liable for any loss or damage arising in connection with the use of this information and readers are 
+cautioned not to place undue reliance on the forward looking statements provided in this document. 
+The authors undertake no obligation to publicly revise or update any forward looking statements, 
+whether as a result of new information, future events or otherwise.
+
+
+===== PAGE 71 =====
+Veritas Document 3A FEAT Fairness Principles Assessment Methodology
+71
+This report is prepared and issued by the MAS, Accenture and Swiss Re.
+All intellectual property rights in or associated with this report remain vested in the MAS, Accenture 
+and Swiss Re and/or their licensors. This report and its contents are not intended as legal, regulatory, 
+financial, investment, business, or tax advice, and should not be acted on as such.
+Whilst care and attention has been exercised in the preparation of this report MAS, Accenture and 
+Swiss Re do not accept responsibility for any inaccuracy or error in, or any inaction or action taken 
+in reliance on, the information contained or referenced in this report.
+This report is provided as is without representation or warranty of any kind. All representations or 
+warranties whether express or implied by statute, law or otherwise are hereby disclaimed.
+LEGAL NOTICE

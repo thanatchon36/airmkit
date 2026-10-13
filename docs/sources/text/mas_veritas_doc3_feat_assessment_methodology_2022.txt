@@ -1,0 +1,2727 @@
+
+
+===== PAGE 1 =====
+Veritas Document 3  
+ 
+FEAT Principles  
+Assessment  
+Methodology
+3
+3A
+3B
+3C
+4
+
+
+===== PAGE 2 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+2
+Foreword
+The Veritas consortium, comprising the Monetary Authority of Singapore (MAS) and industry 
+partners, is pleased to present the Veritas* Phase Two white papers which assessed the alignment 
+of the AIDA systems against the fairness, ethics, accountability and transparency (FEAT) principles. 
+These white papers contain the collective experience of the Veritas consortium and share the generic 
+FEAT Assessment Methodology. They also include the illustrations for assessing the FEAT principles 
+for selected use cases related to predictive underwriting, customer marketing, fraud detection and 
+credit risk scoring. 
+In January 2021, MAS published two documents as part of Veritas Phase One - FEAT Fairness 
+Principles Assessment Methodology and FEAT Fairness Principles Assessment Case Studies. The 
+focus for Veritas Phase One was on the development of the Fairness Assessment Methodology in 
+credit risk scoring and customer marketing for the banking industry. In Phase Two, the methodology 
+was extended to cover all FEAT principles and will be applicable for more use cases. The white 
+papers also highlight the existing global regulatory landscape and how it provides guidance to the 
+Responsible AI adoption by financial institutions.
+With the conclusion of Phase Two, the Veritas initiative has made significant progress in providing a 
+full FEAT Assessment Methodology. This Assessment Methodology will enable financial institutions 
+to assess the alignment of their AIDA systems against FEAT principle systematically. In addition, the 
+Veritas consortium has also developed an open source Veritas Toolkit that implements the Veritas 
+FEAT Assessment Methodology. The first version of Veritas Toolkit was released together with the 
+Phase 2 white papers and the toolkit utilises the best fairness tools on the market to help financial 
+institutions in Singapore to begin adoption of Veritas Fairness Assessment Methodology in their own 
+organisation. 
+For the next phase of Veritas, the consortium will continue to enhance Veritas FEAT Assessment 
+Methodology and apply it to additional use cases in the financial services sector. The consortium will 
+also work on a Version 2 of the Veritas Toolkit, which will provide full FEAT assessment functionality.
+We encourage financial institutions and tech firms to read these white papers and implement 
+the methodology in their own organisations, as well as to utilise the Veritas Toolkit. The Veritas 
+consortium welcomes feedback so that it can make further improvements. Let us work together to 
+ensure that AIDA is used in a more responsible manner in Singapore’s financial sector. 
+We would like to express our appreciation to all the members of the consortium for their active 
+participation and generous support in the development of these white papers. We would also 
+like to acknowledge the contributions of our industry partners - Accenture, AXA, HSBC, Standard 
+Chartered, Swiss Re, TruEra and UOB in this remarkable endeavour. 
+Sopnendu Mohanty 
+(MAS CFTO)
+*Veritas was announced as part of Singapore’s National AI Strategy by Mr Heng Swee Keat, Deputy Prime Minister of Singapore, at the 
+Singapore FinTech Festival and Singapore Week of Innovation and TeCHnology (SFF x SWITCH) 2019.
+
+
+===== PAGE 3 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+3
+Table of Contents
+1.1     Background of Project Veritas Phase 2
+6
+1.2   Structure of Veritas Phase 2 Methodology Documents
+8
+1.3   Audience of Veritas Phase 2 Methodology Documents
+9
+1    Introduction
+6
+2.1     Context
+10
+2.2   Navigating this Document
+10
+2.3   Designing AIDA Systems for FEAT Consideration
+11
+2.4   Recap of the FEAT Principles
+12
+2.5   Interdependencies Across the FEAT Principles
+13
+2    FEAT Principles Assessment Methodology
+10
+4.1     Fairness
+25
+4.2   Ethics and Accountability
+26
+4.3   Transparency
+27
+4     Summary of FEAT Principles Assessment Methodology
+25
+3.1    Embedding the FEAT Principles Assessment Methodology into the  
+        Development Lifecycle of an AIDA system
+15
+3.2   Foundational Setup
+18
+3     Application of FEAT for the  
+       Development Lifecycle of an AIDA System
+15
+Executive Summary
+5
+
+
+===== PAGE 4 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+4
+Table of Contents
+5.1     Global Regulatory Landscape
+29
+5.2    Key Regulatory Trends
+30
+5.6  Collaborate with Technology Partners
+32
+5.7   Ensure a Diversity of Perspectives
+33
+5.8  Share Use Cases with the Industry 
+33
+5.9  The Way Forward for Veritas 
+33
+5.3   Assessing the Regulatory Implications of AIDA Projects  
+        in Financial Services
+30
+5.4   Adopting a Materiality Based Approach to  
+        Assessing Regulatory Considerations
+31
+5.5   Leverage Existing Risk Management and Governance Frameworks
+31
+5     Global Regulatory Landscape on Regulating  
+       Responsible AI 
+29
+6    Acknowledgements
+34
+7    Bibliography
+35
+8    Appendix A
+41
+9    Appendix B
+46
+10  Appendix C
+50
+11  Annexure
+58
+
+
+===== PAGE 5 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+5
+In 2018, The Monetary Authority of Singapore 
+(MAS) released Principles to promote Fairness, 
+Ethics, 
+Accountability 
+and 
+Transparency 
+(FEAT) in the use of Artificial Intelligence and 
+Data Analytics (AIDA) in Singapore’s Financial 
+Sector. The Veritas initiative was subsequently 
+commenced in 2019 as part of Singapore’s 
+National AI Strategy.  
+Veritas is a multi-phased collaborative project 
+with financial industry. In January 2021, MAS 
+announced the successful conclusion of the 
+first phase of the Veritas initiative which focused 
+on the development of the fairness assessment 
+methodology in credit risk scoring and customer 
+marketing for the banking industry. The Veritas 
+Consortium, comprising MAS and industry 
+partners, published whitepapers on the fairness 
+assessment methodology and the open source 
+code of these two use cases.
+Veritas Phase 2 extends the focus to cover all 
+FEAT Principles (“Principles”) for its adoption 
+by FSIs beyond banks to include coverage of 
+the insurance industry. In Veritas Phase 2, the 
+consortium leveraged the Methodology from 
+phase 1 as a foundational baseline to evolve and 
+provide integrated guidance across the FEAT 
+Principles. This FEAT Principles Assessment 
+Methodology whitepaper is one of a suite 
+published as a deliverable of the Veritas Phase 
+2 project. 
+This whitepaper is an overarching document 
+that provides a holistic view of the application 
+of FEAT Principles to AIDA system development 
+lifecycles. As the foundational steps, this 
+whitepaper provides a list of recommendations 
+for FIs on how to:
+•	
+Bring a FEAT assessment to scale 
+•	
+Define materiality and risk tiers
+•	
+Adopt a risk-based governance approach for 
+application of FEAT Principles to use cases
+•	
+Integrate with existing risk management 
+practices
+FEAT Principles should be incorporated at an 
+organisational level down to use case or AIDA 
+system level, where relevant. FEAT Principles 
+are highly interdependent and must be mapped 
+across the AIDA system development lifecycle 
+for them to be operationalised. A checklist is 
+provided across the end-to-end AIDA lifecycle 
+as well as considerations to assist FSIs in 
+responding to assessment questions. While 
+most of the questions in the checklist are 
+aligned to the individual FEAT Principles, some 
+are general questions that will more broadly 
+help organisations assess their AIDA systems. 
+It is recommended to start with Ethics and 
+Accountability assessment which helps to define 
+the guiding principles at an organizational level, 
+then perform the Fairness and Transparency 
+assessments concurrently within the various 
+steps of the AIDA system development lifecycle, 
+as they are inter-related and are use case 
+specific. 
+This overarching document also provides 
+a summary of the deep dive Methodology 
+whitepapers and a review of the global regulatory 
+landscape around Responsible AI adoption.
+FSIs are expected to work towards achieving 
+the FEAT Principles and outcomes as they 
+increasingly deploy AIDA to make decisions. 
+FSIs, however, have flexibility to explore how 
+best to achieve them, including establishing 
+governance frameworks and control processes 
+that are appropriate to their business operations 
+and risk profiles.
+The Phase 2 documents do not prescribe what 
+FSIs must do to comply with FEAT, but provide 
+practical and detailed guidance on how FSIs can 
+perform FEAT assessment of their AIDA models 
+and systems, which FSIs could use and adapt as 
+appropriate.
+Executive 
+Summary
+Veritas Document 3 FEAT Principles Assessment Methodology
+5
+
+
+===== PAGE 6 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+6
+ Introduction
+01
+1.1    Background of Project Veritas Phase 2
+In 2018, The Monetary Authority of Singapore (MAS) released Principles to Promote Fairness, Ethics, 
+Accountability and Transparency (FEAT) in the use of Artificial Intelligence and Data Analytics (AIDA) 
+in Singapore’s Financial Sector. The Veritas initiative was subsequently commenced in 2019 as 
+part of Singapore’s National AI Strategy, as an industry wide collaboration to provide guidelines to 
+Financial Services Institutions (FSIs) to incorporate the FEAT Principles into AIDA solutions. 
+Veritas Phase 1, which concluded in January 2021, focused on the development of the Fairness 
+Principles Assessment Methodology in credit risk scoring and customer marketing for the banking 
+industry. MAS published two documents as part of Veritas Phase 1: FEAT Fairness Principles 
+Assessment Methodology1 and FEAT Fairness Principles Assessment Case Studies.2
+Veritas Phase 2, which started in March 2021, extends the focus to cover all FEAT Principles 
+(“Principles”) for its adoption by FSIs beyond banks to include coverage of the insurance industry. In 
+Veritas Phase 2, the consortium leveraged the Methodology from phase 1 as a foundational baseline 
+to evolve and provide integrated guidance across the FEAT Principles. 
+Veritas Phase 2 was commenced with the below objectives:
+The consortium of Veritas Phase 2 was also expected to:
+•	
+Translate and operationalise the FEAT Principles.
+•	
+Extend the Phase 1 Methodology (Fairness) beyond banks to include coverage of the 
+insurance industry.
+•	
+Enable FSI partners with FEAT adoption through Veritas Framework with solution 
+prototypes (i.e., guidelines, codes, visualisation, etc.) and use case illustrations. 
+•	
+Streamline collaboration and methodology across the FEAT Principles. 
+•	
+Share industry expertise through the involvement of academics, industry researchers 
+and practitioners.
+•	
+Promote industry adoption of the FEAT Principles Assessment Methodology through 
+workable prototypes.  
+
+
+===== PAGE 7 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+7
+Specifically, Veritas Phase 2 comprised three core working groups to develop the assessment 
+methodology for their focus areas. Information about the working members in the group can be 
+found below (Figure 1.1). 
+Veritas Phase 2 had a total of 27 members in the consortium (as shown in Figure 1.2) responsible for 
+leading and supporting the effort of developing the FEAT Principles Assessment Methodologies. 
+Figure 1.1 Core working group members and their workstreams
+Figure 1.2 List of Veritas Phase 2 consortium members
+Lead Members
+Use Cases
+Fairness
+Transparency
+Ethics & 
+Accountability
+Lead  
+Members
+Members  
+(FSIs)
+Facilitators
+Advisory  
+Members
+Insurance Underwriting
+•	
+Customer marketing 
+(Banking)
+•	
+Fraud detection 
+(Insurance)
+•	
+Credit risk scoring 
+(Banking)
+•	
+Customer marketing 
+(Banking)
+Drive the Veritas 
+development of  
+the user cases
+Provide domain 
+knowledge & feedback  
+on the use cases
+Facilitate the  
+whole program
+Provide expertise  
+& review the  
+whitepaper
+
+
+===== PAGE 8 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+8
+1.2    Structure of Veritas Phase 2  
+         Methodology Documents
+In Phase 2, which spans four FEAT Principles and three working groups, the documents are structured 
+into methodology and use case related whitepapers. This FEAT Principles Assessment Methodology 
+whitepaper is an overarching document that provides:
+Figure 1.3 provides a quick overview of the documents that will be published as part of Veritas 
+Phase 2. The documents detailing the Methodology for each principle should not be viewed as 
+standalone documents, but instead as parts of an end-to-end Methodology across an AIDA system. 
+1.	 A holistic view of the application of FEAT Principles to AIDA system development 
+lifecycle.
+2.	 A summary of the deep dive Methodology whitepapers and a review of the global 
+regulatory landscape around Responsible AI adoption. 
+Figure 1.3 List of documents in Veritas Phase 2
+Methodology
+Use Case
+3A
+Fairness  
+Principles 
+Assessment 
+Methodology
+3C
+Transparency 
+Principles 
+Assessment 
+Methodology
+3B
+Ethics and 
+Accountability 
+Principles 
+Assessment 
+Methodology
+FEAT Principles Assessment 
+Methodology
+3
+Illustrative Code for FEAT Principles 
+Assessment Case Studies
+5
+FEAT Principles Assessment  
+Case Studies
+4
+
+
+===== PAGE 9 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+9
+1.3    Audience of Veritas Phase 2 Documents
+Like the Veritas Phase 1 Methodology, this document distinguishes between four groups involved in 
+AIDA system assessments in different ways.
+AIDA system developer: An AIDA system developer is the party that develops the AIDA 
+system under study. This could be an FSI or a vendor or a Fintech firm, for example. 
+AIDA system owner: An AIDA system owner is the party using the AIDA system to help 
+make decisions for fulfilling their business goals. These decisions have fairness and/or 
+ethical implications for the customer or other affected parties or the organisation. This role 
+could be played by the business team in the FSI that is responsible for the AIDA system.
+AIDA system assessor: An AIDA system assessor is the party that assesses the FEAT 
+assessment presented to them by FSI. This role could be played by an external audit firm, 
+or internally by a model risk management or internal audit group.
+FSI: An FSI is the organisation responsible for the AIDA system under study. The AIDA 
+system owner sits within the FSI and is acting on its behalf. The AIDA system developer may 
+be part of the FSI if the system is developed in house or may be an organisation external to 
+it if the system has been procured. Similarly, the AIDA system assessor may sit within the 
+FSI (for an internal assessment) or be a separate body (for an external assessment).
+
+
+===== PAGE 10 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+10
+2.1    Context
+AI has become a top technology priority among FSIs in recent years.3 According to a 2021 Gartner 
+CIO Survey:
+Significantly, however, according to another global executive survey, while 60% of respondents believe 
+that the adoption of AI is necessary to have a competitive advantage in a digital economy; 45% agree 
+that not enough is understood about the unintended consequences of AI.4
+Given the increasing adoption of AIDA within FSIs, the industry’s regulators may work to ensure compliant 
+and ethical use of the technology to prevent potential negative outcomes or harm as defined in the FEAT 
+Principles. Recognising this opportunity to mitigate potential harms and unintended consequences of 
+AIDA, MAS had collaborated with the financial industry and other relevant stakeholders to create a set 
+of Principles guiding the responsible use of AIDA in financial services. 
+•	
+32% of banking respondents and 36% of insurance respondents expect AI to be a “game 
+changer” for their enterprise in 2021.
+•	
+Approximately 25% of banks and 31% of insurers have already deployed AIDA in 2020 
+and an additional 25% of banks and 23% of insurers plan to deploy AIDA in the next 12 
+months.
+02 FEAT Principles  
+ Assessment Methodology
+•	
+Section 3 outlines the overall FEAT considerations for designing AIDA systems in FSIs, 
+the FEAT Principles, how they map to each of FEAT areas, and interdependencies across 
+the Principles. Section 3 also explains how to embed the FEAT Principles Assessment 
+Methodology to an AIDA system’s development lifecycle and gives guidance on 
+foundational steps, how to adopt a risk based approach and how to scale FEAT across 
+an organisation. 
+•	
+Section 4 provides a summary of three working groups’ Methodology Frameworks. 
+•	
+Section 5 includes information about the global regulatory landscape for the responsible 
+adoption of AIDA within the financial sector. 
+•	
+Finally, the Appendices include a checklist for assessing adherence to FEAT guidelines, 
+a glossary with common terminology used across the FEAT documents, and a section on 
+the global AI regulatory landscape.
+2.2    Navigating this Document
+The structure of this document is as follows: 
+
+
+===== PAGE 11 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+11
+Artificial Intelligence and Data Analytics comprises technologies that assist or replace human decision 
+making. In the last decade, the increased availability of data from digital channels and third party 
+sources has allowed use of AIDA by financial institutions to evolve widely, enabling organisations 
+to perform quantitative risk aware decision making across functions such as business operations, 
+customer service and marketing to achieve more sophisticated predictions, personalisation and 
+insights, risk management, and compliance at a vast scale. 
+An AIDA system contains one or more AIDA models that work together to achieve a set of objectives. 
+The decisions made by an AIDA system are “AIDA driven decisions”. AIDA systems encompass not 
+just the AIDA model(s), but also other parts of a decision making process that are required to get to 
+the final AIDA driven decision such as: 
+2.3    Designing AIDA Systems for FEAT Consideration
+•	
+Human contributions that affect AIDA decisions (humans might give input or use the 
+model output as a factor to inform their final decision).
+•	
+Other governance or rules that affect decisions.
+•	
+Actions taken based on the AIDA system’s output.
+•	
+Define overall FEAT Principles that are aligned to their organisation’s values and 
+principles.
+•	
+Assess, measure and monitor how the AIDA system achieves these Principles.
+•	
+Regularly assess overall commitments and refine the Principles.
+Monitoring and review mechanisms are also part of the end-to-end AIDA system and will impact 
+AIDA driven decisions over time as feedback from monitoring and review is used to update elements 
+such as the model, business rules and human inputs, for example.
+AIDA systems developed, deployed and monitored using the FEAT Principles Assessment 
+Methodology can minimise human bias, which is manifestly beneficial to consumers. To evaluate the 
+application of the FEAT Principles Assessment  Methodology to an AIDA system, financial institutions 
+need to:
+In Phase 2, the consortium reviewed and assessed all four Principles of: Fairness, Ethics, 
+Accountability and Transparency, as well as evaluated these Principles against a set of use cases. 
+The findings conclude that FEAT Principles and considerations can exist at both an AIDA system/use 
+case level and at an overall organisational level, and that these may differ according to geographical 
+location and societal norms. Regulated entities are encouraged to incorporate FEAT Principles at an 
+organisational level down to use case/AIDA system level, where relevant. 
+
+
+===== PAGE 12 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+12
+FEAT Principles are highly interdependent and must be mapped across the AIDA system development 
+lifecycle for them to be operationalised. While all FEAT Principles are to be applied at an organisation 
+level, the Fairness and Transparency Principles are tailored to the use case or specific system (this can 
+be seen in Veritas Phase 1, where the fairness assessment for customer marketing was significantly 
+different to that for credit scoring). Ethics and Accountability Principles focus on defining clear and 
+consistent organisational values and principles, which sets the foundation for translating Principles 
+to practice by introducing commitments and specifications to operationalise values for each AIDA 
+system or use case. While the assessment of ethics and accountability happens at the foundation 
+stage, elements of the Ethics and Accountability Methodology are applicable throughout the use 
+case lifecycle. 
+2.4    Recap of the FEAT Principles
+MAS released a set of 14 Principles that cover Fairness, Ethics, Accountability and Transparency 
+for responsible AIDA adoption within FSIs5. The following figure 2.1 shows how the Principles are 
+mapped to each of the FEAT areas. 
+Figure 2.1 FEAT areas mapped to 14 Principles
+Fairness
+Ethics
+Accountability
+Transparency
+•	
+P1: Individuals or groups of individuals are not systematically disadvantaged 
+through AIDA-driven decisions, unless these decisions can be justified.
+•	
+P2: Use of personal attributes as input factors for AIDA-driven decisions is justified.
+•	
+P3: Data and models used for AIDA-driven decisions are regularly reviewed and 
+validated for accuracy and relevance, and to minimise unintentional bias.
+•	
+P4: AIDA-driven decisions are regularly reviewed so that models behave as 
+designed and intended.
+•	
+P7: Use of AIDA in AIDA-driven decision-making is approved by an appropriate 
+internal authority.
+•	
+P8: Firms using AIDA are accountable for both internally developed and 
+externally sourced AIDA models.
+•	
+P9: Firms using AIDA proactively raise management and Board awareness of their 
+use of AIDA.
+•	
+P10: Data subjects are provided with channels to enquire about, submit appeals 
+for and request reviews of AIDA-driven decisions that affect them.
+•	
+P11: Verified and relevant supplementary data provided by data subjects are 
+taken into account when performing a review of AIDA-driven decisions.
+•	
+P5: Use of AIDA is aligned with the firm’s ethical standards, values  
+and codes of conduct.
+•	
+P6: AIDA-driven decisions are held to at least the same ethical standards as 
+human-driven decisions.
+•	
+P12: To increase public confidence, use of AIDA is proactively disclosed to data 
+subjects as part of general communication.
+•	
+P13: Data subjects are provided, upon request, clear explanations on what data 
+is used to make AIDA-driven decisions about the data subject and how the data 
+affects the decision.
+•	
+P14: Data subjects are provided, upon request, clear explanations on the 
+consequences that AIDA-driven decisions may have on them.
+
+
+===== PAGE 13 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+13
+2.5    Interdependencies Across the FEAT Principles
+FSIs need to focus on assessing AIDA systems from Fairness, Ethics, Accountability and Transparency 
+perspectives as a whole to meet Responsible AI adoption obligations. As some of the FEAT Principles 
+are interdependent, FSIs should consider the below when assessing the Principles.
+•	
+Dependency of Fairness Principles on other FEAT Principles. P1-P4 discusses 
+fairness aspects such as the justification of systematic disadvantage of individuals or 
+groups, the use of personal attributes, regular reviews of data and models, and the 
+decisions that FSIs need to take when using AIDA systems for decision making. These 
+principles are dependent on: 
+◦   Ethics Principles 5 and 6. The use of AIDA to align with the ethical values of the 
+organisation, to reflect on a choice of which (if any) personal attributes to be 
+excluded when developing AIDA models, and regular reviews and monitoring of 
+models used in decision making.
+◦   Internal Accountability Principles 7 and 8. Approval of internal stakeholders for 
+AIDA driven decision making is necessary, as some may have to take responsibility 
+for those decisions. Regular reviews of data and the model could support a firm’s 
+accountability for internal/external sourced models.
+◦  External Accountability Principle 10. FSIs are encouraged to have channel for 
+appeals/redress for customers to submit review request of an AIDA decision that 
+has disadvantaged them. Mechanisms for appeals, also provide a channel for FSI 
+to redress/mitigate systematic harms.
+◦   Transparency Principles 13 and 14. Regular review of internal/external sourced 
+models based on fairness principles and the explanation of how it arrived at 
+certain decisions could help to support firm’s management / board accountability 
+obligations. In addition, customer facing transparencyenables firms to meet 
+the requirements for providing customers with a channel for redress where 
+necessary.
+•	
+Dependency of Ethics and Accountability Principles on other FEAT Principles.  
+P5-P11 focus on the ethics and accountability aspects covering ethical standards, 
+the awareness of internal stakeholders and management with regard to use of 
+AIDA systems, and the need to provide a necessary channel for redress. Dependent 
+Principles include:
+◦    Transparency Principles 13 and 14. Firms’ management/board can only fulfil their 
+accountability obligations if they can demonstrate that they, or people working 
+on their behalf, are able to explain how an AIDA system reached a given outcome. 
+To that extent, internal transparency is essential. Meanwhile, customer facing 
+transparency enables firms to meet the requirements for providing customers 
+with a channel for redress where necessary.
+
+
+===== PAGE 14 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+14
+•	
+Dependency of Transparency Principles on other FEAT Principles. P12-P14 covers 
+both internal and external transparency aspects of the FEAT Principles. Dependencies 
+on other Principles include: 
+◦   Ethics Principles 5. Decisions on the level of transparency that customers will 
+be provided with will be a function of the firm’s ethical standards, values and 
+code of conduct (unless there is explicit regulatory requirements from either the 
+financial services regulator or the data regulator) along with other considerations 
+around areas including fraud and anti-money laundering.
+◦   External Accountability Principle 10. Providing a channel to customers to ask 
+questions (and seek redress), submit appeals for and request reviews is essential 
+for P13 and P14 (both of which are “upon request”) to be possible where applicable.
+
+
+===== PAGE 15 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+15
+3.1    Embedding the FEAT Principles Assessment 
+         Methodology into the Development Lifecycle 
+         of an AIDA system
+To perform a holistic assessment of the FEAT Principles, FSIs should embed the Methodology into their 
+AIDA system development lifecycle. As a prerequisite step, it is recommended that organisations set 
+out guiding principles with regard to developing AIDA systems in line with their corporate values. 
+These values are defined in line with the Ethics and Accountability Methodology at an organisational 
+level (or at the business unit level for larger companies with different business segments serving 
+different business objectives). To put these principles into practice, it is important to translate them 
+into practical steps supported by metrics and thresholds and embedded into everyday practices 
+throughout the AIDA system lifecycle. 
+As discussed, Fairness and Transparency Principles are inter-related and are use case specific. 
+Therefore, it is important for Fairness and Transparency Methodologies to be incorporated within 
+the various steps of the AIDA system development lifecycle. It is recommended that FSIs perform 
+the Fairness and Transparency assessments concurrently. For example, in a customer marketing 
+use case, FSIs will need to identify protected features from other features used in developing AIDA 
+models to ensure fairness – they will therefore require transparency around which features are being 
+used.  
+The FEAT Fairness Principles Assessment Methodology established in Phase 1 sets out five parts 
+(A-E), which include a set of checklist questions to guide organisations. In Phase 2, the five parts 
+methodology is used as a baseline mapped to a typical AIDA system development lifecycle and 
+revised with new considerations around Ethics, Accountability and Transparency. 
+Application of FEAT  
+for the Development  
+Lifecycle of an  
+AIDA system
+03
+
+
+===== PAGE 16 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+16
+As part of Phase 2, the FEAT Assessment Methodology documents provides a checklist across the 
+end-to-end AIDA lifecycle (as shown in the figure 3.1) as well as considerations to assist FSIs in 
+responding to assessment questions (to view the checklist, see appendix A). While most of the 
+questions in the checklist are aligned to the individual FEAT Principles, some are general questions 
+that will more broadly help organisations assess their AIDA systems. Answers to these questions 
+should have already been available in existing AIDA system development documentation, as they 
+are not specific to the FEAT assessment.
+Figure 3.1 FEAT assessment checklist mapped against the AIDA system development lifecycle
+ 
+*Note: EA questions in Step 0 need to be answered first before others
+Foundational
+Legend:
+Use-Case or AIDA System Specific
+(Typical AIDA System Development Lifecycle)
+(Cross Use Cases)
+Principles 
+to Practice
+Define System 
+Context & 
+Design
+Prepare Input 
+data
+Build & Validate
+Deploy & 
+Monitor
+G1 - G4
+T1 - T5
+F0
+EA1 - EA4*
+Fairness Checklist
+Generic Checklist
+G5 - G8
+G9 - G10
+G11
+G12 - G13
+T6 - T10
+T11 - T17
+F1 - F3
+F4 - F8
+F9 - F11
+F12
+EA5 - EA6
+EA7 - EA8
+0
+1
+3
+2
+4
+Ethics & Accountability Checklist
+Transparency Checklist
+
+
+===== PAGE 17 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+17
+The general questions are foundational in nature and can be split across the five steps of AIDA lifecycle:
+3
+Step 3 - Build and Validate
+•	
+G11 - Is the composition of the AIDA System defined? Is it clear how each 
+component of the system AIDA models, as well as business rules and human 
+judgement if relevant, are used to achieve its commercial objectives? Are the 
+performance estimates and the uncertainties of those estimates documented?
+4
+Step 4 - Deploy and Monitor
+•	
+G12 - Is the system’s monitoring and review regime designed to detect abnormal 
+operation (e.g., significant model and/or data drift)?
+•	
+G13 - Is there fallback and/or mitigation plans in place in case of triggers from the 
+system’s monitoring and review regime?
+0
+Step 0 – Principles to Practice 
+•	
+G1 - Is AIDA defined in the FSI?
+•	
+G2 - Is there a framework in place to define roles and responsibilities for AIDA 
+projects/use cases?
+•	
+G3 - Is there a materiality framework in place? If so, do you have a clear definition 
+to determine the different level of materiality?
+•	
+G4 - Does the FSI have an up-to-date inventory that tracks all material AIDA use 
+cases in use?
+1
+Step 1 - Defining System Context and Design
+•	
+G5 - Have you documented the commercial objectives of the system and the 
+quantitative measures to meet those commercial objectives? Is it documented 
+how is AIDA used to achieve them?
+•	
+G6 - Are there scope boundaries of the proposed system? For example, specific 
+geographies/ segments?
+•	
+G7 - Is AIDA use justified for this particular objective/use case (based on 
+limitations of alternatives, proof of AIDA being used successfully elsewhere, 
+availability of adequate data to train the AIDA system, valid legal basis, etc.)?
+•	
+G8 - Has the materiality of the use case been determined using the framework 
+defined in Step 0?
+2
+Step 2 - Prepare and Input Data
+•	
+G9 - Have you documented the data used by the system including types of data 
+available, the provenance (source), attributes, dictionary (meaning), vintage (time 
+period), data (quality) profile, representativeness and informed consent? For any 
+personal data used by the system, has a DPIA been conducted?
+•	
+G10 - Have you documented the data pre-processing and engineering done by 
+the system?
+
+
+===== PAGE 18 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+18
+Importantly, FSIs should always adhere to all relevant legal and regulatory requirements when 
+undertaking activities relating to the collection, use, processing or disclosure of personal attributes 
+involving personal data. This can be achieved by conducting a Data Protection Impact Assessment 
+(DPIA) prior to reviewing the FEAT checklist. A DPIA involves identifying, assessing and addressing 
+personal data protection risks based on the organisation’s functions, needs and processes. 
+The assumption in this document is that all other relevant legal and regulatory requirements and 
+best practices are being followed with respect to AIDA systems including but not limited to, anti-
+trust/competition law, security and sustainability (or ESG) considerations and other areas that fall 
+outside the scope of this document. 
+Finally, when conducting the FEAT checklist review, FSIs are also encouraged to document all the 
+decisions made and measures they put in place.
+As indicated by the question G1 - G4 above, “Principles to Practice” is a foundational step of the 
+AIDA system development lifecycle, preparing the way for the design, build and deployment of the 
+system. This phase is important to ensure that an organisation’s values are effectively operationalised 
+in their AIDA systems, and is achieved by establishing a framework of governance principles to 
+continuously track, monitor, and enhance how values are embedded into the AIDA model lifecycle. 
+Questions G1 - G4 in the FEAT checklist relate to the foundational stage and can be used by FSIs 
+to guide their work in creating a governance framework anchored in their core corporate values, 
+ethical guardrails, and accountability frameworks. 
+It is important that these values and principles are translated into specific AIDA system related 
+decisions and metrics that can be tracked over a period of time and which include clearly assigned 
+ownership and accountability. It is equally important for stakeholders across specific AIDA use cases 
+to have visibility of the governance and metrics being tracked to ensure compliance with relevant 
+regulations and internal standards.
+There are several other key considerations for FSIs to work through during the foundational phase. 
+The subsections below provide a list of recommendations for how to:
+Establishing good governance principles is important for all firms, regardless of size. All firms 
+are encouraged to focus on implementing the AIDA system on areas where they have sufficient 
+resources to undertake a FEAT assessment to the level of rigor required for the risk level posed by 
+the AIDA system.
+3.2    Foundational Setup
+•	
+Bring a FEAT assessment to scale (section 3.2.1).
+•	
+Define materiality and risk tiers (section 3.2.2).
+•	
+Incorporate a risk-based governance approach for application of FEAT Principles to  
+use cases (section 3.2.3).
+•	
+Integrate with existing risk management practices (section 3.2.4).
+
+
+===== PAGE 19 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+19
+FSIs need to ensure that their FEAT assessments can be scaled to AIDA usage across the organisation 
+in a consistent and robust way. The following set of recommendations are intended to provide 
+guidance to the FSIs in this regard. The below points are key to the overall success of embedding 
+FEAT principles into day-to-day processes of an FSI.
+3.2.1    Creating the Right Foundation for  
+             Scaling FEAT Across an Organisation
+•	
+Employ a materiality assessment framework. Firms can use the assessment framework 
+outlined in this paper (see section 3.2.2 for more details) or use existing risk assessment 
+frameworks to tier the risk of AIDA systems and define the governance policies required 
+to meet different business needs. The goal of risk tiering is to ensure that systems with 
+higher levels of risk are prioritised in terms of focus and resources. 
+•	
+Embed FEAT related considerations into existing risk frameworks and governance 
+structures. Frameworks around model risk (or its equivalent outside banking), 
+cybersecurity, data privacy and the fair treatment of customers can be adapted for FEAT 
+considerations. Ensure relevant and transparent cross domain governance structures 
+are updated to include FEAT Principles, including identifying roles, expectations, and 
+accountability. This step should be undertaken prior to Stage 1 (“Defining System Context 
+and Design”) in the AIDA system development lifecycle to inform the design of the AIDA 
+system (see section 3.2.4 for more details).
+•	
+Define standards and processes. Definitions should cover all key areas to bring 
+consistency and clarity to the processes. Organisations should look to define the right 
+metrics, specifications, and commitments to deliver the consistent scaling of FEAT 
+assessment process across the enterprise.
+•	
+Invest in appropriate training. Training programmes to include customers, staff, 
+management, and risk/control functions and seek to demystify AIDA systems to increase 
+trust in their outcomes. Organisations should also identify new and changing roles 
+and map areas where they need to upskill, reskill or hire to accommodate new ways of 
+working and enable effective human + machine collaboration. 
+•	
+Do not address any of the FEAT principles in isolation. FEAT Principles are recommended 
+to be embedded throughout the AIDA system lifecycle, and no one Principle to be 
+treated as a one off or standalone task with regard to model development, testing and/
+or validation.
+•	
+Articulate your key principles internally and, if possible, externally. FSIs need to 
+communicate a proactive, consistent message on their use of data and algorithms and 
+the impact of AIDA decisions to customers, employees and other stakeholders. This 
+could be conducted through websites and/or other electronic and physical channels. 
+Communications should incorporate the company’s Responsible AI mission, including 
+its values around ethics, accountability, transparency and fairness, and be informed by 
+brand as well as public risk assessments and guidance. 
+•	
+Create and encourage an organisational culture that empowers individuals to raise 
+doubts or concerns about AIDA systems. Organisations should create a culture that 
+incentivises the application of the FEAT Principles and which holds AIDA system owners 
+accountable for achieving Responsible AI goals. Only then will the organisation begin to 
+assess every AIDA system through a responsibility lens and start thinking more deeply 
+about how to track relevant data and measure change.   
+
+
+===== PAGE 20 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+20
+•	
+Supplement use case level investments in tools for AIDA systems to embed FEAT 
+across use cases. This approach delivers more systemic support to teams across 
+the organisation to help them meet their AIDA obligations. Examples of such 
+capabilities include a single customer level dashboard that provides an overview of 
+data held by the FSI about data subjects and where their data is used within the FSI, 
+as well as a centralised AIDA model repository.
+•	
+Incorporate insights from multidisciplinary teams into the FEAT assessment process 
+and ensure sponsorship from the leadership. This includes talent specialised in areas 
+such as human resources, behavioural sciences, law, human centric design etc., to 
+provide the right direction to AIDA based programmes. The better the blend of skills, the 
+more sustainable the result and the better the governance. 
+•	
+Extent to which AIDA is used in decision-making. More complete substitution of 
+technology for human decision-making may increase the risk of accidental systematic 
+disadvantage, especially if the AIDA models are more complex and opaque.
+•	
+Extent of automation of process of AIDA-driven decision-making. All else being equal, 
+more automation is likely to mean a higher volume and/or speed of AIDA-driven decision-
+making which may increase the scope of impact and decrease opportunities for timely 
+human intervention to prevent issues.
+•	
+Complexity of the AIDA model. This risk relates to the complexity of the mathematical 
+computation, the number and type of data sources used as inputs, or the level of human 
+intervention in addition to autonomous decision making. More complex models may 
+result in a model with limited interpretability (i.e., they could be “black boxed”) or they 
+may increase the risk that the use of particular attributes is not fully justified.
+One of the key elements in defining an AIDA governance model is to assess the materiality of each 
+AIDA use case. The first step in managing risk is to determine the risk level posed by the AIDA system 
+and its impact on the organisation. Traditionally, model risk identification and tiering have given 
+more weight to model impact (materiality and criticality) considerations. Owing to the differential 
+risk attributable to certain use cases and the AIDA systems which support them, it has been observed 
+that models can give rise to unintended consequences. These include bias towards certain groups 
+even when sensitive characteristics are excluded from models, or the inappropriate projection of a 
+model to populations for which it has not been trained. 
+The FEAT Principles acknowledge that their application should be scaled according to the risk of 
+a particular AIDA system, stating that “firms can calibrate actions and requirements under their 
+internal governance framework based on the materiality of the AIDA driven decisions”.6
+As mentioned, the risk assessment of an AIDA system results in risk tiers, which determine the 
+subsequent governance and design of the AIDA systems. These tiers should enable the FSIs to manage 
+risk by focusing resources on high risk AIDA systems with proper guardrails and mitigating actions.
+Phase 1 defined the parameters to identify risk as follows:
+3.2.2    Determining the Materiality of AIDA Systems 
+
+
+===== PAGE 21 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+21
+•	
+Severity and probability of impact on different stakeholders, including individuals. 
+For example, a use case for credit approval or pricing decisions is of much greater 
+consequence to individuals than, for instance, that for new marketing messages. The 
+impact could also include the volume and scope of usage, and the type and number of 
+external and internal stakeholders that can be affected.
+•	
+Monetary and financial impact. AIDA models may be higher risk because of the potential 
+impact to the FSI, such as its exposure and balance sheet, or to customers.
+•	
+Regulatory impact. Some AIDA models may be higher risk because of the regulatory 
+exposure of their decision making for applications such as anti-money laundering.
+•	
+Options for recourse. All else being equal, if there are efficient and effective ways for 
+customers or other stakeholders to challenge an AIDA system’s decisions, then the 
+associated risks (such as systematic disadvantage) may be lower.
+•	
+Reputational risk. The decisions resulting from some AIDA models may have a higher 
+risk potential for negative publicity, public perception or uncontrollable events that have 
+an adverse impact on a company’s reputation.
+•	
+Use of personal data. The extent to which justifiable personal data can be used for certain 
+use cases such as the use of personal medical history for health insurance policies.
+In addition to the above, FSIs can also include impacts related to reputational risk, and the use of 
+personal data in AIDA systems:
+With the above in mind and by way of illustration, credit scoring with auto decline would be a high risk 
+use case, because of the model complexity, level of automation and potential impact on individuals. 
+Using the parameters above, firms can judge the risk profile of other use cases.
+
+
+===== PAGE 22 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+22
+•	
+Extent of analysis and level of documentation: 
+◦   For higher risk use cases, the assessment would require more extensive analysis 
+and more thorough responses to the questions laid out in the FEAT Principles 
+Assessment Methodology.
+◦   For lower risk use cases, it may be sufficient to provide short summary answers 
+to some or all of the assessment questions.
+•	
+Trade-offs between business and FEAT objectives: 
+◦  	Higher risk use cases may call for greater efforts towards upholding FEAT 
+Principles, at the expense of business objectives.
+◦  	In such situations, other means of improving the business performance of 
+systems, such as improving data collection volume or quality, may be explored 
+to achieve a more optimal balance.
+•	
+Frequency and extensiveness of monitoring regime: 
+◦  	Higher risk use cases are likely to require more frequent and in depth monitoring 
+processes to be put in place following deployment.
+◦  	Risk appropriate decisions should be made regarding the metrics and outcomes 
+to be monitored, as well as a wider review of the FEAT assessment process to 
+ensure previous assessment results remain relevant.
+•	
+Review and approval: 
+◦  	Higher risk use cases would necessitate more stringent review and approval 
+processes, which may be reflected in the number and levels of parties required 
+for sign off.
+•	
+Escalation process: 
+◦  	Deviations from pre-agreed model performance or FEAT metric thresholds under 
+higher risk use cases call for greater levels of escalation and intervention to 
+address the matter.
+•	
+Internal vs. external third party audit: 
+◦  	Higher risk use cases may benefit from independent validation through third 
+party audits.
+◦  	For lower risk use cases, it may be adequate to conduct internal audits where in 
+house expertise is available.
+FSIs are encouraged to customise the depth of the FEAT Principles Assessment Methodology to 
+be commensurate with the risk level and the subsequent risk tiering identified for the AIDA system 
+under consideration. Such customisation could relate to the assessment process itself, the level of 
+detail of the assessment, or the parties involved. FSIs should ensure that customisation aligns with 
+their existing practices to ensure consistency across the firm.
+Dimensions for customisation of the assessment methodology include:
+3.2.3    Incorporating a Risk Based Governance Approach   
+             to the Application of the FEAT Principles
+
+
+===== PAGE 23 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+23
+Banks traditionally have well defined Model Risk Management (MRM) practices embedded into their 
+processes for managing, monitoring, and auditing risks (as defined by the three lines of defence). 
+However, these risk practices and governance setup focus on reducing the risk of material financial 
+loss to the institution from material models, they do not incorporate elements of the FEAT Principles. 
+Globally, regulatory agencies are evaluating the suitability of existing laws, regulations, and guidance 
+for AIDA models. For example, guidance issued by the European Central Bank (ECB) Supervisory 
+Board in 2018 recognises the key challenges with respect to AIDA system risk including bias and 
+explainability.7
+While traditional MRM approaches (such as outcome analysis), have accounted for issues in model 
+interpretability and bias mitigation, the use of increasingly varied data coupled with black box 
+models requires enhancing MRM reach across organisations and therefore across use cases with 
+varying levels of materiality. Outcome assessment entails the evaluation of factors such as the 
+overall model design/methodology, development/estimation processes, assumptions/limitations, 
+and the final model specification. In the context of AIDA models, there needs to be an emphasis on 
+the consideration of alternate methodologies and the value addition of AIDA approaches over more 
+transparent methodologies.
+The following illustrates how the recommendations and frameworks made above could be brought 
+together to enhance traditional MRM components:
+3.2.4    Integrating the FEAT Principles Assessment Methodology  
+             with Existing Risk Management Practices
+MRM  
+Components
+Traditional 
+view
+Incorporating FEAT in MRM  
+for AIDA systems
+Scope and 
+applicability  
+for MRM
+Model  
+inventory
+•  Focused on risk 
+management or  
+regulatory/compliance  
+use cases.
+•  Capture of key model 
+information. 
+•	 Tracking of validation 
+activities and the 
+timeframe of model 
+validity.
+•	 Emphasis is placed on the 
+process of tracking and 
+documentation.
+•	 Expand application to all use cases which use AIDA 
+systems across the organisation (e.g., marketing, 
+operations, etc.).
+•	 Incorporate a risk-based approach (outlined in section 
+3.2.2) to incorporate the FEAT Principles in defining 
+the scope and applicability of model approvals.
+•	 Outline the FEAT implications and impact associated 
+with high-risk AIDA models, and the enhanced review 
+standards required (outlined in section 3.2.3).
+•	 Implement changes to the approval and attestation 
+process.
+•	 Model information catalogue (including model usage, 
+goals, owners, data controller/processor etc.,) to 
+ensure traceability and transparency.
+•	 Organisation-wide model identification based on 
+consistent definitions, specifically for AIDA systems 
+with black box interpretability requirements.
+
+
+===== PAGE 24 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+24
+	
+Table 3.1: Application of FEAT into MRM components
+MRM  
+Components
+Traditional 
+view
+Incorporating FEAT in MRM  
+for AIDA systems
+Model 
+development, 
+validation and 
+implementation
+•	 Focus on data quality, 
+conceptual soundness, 
+outcome analysis and 
+periodic monitoring.
+•	 Documentation and 
+tracking of activities  
+across model lifecycle. 
+•	 Implementation is  
+handled by IT teams.
+•	 Adequate coverage of model purpose, usage and 
+conceptual soundness.
+•	 Ensuring appropriate and responsible usage of 
+available data. 
+•	 Along with performance KPIs, provision model 
+testing and monitoring for fairness and unintended 
+outcomes.
+•	 Incorporate FEAT Assessment Methodology checklist 
+throughout the AIDA system development lifecycle.  
+•	 Adequate coverage and transparency considerations 
+for third party (vendor) risks
+Risk tiering and 
+assessment
+•	 Focus on model 
+materiality and criticality 
+considerations.
+•	 Develop new lenses to define model risk tiering based 
+on the enhanced risk associated with AIDA systems 
+assessed against the FEAT Principles (outlined in 
+section 3.2.2).
+•	 Develop a risk specific application of the FEAT 
+Principles development/validation frameworks.
+Governance 
+standards
+•	 Enterprise wide view of 
+model risk at board level.
+•	 Business unit ownership 
+for model risk.
+•	 Clearly defined roles and 
+responsibilities. 
+•	 Incorporate guiding FEAT Principles in the 
+organisation’s governance strategy.
+•	 Ensure the governance framework is anchored to 
+the organisation’s core values, ethical guardrails, and 
+accountability frameworks. 
+•	 Define measurable and trackable KPIs and metrics to 
+ensure compliance to the organisation’s overall values 
+and principles.
+•	 Define RACI for accountable parties, set processes 
+for coordination and share effective communication 
+standards across the teams involved (as outlined in 
+section 3.2.1)
+People and 
+technology 
+development
+•	 Relevant product and 
+technical skills at business 
+unit level. 
+•	 Alignment of models 
+with capabilities of the 
+information system.
+•	 Identify required skills/new roles aligned to the 
+application of the FEAT Principles, and define training 
+and resourcing needs across all lines of defence.
+•	 Embed FEAT skills within teams to help escalate 
+issues that need attention. 
+•	 Architect and deploy AIDA models, systems, and 
+platforms that are trustworthy and fair by design. 
+•	 Establish technical methods and tools to assess AIDA 
+systems before “go live” and monitor them afterwards 
+(as outlines in section 3.2.1).
+
+
+===== PAGE 25 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+25
+4.1    Fairness
+As a concept, fairness is not novel to decision making and certainly not unique to Artificial Intelligence 
+& Data Analytics driven decision making (“AIDA”, which is defined by the Monetary Authority of 
+Singapore as “technologies that assist or replace human decision-making”). In a general sense, 
+fairness involves what is right, impartial and equal without favouritism or discrimination. 
+AIDA systems powered by high quality data, sophisticated algorithms and ever-increasing processing 
+capabilities bring scale and competitive value to the data driven decision making processes. 
+However, without careful design and control, these systems can bring new risks and unintended 
+harms, perpetuating or reinforcing existing disadvantages in society or even introducing new ones. 
+With so many decisions in financial services aided by AIDA systems, the fairness of these systems is 
+becoming increasingly important.    
+More and more regulators worldwide are playing a critical role in guiding FSIs to prevent harms and 
+deliver benefits. In Singapore, within the foundational FEAT Principles, the Principles that explicitly 
+relate to fairness (see figure P1-4 in section 2.4) aim to ensure that AIDA driven decisions do not 
+systematically disadvantage individuals or groups of individuals, without appropriate justification.
+To help organisations apply the Principles, Veritas Phase 1 (published in January 2021) formulated 
+the initial FEAT Fairness Principles Assessment Methodology. In Phase 1, use case examples of the 
+“Fairness Assessment Methodology” focused on the banking sector. This document is the output 
+of Veritas Phase 2 and it extends the Phase 1 Fairness Assessment Methodology with frameworks, 
+practical guidance and examples, covering both banking and insurance. The Fairness Assessment 
+Methodology provides a guide for FSIs to assess alignment of their AIDA systems’ operations with 
+the Fairness Principles.  
+The main extensions to the Fairness Assessment Methodology in Phase 2 are: 
+This section summarises the deep dive methodology documents to give a high-level overview of the 
+FEAT Principles Assessment Methodology to assess AIDA systems. 
+Summary of FEAT  
+Principles Assessment 
+Methodology
+04
+•	
+Key concepts such as personal attributes, types of bias and mitigation methods, 
+and fairness objectives and metrics are defined in more detail along with illustrative 
+frameworks and guidance on how to identify and apply them to a use case.
+•	
+Parts A-E of the Fairness Assessment Methodology defined in Phase 1 are aligned 
+to a typical AIDA system development lifecycle, enabling FSIs to develop fair AIDA 
+applications by design.
+
+
+===== PAGE 26 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+26
+•	
+Detailed considerations and guidance are included for each of the 18 Fairness 
+Assessment Methodology assessment questions from Phase 1 to help FSIs think 
+through the important aspects to consider when answering the questions.
+•	
+The 18 Fairness Principles Assessment Methodology questions from Phase 1 are 
+integrated into the overall FEAT checklist to enable a full FEAT assessment of the end-to-
+end AIDA system. 
+•	
+Guidance is provided on scaling and embedding the Fairness Principles Assessment 
+Methodology across an FSI, through
+	−
+Defining the internal foundational set of practices and standards for AIDA fairness, 
+	−
+Including guidance on how to customise the depth of the fairness assessment 
+required for a given AIDA system, and 
+	−
+Including guidance on how FSIs can integrate AIDA fairness into the fabric of their 
+organisation. 
+The use case example in Phase 2 is predictive underwriting for life insurance. A simplified underwriting 
+journey for existing customers of an insurer in Singapore and a detailed illustration of the use case can 
+be found in the Veritas Phase 2 - Illustrative Case Studies document. 
+4.2    Ethics and Accountability
+With the increased use of AIDA systems in the financial sector, the expectations for accountability 
+and ethical behaviour from regulators, peers, consumers, and society as a whole have also increased. 
+The material in the Ethics and Accountability Methodology document, and the accompanying 
+workbook Operationalising Ethics and Accountability: Workbook (refer to appendix in the Ethics and 
+Accountability Methodology document), can help to ensure consistent and context sensitive ethical 
+decision making throughout organisations. 
+While it is typical for businesses to have a set of core values in place, and in some cases AI principles, 
+there has been little progress in applying these values to decision making. However, FSIs have a 
+universally strong foundation of governance in place to manage material and systemic risk, and are 
+therefore better positioned to apply values and principles to decision making than companies in other 
+sectors. This foundation can be leveraged with the framework contained in this document to govern 
+ethical decision making and generate both internal and external accountability.
+The Operationalising Ethics and Accountability framework, provides a taxonomy of terms to organise 
+the various concepts that are important to ethical decision making and to move the organisation 
+from abstract notions to concrete and measurable commitments to action. These terms include the 
+values and principles that organisations are most familiar with as well as additional controls such 
+as normative concepts, such as fairness, that serve to clarify, shape, and ground commitments and 
+specifications, which are the specific policies and metrics, respectively, that enable organisations to 
+be held accountable.
+With this framework and the accompanying workbook, FSIs will be able to engage in measurable 
+ethical practices that are consistent with organisational concepts of ethics and accountability. The 
+intended audience could include a wide set of stakeholders, depending on the work being undertaken. 
+If the organisation’s core values need to be refreshed, then the office of the CEO will be involved; if it 
+is used to specify the local context for fairness, then data scientists, business process owners, and/
+or AI management might need to be involved. The nature of the work and how it fits in existing risk 
+frameworks and governance processes are all determinants for the intended audience and these will 
+likely vary among FSIs.
+
+
+===== PAGE 27 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+27
+4.3    Transparency
+With many decisions in the Financial Services Industry (FSI) now being shaped or even made by 
+algorithms, there is a greater demand for transparency around crucial questions (e.g., where are 
+algorithms in use? what data do they use? how are they making decisions? what impact do they 
+have? etc.)
+Regulators around the world are encouraging FSIs to increase transparency around AIDA decisions 
+for people who are impacted by such decisions. This includes three of the 14 principles (see section 
+2.4 for the list of Principles) under the Monetary Authority of Singapore’s FEAT guidelines released in 
+2018.
+FSIs can choose to view transparency only from a regulatory compliance perspective. However, to 
+do so would be to waste an important opportunity. In an increasingly digital world, transparency is an 
+unmet customer need, and providing greater transparency could help FSIs build stronger customer 
+relationships and create competitive advantage. In addition, creating greater internal transparency 
+into algorithms can help overcome the trust deficit that AIDA systems may suffer within the FSI and/
+or with regulators. 
+FSIs’ approach to AIDA transparency must address two aspects: 
+•	
+External. What level and form of transparency should FSIs provide to customers/
+prospects and other external stakeholders in various situations?
+•	
+Internal. How should FSIs go about building reliable explanations to feed into (and 
+provide verifiable backup for) the information shared externally and to be compliant 
+with relevant internal policies and procedures and regulatory requirements?
+With respect to external transparency, a variety of regulatory considerations apply, such as existing 
+ones around treating customers fairly and respecting an individual’s personal data rights, and new 
+ones specific to AIDA systems. As a result, it is difficult to prescribe the level of transparency needed 
+for different AIDA use cases. 
+However, it is possible to provide a checklist of the key considerations for an FSI in arriving at such 
+a decision. The materiality of the AIDA driven decision to the impacted customer (e.g., whether it 
+results in denial of access to financial service) must be weighed against considerations such as the 
+prevention of fraud or gaming by unscrupulous applicants or the FSI’s legal obligations such as 
+financial crime prevention/detection. 
+There are also practical considerations to be kept in mind in the operationalisation of transparency. For 
+example, human beings are limited in their ability to interpret complex explanations for algorithmic 
+decisions. The reasons behind a decision may be helpful in educating them, but sometimes it may be 
+more valuable to highlight the actions that they can take to change the outcome. 
+With regard to internal transparency, the past few years have seen significant activity around 
+designing explanation methods for AIDA systems, particularly with respect to ML models. FSIs should 
+review the existing landscape of methods and consider implementing internal standards for approved 
+explanation methods. 
+
+
+===== PAGE 28 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+28
+More broadly, FSIs should take steps to implement transparency requirements in a scalable way, rather 
+than on a case-by-case basis. Transparency methodology document makes five recommendations in 
+this regard: embedding AIDA transparency considerations into existing risk frameworks; investing 
+in proactive communication; training customers, staff, management and risk/ control functions; 
+investing in tools for AIDA transparency; and integrating transparency considerations throughout the 
+AIDA lifecycle.
+Finally, it should be recognised that the field of algorithmic transparency is relatively immature. There 
+are multiple areas in which there is room for future work around regulatory guidance, industry practices 
+and even academic research (e.g., the alignment of transparency considerations between AIDA and 
+non-AIDA systems, or the treatment of third party data and models with respect to transparency 
+requirements).
+
+
+===== PAGE 29 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+29
+5.1    Global Regulatory Landscape
+Various regulatory agencies across the world are formulating frameworks to address the unique 
+opportunities and challenges presented by AIDA systems. Recent regulatory developments include:
+Global Regulatory  
+Landscape on  
+Regulating  
+Responsible AI 
+05
+•	
+The Model AI Governance Framework.8
+•	
+Implementation and Self-Assessment Guide for Organisations.9  
+•	
+Compendium of Use Cases.10
+Singapore
+•	
+High Level Principles on Artificial Intelligence.11
+•	
+Consumer Protection in Respect of Use of Big Data Analytics and AI by 
+Authorised Institutions.12
+Hong Kong
+•	
+Five regulators issued a request for information and comment on the use of 
+AI and ML by FSIs.13
+•	
+US National Association of Insurance Commissioners AI Guiding Principles.14
+United States
+•	
+The Bank of England Future of Finance Report.15
+•	
+The opening of the Artificial Intelligence Public-Private Forum (AIPPF) to 
+facilitate a dialogue with the private sector.16
+United Kingdom
+•	
+European Commission has proposed the first regulatory framework for AI: the 
+Proposal for a Regulation on a European approach for Artificial Intelligence17
+The European Union
+
+
+===== PAGE 30 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+30
+5.2    Key Regulatory Trends
+5.3    Assessing the Regulatory Implications of  
+         AIDA Projects in Financial Services
+The overall trend in the regulatory landscape has been a focus on clarifying and revising current 
+laws and standards so they can be more clearly applied to circumstances involving AIDA systems, 
+rather than on establishing new regulatory bodies and laws.18
+Regulators in Asia have issued non-binding guidelines and principles on the adoption of AI, endorsing 
+a principles based, technology neutral approach to the responsible use of AI. This regulatory 
+approach can be seen most clearly in Singapore and Hong Kong, which is similar to the approach 
+taken outside Asia by jurisdictions including the UK. 
+Different legal and regulatory requirements will apply to the different contexts in which FSIs are 
+using AIDA, so there is no one-size-fits all approach. Table 5.1 summarises learnings in the form of 
+key considerations for FSIs when assessing the regulatory implications of their development and 
+deployment of AIDA solutions.
+Table 5.1: Key considerations for FSIs when assessing regulatory implications of AI
+Adopt a materiality based approach to assess regulatory considerations when 
+AIDA is being used to help focus efforts on more sensitive use cases.
+1
+Leverage existing internal risk management and governance frameworks when 
+assessing regulatory implications of using AIDA in specific use cases.
+2
+Collaborate with technology partners to promote transparency and accountability 
+when deploying AIDA systems. 
+3
+Share use cases and examples where possible to strengthen understanding 
+across the industry of what regulatory issues may apply when using AIDA
+5
+Bring a diverse set of perspectives to discussions on regulatory issues relating 
+to Responsible AI to ensure ethics principles are appropriately applied, and that 
+potential concerns are identified and dealt with early.
+4
+
+
+===== PAGE 31 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+31
+Phase
+Some regulatory  
+considerations
+Jurisdictional examples
+5.4    Adopting a Materiality Based Approach to  
+         Assessing Regulatory Considerations
+The materiality based approach has been covered in detail in section 3.2.2 of this document. The risk 
+based approach has been endorsed by MAS in the publication of its FEAT Principles,19 where firms 
+are encouraged to calibrate actions and requirements under their internal governance framework 
+based on the materiality of the AIDA driven decisions. Some of the suggested considerations to 
+determine materiality under these principles include the extent to which the AIDA system is used 
+in decision making, the extent of automation of the process, and the severity and probability of 
+impact on different stakeholders. The materiality based approach can also be seen in the European 
+Commission’s Proposal for a Regulation on a European approach for Artificial Intelligence.
+5.5    Leverage Existing Risk Management and  
+         Governance Frameworks
+Existing risk management and governance frameworks are a useful starting point for FSIs to 
+consider when implementing measures for the responsible use of AI. FSIs already operate in a highly 
+regulated industry. Most jurisdictions already have robust regulatory requirements in place covering 
+outsourced technology use, risk management, and governance. These regulations are almost always 
+technology neutral, meaning that they apply regardless of whether AI is used or not.
+A key task for assessing the regulatory implications when implementing AIDA solutions would 
+therefore be to identify the regulatory issues in a specific use case. Table 5.2 gives a hypothetical 
+example of working through some of the relevant regulatory questions involved in an AI context, 
+noting relevant Singapore regulatory requirements that may apply. 
+Phase 1:  
+input of 
+data into AI 
+technology
+•	 Data protection laws.20
+•	 Confidentiality laws. 
+•	 Guidelines on 
+outsourcing.21
+While Singapore’s Personal Data Protection Act (No. 26 of 
+2012)22 does not have a specific provision relating to the use 
+of AI, AIDA applications’ reliance on internal and/or external 
+data means that sector agnostic compliance requirements 
+such as data protection regulation remains relevant. FSIs 
+must therefore comply with the PDPA’s framework on the 
+collection, use and disclosure of personal data by private 
+sector organisations in Singapore to protect the personal data 
+of individuals, support public trust in the digital economy and 
+enable innovation in the data space.
+
+
+===== PAGE 32 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+32
+Phase
+Some regulatory  
+considerations
+Jurisdictional examples
+Phase 2: 
+processing of 
+data by AI
+Phase 3:  
+output 
+generated 
+by the AI  
+use case 
+•	 Technology laws. 
+•	 Cybersecurity Laws. 
+•	 Risk management 
+practices. 
+•	 Consumer protection 
+laws. 
+•	 Anti-discrimination laws. 
+MAS has published several risk management practice 
+guidelines, such as the Guidelines on Risk Management 
+Practices for Insurance Business - Core Activities,23 the 
+Guidelines on Risk Management Practices - Technology Risk, 
+and the Guidelines on Risk Management Practices – Board 
+and Senior Management.24 MAS generally requires all FSIs 
+in Singapore to implement and maintain risk management 
+frameworks, and to regularly update and develop such 
+frameworks when new risks are identified. With the increasing 
+adoption of AI solutions by FSIs, it is important for FSIs to 
+evaluate the risks that the use of AI solutions may pose to their 
+businesses. Thereafter, FSIs should update their existing risk 
+management frameworks to include additional measures to 
+address such new risks.
+Singapore’s Guidelines on the Provision of Digital Advisory 
+Services25 applies to FSIs offering or seeking to offer digital 
+advisory services in Singapore. Digital advisors must put in 
+place adequate governance and supervisory arrangements 
+to effectively mitigate against any additional risks created by 
+digital advice (e.g., that a fault or bias in an algorithm could 
+adversely affect a large number or all of the digital advisors’ 
+clients who relied on the recommendations generated by the 
+algorithms).
+Table 5.2: Hypothetical example of regulatory considerations in Singapore in an AI use case
+5.6    Collaborate with Technology Partners
+A growing area of interest is in the complementary roles of FSIs deploying AIDA systems, and 
+Technology firms providing AI solutions that FSIs might either customise or deploy “off-the-shelf”. 
+Technology firms can share technical and non-technical information with their customers about the 
+capabilities and limitations of AI software to assist the responsible deployment of AI products, and 
+promote transparency and accountability. 
+Anecdotally, regulators are encouraging collaboration between FSIs and technology partners to 
+improve understanding of how existing internal risk management and governance frameworks can 
+be leveraged to implement and demonstrate good practices of Responsible AI. There are also several 
+formal relationships emerging between regulators, technology companies and FSIs. For example, like 
+the multistakeholder collaboration of the Veritas Consortium in Singapore, the European Commissions’ 
+Ethics Guideline for Trustworthy AI26 was prepared by members of prominent technology/financial 
+companies such as AXA, Microsoft and Bosch, as well as universities, and government advisers.
+
+
+===== PAGE 33 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+33
+5.7    Ensure a Diversity of Perspectives
+A diverse set of perspectives is of upmost importance in discussing regulatory issues and helps 
+to ensure that Responsible AI principles are appropriately applied, and that potential concerns are 
+identified and dealt with early.
+Diversity can come in various forms. For one, collaboration with a range of stakeholders (e.g., 
+governments, regulators, industry associations, technology developers, etc.) can help promote 
+transparency and accountability and ensures that principles can be translated into practical and 
+implementable actions. The Veritas consortium, as well as the EU’s Ethics Guideline for Trustworthy 
+AI27 are examples of this approach (see 5.6 above). 
+Diversity can also be enhanced through engagement with different teams within an organisation 
+itself, such as the teams responsible for developing the AI solutions, as well as the legal, risk and 
+compliance teams. Diversity should also be reflected within each team in terms of gender, ethnic 
+groups, disability, race, etc., to ensure a diverse set of views are contributing to any decisions around 
+the implementation of AI. 
+5.8    Share Use Cases with the Industry 
+Given that it is largely the context in which an AIDA system is being used that triggers regulatory 
+implications (i.e., not the use of system alone) sharing use cases and examples can strengthen 
+understanding across the industry of what regulatory issues may apply. Initiatives like Veritas are 
+valuable in creating opportunities to share use cases in this way. 
+The importance of use case sharing was in evidence in the multistakeholder collaboration between 
+Microsoft, Standard Chartered, Deutsche Bank, Visa and Linklaters28 to test the application of the 
+FEAT Principles. These industry participants worked collectively to assess the FEAT considerations 
+involved in three different financial services uses cases. The project partners found specific Principles 
+have different implications in different contexts, and some principles will be more, or less, relevant 
+depending on the use case. 
+5.9    The Way Forward for Veritas
+With the rapid increase in deployment of AIDA systems by FSIs in Asia, a key reason for implementing 
+guidance like MAS’ FEAT Principles is that such regulator guidance provides a baseline set of 
+Responsible AI criteria, which helps FSIs ask the right questions when deploying AI solutions. 
+Guidelines on the responsible use of AI should acknowledge the importance of context in translating 
+high level principles into practice. An important learning from discussions in Veritas and beyond 
+is that each Principle will have different implications depending on the context, and a materiality 
+assessment will be important to determine which Principle is relevant and how risks can be mitigated. 
+For a little more detail on the global regulatory landscape, please refer to Appendix C.
+
+
+===== PAGE 34 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+34
+Acknowledgements
+06
+Name
+Sopnendu Mohanty
+Bhavna Rawlley
+Rupini Pandian
+Shen Kai
+Marcus Bartley Johns
+Dennae Smith
+Nick Lewins
+Dave Dadoun
+Organisation
+Monetary Authority of Singapore
+Accenture
+Accenture
+Accenture
+Microsoft 
+Microsoft 
+Microsoft 
+Microsoft 
+We would also like to express our appreciation to James Hwa Jaan Gan (Accenture) and Joon Seong 
+Lee (Accenture) who have supported and contributed to this project. 
+Role
+Project Sponsor
+Li XuChun
+Monetary Authority of Singapore
+Project Director
+Zhang Qiang
+Monetary Authority of Singapore
+Project Lead
+Project Manager
+Data Scientist
+Data Scientist
+Subject Matter Expert
+Subject Matter Expert
+Subject Matter Expert
+Subject Matter Expert
+
+
+===== PAGE 35 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+35
+1 Monetary Authority of Singapore (2021). Veritas Phase 1 document. Retrieved from https://www.
+mas.gov.sg/-/media/MAS/News/Media-Releases/2021/Veritas-Document-1-FEAT-Fairness-Principles-
+Assessment-Methodology.pdf
+2 Monetary Authority of Singapore (2021). Veritas Phase 1 document. Retrieved from https://www.
+mas.gov.sg/-/media/MAS/News/Media-Releases/2021/Veritas-Document-2-FEAT-Fairness-Principles-
+Assessment-Case-Studies.pdf
+3 Ferrante, KH., D’Orazio, V., & Sicular, S. (2021). Financial Services CIOs Must Focus AI 
+Investments on ‘Responsible AI’ in 2021, Gartner. Retrieved from https://www.gartner.com/en/
+documents/3995169/financial-services-cios-must-focus-ai-investments-on-res
+4 Awalegaonkar, K., Berkey, R., Douglass, G., & Reilly, A. (2018). “Critical mass: Managing AI’s 
+unstoppable progress.”, Accenture. Retrieved from https://www.accenture.com/ch-en/insights/
+artificial-intelligence/ai-investments
+5 Monetary Authority of Singapore (2018). Principles to Promote Fairness, Ethics, Accountability and 
+Transparency (FEAT) in the Use of AI and Data Analytics in Singapore’s Financial Sector. Retrieved 
+from https://www.mas.gov.sg/publications/monographs-or-information-paper/2018/FEAT
+6 Monetary Authority of Singapore (2018). Principles to Promote Fairness, Ethics, Accountability and 
+Transparency (FEAT) in the Use of AI and Data Analytics in Singapore’s Financial Sector. Retrieved 
+from https://www.mas.gov.sg/~/media/MAS/News%20and%20Publications/Monographs%20
+and%20 Information%20Papers/FEAT%20Principles%20Final.pdf
+7 European Central Bank (2018). The digitalisation of banking − supervisory implications.  
+Retrieved from https://www.bankingsupervision.europa.eu/press/speeches/date/2018/html/ssm.
+sp180606.en.html 
+8 Personal Data Protection Commission (2020). Model Artificial Intelligence Governance Framework. 
+Retrieved from https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Resource-for-Organisation/
+AI/SGModelAIGovFramework2.pdf
+9 Personal Data Protection Commission (2020). Companion to the Model AI Governance Framework. 
+Retrieved from https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Resource-for-Organisation/
+AI/SGIsago.pdf 
+10 Personal Data Protection Commission (2020). Compendium of Use Cases: Practical illustrations of 
+the model AI governance framework. Retrieved from https://www.pdpc.gov.sg/-/media/files/pdpc/
+pdf-files/resource-for-organisation/ai/sgaigovusecases.pdf 
+Bibliography
+07
+
+
+===== PAGE 36 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+36
+11 Hong Kong Monetary Authority (2019). Retrieved from https://www.hkma.gov.hk/media/eng/doc/
+key-information/guidelines-and-circular/2019/20191101e1.pdf 
+12 Hong Kong Monetary Authority (2019). Retrieved from https://www.hkma.gov.hk/media/eng/doc/
+key-information/guidelines-and-circular/2019/20191105e1.pdf
+13 Federal Register, The Daily Journal of United States Government (2021). Request for Information 
+and Comment on Financial Institutions’ Use of Artificial Intelligence, Including Machine Learning. 
+Retrieved from https://www.federalregister.gov/documents/2021/03/31/2021-06607/request-for-
+information-and-comment-on-financial-institutions-use-of-artificial-intelligence
+14 The National Association of Insurance Commissioner (2020). Retrieved from https://content.naic.
+org/article/news_release_naic_unanimously_adopts_artificial_intelligence_guiding_principles.htm 
+15 Bank of England (2019). Review on the outlook for the UK financial system: what it means for the 
+Bank of England. Retrieved from https://www.bankofengland.co.uk/-/media/boe/files/report/2019/
+future-of-finance-report.pdf?la=en&hash=59CEFAEF01C71AA551E7182262E933A699E952FC
+16 Bank of England (2020). Fintech AI Public – Private Forum. Retrieved from  
+https://www.bankofengland.co.uk/events/2020/october/fintech-ai-public-private-forum 
+17 European Commission (2021). Laying down harmonized rules on Artificial Intelligence  
+(Artificial Intelligence Act) and amending certain union legislative acts. Retrieved from  
+https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1623335154975&uri=CELEX%3A52021PC0206
+18 Evans, CL. (2020). Artificial Intelligence and Public Standards. Retrieved from https://assets.
+publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/868284/Web_
+Version_AI_and_Public_Standards.PDF
+19 Monetary Authority of Singapore. (2018). Principles to Promote Fairness, Ethics, Accountability 
+and Transparency (FEAT) in the Use of AI and Data Analytics in Singapore’s Financial Sector. 
+Retrieved from https://www.mas.gov.sg/~/media/MAS/News%20and%20Publications/
+Monographs%20and%20Information%20Papers/FEAT%20Principles%20Final.pdf
+20 Prenio, J., & Yong, J., (2021). Humans keeping AI in check – emerging regulatory expectations in 
+the financial sector. Retrieved from https://www.bis.org/fsi/publ/insights35.pdf 
+21 Prenio, J., & Yong, J., (2021). Humans keeping AI in check – emerging regulatory expectations in 
+the financial sector. Retrieved from https://www.bis.org/fsi/publ/insights35.pdf
+22 Singapore Statutes Online (2012). Personal Data Protection Act 2012. Retrieved from  
+https://sso.agc.gov.sg/Act/PDPA2012
+23 Monetary Authority of Singapore (2013). Guidelines on Risk Management Practices for Insurance 
+Business – Core Activities. Retrieved from https://www.mas.gov.sg/-/media/MAS/Regulations-and-
+Financial-Stability/Regulatory-and-Supervisory-Framework/Risk-Management/Risk-Management-
+Guidelines_Insurance-Core-Activities.pdf 
+
+
+===== PAGE 37 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+37
+24 Monetary Authority of Singapore (2013). Guidelines on Risk Management Practices – Board 
+and Senior Management. Retrieved from https://www.mas.gov.sg/-/media/MAS/Regulations-and-
+Financial-Stability/Regulatory-and-Supervisory-Framework/Risk-Management/Board-and-Senior-
+Mgmt_1-Apr-2013.pdf 
+25 Monetary Authority of Singapore (2018). Guidelines on Provision of Digital Advisory Services. 
+Retrieved from https://www.mas.gov.sg/-/media/MAS/Regulations-and-Financial-Stability/
+Regulations-Guidance-and-Licensing/Securities-Futures-and-Fund-Management/Guidelines-on-
+Provision-of-Digital-Advisory-Services--CMGG02.pdf
+26 European Commission (2019). Ethics guidelines for trustworthy AI.  
+Retrieved from https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai
+27 European Commission (2019). Ethics guidelines for trustworthy AI.  
+Retrieved from https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai
+28 Microsoft’s collaboration with Standard Chartered, Deutsche Bank, Visa and Linklaters (2019). 
+From Principles to Practice – Use Cases for Implementing Responsible AI in Financial Services. 
+Retrieved from https://www.microsoft.com/cms/api/am/binary/RE487kh
+29 Monetary Authority of Singapore. (2018). Principles to Promote Fairness, Ethics, Accountability 
+and Transparency (FEAT) in the Use of AI and Data Analytics in Singapore’s Financial Sector. 
+Retrieved from https://www.mas.gov.sg/-/media/MAS/News-and-Publications/Monographs-and-
+Information-Papers/FEAT-Principles-Updated-7-Feb-19.pdf
+30 Monetary Authority of Singapore. (2018). Principles to Promote Fairness, Ethics, Accountability 
+and Transparency (FEAT) in the Use of AI and Data Analytics in Singapore’s Financial Sector. 
+Retrieved from https://www.mas.gov.sg/-/media/MAS/News-and-Publications/Monographs-and-
+Information-Papers/FEAT-Principles-Updated-7-Feb-19.pdf
+31 Hancock, J., Huber, P., & Koch, P., (1999). The economics of insurance: how insurers create value 
+for shareholders. Retrieved from https://www.worldcat.org/title/economics-of-insurance-how-
+insurers-create-value-for-shareholders/oclc/83511751
+32 Monetary Authority of Singapore. (2018). Principles to Promote Fairness, Ethics, Accountability 
+and Transparency (FEAT) in the Use of AI and Data Analytics in Singapore’s Financial Sector. 
+Retrieved from https://www.mas.gov.sg/-/media/MAS/News-and-Publications/Monographs-and-
+Information-Papers/FEAT-Principles-Updated-7-Feb-19.pdf
+33 Monetary Authority of Singapore. (2018). Principles to Promote Fairness, Ethics, Accountability 
+and Transparency (FEAT) in the Use of AI and Data Analytics in Singapore’s Financial Sector. 
+Retrieved from https://www.mas.gov.sg/-/media/MAS/News-and-Publications/Monographs-and-
+Information-Papers/FEAT-Principles-Updated-7-Feb-19.pdf
+34 Monetary Authority of Singapore. (2018). Principles to Promote Fairness, Ethics, Accountability 
+and Transparency (FEAT) in the Use of AI and Data Analytics in Singapore’s Financial Sector. 
+Retrieved from https://www.mas.gov.sg/-/media/MAS/News-and-Publications/Monographs-and-
+Information-Papers/FEAT-Principles-Updated-7-Feb-19.pdf
+
+
+===== PAGE 38 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+38
+35 Monetary Authority of Singapore. (2018). Principles to Promote Fairness, Ethics, Accountability 
+and Transparency (FEAT) in the Use of AI and Data Analytics in Singapore’s Financial Sector. 
+Retrieved from https://www.mas.gov.sg/-/media/MAS/News-and-Publications/Monographs-and-
+Information-Papers/FEAT-Principles-Updated-7-Feb-19.pdf
+36 Monetary Authority of Singapore. (2018). Principles to Promote Fairness, Ethics, Accountability 
+and Transparency (FEAT) in the Use of AI and Data Analytics in Singapore’s Financial Sector. 
+Retrieved from https://www.mas.gov.sg/-/media/MAS/News-and-Publications/Monographs-and-
+Information-Papers/FEAT-Principles-Updated-7-Feb-19.pdf
+37 Minty, D., (2020). Behavioural fairness is a serious risk to the future of insurance. Retrieved from 
+https://ethicsandinsurance.info/2020/04/29/behavioural-fairness/
+38 European Commission (2019). Ethics Guidelines for Trustworthy AI. Retrieved from https://www.
+europarl.europa.eu/cmsdata/196377/AI%20HLEG_Ethics%20Guidelines%20for%20Trustworthy%20
+AI.pdf
+39 Bias. Retrieved from https://en.wikipedia.org/wiki/Bias
+40 Monetary Authority of Singapore. (2018). Principles to Promote Fairness, Ethics, Accountability 
+and Transparency (FEAT) in the Use of AI and Data Analytics in Singapore’s Financial Sector. 
+Retrieved from https://www.mas.gov.sg/-/media/MAS/News-and-Publications/Monographs-and-
+Information-Papers/FEAT-Principles-Updated-7-Feb-19.pdf
+41 Jenkins, OB. (2012). The Meaning of “Fairness”. Retrieved from http://www.orvillejenkins.com/
+faithlife/fairnessfl.html
+42 Mulligan, D., Kroll, J., Kohli, N. & Wong, R. (2019). This thing called fairness: Disciplinary confusion 
+realizing a value in technology. ACM Human-Computer Interaction, 3, 119. Retrieved from https://
+doi.org/10.1145/3359221
+43 Smith, G., Kohli, N., & Rustagi, I. (2020). Mitigating Bias in Artificial Intelligence: An Equity Fluent 
+Leadership Playbook. Retrieved from https://haas.berkeley.edu/wp-content/uploads/What-is-
+fairness_-EGAL2.pdf
+44 Monetary Authority of Singapore. (2018). Principles to Promote Fairness, Ethics, Accountability 
+and Transparency (FEAT) in the Use of AI and Data Analytics in Singapore’s Financial Sector. 
+Retrieved from https://www.mas.gov.sg/-/media/MAS/News-and-Publications/Monographs-and-
+Information-Papers/FEAT-Principles-Updated-7-Feb-19.pdf
+45 Atlantic Council (2021). Getting from commitment to content in AI and data ethics: Justice and 
+explainability. Retrieved from https://www.atlanticcouncil.org/in-depth-research-reports/report/
+specifying-normative-content/
+46 Market Business News (2021). Financial Glossary. Retrieved from https://marketbusinessnews.
+com/financial-glossary/objective/
+
+
+===== PAGE 39 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+39
+47 Personal Data Protection Commission (2020). Model Artificial Intelligence Governance 
+Framework. Retrieved from https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Resource-for-
+Organisation/AI/SGModelAIGovFramework2.pdf
+48 Personal Data Protection Commission (2020). Companion to the Model AI Governance 
+Framework. Retrieved from https://www.pdpc.gov.sg/-/media/Files/PDPC/PDF-Files/Resource-for-
+Organisation/AI/SGIsago.pdf
+49 Personal Data Protection Commission (2020). Compendium of Use Cases: Practical illustrations of 
+the model AI governance framework. Retrieved from https://www.pdpc.gov.sg/-/media/files/pdpc/
+pdf-files/resource-for-organisation/ai/sgaigovusecases.pdf
+50 Hong Kong Academy of Finance (2020). Artificial Intelligence in Banking: The changing landscape 
+in compliance and supervision. Retrieved from https://www.aof.org.hk/docs/default-source/hkimr/
+applied-research-report/airep.pdf
+51 Steenis, Hv. (2019). Future of Finance. Retrieved from https://www 
+bankofengland.co.uk/-/media/boe/files/report/2019/future-of-finance-report.
+pdf?la=en&hash=59CEFAEF01C71AA551E7182262E933A699E952FC
+52 Federal Register, The Daily Journal of United States Government (2021). Request for Information 
+and Comment on Financial Institutions’ Use of Artificial Intelligence, Including Machine Learning. 
+Retrieved from https://www.federalregister.gov/documents/2021/03/31/2021-06607/request-for-
+information-and-comment-on-financial-institutions-use-of-artificial-intelligence
+53 The National Association of Insurance Commissioner (2020). Retrieved from https://content.naic.
+org/article/news_release_naic_unanimously_adopts_artificial_intelligence_guiding_principles.htm
+54 European Commission (2021). Laying down harmonised rules on Artificial Intelligence (Artificial 
+Intelligence Act) and amending certain union legislative acts. Retrieved from https://eur-lex.europa.
+eu/legal-content/EN/TXT/?qid=1623335154975&uri=CELEX%3A52021PC0206
+55 Evans, CL. (2020). Artificial Intelligence and Public Standards. Retrieved from https://assets.
+publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/868284/Web_
+Version_AI_and_Public_Standards.PDF
+56 Hong Kong Monetary Authority (2019). Retrieved from https://www.hkma.gov.hk/media/eng/doc/
+key-information/guidelines-and-circular/2019/20191101e1.pdf
+57 Steenis, Hv. (2019). Future of Finance. Retrieved from https://www.
+bankofengland.co.uk/-/media/boe/files/report/2019/future-of-finance-report.
+pdf?la=en&hash=59CEFAEF01C71AA551E7182262E933A699E952FC
+58 Crampton, N. (2021). The building blocks of Microsoft’s responsible AI program. Retrieved from 
+https://blogs.microsoft.com/on-the-issues/2021/01/19/microsoft-responsible-ai-program/
+59 European Commission (2021). Laying down harmonised rules on Artificial Intelligence (Artificial 
+Intelligence Act) and amending certain union legislative acts. Retrieved from https://eur-lex.europa.
+eu/legal-content/EN/TXT/?qid=1623335154975&uri=CELEX%3A52021PC0206
+
+
+===== PAGE 40 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+40
+60 Microsoft’s collaboration with Standard Chartered, Deutsche Bank, Visa and Linklaters (2019). 
+From Principles to Practice – Use Cases for Implementing Responsible AI in Financial Services. 
+Retrieved from https://www.microsoft.com/cms/api/am/binary/RE487kh
+61 Prenio, J., & Yong, J., (2021). Humans keeping AI in check – emerging regulatory expectations in 
+the financial sector. Retrieved from https://www.bis.org/fsi/publ/insights35.pdf 
+62 Singapore Statutes Online (2012). Personal Data Protection Act 2012. Retrieved from https://sso.
+agc.gov.sg/Act/PDPA2012 
+63 Monetary Authority of Singapore (2013). Guidelines on Risk Management Practices for Insurance 
+Business – Core Activities. Retrieved from https://www.mas.gov.sg/-/media/MAS/Regulations-and-
+Financial-Stability/Regulatory-and-Supervisory-Framework/Risk-Management/Risk-Management-
+Guidelines_Insurance-Core-Activities.pdf 
+64 Monetary Authority of Singapore (2013). Guidelines on Risk Management Practices – Board 
+and Senior Management. Retrieved from https://www.mas.gov.sg/-/media/MAS/Regulations-and-
+Financial-Stability/Regulatory-and-Supervisory-Framework/Risk-Management/Board-and-Senior-
+Mgmt_1-Apr-2013.pdf
+65 Monetary Authority of Singapore (2018). Guidelines on Provision of Digital Advisory Services. 
+Retrieved from https://www.mas.gov.sg/-/media/MAS/Regulations-and-Financial-Stability/
+Regulations-Guidance-and-Licensing/Securities-Futures-and-Fund-Management/Guidelines-on-
+Provision-of-Digital-Advisory-Services--CMGG02.pdf
+66 European Commission (2019). Ethics guidelines for trustworthy AI. Retrieved from  
+https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai
+67 European Commission (2019). Ethics guidelines for trustworthy AI. Retrieved from  
+https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai
+68 Microsoft’s collaboration with Standard Chartered, Deutsche Bank, Visa and Linklaters (2019). 
+From Principles to Practice – Use Cases for Implementing Responsible AI in Financial Services. 
+Retrieved from https://www.microsoft.com/cms/api/am/binary/RE487kh
+69 Andrews, K. (2019). Businesses ready to test AI ethics principles. https://www.minister.industry.
+gov.au/ministers/karenandrews/media-releases/businesses-ready-test-ai-ethics-principles
+
+
+===== PAGE 41 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+41
+1.1    Diagram to Align the Questions with the Respective Stage
+1    Checklist for Assessing Adherence to FEAT  
+      Throughout the AIDA System Development Lifecycle
+Appendix A
+08
+FEAT Principles Assessment Methodology Checklist 
+As highlighted previously, this checklist is optional and is only relevant if an FSI chooses to 
+take steps to adhere to FEAT. It should be recognised that making AIDA systems fair, ethical, 
+accountable and transparent is not a trivial task. Therefore, a certain number of checklist items are 
+inevitable: comparable checklists, like the one in the European Commission’s Ethics Guidelines for 
+Trustworthy AI, have more than 30 items. Trying to overly simplify or rationalise the checklist will be 
+counterproductive and could produce false sense of comfort. 
+However, the sub-questions (provided in the individual methodology documents) underneath these 
+top-level checklist questions should be seen as considerations to help answer those questions. FSIs 
+may wish to track adherence through the top level checklist items rather than the more detailed 
+considerations below. If FSIs decide to follow FEAT principles, the evidence to this checklist should 
+be available on demand if required. 
+Figure 1.1 FEAT assessment checklist mapped against the AIDA system development lifecycle
+ 
+*Note: EA questions in Step 0 need to be answered first before others
+Foundational
+Legend:
+Use-Case or AIDA System Specific
+(Typical AIDA System Development Lifecycle)
+Principles 
+to Practice
+Define System 
+Context & 
+Design
+Prepare Input 
+data
+Build & Validate
+Deploy & 
+Monitor
+G1 - G4
+T1 - T5
+F0
+EA1 - EA4*
+Fairness Checklist
+Generic Checklist
+G5 - G8
+G9 - G10
+G11
+G12 - G13
+T6 - T10
+T11 - T17
+F1 - F3
+F4 - F8
+F9 - F11
+F12
+EA5 - EA6
+EA7 - EA8
+0
+1
+3
+2
+4
+Ethics & Accountability Checklist
+Transparency Checklist
+(Cross Use Cases)
+
+
+===== PAGE 42 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+42
+1.2      Detailed Questions
+1.2.1    Foundational Setup 
+This part of the checklist creates a foundation for ensuring the right implementation of FEAT 
+Principles across AIDA use cases. This part only needs to be answered once initially. Ethics & 
+Accountability defines how an organisation’s values are translated to FEAT and is a starting point for 
+organisation’s FEAT journey. Once the initial Ethics & Accountability checklist have been completed, 
+the organisation can proceed to define and assess Fairness, Transparency and overall AIDA systems.
+S/N
+Y/N
+Question
+Step 0 – Principles to Practice 
+Is AIDA defined in the FSI?
+Is there a materiality framework in place? If so, do you have a clear definition to 
+determine the different level of materiality?
+Refer to the FEAT Principles Assessment Methodology section 3.2.2 for 
+parameters that could be used to determine risk level 
+Is there a framework in place to define roles and responsibilities for AIDA 
+projects/use cases?
+G1
+G3
+G2
+G4
+Does the FSI have an up-to-date inventory that tracks all material AIDA use 
+cases in use?
+Has the FSI defined the factors it will use to determine whether external (customer 
+facing) transparency is essential for a particular AIDA use case?
+Has the FSI defined the factors it will use to determine the extent of, and 
+audience for, internal transparency for individual AIDA use cases?
+(Where an FSI has chosen to provide external transparency) At each stage of the FSI’s 
+customer lifecycle, has the FSI determined what proactive or reactive communication 
+may be needed, and developed standard templates/interfaces for the same?
+T1
+T3
+T2
+T4
+Has the FSI defined an acceptable set of AIDA ML explanation method(s) for use 
+within the FSI?
+This may vary by use case type and/or materiality.
+T5
+Has the FSI set minimum accuracy standards for such explanation methods?
+This may vary by use case type and/or materiality.
+F0
+Has the FSI defined standard, robust process for (a) identifying at risk groups? (b) 
+identifying personal attributes and potential proxies?  
+(c) identifying explicit fairness objectives and associated measures and thresholds?  
+and (d) algorithmic methods to identify and reduce unfairness?
+Are organisational values defined and described?
+EA1
+Are context-relevant core concepts identified and described?
+EA3
+Are organisational, or group-specific, principles for the ethical use of  
+AI defined and described?
+EA2
+EA4
+Is the workforce trained on values-based decision making or is there a pilot planned?
+
+
+===== PAGE 43 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+43
+1.2.2    FEAT Principles Assessment for Each AIDA System in Place
+This part of the checklist is use case specific. 
+S/N
+Y/N
+Question
+Step 1 - Defining System Context and Design 
+Have you documented the commercial objectives of the system and the quantitative 
+measures to meet those commercial objectives? Is it documented how is AIDA used 
+to achieve them?
+G5
+Is AIDA use justified for this particular objective/use case (based on limitations 
+of alternatives, proof of AIDA being used successfully elsewhere, availability of 
+adequate data to train the AIDA system, valid legal basis, etc.)?
+G7
+Are there scope boundaries of the proposed system? For example, specific 
+geographies/ segments?
+G6
+G8
+Has the materiality of the use case been determined using the framework 
+defined in Step 0?
+Is there a statement of relevant values, core concepts, principles, commitments, and 
+specifications, along with a written description, for each use case? Part of this should 
+include identifying commitment owners and the stakeholders with interest in holding 
+the commitment owners accountable.
+EA5
+Have relative priorities, which may or may not be tied to materiality, been recorded 
+for each commitment? 
+EA6
+F1
+Have you identified and documented who are the individuals and groups that are 
+considered to be at risk of being systematically disadvantaged by the system?
+F2
+Have you identified and documented the potential harms and benefits created by 
+the system’s operation that are relevant to the risk of systematically disadvantaging 
+the individuals and groups in F1?
+F3
+Have you identified and documented the fairness objectives of the system and 
+associated fairness metrics, with respect to the individuals and groups in F1 and the 
+harms and benefits in F2?
+Has the AIDA use case team determined whether there is a need for external 
+(customer facing) transparency? Apply standards from T1 to help answer the question.
+T6
+Has the team determined the level of internal transparency needed, and the 
+audiences for the same? Apply standards from T3 to help answer the question.
+T8
+Has the team selected a suitable explanation method for this specific use case from 
+the approved list in T4?
+T9
+Has the team ascertained that the chosen explanation method/implementation meets 
+the minimum accuracy requirement for this specific use case (based on T5)?
+T10
+If yes, has the team identified the proactive and reactive communication needed 
+at each stage of the customer lifecycle, and the form of such customer facing 
+communication? 
+Apply standards from T2 to help answer the question. 
+T7
+
+
+===== PAGE 44 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+44
+S/N
+Y/N
+Question
+Have you documented the data used by the system including types of data 
+available, the provenance (source), attributes, dictionary (meaning), vintage 
+(time period), data (quality) profile, representativeness and informed consent? 
+For any personal data used by the system, has a DPIA been conducted? 
+G9
+Step 2 - Prepare and Input Data 
+Step 3 - Build and Validate 
+Have you documented the data pre-processing and engineering done by the system?
+G10
+Is the composition of the AIDA system defined? Is it clear how each component of the 
+system AIDA models, as well as business rules and human judgement if relevant, are 
+used to achieve its commercial objectives? Are the performance estimates and the 
+uncertainties of those estimates documented?
+G11
+F4
+Have you documented key errors, biases or properties present in the data used by 
+the system that may impact the system’s fairness?
+F6
+Have you assessed and documented the quantitative estimates of the system’s 
+performance against its fairness objectives and the uncertainties in those estimates, 
+assessed over the individuals and groups in F1 and the potential harms and  
+benefits in F2?
+F7
+Have you assessed and documented the achievable trade-offs between the system’s 
+fairness objectives and its other objectives?
+F8
+Have you justified and documented why the fairness outcomes observed in the 
+system are preferable are to these alternative trade-offs?
+F5
+Have you documented how are these impacts being mitigated?
+Have internal transparency dashboards/reports been implemented in line with the 
+requirements agreed in T8-T10?
+T11
+Have relevant first and second line control teams – including model validation where 
+relevant – reviewed and approved these outputs (e.g., local and global explanations, 
+conceptual soundness)?
+T12
+Where explanations have not met first/second line expectations, have appropriate 
+mitigation actions been taken (e.g., switching to a simpler model despite a reduction 
+in predictive accuracy, dropping difficult to explain features, introducing more human 
+oversight)?
+T13
+In line with the external transparency requirements agreed in T6-T7, has appropriate 
+system functionality been developed and tested as part of the AIDA system’s 
+implementation plan?
+T14
+F9
+Have you assessed and documented the quantitative estimates of the system’s 
+performance against its fairness objectives and the uncertainties in those estimates, 
+assessed over the individuals and groups in F1 and the potential harms and benefits 
+in F2?
+F10
+Have you assessed and documented the achievable trade-offs between the system’s 
+fairness objectives and its other objectives?
+F11
+Have you justified and documented why the fairness outcomes observed in the 
+system are preferable are to these alternative trade-offs?
+
+
+===== PAGE 45 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+45
+S/N
+Y/N
+Question
+Step 4 – Deploy and Monitor 
+Is the system’s monitoring and review regime designed to detect abnormal 
+operation (e.g., significant model and/or data drift)?
+G12
+Have operational processes such as customer service and complaint handling been 
+modified appropriately to incorporate AIDA customer transparency? Have relevant 
+staff been provided appropriate training to address customer queries?
+T15
+Does the AIDA system implementation support the agreed internal and external 
+explanations even after “go live” (i.e., not just as a one off before approval but 
+throughout the lifetime of the AIDA system)?
+T17
+Have customer/website Terms and Conditions been appropriately updated?
+T16
+Are recourse mechanisms available to data subjects being used? Is there an 
+explanation if the use of recourse is too high or too low?
+EA7
+Are controls in place to revisit and recalibrate the commitments and their 
+specifications to ensure they’re properly incentivising the right decisions and 
+accurately measuring progress toward the commitments?
+EA8
+F12
+Does the system’s monitoring and review regime ensure that the system’s impacts 
+are aligned with its business and fairness objectives?
+Is there fallback and/or mitigation plans in place in case of triggers from the 
+system’s monitoring and review regime?
+G13
+
+
+===== PAGE 46 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+46
+Appendix B
+09
+Glossary
+The state of being responsible for a particular set of outcomes, such as behaviours, 
+actions, products, services, or decisions. In combination with recourse and redress, 
+it is a central component of any system of governance (see also: “recourse” and 
+“redress”).
+Accountability
+The ability of an organisation’s governance system to hold an 
+individual or group within the organisation responsible for 
+unwanted outcomes.
+Internal 
+accountability29
+The ability of governments, regulatory bodies, individuals, 
+and other agencies to hold an organisation responsible for the 
+outcomes of its operations.
+External 
+accountability30
+A metric to evaluate the quality of a model. Often calculated as a percentage of 
+predictions that are correct or incorrect, out of all cases considered. Can be used to 
+indicate the effectiveness of a model compared to the status quo (see also: “model”).
+Accuracy
+Artificial Intelligence or Data Analytics, defined as technologies that assist or replace 
+human decision making.
+AIDA (acronym)32
+Companies that use AIDA to provide financial products and services.
+AIDA firms33
+The process of making decisions using AIDA.
+AIDA driven 
+decision making34
+An AIDA system contains one or more AIDA models that work together to achieve a 
+set of objectives. The decisions made by an AIDA system are “AIDA driven decisions”. 
+AIDA systems encompass not just the AIDA model(s), but also other parts of the 
+decision making process that are required to get to the final AIDA driven decision, 
+such as: 
+• Human contributions that impact decisions (humans might give input or use the  
+  model output to inform their final decision).
+• Other governance or rules that affect decisions.
+• Actions taken based on the system’s output.
+Monitoring and review mechanisms are also part of the end-to-end AIDA system and 
+will impact AIDA driven decisions over time as feedback from monitoring and review 
+is used to update elements such as the model, business rules and human inputs.
+AIDA systems
+An example of quantitative fairness. Every insurance contract should contribute 
+its full production cost (i.e., the cost directly attributable, like expected claims), 
+and a fair (i.e., generally accepted and pre-defined) allocation of common cost, 
+like allocated capital cost.31 Actuarial fairness has been the guiding principle of 
+pricing private insurance since the beginning of insurance and it is a prerequisite of 
+conducting insurance freely.
+Actuarial fairness
+
+
+===== PAGE 47 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+47
+Decisions and decision outcomes made or supported by AIDA.
+AIDA driven 
+decisions35
+An identifiable living person to whom a particular data item relates. In the context 
+of this document, it refers to individuals and/or firms who are or may be affected 
+by AIDA driven decisions. For example, a customer who applies for debt is the data 
+subject for credit risk scoring use case.  
+Data subject39
+The degree to which a person, product, or organisation obeys applicable laws, 
+regulations, codes of conduct, or other legal and ethical norms.
+Compliance
+The work that is performed to satisfy a set of values, in accordance with principles, 
+in support of governance.
+Ethics
+The process of transforming raw data into features that may be useful as input to the 
+objectives of a predictive model, based on domain/industry knowledge.
+Feature 
+engineering
+A prescribed approach and set of considerations.
+Framework
+Rewards are offered or penalties imposed based on behavioural choices within the 
+control of individuals.36
+Behavioural 
+fairness
+An inclination of prejudice towards or against a person, group of persons, object, 
+or position.37 It is a disproportionate weight in favour of or against an idea or thing, 
+usually in a way that is closed minded, prejudicial, or unfair. Biases can be innate or 
+learned.38 Bias in AIDA systems can be a function of the data used to train the AIDA 
+system, or of the AIDA system itself. 
+Bias
+Used to describe performance of a classification model or classifier. It is a table 
+comparing true outcomes with the predicted outcomes. The number of correct  
+and incorrect predictions are summarised with count values and broken down  
+by each class.
+Confusion matrix
+A type of data bias that occurs due to:
+Data drift: when the circumstances of an individual, or general population 
+characteristics, change over time compared to the data a system is trained on, such 
+as financial health, lifestyle, and occupation.
+Concept drift: when the statistical properties of the target variable to be predicted 
+change overtime, such as population mortality risk trends, technological advances, 
+and evolving behaviour patterns, and which mean that relationships between factors 
+and outcomes are constantly shifting.
+Drift bias
+The ability to have explanations for decisions made (from an AIDA model and/or 
+human process) that are understandable by an average adult; a higher standard than 
+interpretability; a component of transparency (see also: “interpretability”, “model” 
+and “transparency”).
+Explainability
+Related to the concept of justice; what is right, impartial and equal, without 
+favoritism or discrimination; often assessed through the evaluation of decision 
+outcomes, along with the process followed to reach the decision.40 What is fair 
+can mean different things in different contexts to different people.41 Fairness is a 
+guiding principle that aims to prevent the uneven distribution of harms. Expressing 
+questions of fairness as mathematical problems is referred to as “quantitative 
+measures of fairness”. These measures tend to be formulated as metrics that assess 
+a criteria or objective, such as equal or equitable allocation, representation, or error 
+rates, for a particular task or problem (see also: “bias”, “justice”).42
+Fairness
+
+
+===== PAGE 48 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+48
+Structures, processes, and mechanisms for oversight designed to assess whether 
+norms are satisfied in a particular case.
+Governance
+Refers to the 30 Rights described in the Universal Declaration of Human Rights as 
+proclaimed by the United Nations General Assembly in Paris 10 Dec 1948.
+Human rights
+A decision of permission based on clear, accurate and relevant information about a 
+situation where the implications of permission are adequately understood and made 
+voluntarily.
+Informed consent
+The degree to which a trained professional can explain how a model arrived at a 
+determination; a lower standard than explainability; a component of transparency 
+(see also: “explainability”, “model”, “transparency”).
+Interpretability 
+Underpinned by the notion of equal worth and the political standing of people. 
+Similarly, it is the notion that people receive what they deserve. Deservedness 
+is often defined by the normative values within a community, which could be an 
+organisation, government, or other authoritative body. Adherence to justice in 
+any instance can be measured when normative values of justice are named and 
+weighted (see also: “fairness”).
+Justice
+A type of data bias that occurs when there is systematic or non-random error in the 
+collection of data and can occur on the input variables and target labels on which 
+AIDA operates, thereby making the data more accurate for some people/situations 
+compared to others.
+Measurement 
+bias
+In the context of data science, the process of evaluating model performance on 
+a test/holdout dataset (which should be separate from training data and not used 
+during model training).
+Model 
+validation
+Refers to the specific steps a company will take to achieve a desired result, as well as 
+any constraints. The result is the goal.45
+Objective
+Norms can describe what it is socially agreed in a community to be ordinary or 
+typical. Norms can also be ethical; prescribing what ought to or should be done. 
+Often, what is ethical is different from what is currently being done (descriptive). 
+Related to the FEAT Principles, norms offer guidance for what ought to be done – 
+they are aspirational. For example, to avoid perpetuating discriminatory practices 
+and unjustified inequalities, justice oriented considerations ought to be incorporated 
+in ways they may currently not be employed. Used in this way, the term ‘normative 
+content’ refers to guidance on what “ought” or “should” be done. It is about 
+developing well-justified concepts, principles, commitments, and specifications for 
+what individuals, groups, and organisations should do, rather than merely describing 
+what they currently do.
+Normative content (in the ethical, prescriptive sense) is ultimately grounded on 
+values – both social and organisational.
+Norm/
+Normative44
+When bias, human or otherwise, present in prior decisions is reflected in training 
+data. Without adjustments, these biases will be perpetuated in new decisions from 
+AIDA systems.
+Historical bias / 
+negative legacy 
+bias
+When an action has a reasonable and defendable explanation.
+Justified
+In the context of data science, any AIDA algorithms, and algorithmic processes, with 
+well-defined inputs and outputs, used to enable AIDA driven decision making. 
+Model43
+
+
+===== PAGE 49 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+49
+Personal attributes are features that should not be used as the basis for decisions 
+without reasonable justification. They are defined by FSIs in the context of each 
+specific use case, and at a minimum cover any personal data included in the AIDA 
+system, as defined in relevant data protection and anti-discrimination laws, and can 
+also include non-personal data. 
+Personal attribute 
+Type of bias that can occur during data pre-processing in model development, when 
+an operation (such as a missing value treatment, data cleansing, outlier treatment, 
+encoding, scaling, data transformations for unstructured data among others) causes 
+or contributes to systematic disadvantage.
+Preprocessing 
+bias
+The norms that describe how to implement values and set guardrails for what ought 
+and ought not be done to operationalise values.
+Principles
+The ability of a data subject to seek assistance when an outcome from an AIDA 
+system is anomalous, negative, or unwarranted (see also, “redress”).
+Recourse
+The act of rectifying the anomalous, negative, or unwarranted outcome from an 
+AIDA system that has been learned about from a data subject seeking recourse (see 
+also, “recourse”).
+Redress
+The act of reproducing a model and its outcomes from scratch. Reproducible AIDA 
+systems can be difficult to implement, requiring careful versioning of data, models, 
+code, infrastructure, and even the random seeds used.
+Reproducibility
+An established norm or requirement; frequently aligned to a specific industry or 
+repeatable task. Standards are often communicated in a formal document that 
+establishes uniform criteria, methods, processes, and best practices.
+Standards
+The belief that another party’s goals are aligned with yours (even if the goals are 
+divergent, they are thematically aligned), there is competence to achieve the goals, 
+and one or both parties will work toward the goals.
+Trust
+A set of ideals that describe what an organisation cares about and wants to promote 
+and protect.
+Values
+Visibility into the actions a system or organisation takes, and the decision making 
+processes behind them. 
+• Where such visibility is aimed at data subjects impacted by an AIDA system’s 
+decision, it is referred to as external transparency.
+• Where such visibility is aimed at internal stakeholders and to the organisation’s 
+regulators, it is referred to as internal transparency.
+Transparency
+A type of data bias that occurs when groups, often minorities, are underrepresented 
+in the data, affecting model training effectiveness. This could be due to selection 
+bias during data collection, or simply the fact that the group is small portion of the 
+overall population; this bias can lead to inadequate learning by the model and result 
+in poor performance for certain groups underrepresented in the data.
+Representation 
+bias
+A type of data bias that occurs in cases where input variables or target labels cannot 
+be generated directly but are estimated using a proxy attribute. These proxies are 
+either known/purposeful or unknown/accidental. Proxy data is used where it has the 
+potential to provide better information than observed data or to fill in gaps where 
+historical data may not exist, such as the use of a medical claims history to estimate 
+future mortality risk due to the relatively low volume of death claims compared 
+to hospitalisation claims. Unjustified used of proxies may adversely impact or 
+marginalise certain population groups. 
+Proxy bias
+
+
+===== PAGE 50 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+50
+1    Overview of Global Regulatory Developments
+Appendix C
+10
+Global Regulatory Landscape on the Regulation of AI 
+1.1    Key Regulatory Developments
+There are regulatory developments on the responsible use of AI in various jurisdictions globally – 
+including in Singapore, Hong Kong, Australia, the United Kingdom, and the European Union. Not 
+all of these are specific to financial services but are worth noting as they help provide context on 
+regulatory and societal expectations on the responsible use of AI. 
+•	
+The Monetary Authority of Singapore published a set of 14 principles on 
+Fairness, Ethics, Accountability and Transparency in November 2018. MAS 
+aims to provide guidance to firms offering financial products and services 
+(including banks and insurers) on the responsible use of AI and data analytics 
+to strengthen their internal governance around data management and use, 
+and to promote public confidence in the use of AI and data analytics. 
+•	
+In 2020, three further initiatives were published in Singapore:
+•	
+Model AI Governance Framework.46 
+•	
+Implementation and Self-Assessment Guide for Organisations.47
+•	
+Compendium of Use Cases.48
+Together, these guidelines promote public understanding and trust by 
+explaining how AI systems work, help organisations assess the alignment of 
+their AI governance practices with the Model Framework, and provide use cases 
+to demonstrate how local and international organisations of different sizes and 
+across different sectors are implementing sound AI governance practices. 
+Singapore
+•	
+The Changing Landscape in Compliance and Supervision report,49 published 
+in August 2020, aims to promote understanding of the broad implications 
+of AI adoption in the banking industry, and how to promote compliance and 
+supervision by accounting for AI model risks such as data inputs, model design 
+and validation.
+Hong Kong
+
+
+===== PAGE 51 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+51
+•	
+In June 2019, the Financial Conduct Authority (FCA) collaborated with the 
+Bank of England to publish the Bank of England Future of Finance Report.50 
+The report aims to monitor developments in the use of machine learning, 
+develop principles and share best practices for responsible uses of AI, as well 
+as explore the intersection of AI with current rules and identify where old rules 
+need updating.
+•	
+Five financial regulators51 recently issued a request for information, asking 
+whether any clarifications from these regulators would support FSIs in the 
+responsible use of AI, in compliance with existing laws and regulations.
+•	
+In August 2020, the US National Association of Insurance Commissioners 
+published AI Guiding Principles,52 which emphasise the importance of 
+complying with existing regulatory obligations when using AI.
+•	
+In April 2021, the European Commission proposed the first regulatory 
+framework on AI: the Proposal for a Regulation on a European approach for 
+Artificial Intelligence.53 The framework adopts a proportional and risk based 
+approach, where AI uses will be classified according to risk levels (i.e., “minimal 
+risks, limited risks, high risks and unacceptable risks”). The proposal remains 
+subject to extensive review and consultation before possible approval by the 
+European Parliament and the Member States.
+United Kingdom
+United States
+The European Union
+1.2    Key Regulatory Trends in the Financial Sector 
+Some key trends across key global jurisdictions are highlighted in this appendix, which is intended 
+only as a brief summary of the major developments. 
+FSIs operate in a highly regulated industry with robust requirements covering outsourced technology 
+use, risk management, and governance. Because of this, regulators are looking to build on existing 
+financial sector regulations, rather than add new requirements that are specific to AI. Regulators 
+have devoted their efforts to increasing the industry’s understanding of how existing controls and 
+governance can be leveraged to implement and demonstrate Responsible AI practices. 
+As highlighted in the UK Committee on Standards in Public Life Artificial Intelligence and Public 
+Standards Report (February 2020),54 AI should not necessitate a fundamental reworking of practice. 
+The focus should be on clarifying and revising current laws and standards so they can be more 
+clearly applied to circumstances involving AI, rather than on establishing new regulatory bodies 
+and laws. 
+
+
+===== PAGE 52 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+52
+The most notable trend for regulators in Asia has been to issue non-binding guidelines and principles 
+on the adoption of AI; endorsing a principles based, technology neutral approach to the responsible 
+use of AI. This regulatory approach can be seen most clearly in Singapore and Hong Kong, which is 
+similar to the approach taken outside Asia by jurisdictions like the UK:
+•	
+Singapore. In addition to the FEAT Principles mentioned in section 2.4 above, the 
+Infocomm Media Development Authority and the Personal Data Protection Commission 
+have jointly published the Model AI Governance Framework, which sets out practical 
+recommendations that are sector and technology agnostic. These recommendations 
+could be readily adopted by organisations to implement AI responsibly.  
+•	
+Hong Kong.  In November 2019, the Hong Kong Monetary Authority published its High-Level 
+Principles on Artificial Intelligence (“Circular”).55 Banks are expected to adopt a principles 
+based approach when designing and adopting AI and big data analytics applications. 
+Such principles include, amongst others: (a) using data of good quality, (b) ensuring an 
+appropriate level of explainability of AI applications, (c) being ethical, fair and transparent, 
+and (d) having board and senior management be accountable for the outcome of AI 
+applications and decisions. Banks may apply the principles in a proportionate manner, 
+depending on the nature of their applications and level of risks involved.
+•	
+United Kingdom. In June 2019, the Bank of England and the Financial Conduct Authority 
+jointly published, the Future of Finance Report, which encourages the implementation of 
+data standards and protocols to promote the responsible use of machine learning and AI 
+by financial service providers.56
+
+
+===== PAGE 53 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+53
+2    Assessing the Regulatory Implications of AI Projects  
+       in Financial Services
+Different legal and regulatory requirements will apply in the different contexts in which FSIs are using AI, 
+and there is no one-size-fits all approach. Regulatory issues should therefore be assessed based on the 
+specific use of AI in question, and the jurisdiction and industry in which the system is being deployed. 
+There are five important considerations for FSIs to emerge from the work of Veritas consortium 
+members. Table 2.1 summarises these learnings in the form of key considerations for FSIs when 
+assessing the regulatory implications of their development and deployment of AI solutions. 
+Table 2.1: Key considerations for FSIs when assessing regulatory implications of AI
+Adopt a materiality based approach to assess regulatory considerations when AI 
+is being used to help focus efforts on more sensitive use cases.
+1
+Leverage existing internal risk management and governance frameworks when 
+assessing the regulatory implications of using AI in specific use cases.
+2
+Bring a diverse set of perspectives to discussions on regulatory issues relating 
+to responsible AI to ensure ethics principles are appropriately applied, and that 
+potential concerns are identified and dealt with early.
+4
+Collaborate with technology partners to promote transparency and accountability 
+when deploying AI solutions.
+3
+Share use cases and examples where possible to strengthen understanding 
+across the industry of what regulatory issues may apply when using AI
+5
+2.1    Adopting a Materiality Based Approach to  
+          Assessing Regulatory Considerations
+Assessing the materiality of use cases may be an important first step for FSIs to consider. A materiality 
+based approach helps FSIs determine the proportionate application of governance and controls 
+needed to implement Responsible AI principles, and ultimately focus efforts on more sensitive use 
+cases. This can be contrasted to approaches that do not distinguish between the uses of AI and 
+apply the same internal processes to all uses regardless of risk. 
+Given that AI is becoming embedded within all forms of software, it is increasingly pertinent for FSIs 
+to adopt a materiality based approach to avoid undertaking detailed considerations of AI guidelines 
+for every piece of software used. For instance, an FSI’s use of AI systems that improve spell checking 
+or recommend ideal meeting times is not likely to warrant the same level of scrutiny as other AI 
+applications, such as facial recognition or the use of AI in decisions around credit worthiness or 
+insurability. It may be useful for FSIs to apply a baseline set of Responsible AI criteria to any AI 
+system being built, with a more intensive review procedure in place for sensitive uses where there 
+is greater risk of harm.57
+
+
+===== PAGE 54 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+54
+The materiality based approach has been endorsed by MAS in the publication of its FEAT Principles, 
+where firms are encouraged to calibrate actions and requirements under their internal governance 
+framework based on the materiality of AIDA driven decisions. Some of the suggested considerations 
+to determine materiality under these principles include the extent to which the AIDA is used in 
+decision making, the extent of automation of the process, and the severity and probability of impact 
+on different stakeholders.  
+The materiality based approach can also be seen in the European Commission’s Proposal for a 
+Regulation on a European Approach for Artificial Intelligence.58 While the consultation process is 
+expected to result in refinements to the proposal, in particular to ensure that it can be implemented 
+in a pragmatic manner, it is important to note that the proposal adopts a proportional and risk based 
+approach. AI use cases are classified according to risk levels. AI systems of “high risk” (e.g., remote 
+biometric identification systems) are a key focus in the proposed regulation and will be subject to 
+greater scrutiny, carrying a set of five obligations. The Commission also identified “unacceptable” 
+AI systems, for which a ban is proposed as they are considered contrary to fundamental EU rights. 
+Examples are practices that:
+To illustrate the operation of the materiality based approach, take the example of using AI for 
+regulatory compliance relating to Know Your Customer (KYC) checks. This may be deemed a more 
+material use case than using AI to verify wet ink signatures.59 KYC checks are determinative of 
+whether financial products/services are offered to the data subject (e.g., whether a loan or line of 
+credit is approved). Outcomes from the KYC checks would have direct effects on the individual, 
+as well as commercial implications, and regulatory compliance implications. As such, it may be 
+necessary to have greater scrutiny of AI principles, such as fairness and internal accountability, to 
+ensure any risks raised using AI are mitigated appropriately. 
+•	
+Have a significant potential to manipulate persons through subliminal techniques beyond 
+their consciousness.
+•	
+Exploit the vulnerabilities of specific vulnerable groups such as children or persons with 
+disabilities in order to materially distort their behaviour in a manner that is likely to cause 
+them or another person psychological or physical harm.
+•	
+Are facilitated by AI systems which are manipulative or exploitative and affect adults.
+2.2    Leverage Existing Regulatory and Governance Frameworks
+Existing risk management and governance frameworks are a useful starting point for FSIs to 
+consider when implementing measures for the responsible use of AI. FSIs already operate in a highly 
+regulated industry. Most jurisdictions already have robust regulatory requirements in place covering 
+outsourced technology use, risk management, and governance. These regulations are almost always 
+technology neutral, meaning that they apply equally regardless whether AI is used or not.
+A key task for assessing the regulatory implications when implementing AI solutions would therefore 
+be to identify the regulatory issues in a specific use case. Table 2.2 in Appendix C gives a hypothetical 
+example of working through some of the relevant regulatory questions involved in an AI context, 
+noting relevant Singapore regulatory requirements that may apply. 
+The alternative path to leveraging existing frameworks is to take the technology specific approach. 
+The UK AI Act is the most obvious example where a jurisdiction has decided to carve out a certain set 
+of technologies as “AI” and subject any use of these specific technologies to regulatory requirements 
+that do not apply if the same use case was implemented in other technologies. It remains to be seen 
+how effective this approach will be in practice.
+
+
+===== PAGE 55 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+55
+Phase
+Some regulatory  
+considerations
+Jurisdictional examples
+Phase 1:  
+input of 
+data into AI 
+technology
+•	 Data protection laws.60
+•	 Confidentiality laws. 
+•	 Guidelines on 
+outsourcing.61
+While Singapore’s Personal Data Protection Act (No. 26 of 
+2012)62 does not have a specific provision relating to the use 
+of AI, AIDA applications’ reliance on internal and/or external 
+data means that sector agnostic compliance requirements 
+such as data protection regulation remains relevant. FSIs 
+must therefore comply with the PDPA’s framework on the 
+collection, use and disclosure of personal data by private 
+sector organisations in Singapore to protect the personal data 
+of individuals, support public trust in the digital economy and 
+enable innovation in the data space.
+Phase 2: 
+processing of 
+data by AI
+•	 Technology laws. 
+•	 Cybersecurity Laws. 
+•	 Risk management 
+practices. 
+MAS has published several risk management practice 
+guidelines, such as the Guidelines on Risk Management 
+Practices for Insurance Business - Core Activities,63 the 
+Guidelines on Risk Management Practices - Technology Risk, 
+and the Guidelines on Risk Management Practices – Board 
+and Senior Management.64 MAS generally requires all FSIs 
+in Singapore to implement and maintain risk management 
+frameworks, and to regularly update and develop such 
+frameworks when new risks are identified. With the increasing 
+adoption of AI solutions by FSIs, it is important for FSIs to 
+evaluate the risks that the use of AI solutions may pose to their 
+businesses. Thereafter, FSIs should update their existing risk 
+management frameworks to include additional measures to 
+address such new risks.
+Phase 3:  
+output 
+generated  
+by the AI  
+use case
+•	 Consumer  
+protection laws. 
+•	 Anti-discrimination  
+laws. 
+Singapore’s Guidelines on the Provision of Digital Advisory 
+Services65 applies to FSIs offering or seeking to offer digital 
+advisory services in Singapore. Digital advisors must put in 
+place adequate governance and supervisory arrangements 
+to effectively mitigate against any additional risks created by 
+digital advice (e.g., that a fault or bias in an algorithm could 
+adversely affect a large number or all of the digital advisors’ 
+clients who relied on the recommendations generated by the 
+algorithms).
+Table 2.2: Hypothetical example of regulatory considerations in Singapore in an AI use case
+2.3    Collaborate with Technology Partners
+A growing area of interest is in the complementary roles of FSIs deploying AI technologies, and 
+software developers providing AI solutions that FSIs might customise or deploy “off-the-shelf”. 
+By sharing technical and non-technical information about the capabilities and limitations of AI 
+software being developed, technology partners can help an FSI assess the best way of deploying 
+that software responsibly. This allows technology partners to work effectively with FSIs to promote 
+transparency and ensure there is a degree of accountability for the software being developed. 
+Technology partners may consider publishing or sharing information that fills any gaps between 
+marketing and technical documentation. Customers will then be equipped with key information to 
+deploy the AI products responsibly. 
+
+
+===== PAGE 56 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+56
+Regulators are also increasingly encouraging collaboration between FSIs and technology partners 
+to improve understanding of how existing internal risk management and governance frameworks 
+can be leveraged to implement and demonstrate good practices of responsible AI. For instance, the 
+Veritas consortium has brought together 27 members, comprising MAS, financial institutions and 
+technology companies to create a framework for financial institutions and technology company 
+to promote the responsible adoption of AIDA. Similarly, the Ethics Guideline for Trustworthy AI66 
+published by the European Commission in April 2019 was prepared by members of the High Level 
+Expert Group on AI. This comprised members from prominent technology/financial companies like 
+AXA, IBM and Bosch, as well as universities, and government advisers. 
+2.4    Ensure a Diversity of Perspectives 
+A diverse set of perspectives is of upmost importance in discussing regulatory issues and helps to 
+ensure that the Responsible AI principles are appropriately applied, and that potential concerns are 
+identified and dealt with early.
+Diversity can come in the form of collaboration with a range of stakeholders (e.g., governments, 
+regulators, industry associations, technology developers, etc. The Veritas consortium, as well as 
+the EU’s Ethics Guideline for Trustworthy AI67 are examples of bodies that bring together diverse 
+stakeholders. The cocreation approach between regulators and industry promotes transparency and 
+accountability and ensures that principles can be translated into practical and implementable actions. 
+Diversity can also come from engagement with different teams within an organisation itself, including 
+the teams responsible for developing the AI solutions, as well as the legal, risk and compliance teams. 
+There should also be diversity within each team in terms of gender, ethnic groups, disability, race, etc. 
+This approach ensures a diverse set of views contributes to decisions around the implementation of 
+AI and ultimately ensures such decisions are reflective of the communities that organisations serve 
+and operate within. 
+
+
+===== PAGE 57 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+57
+2.5    Share Use Cases With Industry 
+Given that it is largely the context in which an AIDA system is being used that triggers regulatory 
+implications (i.e., not the use of system alone) sharing use cases and examples can strengthen 
+understanding across the industry of what regulatory issues may apply. Initiatives like Veritas are 
+valuable in creating opportunities to share use cases in this way and as part of Veritas Phase 1, use 
+case illustrative document covering Fairness assessment in customer marketing and credit scoring 
+was published. 
+The importance of use case sharing was in evidence in the multistakeholder collaboration between 
+Microsoft, Standard Chartered, Deutsche Bank, Visa and Linklaters68 to test the application of the FEAT 
+Principles. Through this project, these industry participants worked collectively to assess the FEAT 
+considerations involved in three different financial services uses cases: predicting travel patterns 
+based on previous spending; automating the verification of wet ink signatures; and regulatory 
+compliance related to KYC checks. The project partners found specific Principles have different 
+implications in different contexts, and some principles will be more or less relevant depending on 
+the use case.   
+Similar projects are being pursued outside the financial services industry through efforts to gather and 
+publish use cases for responsible AI in Asia. This includes the pilot of Australia’s AI ethics principles69, 
+and Singapore’s two volumes of use cases, a number of which relate to financial services use cases. 
+3    The Way Forward for Veritas
+With the rapid increase in deployment of AIDA systems by FSIs in Asia, a key experience in implementing 
+guidance like MAS’ FEAT Principles is that such regulator guidance provides a baseline set of Responsible 
+AI criteria, which helps FSIs ask the right questions when deploying AI solutions. Guidelines on the 
+responsible use of AI should acknowledge the importance of context in translating high level principles 
+into practice. An important learning from discussions in Veritas and beyond is that each Principle will 
+have different implications depending on the context, and a materiality assessment will be important 
+to determine which Principle is relevant and how risks can be mitigated.
+To this end, Veritas represents an important platform to support increased engagement across 
+awareness of the issues raised by AI deployments across varying contexts, while also supporting efforts 
+towards coherence in the guidelines and other requirements issued by regulators. Such an approach 
+echoes a recent call by the Institute of International Finance (IIF) for a collaborative approach between 
+regulators and industry to monitor and manage any risks associated with the use of AI.
+Based on efforts to date through Veritas and other groups, there is clear potential for greater alignment 
+around AI practices and the criteria used for assessing the materiality of AI deployments. Given the 
+importance of context, rather than mandating a fixed or standardised approach, future efforts in Veritas 
+could aim to develop indicative criteria for FSIs to draw on when assessing materiality in AI deployments. 
+Looking ahead, it is critical to build on existing work, encourage greater sharing of use case examples to 
+improve understanding of how FSIs are implementing responsible AI, and to examine what regulatory 
+questions FSIs need to address. This approach will strengthen the overall understanding of the use of 
+AI across the financial services industry and instill confidence in regulators and consumers that these 
+issues are being addressed.
+
+
+===== PAGE 58 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+58
+Annexure
+List of Veritas Consortium Members of Phase Two
+
+
+===== PAGE 59 =====
+Veritas Document 3 FEAT Principles Assessment Methodology
+59
+This report is prepared and issued by the MAS, AXA, HSBC, Microsoft, Standard Chartered, Swiss 
+Re, UOB, Accenture, and TruEra.
+All intellectual property rights in or associated with this report remain vested in the MAS, AXA, 
+HSBC, Microsoft, Standard Chartered, Swiss Re, UOB, Accenture, and TruEra and/or their licensors. 
+This report and its contents are not intended as legal, regulatory, financial, investment, business, 
+or tax advice, and should not be acted on as such.
+Whilst care and attention has been exercised in the preparation of this report, MAS, AXA, HSBC, 
+Microsoft, Standard Chartered, Swiss Re, UOB, Accenture, and TruEra do not accept responsibility 
+for any inaccuracy or error in, or any inaction or action taken in reliance on, the information 
+contained or referenced in this report.
+This report is provided as is without representation or warranty of any kind. All representations or 
+warranties whether express or implied by statute, law or otherwise are hereby disclaimed.
+LEGAL NOTICE
