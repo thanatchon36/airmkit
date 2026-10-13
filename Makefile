@@ -6,12 +6,15 @@
 # Long targets run under `caffeinate -i` on macOS so a sleeping laptop cannot truncate a run.
 
 PY := .venv/bin/python
-PIP := .venv/bin/python -m pip
+# The venv is created by uv, which does not install pip into it.
+UVPIP := uv pip install
 AIRM := .venv/bin/airm
 PYTEST := .venv/bin/python -m pytest
 RUFF := .venv/bin/ruff
 MYPY := .venv/bin/mypy
-EXPERIMENT_ENV := PYTHONPATH=experiments
+# `env` rather than a bare assignment: caffeinate execs its argument and cannot set
+# environment variables itself.
+EXPERIMENT_ENV := env PYTHONPATH=experiments
 EXAMPLE := examples/synthetic_bank
 EXAMPLE_OUT := $(EXAMPLE)/output
 NOSLEEP := $(shell command -v caffeinate >/dev/null 2>&1 && echo "caffeinate -i")
@@ -109,7 +112,7 @@ clean: ## Remove build, cache and generated example output
 
 publish: ## Build the sdist and wheel, check them, and print the release steps
 	rm -rf dist
-	$(PIP) install --quiet --upgrade build twine
+	$(UVPIP) --quiet build twine
 	$(PY) -m build
 	$(PY) -m twine check dist/*
 	@echo
