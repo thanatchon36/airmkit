@@ -187,7 +187,7 @@ def draw_rq1(result: dict[str, Any]) -> tuple[Any, str]:
     by_section = result["by_section"]
     sections = list(by_section)
     fig, ax = _figure(2.75)
-    width = 0.58
+    width = 0.5
     bottoms = [0.0] * len(sections)
     for klass in ("auto", "semi", "doc"):
         values = [by_section[s][klass] * 100 for s in sections]
