@@ -123,7 +123,7 @@ index — is at **<https://thanatchon36.github.io/airmkit/>** (`make docs` build
 ## The paper
 
 *Operationalising the MAS Guidelines on AI Risk Management for LLM and Agentic Systems: A
-Machine-Checkable Control Catalogue and Empirical Study.*
+Machine-Checkable Control Catalogue and Pre-registered Empirical Study.*
 
 | | |
 |---|---|

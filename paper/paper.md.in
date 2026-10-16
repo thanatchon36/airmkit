@@ -1,9 +1,8 @@
 ---
-title: "Operationalising the MAS Guidelines on AI Risk Management for LLM and Agentic Systems: A Machine-Checkable Control Catalogue and Empirical Study"
+title: "Operationalising the MAS Guidelines on AI Risk Management for LLM and Agentic Systems: A Machine-Checkable Control Catalogue and Pre-registered Empirical Study"
 running-title: "Operationalising the MAS Guidelines on AI Risk Management"
 author:
   - Thanatchon Chongmankhong
-subtitle: "airmkit v{{text:version}} · results run {{DATE}} ({{text:git_revision}})"
 keywords:
   - AI governance
   - model risk management
@@ -14,38 +13,32 @@ keywords:
   - regulatory crosswalk
   - pre-registration
 abstract: |
-  Supervisory guidance on artificial intelligence is written in principles and audited in
-  artefacts. The Monetary Authority of Singapore's *Guidelines on Artificial Intelligence Risk
-  Management* (7 October 2026) exemplify the genre: they require a use-case-level assessment of
-  Impact, Complexity and Reliance, lifecycle controls from data to retirement, and tested
-  guardrails for generative and agentic systems, while prescribing no formula, metric or
-  threshold. We ask how much of such a text can be made machine-checkable, and we measure the
-  attempt rather than assert it. We transcribe all {{catalogue.paragraphs}} paragraphs
-  ({{catalogue.expectations}} expectations, {{catalogue.normative_footnotes}} normative
-  footnotes) into a machine-readable catalogue, implement {{controls.total}} controls that each
-  cite the paragraph they serve and are classified by automatability, author a
+  The Monetary Authority of Singapore's *Guidelines on AI Risk Management* (October 2026), like
+  most AI supervisory guidance, are written in principles and audited in artefacts: they require
+  use-case-level assessment of impact, complexity and reliance, lifecycle controls from data to
+  retirement, and tested guardrails for generative and agentic systems, yet prescribe no
+  formula, metric or threshold. We ask how much of such a text can be made machine-checkable,
+  and measure the answer. We transcribe all {{catalogue.paragraphs}} paragraphs
+  ({{catalogue.expectations}} expectations plus {{catalogue.normative_footnotes}} footnotes
+  carrying requirements) into a machine-readable catalogue, implement {{controls.total}}
+  controls, each citing its paragraphs and classified by automatability, build a
   {{rq4.mapping_rows}}-row crosswalk to six other frameworks, and run five pre-registered
-  experiments on a fictional bank's portfolio of {{portfolio.use_cases}} synthetic AI use cases.
-  Of {{verdicts.total}} hypotheses fixed before the experiments ran, {{verdicts.held}} held and
-  {{verdicts.refuted}} were refuted. {{rq1.auto_share}} of expectations admit a fully automated
-  check, but the share is {{rq1.section4_auto_share}} in the inventory and materiality section
-  and {{rq1.section3_auto_share}} in the governance section, and at control level the
-  semi-automatable class dominates ({{rq1.controls_semi_share}}). Moving a use case up a
-  six-rung autonomy ladder enlarges its control set monotonically yet rarely changes its tier.
-  On a local {{rq3.model}} model, the guardrail patterns that cut attack success from
+  experiments on a fictional bank's {{portfolio.use_cases}} synthetic AI use cases. Of
+  {{verdicts.total}} pre-registered hypotheses, {{verdicts.held}} held and {{verdicts.refuted}}
+  were refuted. {{rq1.auto_share}} of expectations admit a fully automated check, but the share
+  is {{rq1.section4_auto_share}} for inventory and materiality and {{rq1.section3_auto_share}}
+  for governance, and semi-automatable controls dominate ({{rq1.controls_semi_share}}).
+  Guardrail patterns that cut attack success on a local {{rq3.model}} model from
   {{rq3.asr_none}} to {{rq3.asr_layered}} also refused {{rq3.over_refusal_layered}} of benign
-  in-scope requests, so no pattern met both pre-registered thresholds. No single framework fully
-  covers more than {{rq4.best_single_framework_share}} of expectations; the union of ISO/IEC
-  42001, the NIST AI RMF and the EU AI Act leaves {{rq4.union_residue_share}} without a full
-  mapping, and the residue is governance machinery and Singapore-specific proportionality rather
-  than the agent-specific clauses we predicted. Evidence volume is flat across materiality tiers
-  ({{rq5.critical_evidence_items}} items at Critical against {{rq5.medium_evidence_items}} at
-  Medium): proportionality scales the rigour of review, not the number of artefacts, and
-  {{rq5.semi_doc_effort_share}} of estimated effort lies in work that automation cannot finish.
-  Two instrument defects found during measurement are disclosed, including a truncation bug
-  that produced a perfect 0% attack success rate. The catalogue, controls, crosswalk and
-  experiments are released as an Apache-2.0 package, `airmkit`, so that every classification
-  can be disputed row by row.
+  in-scope requests; none met both pre-registered thresholds. No single framework fully covers
+  more than {{rq4.best_single_framework_share}} of expectations; even ISO/IEC 42001, the NIST AI
+  RMF and the EU AI Act together leave {{rq4.union_residue_share}} unmapped, and the residue is
+  governance machinery and Singapore-specific proportionality, not the agent clauses we
+  predicted. Evidence volume is flat across materiality tiers: proportionality scales review
+  rigour, not artefact count, and {{rq5.semi_doc_effort_share}} of estimated effort lies in work
+  automation cannot finish. Two instrument defects are disclosed, one of which had produced a
+  spurious 0% attack rate. All artefacts are released as the Apache-2.0 package `airmkit` so
+  every classification can be disputed row by row.
 ---
 
 > **Disclaimer.** {{text:disclaimer}}
