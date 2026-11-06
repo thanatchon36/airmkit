@@ -1,8 +1,8 @@
 # The MAS AI Risk Management Guidelines: what they require, what a tool can check, and what still needs people
 
 **For Chief Risk Officers and Heads of Model Risk.** Every figure below is generated from
-`results/summary.json`; nothing is typed by hand. Generated 2026-10-13 from airmkit
-0.1.0 (0fbc770). Written by Claude Fable 5.1 from the author's results.
+`results/summary.json`; nothing is typed by hand. Generated 2026-11-06 from airmkit
+0.1.1 (8ba29c1). Written by Claude Fable 5.1 from the author's results.
 
 > airmkit is an independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. It is not legal, regulatory or compliance advice and is not a substitute for reading the Guidelines on Artificial Intelligence Risk Management (7 October 2026). Interpretations and all thresholds are the authors'.
 
@@ -47,7 +47,7 @@ binding constraint. *(Hours are published estimates, not measurements.)*
    moved up a tier, because tier is driven by consequence. A review process keyed on tier will
    miss the agent step; key it on the control set.
 2. **Guardrail reports without a benign control set are unfalsifiable.** On a local model, attack
-   success fell from 75.0% unguarded to 6.2% with a layered defence —
+   success fell from 75.0% unguarded to 0.0% [0.0%, 19.4%] with a layered defence —
    and the same defence refused **50.0% of ordinary in-scope requests**.
    Against a pre-registered joint criterion, 0 of 5
    patterns passed. Require over-refusal beside attack success in every guardrail report you

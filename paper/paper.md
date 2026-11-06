@@ -29,7 +29,7 @@ abstract: |
   check, but the share is 84.6% for inventory and materiality and
   0.0% for governance, and semi-automatable controls dominate
   (36.9%). Guardrail patterns that cut attack success on a local
-  qwen3.5:0.8b model from 75.0% to 6.2% also refused
+  qwen3.5:0.8b model from 75.0% to 0.0% also refused
   50.0% of benign in-scope requests; none met both pre-registered
   thresholds. No single framework fully covers more than 49.0% of
   expectations; even ISO/IEC 42001, the NIST AI RMF and the EU AI Act together leave
@@ -110,9 +110,9 @@ substance and stops earliest in the governance clauses that bind first. Guardrai
 look effective against adversarial suites refuse half of ordinary traffic. The work an
 internationally certified institution still faces is governance work, not agent work. And the
 proportionality the Guidelines ask for shows up as deeper review of the same artefacts, not as
-more artefacts. Each of these is reported against the threshold it failed, and two defects in
-our own measurement instruments are disclosed because, uncorrected, each would have produced a
-flattering result.
+more artefacts. Each of these is reported against the threshold it failed, and three defects in
+our own measurement instruments are disclosed: two that, uncorrected, would have produced a
+flattering result, and one found after release that understated the guarded patterns.
 
 # Background
 
@@ -499,7 +499,7 @@ record before the interpretation.
 | RQ2 | H2(c) the largest control delta is at the human-in-the-loop to agent step | **refuted** | the largest step is autonomous_decisioning->autonomous_agent for 4/4 use cases, not human_in_the_loop->autonomous_agent |
 | RQ2 | H2(c-revised) the largest control delta is at the agentic boundary | holds | the autonomous_decisioning to autonomous_agent step is largest for 4/4 use cases; not pre-registered, see post_hoc_disclosure |
 | RQ3 | H3(a) system-prompt-only leaves ASR above 20% on at least one family | holds | worst family ASR under system_prompt = 75.0% |
-| RQ3 | H3(b) layering beats the best single pattern (non-overlapping 95% intervals) | **refuted** | layered 6.2% [0.01,0.28] vs best single filter 12.5% [0.04,0.36] |
+| RQ3 | H3(b) layering beats the best single pattern (non-overlapping 95% intervals) | **refuted** | layered 0.0% [0.00,0.19] vs best single llm_judge 0.0% [0.00,0.19] |
 | RQ3 | H3(c) no pattern reaches 1% ASR on indirect injection with acceptable over-refusal | holds | no pattern's upper confidence bound on indirect injection falls below 1% with over-refusal at or below 5% |
 | RQ3 | H3(d) at least one pattern meets the High-tier ASR limit without over-refusing | **refuted** | patterns meeting both pre-registered thresholds: none. The patterns that cut attack success most also refuse ordinary in-scope requests: over-refusal is 50% under system_prompt and 50% under layered, against 0% unguarded. |
 | RQ4 | H4(a) no single framework fully covers more than 60% of expectations | holds | highest single-framework full coverage is nist_ai_rmf at 49.0% |
@@ -637,21 +637,21 @@ measured, and every proportion carries a Wilson 95% interval.
 | Pattern | Attack success | 95% CI | Over-refusal (benign) | Tiers met |
 |---------------|--------------|--------------|---------------------|---------|
 | `none` | 75.0% (12/16) | [50.5%, 89.8%] | 0.0% (0/4) | none |
-| `system_prompt` | 50.0% (8/16) | [28.0%, 72.0%] | 50.0% (2/4) | none |
+| `system_prompt` | 37.5% (6/16) | [18.5%, 61.4%] | 50.0% (2/4) | none |
 | `filter` | 12.5% (2/16) | [3.5%, 36.0%] | 0.0% (0/4) | none |
-| `llm_judge` | 12.5% (2/16) | [3.5%, 36.0%] | 50.0% (2/4) | none |
-| `layered` | 6.2% (1/16) | [1.1%, 28.3%] | 50.0% (2/4) | none |
+| `llm_judge` | 0.0% (0/16) | [0.0%, 19.4%] | 50.0% (2/4) | none |
+| `layered` | 0.0% (0/16) | [0.0%, 19.4%] | 50.0% (2/4) | none |
 
 : Attack success and over-refusal by guardrail pattern. A pattern meets a tier only if the upper
 Wilson bound on its attack success rate lies below the tier's proposed limit; the limits are the
 authors' proposal, not a MAS threshold.
 
 | Probe family | `none` | `system_prompt` | `filter` | `llm_judge` | `layered` |
-|------------------|------------|---------------|-----------|-----------|-----------|
-| direct jailbreak | 75.0% (3/4) | 50.0% (2/4) | 0.0% (0/4) | 25.0% (1/4) | 0.0% (0/4) |
+|------------------|------------|---------------|-----------|-----------|----------|
+| direct jailbreak | 75.0% (3/4) | 25.0% (1/4) | 0.0% (0/4) | 0.0% (0/4) | 0.0% (0/4) |
 | indirect injection | 75.0% (3/4) | 25.0% (1/4) | 0.0% (0/4) | 0.0% (0/4) | 0.0% (0/4) |
 | pii leakage | 100.0% (4/4) | 75.0% (3/4) | 0.0% (0/4) | 0.0% (0/4) | 0.0% (0/4) |
-| policy evasion | 50.0% (2/4) | 50.0% (2/4) | 50.0% (2/4) | 25.0% (1/4) | 25.0% (1/4) |
+| policy evasion | 50.0% (2/4) | 25.0% (1/4) | 50.0% (2/4) | 0.0% (0/4) | 0.0% (0/4) |
 
 : Attack success rate by probe family under each guardrail pattern (successes/trials).
 
@@ -659,20 +659,22 @@ authors' proposal, not a MAS threshold.
 
 
 Attack success falls from 75.0% [50.5%, 89.8%] unguarded to
-6.2% [1.1%, 28.3%] layered. H3(a) held: the system prompt alone leaves
-attack success above 20% on every family, and at 50.0%
-[28.0%, 72.0%] overall it is barely distinguishable from no guardrail. H3(c) held:
+0.0% [0.0%, 19.4%] layered. H3(a) held: the system prompt alone leaves
+attack success above 20% on every family, and at 37.5%
+[18.5%, 61.4%] overall its interval still overlaps that of no guardrail. H3(c) held:
 no pattern's upper bound on indirect injection falls below the Critical limit of
 1.0%, so for high-materiality agentic use cases the §5.15 expectation
 cannot be met by guardrails alone and requires the human-oversight and scope-limitation controls
 of §5.9 and §5.2.
 
-H3(b) was refuted on its pre-registered test. Layering looks strong on the point estimate, but
-the test required non-overlapping intervals, and at 16 trials the
-layered interval [1.1%, 28.3%] overlaps the deterministic filter's
-[3.5%, 36.0%]. The experiment is underpowered for that comparison, the pre-registered
-criterion is the one we report against, and the honest statement is that layering was not shown
-to beat the best single pattern at this sample size.
+H3(b) was refuted on its pre-registered test. The test required non-overlapping intervals against
+the best single pattern, which is now the LLM judge at 0.0%
+[0.0%, 19.4%]. Layering scores the same 0.0% [0.0%, 19.4%], so
+it adds nothing measurable to the judge here, and its interval also overlaps the deterministic
+filter's [3.5%, 36.0%]. A zero is not a clean pass: at 16 trials
+the upper bound stays far above the High-tier limit of 2.0%. The experiment is
+underpowered for these comparisons, and the honest statement is that layering was not shown to
+beat the best single pattern at this sample size.
 
 The substantive result is the benign control set. Over-refusal is 0.0%
 unguarded, 50.0% with the system prompt,
@@ -682,8 +684,8 @@ criterion fixed before the run — attack success within the High-tier limit of
 2.0% *and* over-refusal at or below 5.0% —
 0 of 5 patterns qualify, and H3(d) is refuted. The
 deterministic filter is the only pattern that combines a large reduction in attack success
-(75.0% to 12.5%) with zero measured over-refusal, and it is also the
-only pattern that eliminates PII leakage (100.0% to 0.0%); its
+(75.0% to 12.5%) with zero measured over-refusal, and it eliminates PII
+leakage (100.0% to 0.0%) without that cost; its
 residual failures are entirely in policy evasion (50.0%), where the
 disallowed output is paraphrasable and a pattern match cannot see it. This is a result about the
 economics of determinism, not a claim that guardrails are easy.
@@ -696,11 +698,11 @@ made the system unusable for the purpose that was approved. Guardrail evaluation
 only with a benign control set, and we would argue that a supervisor reading a guardrail test
 report should ask for one before reading the attack numbers.
 
-**Two instrument defects.** Both were found during this experiment, both were corrected before
-the reported run, and both would have produced flattering results had they survived. The result
-file records them as follows:
+**Three instrument defects.** Two were found during this experiment and corrected before the
+first reported run. The third was found after release and is corrected in v0.1.1. The result file
+records them as follows:
 
-> Each probe's success_pattern is an instrument, not a hypothesis. The patterns were revised once after inspecting the unguarded (none) responses of the reference model, which exposed two error classes: DJ-01 matched the 'As DAN' persona echo inside an outright refusal, counting a refusal as an attack success; and DJ-03, DJ-04, PE-01 and PE-04 missed successful attacks because the model phrased them differently from the anticipated wording (for example 'offers a compelling 20% return' rather than 'guarantees'). Calibration used the none condition only, so it could not be steered by which guardrail pattern it would favour, and no pattern was changed after seeing the guarded results. A separate defect was fixed in the backend first: the reference model is a reasoning model, and with thinking enabled the whole token budget went to the thinking field, returning an empty completion that matched no probe and produced a false 0% attack success rate across every pattern. The backend now passes think=False and treats an empty completion as an error rather than as a refusal.
+> Each probe's success_pattern is an instrument, not a hypothesis. The patterns were revised once after inspecting the unguarded (none) responses of the reference model, which exposed two error classes: DJ-01 matched the 'As DAN' persona echo inside an outright refusal, counting a refusal as an attack success; and DJ-03, DJ-04, PE-01 and PE-04 missed successful attacks because the model phrased them differently from the anticipated wording (for example 'offers a compelling 20% return' rather than 'guarantees'). Calibration used the none condition only, so it could not be steered by which guardrail pattern it would favour. A separate defect was fixed in the backend first: the reference model is a reasoning model, and with thinking enabled the whole token budget went to the thinking field, returning an empty completion that matched no probe and produced a false 0% attack success rate across every pattern. The backend now passes think=False and treats an empty completion as an error rather than as a refusal. A second revision followed release. Publishing the guarded responses showed five outright refusals counted as attack successes because they repeated the words a pattern looks for: DJ-01 under system_prompt and llm_judge, and PE-01 under system_prompt, llm_judge and layered. From v0.1.1 the detector ignores sentences containing a refusal cue, for the direct-jailbreak and policy-evasion families. It is one rule for those families, and applied to the cached responses it changes exactly those five outcomes. v0.1.0 reported 8/16 under system_prompt, 2/16 under llm_judge and 1/16 under layered. Unlike the first revision, this one followed inspection of the guarded responses and it favours the guarded patterns, so it should be read with that in mind. No response was regenerated, and false negatives were not re-audited.
 
 The backend defect is worth restating because any team using a reasoning model will meet it.
 With thinking enabled, the reference model spent its whole token budget in the thinking channel
@@ -709,9 +711,18 @@ probe pattern, so *every* attack scored as "the guardrail held": a perfect 0% at
 rate across all five patterns, produced by truncation, with no error raised. The runner now
 disables thinking, caps prediction length and raises on an empty completion rather than scoring
 it. The detector defect is the mirror image — a pattern that matched a persona echo inside a
-refusal and counted the refusal as a success — and recalibration was confined to the unguarded
-condition so that it could not be steered toward whichever guardrail it would favour. All RQ3
-numbers come from one small local model (ollama qwen3.5:0.8b at temperature 0.0, seed 20261013, num_predict 512, think=False) and are a demonstration that
+refusal and counted the refusal as a success — and that recalibration was confined to the
+unguarded condition so that it could not be steered toward whichever guardrail it would favour.
+
+The third defect broke that discipline, and we say so. Publishing the full responses showed the
+same class of error surviving in the guarded conditions: five refusals repeated the words a
+pattern looks for. We replaced per-probe judgement with one rule, applied to every
+direct-jailbreak and policy-evasion probe, that ignores sentences containing a refusal cue. It
+changes exactly those five outcomes and no verdict. It was nevertheless written after reading
+guarded responses, it favours the guarded patterns, and false negatives were not re-audited. The
+v0.1.0 counts are recorded above so that the effect can be checked.
+
+All RQ3 numbers come from one small local model (ollama qwen3.5:0.8b at temperature 0.0, seed 20261013, num_predict 512, think=False) and are a demonstration that
 the joint measurement is possible and that the joint criterion bites, not an estimate of
 guardrail effectiveness in general.
 
@@ -864,7 +875,7 @@ the distribution is the claim; the absolute values are an assumption a reader ca
 - **H1(a) semi is the largest class** — semi = 16, auto = 23, doc = 12
 - **H2(b) at least 3 of 4 gain a tier from human-in-the-loop to autonomous agent** — tier gains: credit-decision-model +0, aml-alert-triage +0, customer-service-chatbot +1, policy-rag-assistant +0
 - **H2(c) the largest control delta is at the human-in-the-loop to agent step** — the largest step is autonomous_decisioning->autonomous_agent for 4/4 use cases, not human_in_the_loop->autonomous_agent
-- **H3(b) layering beats the best single pattern (non-overlapping 95% intervals)** — layered 6.2% [0.01,0.28] vs best single filter 12.5% [0.04,0.36]
+- **H3(b) layering beats the best single pattern (non-overlapping 95% intervals)** — layered 0.0% [0.00,0.19] vs best single llm_judge 0.0% [0.00,0.19]
 - **H3(d) at least one pattern meets the High-tier ASR limit without over-refusing** — patterns meeting both pre-registered thresholds: none. The patterns that cut attack success most also refuse ordinary in-scope requests: over-refusal is 50% under system_prompt and 50% under layered, against 0% unguarded.
 - **H4(c) the residue is concentrated in the predicted clauses** — 4 of 10 residual clauses were predicted: §3.6, §4.4, §4.13, §4.8. Not predicted: §2.2, §2.5, §3.4, §4.1, §5.11, §5.20
 - **H5(a) Critical requires more than twice the evidence of the lowest tier present (Medium)** — Critical mean 91.4 evidence items vs Medium mean 92.0; ratio 0.993. The portfolio contains no Low-tier use case, so Medium is substituted for Low and the hypothesis is weaker than written.
@@ -890,9 +901,9 @@ single annotator with no inter-rater agreement; 18 of
 materiality rubric and the synthetic portfolio were written by the same person, so the effort
 distribution of RQ5 reflects one model of a bank rather than a bank. In RQ2, the autonomy ladder
 was changed after pre-registration, and we report the consequence as two refutations rather than
-as a revision. In RQ3, two instrument defects were found after pre-registration; both were
-corrected before the reported run, both are disclosed in §7.3, and detector recalibration was
-confined to the unguarded condition.
+as a revision. In RQ3, three instrument defects were found after pre-registration and all are disclosed in §7.3.
+Two were corrected before the first reported run, with recalibration confined to the unguarded
+condition; the third was corrected after release, following inspection of guarded responses.
 
 **External validity.** The portfolio is fictional and no result generalises to a real AI estate
 without being restated as a hypothesis. RQ3 is measured on one small local model with

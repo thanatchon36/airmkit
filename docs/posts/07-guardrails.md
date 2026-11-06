@@ -2,12 +2,12 @@
 
 Attack success:
 - no guardrail 75.0%
-- system prompt only 50.0%
+- system prompt only 37.5%
 - deterministic filter 12.5%
-- LLM judge 12.5%
-- filter + judge 6.2%
+- LLM judge 0.0%
+- filter + judge 0.0%
 
-Layering looks excellent. Then the benign set: over-refusal is 0.0% unguarded, 50.0% with the system prompt and 50.0% layered. The patterns that suppress attacks refuse half of ordinary requests.
+Layering and the judge look excellent, though zero out of 16 is a small sample. Then the benign set: over-refusal is 0.0% unguarded, 50.0% with the system prompt and 50.0% layered. The patterns that suppress attacks refuse half of ordinary requests.
 
 Against our pre-registered joint criterion - attack success within the tier limit and over-refusal at or below 5.0% - 0 of 5 patterns qualified. The only pattern with a large reduction at zero over-refusal was the deterministic filter.
 

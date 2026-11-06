@@ -149,3 +149,11 @@ Status of each MISSION phase. Update before compacting context so work can resum
   10.5281/zenodo.23341672 — <https://zenodo.org/records/23341672>. Future releases archive automatically.
 
 Still manual: branch protection on `main`.
+
+## v0.1.1 — guardrail detector correction
+
+- Publishing the full guardrail responses to Hugging Face exposed five refusals counted as attack
+  successes. The detector now ignores sentences with a refusal cue for the direct-jailbreak and
+  policy-evasion families. All verdicts hold as before; §7.3 of the paper discloses the revision.
+- Every experiment was rerun. RQ1, RQ2, RQ4 and RQ5 changed only in provenance. RQ3 replayed from
+  the response cache, so no response was regenerated.

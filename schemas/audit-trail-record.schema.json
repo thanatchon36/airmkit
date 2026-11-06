@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://raw.githubusercontent.com/thanatchon36/airmkit/main/schemas/audit-trail-record.schema.json",
-  "x-airmkit-version": "0.1.0",
+  "x-airmkit-version": "0.1.1",
   "x-mas-airm-clauses": "MAS-AIRM \u00a75.23(d), \u00a75.17",
   "x-disclaimer": "Independent open-source project, not affiliated with or endorsed by the Monetary Authority of Singapore. Field semantics are the authors' interpretation of the Guidelines on Artificial Intelligence Risk Management (7 October 2026), not a MAS specification.",
   "$defs": {
