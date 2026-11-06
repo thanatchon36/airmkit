@@ -12,6 +12,9 @@ identifiers:
   - type: doi
     value: "10.5281/zenodo.23341672"
     description: "airmkit v0.1.0"
+  - type: doi
+    value: "10.5281/zenodo.23997372"
+    description: "airmkit v0.1.1"
 date-released: "2026-11-06"
 repository-code: "https://github.com/thanatchon36/airmkit"
 url: "https://thanatchon36.github.io/airmkit/"

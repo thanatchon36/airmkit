@@ -157,3 +157,7 @@ Still manual: branch protection on `main`.
   policy-evasion families. All verdicts hold as before; §7.3 of the paper discloses the revision.
 - Every experiment was rerun. RQ1, RQ2, RQ4 and RQ5 changed only in provenance. RQ3 replayed from
   the response cache, so no response was regenerated.
+- Released: `release.yml` ran green on all four jobs. Installing `airmkit==0.1.1` from PyPI into a
+  clean venv confirmed the version and the corrected detector. Zenodo version DOI:
+  [10.5281/zenodo.23997372](https://doi.org/10.5281/zenodo.23997372). The docs site and web paper
+  are live at 0.1.1.

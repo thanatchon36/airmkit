@@ -231,7 +231,7 @@ an issue and say which paragraph. See [CONTRIBUTING.md](CONTRIBUTING.md).
 }
 ```
 
-The DOI above is the concept DOI (always resolves to the latest version); v0.1.0 is [10.5281/zenodo.23341672](https://doi.org/10.5281/zenodo.23341672). See [CITATION.cff](CITATION.cff). Release notes are in [CHANGELOG.md](CHANGELOG.md).
+The DOI above is the concept DOI (always resolves to the latest version); v0.1.1 is [10.5281/zenodo.23997372](https://doi.org/10.5281/zenodo.23997372) and v0.1.0 is [10.5281/zenodo.23341672](https://doi.org/10.5281/zenodo.23341672). See [CITATION.cff](CITATION.cff). Release notes are in [CHANGELOG.md](CHANGELOG.md).
 
 ## Licence
 
