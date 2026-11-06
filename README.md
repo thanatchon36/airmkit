@@ -12,6 +12,7 @@ measure how far that is possible.**
 📄 **[Read the paper on the web](https://thanatchon36.github.io/airmkit/paper/)** ·
 ⬇️ **[Download the PDF](https://github.com/thanatchon36/airmkit/raw/main/paper/paper.pdf)** ·
 📚 **[Documentation](https://thanatchon36.github.io/airmkit/)** ·
+🤗 **[Dataset](https://huggingface.co/datasets/thanatchon36/airmkit)** ·
 📋 **[One page for a CRO](docs/EXEC_SUMMARY.md)**
 
 The Monetary Authority of Singapore issued its [Guidelines on Artificial Intelligence Risk
@@ -131,6 +132,7 @@ Machine-Checkable Control Catalogue and Pre-registered Empirical Study.*
 | ⬇️ **Download the PDF** | **[`paper/paper.pdf`](paper/paper.pdf)** — [direct download](https://github.com/thanatchon36/airmkit/raw/main/paper/paper.pdf); typeset with Typst |
 | 📝 Markdown source | [`paper/paper.md`](paper/paper.md), rendered from [`paper/paper.md.in`](paper/paper.md.in) |
 | 🔢 Every number in it | injected from [`results/summary.json`](results/summary.json); nothing is typed by hand |
+| 🤗 The data as tables | [`thanatchon36/airmkit`](https://huggingface.co/datasets/thanatchon36/airmkit) on Hugging Face: catalogue, controls, crosswalk, verdicts and guardrail results |
 | 📋 One page for a CRO | [`docs/EXEC_SUMMARY.md`](docs/EXEC_SUMMARY.md) |
 
 The manuscript was written by Claude Fable 5.1 from the author's catalogue, experiments and

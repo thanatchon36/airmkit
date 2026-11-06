@@ -42,6 +42,12 @@
       "relation": "isDocumentedBy",
       "resource_type": "publication-softwaredocumentation",
       "scheme": "url"
+    },
+    {
+      "identifier": "https://huggingface.co/datasets/thanatchon36/airmkit",
+      "relation": "isSupplementedBy",
+      "resource_type": "dataset",
+      "scheme": "url"
     }
   ],
   "notes": "Every number in the accompanying paper is injected from results/summary.json; nothing is typed by hand. `make reproduce` rebuilds every table and figure from the committed sources on a laptop with no hosted API."
