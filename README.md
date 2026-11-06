@@ -15,6 +15,21 @@ measure how far that is possible.**
 🤗 **[Dataset](https://huggingface.co/datasets/thanatchon36/airmkit)** ·
 📋 **[One page for a CRO](docs/EXEC_SUMMARY.md)**
 
+**Less than half of the MAS Guidelines can be checked by a machine.** 45.1% of the 51 expectations
+admit a fully automated check. That share is 84.6% for inventory and materiality (Section 4) and
+0% for AI oversight (Section 3).
+
+<a href="https://thanatchon36.github.io/airmkit/paper/"><img src="https://raw.githubusercontent.com/thanatchon36/airmkit/main/results/figures/rq1_automatability_by_section.png" alt="Stacked bars of the share of expectation paragraphs in each section of the Guidelines that are auto, semi or doc. Section 4 is 85% auto, Section 5 is 46% auto, and Sections 1, 2, 3 and 6 have no auto paragraphs."></a>
+
+**The frameworks you already follow will not cover it.** No single framework fully covers even
+half of the expectations. ISO/IEC 42001, the NIST AI RMF and the EU AI Act together leave 18 of 51
+with no full mapping, and all six frameworks together still leave 10.
+
+<a href="https://thanatchon36.github.io/airmkit/paper/"><img src="https://raw.githubusercontent.com/thanatchon36/airmkit/main/results/figures/rq4_crosswalk_coverage.png" alt="Stacked bars of how many of the 51 expectation paragraphs each framework covers fully, partially or not at all. NIST AI RMF is highest at 25 full. All six combined reach 41 full and 10 partial."></a>
+
+<sub>Automatability labels and crosswalk mappings are the author's own judgement, made by one annotator
+and not reviewed by MAS. Full method and limits are in the [paper](https://thanatchon36.github.io/airmkit/paper/).</sub>
+
 The Monetary Authority of Singapore issued its [Guidelines on Artificial Intelligence Risk
 Management](https://www.mas.gov.sg/-/media/mas-media-library/regulation/guidelines/bd/guidelines-on-artificial-intelligence-risk-management-for-financial-institutions/guidelines-on-artificial-intelligence-risk-management.pdf)
 on 7 October 2026. Sections 3–4 — oversight, identification, inventory and risk materiality —
@@ -34,23 +49,6 @@ with every refutation reported.
 > Every interpretation and every threshold is the authors'; MAS declines to prescribe
 > materiality formulae, metrics or testing methodologies (Response to Feedback §7.19, §10.28,
 > §10.66). See [DISCLAIMER.md](DISCLAIMER.md).
-
-## The result in two charts
-
-**Less than half of the Guidelines can be checked by a machine.** 45.1% of the 51 expectations
-admit a fully automated check. That share is 84.6% for inventory and materiality (Section 4) and
-0% for AI oversight (Section 3).
-
-<a href="https://thanatchon36.github.io/airmkit/paper/"><img src="https://raw.githubusercontent.com/thanatchon36/airmkit/main/results/figures/rq1_automatability_by_section.png" alt="Stacked bars of the share of expectation paragraphs in each section of the Guidelines that are auto, semi or doc. Section 4 is 85% auto, Section 5 is 46% auto, and Sections 1, 2, 3 and 6 have no auto paragraphs."></a>
-
-**The frameworks you already follow will not cover it.** No single framework fully covers even
-half of the expectations. ISO/IEC 42001, the NIST AI RMF and the EU AI Act together leave 18 of 51
-with no full mapping, and all six frameworks together still leave 10.
-
-<a href="https://thanatchon36.github.io/airmkit/paper/"><img src="https://raw.githubusercontent.com/thanatchon36/airmkit/main/results/figures/rq4_crosswalk_coverage.png" alt="Stacked bars of how many of the 51 expectation paragraphs each framework covers fully, partially or not at all. NIST AI RMF is highest at 25 full. All six combined reach 41 full and 10 partial."></a>
-
-<sub>Automatability labels and crosswalk mappings are the author's own judgement, made by one annotator
-and not reviewed by MAS. Full method and limits are in the [paper](https://thanatchon36.github.io/airmkit/paper/).</sub>
 
 ## Why
 
