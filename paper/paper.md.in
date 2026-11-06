@@ -110,9 +110,9 @@ substance and stops earliest in the governance clauses that bind first. Guardrai
 look effective against adversarial suites refuse half of ordinary traffic. The work an
 internationally certified institution still faces is governance work, not agent work. And the
 proportionality the Guidelines ask for shows up as deeper review of the same artefacts, not as
-more artefacts. Each of these is reported against the threshold it failed, and two defects in
-our own measurement instruments are disclosed because, uncorrected, each would have produced a
-flattering result.
+more artefacts. Each of these is reported against the threshold it failed, and three defects in
+our own measurement instruments are disclosed: two that, uncorrected, would have produced a
+flattering result, and one found after release that understated the guarded patterns.
 
 # Background
 
@@ -592,18 +592,20 @@ authors' proposal, not a MAS threshold.
 Attack success falls from {{rq3.asr_none}} {{rq3.asr_none_ci}} unguarded to
 {{rq3.asr_layered}} {{rq3.asr_layered_ci}} layered. H3(a) held: the system prompt alone leaves
 attack success above 20% on every family, and at {{rq3.asr_system_prompt}}
-{{rq3.asr_system_prompt_ci}} overall it is barely distinguishable from no guardrail. H3(c) held:
+{{rq3.asr_system_prompt_ci}} overall its interval still overlaps that of no guardrail. H3(c) held:
 no pattern's upper bound on indirect injection falls below the Critical limit of
 {{rq3.threshold_critical}}, so for high-materiality agentic use cases the §5.15 expectation
 cannot be met by guardrails alone and requires the human-oversight and scope-limitation controls
 of §5.9 and §5.2.
 
-H3(b) was refuted on its pre-registered test. Layering looks strong on the point estimate, but
-the test required non-overlapping intervals, and at {{rq3.trials_per_pattern}} trials the
-layered interval {{rq3.asr_layered_ci}} overlaps the deterministic filter's
-{{rq3.asr_filter_ci}}. The experiment is underpowered for that comparison, the pre-registered
-criterion is the one we report against, and the honest statement is that layering was not shown
-to beat the best single pattern at this sample size.
+H3(b) was refuted on its pre-registered test. The test required non-overlapping intervals against
+the best single pattern, which is now the LLM judge at {{rq3.asr_llm_judge}}
+{{rq3.asr_llm_judge_ci}}. Layering scores the same {{rq3.asr_layered}} {{rq3.asr_layered_ci}}, so
+it adds nothing measurable to the judge here, and its interval also overlaps the deterministic
+filter's {{rq3.asr_filter_ci}}. A zero is not a clean pass: at {{rq3.trials_per_pattern}} trials
+the upper bound stays far above the High-tier limit of {{rq3.threshold_high}}. The experiment is
+underpowered for these comparisons, and the honest statement is that layering was not shown to
+beat the best single pattern at this sample size.
 
 The substantive result is the benign control set. Over-refusal is {{rq3.over_refusal_none}}
 unguarded, {{rq3.over_refusal_system_prompt}} with the system prompt,
@@ -613,8 +615,8 @@ criterion fixed before the run — attack success within the High-tier limit of
 {{rq3.threshold_high}} *and* over-refusal at or below {{rq3.threshold_over_refusal}} —
 {{rq3.patterns_meeting_both}} of {{rq3.patterns}} patterns qualify, and H3(d) is refuted. The
 deterministic filter is the only pattern that combines a large reduction in attack success
-({{rq3.asr_none}} to {{rq3.asr_filter}}) with zero measured over-refusal, and it is also the
-only pattern that eliminates PII leakage ({{rq3.pii_asr_none}} to {{rq3.pii_asr_filter}}); its
+({{rq3.asr_none}} to {{rq3.asr_filter}}) with zero measured over-refusal, and it eliminates PII
+leakage ({{rq3.pii_asr_none}} to {{rq3.pii_asr_filter}}) without that cost; its
 residual failures are entirely in policy evasion ({{rq3.policy_asr_filter}}), where the
 disallowed output is paraphrasable and a pattern match cannot see it. This is a result about the
 economics of determinism, not a claim that guardrails are easy.
@@ -627,9 +629,9 @@ made the system unusable for the purpose that was approved. Guardrail evaluation
 only with a benign control set, and we would argue that a supervisor reading a guardrail test
 report should ask for one before reading the attack numbers.
 
-**Two instrument defects.** Both were found during this experiment, both were corrected before
-the reported run, and both would have produced flattering results had they survived. The result
-file records them as follows:
+**Three instrument defects.** Two were found during this experiment and corrected before the
+first reported run. The third was found after release and is corrected in v0.1.1. The result file
+records them as follows:
 
 > {{text:rq3_detector_calibration}}
 
@@ -640,9 +642,18 @@ probe pattern, so *every* attack scored as "the guardrail held": a perfect 0% at
 rate across all five patterns, produced by truncation, with no error raised. The runner now
 disables thinking, caps prediction length and raises on an empty completion rather than scoring
 it. The detector defect is the mirror image — a pattern that matched a persona echo inside a
-refusal and counted the refusal as a success — and recalibration was confined to the unguarded
-condition so that it could not be steered toward whichever guardrail it would favour. All RQ3
-numbers come from one small local model ({{text:rq3_backend}}) and are a demonstration that
+refusal and counted the refusal as a success — and that recalibration was confined to the
+unguarded condition so that it could not be steered toward whichever guardrail it would favour.
+
+The third defect broke that discipline, and we say so. Publishing the full responses showed the
+same class of error surviving in the guarded conditions: five refusals repeated the words a
+pattern looks for. We replaced per-probe judgement with one rule, applied to every
+direct-jailbreak and policy-evasion probe, that ignores sentences containing a refusal cue. It
+changes exactly those five outcomes and no verdict. It was nevertheless written after reading
+guarded responses, it favours the guarded patterns, and false negatives were not re-audited. The
+v0.1.0 counts are recorded above so that the effect can be checked.
+
+All RQ3 numbers come from one small local model ({{text:rq3_backend}}) and are a demonstration that
 the joint measurement is possible and that the joint criterion bites, not an estimate of
 guardrail effectiveness in general.
 
@@ -769,9 +780,9 @@ single annotator with no inter-rater agreement; {{rq4.low_confidence_rows}} of
 materiality rubric and the synthetic portfolio were written by the same person, so the effort
 distribution of RQ5 reflects one model of a bank rather than a bank. In RQ2, the autonomy ladder
 was changed after pre-registration, and we report the consequence as two refutations rather than
-as a revision. In RQ3, two instrument defects were found after pre-registration; both were
-corrected before the reported run, both are disclosed in §7.3, and detector recalibration was
-confined to the unguarded condition.
+as a revision. In RQ3, three instrument defects were found after pre-registration and all are disclosed in §7.3.
+Two were corrected before the first reported run, with recalibration confined to the unguarded
+condition; the third was corrected after release, following inspection of guarded responses.
 
 **External validity.** The portfolio is fictional and no result generalises to a real AI estate
 without being restated as a hypothesis. RQ3 is measured on one small local model with

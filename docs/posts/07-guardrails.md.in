@@ -7,7 +7,7 @@ Attack success:
 - LLM judge {{rq3.asr_llm_judge}}
 - filter + judge {{rq3.asr_layered}}
 
-Layering looks excellent. Then the benign set: over-refusal is {{rq3.over_refusal_none}} unguarded, {{rq3.over_refusal_system_prompt}} with the system prompt and {{rq3.over_refusal_layered}} layered. The patterns that suppress attacks refuse half of ordinary requests.
+Layering and the judge look excellent, though zero out of {{rq3.trials_per_pattern}} is a small sample. Then the benign set: over-refusal is {{rq3.over_refusal_none}} unguarded, {{rq3.over_refusal_system_prompt}} with the system prompt and {{rq3.over_refusal_layered}} layered. The patterns that suppress attacks refuse half of ordinary requests.
 
 Against our pre-registered joint criterion - attack success within the tier limit and over-refusal at or below {{rq3.threshold_over_refusal}} - {{rq3.patterns_meeting_both}} of {{rq3.patterns}} patterns qualified. The only pattern with a large reduction at zero over-refusal was the deterministic filter.
 

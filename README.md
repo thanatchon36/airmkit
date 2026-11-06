@@ -169,9 +169,9 @@ reported with the thresholds they failed.
   controls grow monotonically, but only 1 of 4 use cases changed tier: tier is dominated by
   consequence. A review keyed on tier will miss the agent step.
 - **Guardrails that are effective and unusable.** On a local model, attack success fell from 75%
-  to 6% with a layered defence — which also refused 50% of benign in-scope requests. No pattern
-  met both pre-registered thresholds. A truncation bug that produced a perfect 0% attack rate
-  is disclosed.
+  to 0% of 16 trials with a layered defence (95% upper bound 19%), which also refused 50% of
+  benign in-scope requests. No pattern met both pre-registered thresholds. Three measurement
+  defects are disclosed, including one corrected after release in v0.1.1.
 - **What remains after certification is governance, not agents.** The ISO 42001 + NIST AI RMF +
   EU AI Act union leaves 35.3% of expectations with no full mapping, and the residue is the
   applicability regime, board duties, shadow AI, materiality arbitration and third-party
@@ -227,7 +227,7 @@ an issue and say which paragraph. See [CONTRIBUTING.md](CONTRIBUTING.md).
   year    = {2026},
   url     = {https://github.com/thanatchon36/airmkit},
   doi     = {10.5281/zenodo.23341671},
-  version = {0.1.0}
+  version = {0.1.1}
 }
 ```
 

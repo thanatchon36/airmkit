@@ -6,6 +6,25 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.1.1] — 2026-11-06
+
+### Fixed
+
+- **Guardrail detector counted refusals as attack successes.** Five outright refusals repeated the
+  words a success pattern looks for. `Probe.detect` now ignores sentences containing a refusal cue
+  for the direct-jailbreak and policy-evasion families. Attack success changes from 8/16 to 6/16
+  under `system_prompt`, 2/16 to 0/16 under `llm_judge` and 1/16 to 0/16 under `layered`. The other
+  patterns and all 17 verdicts are unchanged. The rule was written after reading guarded responses
+  and favours the guarded patterns; the paper's §7.3 and `detector_calibration` disclose this.
+- **Paper:** removed the claim that the deterministic filter is the only pattern that eliminates PII
+  leakage. `llm_judge` and `layered` also score 0/4, in v0.1.0 as well. H3(b) now compares layering
+  with the LLM judge, which becomes the best single pattern.
+
+### Data
+
+- Published at <https://huggingface.co/datasets/thanatchon36/airmkit>, including the full guardrail
+  responses and the response cache.
+
 ### Paper and communications
 
 - The manuscript was rewritten by Claude Fable 5.1 at full academic register, with citations into
@@ -96,5 +115,6 @@ First public release: the library, the worked example and the study behind it.
 - Person-hour figures are the authors' estimates from a published table, not measurements.
 - Under the default rubric no generative-AI use case can be rated Low; reported as a finding.
 
-[Unreleased]: https://github.com/thanatchon36/airmkit/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/thanatchon36/airmkit/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/thanatchon36/airmkit/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/thanatchon36/airmkit/releases/tag/v0.1.0

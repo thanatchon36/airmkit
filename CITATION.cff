@@ -3,7 +3,7 @@ title: "airmkit: Operationalising the MAS Guidelines on AI Risk Management for L
 message: "If you use this toolkit or its catalogue, crosswalk or results, please cite it."
 type: software
 license: Apache-2.0
-version: 0.1.0
+version: 0.1.1
 doi: "10.5281/zenodo.23341671"
 identifiers:
   - type: doi
@@ -12,7 +12,7 @@ identifiers:
   - type: doi
     value: "10.5281/zenodo.23341672"
     description: "airmkit v0.1.0"
-date-released: "2026-10-13"
+date-released: "2026-11-06"
 repository-code: "https://github.com/thanatchon36/airmkit"
 url: "https://thanatchon36.github.io/airmkit/"
 authors:

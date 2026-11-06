@@ -114,5 +114,5 @@ publish: ## Build the sdist and wheel, check them, and print the release steps
 	$(PY) -m twine check dist/*
 	@echo
 	@echo "Built dist/. Publishing happens in CI on a tag, via PyPI trusted publishing:"
-	@echo "  git tag -a v0.1.0 -m 'airmkit 0.1.0' && git push origin v0.1.0"
+	@echo "  git tag -a v0.1.1 -m 'airmkit 0.1.1' && git push origin v0.1.1"
 	@echo "To upload by hand instead: .venv/bin/python -m twine upload dist/*"

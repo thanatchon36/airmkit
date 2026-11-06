@@ -1,7 +1,7 @@
 {
   "upload_type": "software",
   "title": "airmkit: Operationalising the MAS Guidelines on AI Risk Management for LLM and Agentic Systems",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "language": "eng",
   "license": "apache-2.0",
   "access_right": "open",

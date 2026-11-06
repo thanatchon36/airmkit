@@ -72,7 +72,7 @@ were refuted; all of them are reported with the thresholds they failed.
 |---|---|
 | **Automatability** | 45.1% of expectations admit a fully automated check — 84.6% in Section 4 (inventory, materiality) and 0% in Section 3 (governance). Counted per control, the semi-automatable class dominates. |
 | **Autonomy** | Moving a use case up a six-rung autonomy ladder adds controls monotonically but rarely moves its tier: tier is dominated by consequence, autonomy shows in the control set. |
-| **Guardrails** | The patterns that suppress attacks also refuse 50% of benign in-scope requests. No pattern met both pre-registered thresholds; a truncation bug that produced a perfect 0% attack rate is disclosed. |
+| **Guardrails** | The patterns that suppress attacks also refuse 50% of benign in-scope requests. No pattern met both pre-registered thresholds; three measurement defects are disclosed, including one corrected after release in v0.1.1. |
 | **Crosswalk** | The ISO 42001 + NIST AI RMF + EU AI Act union leaves 35.3% of expectations with no full mapping — governance machinery and Singapore-specific proportionality, not the agent clauses. |
 | **Cost** | Evidence volume is flat across tiers; proportionality scales rigour. 93.1% of estimated effort is attestation and documentation. |
 

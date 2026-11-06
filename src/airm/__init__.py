@@ -44,7 +44,7 @@ __all__ = [
     "__version__",
 ]
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 DISCLAIMER = (
     "airmkit is an independent open-source project, not affiliated with or endorsed by the "
